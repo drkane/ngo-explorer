@@ -44,7 +44,7 @@ Come together as a group - go round the table and share user groups.
 
 Aiming for a collection of user stories that meet the following pattern:
 
-**As a** <USER> **I want to** <PERFORM ACTION> **so I can** <ACCOMPLISH SOMETHING>
+**As a** `<USER>` **I want to** `<PERFORM ACTION>` **so I can** `<ACCOMPLISH SOMETHING>`
 
 Give some examples (one from this domain, one silly one):
 
