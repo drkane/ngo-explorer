@@ -20,9 +20,9 @@ Needs timings
 
 ### 1. Introduction
 
+- Go round table for introductions (all participants)
 - Introduction to the project (DB)
 - Where does this fit into other tools (DK)
-- Go round table for introductions (all participants)
 - Explain the process and aims for session (DK)
 
 ### 2. Explore user groups
