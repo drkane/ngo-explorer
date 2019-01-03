@@ -3,6 +3,8 @@ Workshop plan
 
 January 11th 2019, NCVO, London
 
+Lunch from 1.15pm. Workshop 2pm - 4pm.
+
 Aims and Objectives
 -------------------
 
