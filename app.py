@@ -252,6 +252,8 @@ def update_results_chart(results, selected_rows):
         )
     )
 
+server = app.server
+
 if __name__ == '__main__':
     import requests_cache
     from dotenv import load_dotenv
