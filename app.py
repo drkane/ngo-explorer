@@ -129,7 +129,7 @@ Powered by [CharityBase](https://charitybase.uk/).
                         {"name": 'Name', "id": "Name"},
                         {"name": 'Income', "id": "Income"},
                         {"name": 'Countries of operation',
-                            "id": "Countries of operation"}
+                         "id": "Countries of operation"}
                     ],
                     data=[],
                     row_selectable='multi',
@@ -152,7 +152,7 @@ Powered by [CharityBase](https://charitybase.uk/).
      State(component_id='area-of-operation-dropdown', component_property='value'),
      State(component_id='max-countries', component_property='value')]
 )
-def update_results_json(n_clicks, input_value, aoo, max_countries):
+def update_results_json(_, input_value, aoo, max_countries):
     regnos = input_value.splitlines()
     max_countries = int(max_countries)
     results = fetch_charities(regnos, aoo)
@@ -165,7 +165,7 @@ def update_results_json(n_clicks, input_value, aoo, max_countries):
         ]
         if len(c['countries']) > max_countries:
             continue
-        if len(c['countries']) == 0:
+        if not c['countries']:
             continue
         new_results.append(c)
 
