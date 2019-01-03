@@ -26,6 +26,7 @@ dokku domains:enable ngo-explorer
 dokku domains:add ngo-explorer example.com
 
 # letsencrypt
+dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 dokku config:set --no-restart ngo-explorer DOKKU_LETSENCRYPT_EMAIL=your@email.tld
 dokku letsencrypt ngo-explorer
 
