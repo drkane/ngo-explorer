@@ -10,12 +10,6 @@ import dash_table as dt
 import plotly.graph_objs as go
 
 from charitybase import CharityBase
-import requests_cache
-
-from dotenv import load_dotenv
-load_dotenv()
-
-requests_cache.install_cache()
 
 def fetch_charities(regnos: list, aoo: list):
     if not regnos and not aoo:
@@ -259,4 +253,9 @@ def update_results_chart(results, selected_rows):
     )
 
 if __name__ == '__main__':
+    import requests_cache
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    requests_cache.install_cache()
     app.run_server(debug=True)
