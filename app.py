@@ -127,6 +127,16 @@ Powered by [CharityBase](https://charitybase.uk/).
                     ],
                     data=[],
                     row_selectable='multi',
+                    style_table={
+                        'maxHeight': '500',
+                        'maxWidth': '100%',
+                    },
+                    style_cell={
+                        'minWidth': '0px', 'maxWidth': '180px',
+                        'whiteSpace': 'normal'
+                    },
+                    n_fixed_columns=1,
+                    n_fixed_rows=1,
                 ),
                 className='fl w-100 w-50-ns pr2',
             ),
