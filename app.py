@@ -70,8 +70,11 @@ app = dash.Dash(
 )
 app.title = 'Development Charities Data Explorer'
 
-app.layout = html.Div(className="mw9 center ph3-ns sans-serif", children=[
-    html.H1(children='Development Charities Data Explorer'),
+app.layout = html.Div(className="mw9 center ph3-ns sans-serif mb4 cf", children=[
+    html.H1(children=[
+        'Development Charities Data Explorer',
+        html.Span("alpha", className="gray f5 ml2")
+    ]),
 
     dcc.Markdown(children='''
 An explorer for data on development charities based in the UK.
@@ -79,110 +82,119 @@ Uses data from the Charity Commission for England and Wales.
 Powered by [CharityBase](https://charitybase.uk/).
     '''),
 
-    html.Div(className='w-50', children=[
-        html.H2("Select charities"),
+    html.Div(className='fl w-25 pr2', children=[
+        html.Div(className="pa2 bg-blue white", children=[
+            html.H2("Filter charities", className="pa0 ma0"),
+        ]),
+        html.Div(className="pa2 ba bw1 b--blue", children=[
 
-        html.H3("Choose charities operating in a particular countries"),
-        dcc.Dropdown(
-            options=[
-                {
-                    'label': c['name'],
-                    'value': c['id']
-                } for c in COUNTRIES
-            ],
-            multi=True,
-            id='area-of-operation-dropdown'
-        ),
-        html.Div([
-            'Ignore any charities that work in more than',
-            dcc.Input(
-                placeholder='Enter a value...',
-                type='number',
-                value='180',
-                id='max-countries',
-                className='mh1 w3',
+            html.H3("Choose charities operating in particular countries"),
+            dcc.Dropdown(
+                options=[
+                    {
+                        'label': c['name'],
+                        'value': c['id']
+                    } for c in COUNTRIES
+                ],
+                multi=True,
+                id='area-of-operation-dropdown'
             ),
-            'countries'
-        ], className='mt2 f6'),
+            html.Div([
+                'Ignore any charities that work in more than',
+                dcc.Input(
+                    placeholder='Enter a value...',
+                    type='number',
+                    value='180',
+                    id='max-countries',
+                    className='mh1 w3',
+                ),
+                'countries'
+            ], className='mt2 f6'),
 
-        html.H3("Filter by charity numbers"),
-        html.P("Enter each charity number on a different line."),
-        dcc.Textarea(
-            id='charity-list',
-            placeholder='Enter some charity numbers...',
-            value='',
-            style={'width': '100%'}
-        ),
+            html.H3("Filter by charity numbers"),
+            html.P("Enter each charity number on a different line."),
+            dcc.Textarea(
+                id='charity-list',
+                placeholder='Enter some charity numbers...',
+                value='',
+                style={'width': '100%'}
+            ),
 
-        html.Div(
-            [html.Button(
-                id='submit-button',
-                n_clicks=0,
-                children='Fetch data',
-                className='link ph3 pv2 mb2 dib white bg-blue b--blue br3 ba'
-            )],
-            className='mt3',
-        ),
+            html.Div(
+                [html.Button(
+                    id='submit-button',
+                    n_clicks=0,
+                    children='Fetch data',
+                    className='link ph3 pv2 mb2 dib white bg-blue b--blue br3 ba'
+                )],
+                className='mt3',
+            ),
+        ]),
     ]),
 
-    html.Div(id='results-json', style={"display": "none"}),
-
-    html.H2(id='results-count'),
-
     html.Div(
-        className='cf',
+        className='fl w-75 pl2',
         children=[
+            html.H2(id='results-count'),
             html.Div(
-                className='fl w-100 w-50-ns pr2',
+                className="dn",
+                id="results-container",
                 children=[
-                    dt.DataTable(
-                        id='results-list',
-                        columns=[
-                            {"name": 'Charity Number', "id": "Charity Number"},
-                            {"name": 'Name', "id": "Name"},
-                            {"name": 'Income', "id": "Income"},
-                            {"name": 'Countries of operation',
-                            "id": "Countries of operation"}
-                        ],
-                        data=[],
-                        row_selectable='multi',
-                        style_table={
-                            'maxHeight': '500',
-                            'maxWidth': '100%',
-                        },
-                        style_cell={
-                            'minWidth': '0px', 'maxWidth': '180px',
-                            'whiteSpace': 'normal'
-                        },
-                        n_fixed_columns=1,
-                        n_fixed_rows=1,
+                    html.Div(
+                        className='w-100',
+                        children=[
+                            dt.DataTable(
+                                id='results-list',
+                                columns=[
+                                    {"name": 'Charity Number', "id": "Charity Number"},
+                                    {"name": 'Name', "id": "Name"},
+                                    {"name": 'Income', "id": "Income"},
+                                    {"name": 'Countries of operation',
+                                    "id": "Countries of operation"}
+                                ],
+                                data=[],
+                                row_selectable='multi',
+                                style_table={
+                                    'maxHeight': '500',
+                                    'maxWidth': '100%',
+                                },
+                                style_cell={
+                                    'minWidth': '0px', 'maxWidth': '180px',
+                                    'whiteSpace': 'normal'
+                                },
+                                n_fixed_columns=1,
+                                n_fixed_rows=1,
+                            ),
+                            html.A("Download data", id="results-download-link")
+                        ]
                     ),
-                    html.A("Download data", id="results-download-link")
-                ]
-            ),
-            html.Div(
-                className='fl w-100 w-50-ns pl2',
-                children=[
-                    html.H3("Financial history of charities"),
-                    html.P(
-                        "Figures given are in cash terms, without adjusting for inflation",
-                        className="f6 gray i mb2 mt0"
+                    html.Div(
+                        className='w-100',
+                        children=[
+                            html.H3("Financial history of charities"),
+                            html.P(
+                                "Figures given are in cash terms, without adjusting for inflation",
+                                className="f6 gray i mb2 mt0"
+                            ),
+                            dcc.RadioItems(
+                                options=[
+                                    {'label': 'Income', 'value': 'inc'},
+                                    {'label': 'Spending', 'value': 'exp'},
+                                ],
+                                value='inc',
+                                id="financial-history-type",
+                                labelClassName="pr2 f6",
+                                inputClassName="mr1 f6",
+                            ),
+                            html.Div(id="finances-chart", className="h6")
+                        ]
                     ),
-                    dcc.RadioItems(
-                        options=[
-                            {'label': 'Income', 'value': 'inc'},
-                            {'label': 'Spending', 'value': 'exp'},
-                        ],
-                        value='inc',
-                        id="financial-history-type",
-                        labelClassName="pr2 f6",
-                        inputClassName="mr1 f6",
-                    ),
-                    html.Div(id="finances-chart")
                 ]
             ),
         ]
     ),
+
+    html.Div(id='results-json', style={"display": "none"}),
 ])
 
 
@@ -226,18 +238,28 @@ def update_results_link(_, input_value, aoo, max_countries):
 def update_results_header(results):
     results = json.loads(results)
     if not results:
-        return "No charities loaded"
+        return ["No charities loaded", html.Div("Use filters to select charities", className="f5 gray")]
     return "{:,.0f} charities found".format(len(results))
 
 @app.callback(
     Output(component_id='results-list', component_property='data'),
     [Input(component_id='results-json', component_property='children')],
 )
-def update_results_list(results, countries):
+def update_results_list(results):
     results = json.loads(results)
     if not results:
         return []
     return [get_charity_row(c) for c in results]
+
+@app.callback(
+    Output(component_id='results-container', component_property='className'),
+    [Input(component_id='results-json', component_property='children')],
+)
+def show_results_container(results):
+    results = json.loads(results)
+    if not results:
+        return "dn"
+    return "db"
 
 
 def get_charity_row(c, number_format=True):
