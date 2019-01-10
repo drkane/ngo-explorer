@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 import json
+import urllib.parse
+import io
+import csv
 
 import dash
 from dash.dependencies import Input, Output, State
@@ -8,10 +11,11 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_table as dt
 import plotly.graph_objs as go
+import flask
 
 from charitybase import CharityBase
 
-def fetch_charities(regnos: list, aoo: list):
+def fetch_charities(regnos: list, aoo: list, max_countries: int=200):
     if not regnos and not aoo:
         return []
 
@@ -33,7 +37,20 @@ def fetch_charities(regnos: list, aoo: list):
     print(query)
 
     res = charityBase.charity.list(query)
-    return res.charities
+
+    results = []
+    for c in res.charities:
+        c['countries'] = [
+            ctry['name'] for ctry in c['areasOfOperation']
+            if ctry['locationType'] == "Country" and ctry['name'] not in ['Scotland', 'Northern Ireland']
+        ]
+        if len(c['countries']) > max_countries:
+            continue
+        if not c['countries']:
+            continue
+        results.append(c)
+
+    return results
 
 with open('countries.json') as a:
     COUNTRIES = json.load(a)['countries']
@@ -116,29 +133,32 @@ Powered by [CharityBase](https://charitybase.uk/).
         className='cf',
         children=[
             html.Div(
-                dt.DataTable(
-                    id='results-list',
-                    columns=[
-                        {"name": 'Charity Number', "id": "Charity Number"},
-                        {"name": 'Name', "id": "Name"},
-                        {"name": 'Income', "id": "Income"},
-                        {"name": 'Countries of operation',
-                         "id": "Countries of operation"}
-                    ],
-                    data=[],
-                    row_selectable='multi',
-                    style_table={
-                        'maxHeight': '500',
-                        'maxWidth': '100%',
-                    },
-                    style_cell={
-                        'minWidth': '0px', 'maxWidth': '180px',
-                        'whiteSpace': 'normal'
-                    },
-                    n_fixed_columns=1,
-                    n_fixed_rows=1,
-                ),
                 className='fl w-100 w-50-ns pr2',
+                children=[
+                    dt.DataTable(
+                        id='results-list',
+                        columns=[
+                            {"name": 'Charity Number', "id": "Charity Number"},
+                            {"name": 'Name', "id": "Name"},
+                            {"name": 'Income', "id": "Income"},
+                            {"name": 'Countries of operation',
+                            "id": "Countries of operation"}
+                        ],
+                        data=[],
+                        row_selectable='multi',
+                        style_table={
+                            'maxHeight': '500',
+                            'maxWidth': '100%',
+                        },
+                        style_cell={
+                            'minWidth': '0px', 'maxWidth': '180px',
+                            'whiteSpace': 'normal'
+                        },
+                        n_fixed_columns=1,
+                        n_fixed_rows=1,
+                    ),
+                    html.A("Download data", id="results-download-link")
+                ]
             ),
             html.Div(
                 id='finances-chart',
@@ -159,21 +179,28 @@ Powered by [CharityBase](https://charitybase.uk/).
 def update_results_json(_, input_value, aoo, max_countries):
     regnos = input_value.splitlines()
     max_countries = int(max_countries)
-    results = fetch_charities(regnos, aoo)
+    results = fetch_charities(regnos, aoo, max_countries)
 
-    new_results = []
-    for c in results:
-        c['countries'] = [
-            ctry['name'] for ctry in c['areasOfOperation']
-            if ctry['locationType'] == "Country" and ctry['name'] not in ['Scotland', 'Northern Ireland']
-        ]
-        if len(c['countries']) > max_countries:
-            continue
-        if not c['countries']:
-            continue
-        new_results.append(c)
+    return json.dumps(results)
 
-    return json.dumps(new_results)
+@app.callback(
+    Output(component_id='results-download-link', component_property='href'),
+    [Input(component_id='results-json', component_property='children')],
+    [State(component_id='charity-list', component_property='value'),
+     State(component_id='area-of-operation-dropdown', component_property='value'),
+     State(component_id='max-countries', component_property='value')]
+)
+def update_results_link(_, input_value, aoo, max_countries):
+    regnos = input_value.splitlines()
+    max_countries = int(max_countries)
+    return "/download?{}".format(
+        urllib.parse.urlencode({
+            "regnos": json.dumps(regnos),
+            "max_countries": max_countries,
+            "aoo": json.dumps(aoo)
+        })
+    )
+
 
 @app.callback(
     Output(component_id='results-count', component_property='children'),
@@ -194,36 +221,36 @@ def update_results_list(results, countries):
     results = json.loads(results)
     if not results:
         return []
+    return [get_charity_row(c) for c in results]
 
-    rows = []
-    for c in results:
-        if len(c['countries']) > 10:
-            countries = "{:,.0f} countries".format(len(c['countries']))
-        else:
-            countries = ", ".join(c['countries'])
 
-        income = c.get("income", {}).get(
-            "latest", {}).get("total", None)
+def get_charity_row(c, number_format=True):
+    if len(c['countries']) > 10:
+        countries = "{:,.0f} countries".format(len(c['countries']))
+    else:
+        countries = ", ".join(c['countries'])
+
+    income = c.get("income", {}).get(
+        "latest", {}).get("total", None)
+    if number_format:
         if income is None:
             income = 'Unknown'
         else:
             income = "£{:,.0f}".format(float(income))
 
-        row = {
-            "Charity Number": c.get("ids", {}).get("GB-CHC", "Unknown"),
-            # @TODO: currently DataTable doesn't support HTML in cells
-            # "Name": html.A(
-            #     href='https://charitybase.uk/charities/{}'.format(
-            #         c.get("ids", {}).get("GB-CHC", "Unknown")),
-            #     children=c.get("name", "Unknown"),
-            #     target="_blank"
-            # ),
-            "Name": c.get("name", "Unknown"),
-            "Income": income,
-            "Countries of operation": countries
-        }
-        rows.append(row)
-    return rows
+    return {
+        "Charity Number": c.get("ids", {}).get("GB-CHC", "Unknown"),
+        # @TODO: currently DataTable doesn't support HTML in cells
+        # "Name": html.A(
+        #     href='https://charitybase.uk/charities/{}'.format(
+        #         c.get("ids", {}).get("GB-CHC", "Unknown")),
+        #     children=c.get("name", "Unknown"),
+        #     target="_blank"
+        # ),
+        "Name": c.get("name", "Unknown"),
+        "Income": income,
+        "Countries of operation": countries
+    }
 
 
 @app.callback(
@@ -263,6 +290,30 @@ def update_results_chart(results, selected_rows):
     )
 
 server = app.server
+
+
+@server.route('/download')
+def download_file():
+    filters = {
+        "regnos": json.loads(flask.request.args.get("regnos")),
+        "max_countries": int(flask.request.args.get("max_countries")),
+        "aoo": json.loads(flask.request.args.get("aoo")),
+    }
+    results = fetch_charities(**filters)
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=["Charity Number", "Name", "Income", "Countries of operation"])
+    writer.writeheader()
+    for c in results:
+        writer.writerow(get_charity_row(c, number_format=False))
+
+    return flask.Response(
+        output.getvalue(),
+        mimetype="text/csv",
+        headers={
+            "Content-disposition": "attachment; filename=download.csv"
+        }
+    )
 
 if __name__ == '__main__':
     import requests_cache
