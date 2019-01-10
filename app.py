@@ -161,8 +161,21 @@ Powered by [CharityBase](https://charitybase.uk/).
                 ]
             ),
             html.Div(
-                id='finances-chart',
-                className='fl w-100 w-50-ns pl2'
+                className='fl w-100 w-50-ns pl2',
+                children=[
+                    html.H3("Financial history of charities"),
+                    dcc.RadioItems(
+                        options=[
+                            {'label': 'Income', 'value': 'inc'},
+                            {'label': 'Spending', 'value': 'exp'},
+                        ],
+                        value='inc',
+                        id="financial-history-type",
+                        labelClassName="ph2 f6",
+                        inputClassName="mr1 f6",
+                    ),
+                    html.Div(id="finances-chart")
+                ]
             ),
         ]
     ),
@@ -256,9 +269,10 @@ def get_charity_row(c, number_format=True):
 @app.callback(
     Output(component_id='finances-chart', component_property='children'),
     [Input(component_id='results-json', component_property='children'),
-     Input(component_id='results-list', component_property='derived_virtual_selected_rows')]
+     Input(component_id='results-list', component_property='derived_virtual_selected_rows'),
+     Input(component_id="financial-history-type", component_property='value')]
 )
-def update_results_chart(results, selected_rows):
+def update_results_chart(results, selected_rows, field):
     results = json.loads(results)
     if not results:
         return
@@ -266,17 +280,21 @@ def update_results_chart(results, selected_rows):
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
 
+    field = {
+        "inc": "income",
+        "exp": "expend"
+    }.get(field, "income")
+
     return dcc.Graph(
         figure=go.Figure(
             data=[
                 go.Scatter(
                     x=[f['financialYear']['end'] for f in c.get("income", {}).get("annual", [])],
-                    y=[f['income'] for f in c.get("income", {}).get("annual", [])],
+                    y=[f[field] for f in c.get("income", {}).get("annual", [])],
                     name=c.get("name", "Unknown")
                 ) for c in results
             ],
             layout=go.Layout(
-                title='Financial history of charities',
                 showlegend=False,
                 margin=go.layout.Margin(l=40, r=0, t=40, b=30),
                 yaxis=dict(
