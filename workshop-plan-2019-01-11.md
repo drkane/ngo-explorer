@@ -3,7 +3,7 @@ Workshop plan
 
 January 11th 2019, NCVO, London
 
-Lunch from 1.15pm. Workshop 2pm - 4pm.
+Lunch from 1.15pm. Workshop 2pm - 4.30pm.
 
 Aims and Objectives
 -------------------
@@ -20,14 +20,15 @@ Programme
 
 Needs timings
 
-### 1. Introduction
+### 1. Introduction (40 mins)
 
 - Go round table for introductions (all participants)
 - Introduction to the project (DB)
-- Where does this fit into other tools (DK)
+- Where does this fit into other tools (DK) - Charity Commission website, CharityBase, findthatcharity
+- Demonstration of proof of concept (DK)
 - Explain the process and aims for session (DK)
 
-### 2. Explore user groups
+### 2. Explore user groups (20 mins)
 
 (@TODO: define what we mean by user group here)
 
@@ -42,7 +43,9 @@ Maybe think about specific people that you've encountered.
 
 Come together as a group - go round the table and share user groups. 
 
-### 3. Produce user stories
+### Coffee break (10 mins break)
+
+### 3. Produce user stories (40 mins)
 
 Aiming for a collection of user stories that meet the following pattern:
 
@@ -64,7 +67,7 @@ Again, sharing and discussion of user stories
 
 Which are the highest priority? How are the user stories connected?
 
-### 4. Sum up
+### 5. Sum up (10 mins)
 
 Thanks people for their time. Admin for travel receipts, etc.
 
