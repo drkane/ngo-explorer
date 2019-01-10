@@ -164,6 +164,10 @@ Powered by [CharityBase](https://charitybase.uk/).
                 className='fl w-100 w-50-ns pl2',
                 children=[
                     html.H3("Financial history of charities"),
+                    html.P(
+                        "Figures given are in cash terms, without adjusting for inflation",
+                        className="f6 gray i mb2 mt0"
+                    ),
                     dcc.RadioItems(
                         options=[
                             {'label': 'Income', 'value': 'inc'},
@@ -171,7 +175,7 @@ Powered by [CharityBase](https://charitybase.uk/).
                         ],
                         value='inc',
                         id="financial-history-type",
-                        labelClassName="ph2 f6",
+                        labelClassName="pr2 f6",
                         inputClassName="mr1 f6",
                     ),
                     html.Div(id="finances-chart")
@@ -228,7 +232,6 @@ def update_results_header(results):
 @app.callback(
     Output(component_id='results-list', component_property='data'),
     [Input(component_id='results-json', component_property='children')],
-    [State(component_id='area-of-operation-dropdown', component_property='value')],
 )
 def update_results_list(results, countries):
     results = json.loads(results)
