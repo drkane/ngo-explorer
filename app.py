@@ -94,7 +94,7 @@ Powered by [CharityBase](https://charitybase.uk/).
                     {
                         'label': c['name'],
                         'value': c['id']
-                    } for c in COUNTRIES
+                    } for c in COUNTRIES if c['iso'] != "GB"
                 ],
                 multi=True,
                 id='area-of-operation-dropdown'
@@ -187,6 +187,13 @@ Powered by [CharityBase](https://charitybase.uk/).
                                 inputClassName="mr1 f6",
                             ),
                             html.Div(id="finances-chart", className="h6")
+                        ]
+                    ),
+                    html.Div(
+                        className='w-100',
+                        children=[
+                            html.H3("Where these charities work"),
+                            html.Div(id="area-of-operation-map", className="h6")
                         ]
                     ),
                 ]
@@ -327,6 +334,53 @@ def update_results_chart(results, selected_rows, field):
                     autorange=True,
                     rangemode='tozero',
                     tickprefix='£',
+                )
+            )
+        )
+    )
+
+
+@app.callback(
+    Output(component_id='area-of-operation-map', component_property='children'),
+    [Input(component_id='results-json', component_property='children'),
+     Input(component_id='results-list', component_property='derived_virtual_selected_rows')]
+)
+def update_results_chart(results, selected_rows, field):
+    results = json.loads(results)
+    if not results:
+        return
+
+    if selected_rows:
+        results = [v for k, v in enumerate(results) if k in selected_rows]
+
+    return dcc.Graph(
+        figure=go.Figure(
+            data=[dict(
+                type='choropleth',
+                locations=df['CODE'],
+                z=df['GDP (BILLIONS)'],
+                text=df['COUNTRY'],
+                colorscale=[[0, "rgb(5, 10, 172)"], [0.35, "rgb(40, 60, 190)"], [0.5, "rgb(70, 100, 245)"],
+                            [0.6, "rgb(90, 120, 245)"], [0.7, "rgb(106, 137, 247)"], [1, "rgb(220, 220, 220)"]],
+                autocolorscale=False,
+                reversescale=True,
+                marker=dict(
+                    line=dict(
+                        color='rgb(180,180,180)',
+                        width=0.5
+                    )),
+                colorbar=dict(
+                    autotick=False,
+                    tickprefix='$',
+                    title='GDP<br>Billions US$'),
+            )],
+            layout=go.Layout(
+                geo = dict(
+                    showframe = False,
+                    showcoastlines = False,
+                    projection = dict(
+                        type = 'Mercator'
+                    )
                 )
             )
         )
