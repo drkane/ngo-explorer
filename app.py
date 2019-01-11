@@ -345,7 +345,7 @@ def update_results_chart(results, selected_rows, field):
     [Input(component_id='results-json', component_property='children'),
      Input(component_id='results-list', component_property='derived_virtual_selected_rows')]
 )
-def update_results_chart(results, selected_rows, field):
+def update_results_map(results, selected_rows):
     results = json.loads(results)
     if not results:
         return
@@ -353,13 +353,23 @@ def update_results_chart(results, selected_rows, field):
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
 
+    countries = {}
+    for c in results:
+        for ctry in c['areasOfOperation']:
+            for ctry_iso in COUNTRIES:
+                if ctry['id'] != ctry_iso['id']:
+                    continue
+                if ctry_iso['iso'] not in countries:
+                    countries[ctry_iso['iso']] = 0
+                countries[ctry_iso['iso']] += 1
+
     return dcc.Graph(
         figure=go.Figure(
             data=[dict(
                 type='choropleth',
-                locations=df['CODE'],
-                z=df['GDP (BILLIONS)'],
-                text=df['COUNTRY'],
+                locations=list(countries.keys()),
+                z=list(countries.values()),
+                text=list(countries.keys()),
                 colorscale=[[0, "rgb(5, 10, 172)"], [0.35, "rgb(40, 60, 190)"], [0.5, "rgb(70, 100, 245)"],
                             [0.6, "rgb(90, 120, 245)"], [0.7, "rgb(106, 137, 247)"], [1, "rgb(220, 220, 220)"]],
                 autocolorscale=False,
@@ -369,17 +379,13 @@ def update_results_chart(results, selected_rows, field):
                         color='rgb(180,180,180)',
                         width=0.5
                     )),
-                colorbar=dict(
-                    autotick=False,
-                    tickprefix='$',
-                    title='GDP<br>Billions US$'),
             )],
             layout=go.Layout(
                 geo = dict(
                     showframe = False,
                     showcoastlines = False,
                     projection = dict(
-                        type = 'Mercator'
+                        type = 'natural earth'
                     )
                 )
             )
