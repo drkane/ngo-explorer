@@ -1,0 +1,28 @@
+#_dash-app-content p a,
+#_dash-app-content p a:visited {
+    color: #FBF1A9;
+}
+
+
+/* Table */
+
+.dash-spreadsheet-inner td,
+.dash-spreadsheet-inner th {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.dash-spreadsheet-inner td {
+    background-color: #333333 !important;
+}
+
+.dash-spreadsheet-inner th {
+    background-color: #FBF1A9 !important;
+    border-top: 0px solid none;
+    color: #111;
+}
+
+.dash-spreadsheet-container .dash-spreadsheet-inner td, 
+.dash-spreadsheet-container .dash-spreadsheet-inner td .dash-cell-value, 
+.dash-spreadsheet-container .dash-spreadsheet-inner th {
+    min-height: 30px !important;
+}

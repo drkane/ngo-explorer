@@ -1,0 +1,49 @@
+#simple-filter P {
+    min-height: 42px;
+}
+
+/* Inline filter dropdown */
+
+div#area-of-operation-dropdown {
+    display: inline-block;
+    margin-left: 6px;
+    margin-bottom: -3px;
+    min-width: 8rem;
+    max-width: 32rem;
+    border-color: black black #FBF1A9;
+    border-style: solid;
+    border-width: 0px 0px 1px;
+    border-radius: 0px;
+}
+
+div#area-of-operation-dropdown .Select-control,
+div#area-of-operation-dropdown .is-focused {
+    border-width: 0px;
+    box-shadow: none;
+}
+
+div#area-of-operation-dropdown,
+div#area-of-operation-dropdown .Select-control
+{
+    background: inherit;
+}
+
+div#area-of-operation-dropdown .Select-menu-outer {
+    background: #333333;
+    min-width: 16rem;
+}
+
+div#area-of-operation-dropdown .Select-value {
+    color: #f4f4f4;
+    margin-bottom: 7px;
+}
+
+div#area-of-operation-dropdown input {
+    color: #f4f4f4;
+}
+
+
+/* Hide dash undo/redo */
+._dash-undo-redo {
+    display: none;
+}
