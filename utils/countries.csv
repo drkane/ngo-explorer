@@ -1,0 +1,249 @@
+id,name,iso,dac_status
+D-1,Afghanistan,AFG,Least Developed
+D-2,Albania,ALB,
+D-3,Algeria,DZA,
+D-5,Andorra,AND,
+D-6,Angola,AGO,Least Developed
+D-9,Antigua And Barbuda,ATG,
+D-10,Argentina,ARG,
+D-11,Armenia,ARM,Lower Middle Income
+D-13,Australia,AUS,
+D-14,Austria,AUT,
+D-15,Azerbaijan,AZE,
+D-17,Bahamas,BHS,
+D-18,Bahrain,BHR,
+D-19,Bangladesh,BGD,Least Developed
+D-20,Barbados,BRB,
+D-21,Belarus,BLR,
+D-22,Belgium,BEL,
+D-23,Belize,BLZ,
+D-24,Benin,BEN,Least Developed
+D-26,Bhutan,BTN,Least Developed
+D-27,Bolivia,BOL,Lower Middle Income
+D-28,Bosnia And Herzegovina,BIH,
+D-29,Botswana,BWA,
+D-30,Brazil,BRA,
+D-31,Brunei,BRN,
+D-32,Bulgaria,BGR,
+D-33,Burkina Faso,BFA,Least Developed
+D-34,Burundi,BDI,Least Developed
+D-35,Cambodia,KHM,Least Developed
+D-36,Cameroon,CMR,Lower Middle Income
+D-37,Canada,CAN,
+D-38,Cape Verde,CPV,Lower Middle Income
+D-40,Central African Republic,CAF,Least Developed
+D-41,Chad,TCD,Least Developed
+D-42,Chile,CHL,
+D-43,China,CHN,
+D-44,Colombia,COL,
+D-45,Comoros,COM,Least Developed
+D-46,Congo,COG,Lower Middle Income
+D-48,Costa Rica,CRI,
+D-49,Croatia,HRV,
+D-50,Cuba,CUB,
+D-51,Cyprus,CYP,
+D-52,Czech Republic,CZE,
+D-53,Denmark,DNK,
+D-54,Djibouti,DJI,Least Developed
+D-55,Dominica,DMA,
+D-56,Dominican Republic,DOM,
+D-57,Ecuador,ECU,
+D-58,Egypt,EGY,Lower Middle Income
+D-59,El Salvador,SLV,Lower Middle Income
+D-60,Equatorial Guinea,GNQ,
+D-61,Eritrea,ERI,Least Developed
+D-62,Estonia,EST,
+D-63,Ethiopia,ETH,Least Developed
+D-66,Fiji,FJI,
+D-67,Finland,FIN,
+D-68,France,FRA,
+D-71,Gabon,GAB,
+D-72,The Gambia,GMB,Least Developed
+D-74,Georgia,GEO,Lower Middle Income
+D-75,Germany,DEU,
+D-76,Ghana,GHA,Lower Middle Income
+D-78,Greece,GRC,
+D-80,Grenada,GRD,
+D-83,Guatemala,GTM,Lower Middle Income
+D-85,Guinea,GIN,Least Developed
+D-86,Guinea-Bissau,GNB,Least Developed
+D-87,Guyana,GUY,
+D-88,Haiti,HTI,Least Developed
+D-89,Honduras,HND,Lower Middle Income
+D-91,Hungary,HUN,
+D-92,Iceland,ISL,
+D-93,India,IND,Lower Middle Income
+D-94,Indonesia,IDN,Lower Middle Income
+D-95,Iran,IRN,
+D-96,Iraq,IRQ,
+D-97,Israel,ISR,
+D-98,Italy,ITA,
+D-99,Ivory Coast,CIV,Lower Middle Income
+D-100,Jamaica,JAM,
+D-101,Japan,JPN,
+D-103,Jordan,JOR,Lower Middle Income
+D-104,Kazakhstan,KAZ,
+D-105,Kenya,KEN,Lower Middle Income
+D-106,Kiribati,KIR,Least Developed
+D-107,Kuwait,KWT,
+D-108,Kyrgyzstan,KGZ,Lower Middle Income
+D-109,Laos,LAO,Least Developed
+D-110,Latvia,LVA,
+D-111,Lebanon,LBN,
+D-112,Lesotho,LSO,Least Developed
+D-113,Liberia,LBR,Least Developed
+D-114,Libya,LBY,
+D-115,Liechtenstein,LIE,
+D-116,Lithuania,LTU,
+D-117,Luxembourg,LUX,
+D-119,Macedonia,MKD,
+D-120,Madagascar,MDG,Least Developed
+D-122,Malawi,MWI,Least Developed
+D-123,Malaysia,MYS,
+D-124,Maldives,MDV,
+D-125,Mali,MLI,Least Developed
+D-126,Malta,MLT,
+D-127,Marshall Islands,MHL,
+D-129,Mauritania,MRT,Least Developed
+D-130,Mauritius,MUS,
+D-132,Mexico,MEX,
+D-133,Micronesia,FSM,Lower Middle Income
+D-134,Moldova,MDA,Lower Middle Income
+D-135,Monaco,MCO,
+D-136,Mongolia,MNG,Lower Middle Income
+D-138,Morocco,MAR,Lower Middle Income
+D-139,Mozambique,MOZ,Least Developed
+D-140,Burma,MMR,Least Developed
+D-141,Namibia,NAM,
+D-142,Nauru,NRU,
+D-143,Nepal,NPL,Least Developed
+D-144,Netherlands,NLD,
+D-147,New Zealand,NZL,
+D-148,Nicaragua,NIC,Lower Middle Income
+D-149,Niger,NER,Least Developed
+D-150,Nigeria,NGA,Lower Middle Income
+D-152,North Korea,PRK,Other Low Income
+D-154,Norway,NOR,
+D-155,Oman,OMN,
+D-156,Pakistan,PAK,Lower Middle Income
+D-157,Palau,PLW,
+D-159,Panama,PAN,
+D-160,Papua New Guinea,PNG,Lower Middle Income
+D-161,Paraguay,PRY,
+D-162,Peru,PER,
+D-163,Philippines,PHL,Lower Middle Income
+D-164,Poland,POL,
+D-165,Portugal,PRT,
+D-167,Qatar,QAT,
+D-168,Ireland,IRL,
+D-170,Romania,ROU,
+D-171,Russia,RUS,
+D-172,Rwanda,RWA,Least Developed
+D-174,St Kitts-Nevis,KNA,
+D-175,St Lucia,LCA,
+D-176,St Vincent And Grenadines,VCT,
+D-177,Samoa,WSM,
+D-178,San Marino,SMR,
+D-179,Sao Tome And Principe,STP,Least Developed
+D-180,Saudi Arabia,SAU,
+D-181,Senegal,SEN,Least Developed
+D-182,Seychelles,SYC,
+D-183,Sierra Leone,SLE,Least Developed
+D-184,Singapore,SGP,
+D-185,Slovakia,SVK,
+D-186,Slovenia,SVN,
+D-187,Solomon Islands,SLB,Least Developed
+D-188,Somalia,SOM,Least Developed
+D-189,South Africa,ZAF,
+D-190,South Korea,KOR,
+D-191,Spain,ESP,
+D-192,Sri Lanka,LKA,Lower Middle Income
+D-193,Sudan,SDN,Least Developed
+D-194,Surinam,SUR,
+D-195,Swaziland,SWZ,Lower Middle Income
+D-196,Sweden,SWE,
+D-197,Switzerland,CHE,
+D-198,Syria,SYR,Lower Middle Income
+D-200,Tajikistan,TJK,Lower Middle Income
+D-201,Tanzania,TZA,Least Developed
+D-202,Thailand,THA,
+D-204,Togo,TGO,Least Developed
+D-205,Tonga,TON,
+D-206,Trinidad And Tobago,TTO,
+D-207,Tunisia,TUN,Lower Middle Income
+D-208,Turkey,TUR,
+D-209,Turkmenistan,TKM,
+D-211,Tuvalu,TUV,Least Developed
+D-212,Uganda,UGA,Least Developed
+D-213,Ukraine,UKR,Lower Middle Income
+D-214,United Arab Emirates,ARE,
+D-216,United States,USA,
+D-217,Uruguay,URY,
+D-218,Uzbekistan,UZB,Lower Middle Income
+D-219,Vanuatu,VUT,Least Developed
+D-221,Venezuela,VEN,
+D-222,Vietnam,VNM,Lower Middle Income
+D-224,Yemen,YEM,Least Developed
+D-225,Serbia,SRB,
+D-226,Democratic Republic Of The Congo,COD,Least Developed
+D-227,Zambia,ZMB,Least Developed
+D-228,Zimbabwe,ZWE,Other Low Income
+D-233,Montenegro,MNE,
+D-234,Scotland,GBR,
+D-235,Northern Ireland,GBR,
+D-236,Antarctica,ATA,
+D-237,Timor-Leste,TLS,Least Developed
+D-238,Occupied Palestinian Territories,PSE,Lower Middle Income
+D-239,Kosovo,UNK,Lower Middle Income
+D-240,Akrotiri And Dhekelia,ALA,
+D-241,American Samoa,ASM,
+D-242,Anguilla,AIA,
+D-243,Aruba,ABW,
+D-244,Bermuda,BMU,
+D-245,British Indian Ocean Territory,IOT,
+D-246,British Virgin Islands,VGB,
+D-247,Cayman Islands,CYM,
+D-248,Christmas Island,CXR,
+D-249,Clipperton Island,CPT,
+D-250,Cocos (Keeling) Islands,CCK,
+D-251,Cook Islands,COK,
+D-252,Easter  Island,CHL,
+D-253,Falkland Islands,FLK,
+D-254,Faroe Islands,FRO,
+D-255,French Guyana,GUF,
+D-256,French Polynesia,PYF,
+D-257,Gibraltar,GIB,
+D-258,Greenland,GRL,
+D-259,Guadeloupe,GLP,
+D-260,Guam,GUM,
+D-261,Guernsey,GGY,
+D-262,Hong Kong,HKG,
+D-263,Isle Of Man,IMN,
+D-264,Jan Mayen,SJM,
+D-265,Jersey,JEY,
+D-266,Juan Fernandez Islands,CHL,
+D-267,Macau,MAC,
+D-268,Martinique,MTQ,
+D-269,Mayotte,MYT,
+D-270,Montserrat,MSR,
+D-271,Netherlands Antilles,ANT,
+D-272,New Caledonia,NCL,
+D-273,Niue,NIU,
+D-274,Norfolk Island,NFK,
+D-275,Northern Mariana Island,MNP,
+D-276,Pitcairn Islands,PCN,
+D-277,Puerto Rico,PRI,
+D-278,Reunion,REU,
+D-279,Ross Dependency,ATA,
+D-280,St Barthelemy,BLM,
+D-281,St Helena,SHN,
+D-282,St Martin,MAF,
+D-283,St Pierre And Miquelon,SPM,
+D-284,South Georgia,SGS,
+D-285,Svalbard,SJM,
+D-286,Taiwan,TWN,
+D-287,Tokelau,TKL,Lower Middle Income
+D-288,Turks And Caicos Islands,TCA,
+D-289,U.S. Virgin Islands,VIR,
+D-290,Wallis And Futuna,WLF,
+D-293,Republic Of South Sudan,SSD,Least Developed

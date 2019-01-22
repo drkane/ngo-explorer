@@ -52,7 +52,7 @@ def fetch_charities(regnos: list, aoo: list, max_countries: int=200):
 
     return results
 
-with open('countries.json') as a:
+with open(os.path.join('utils', 'countries.json')) as a:
     COUNTRIES = json.load(a)['countries']
 
 app = dash.Dash(
