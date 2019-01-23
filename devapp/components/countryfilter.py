@@ -4,7 +4,7 @@ import dash_html_components as html
 def countryfilter():
     return html.Div(id='simple-filter', children=[
         html.P(className='mb4 f4 flex items-center', children=[
-            "Show me charities operating in ",
+            "Show charities operating in ",
             dcc.Dropdown(
                 options=[],
                 multi=True,
