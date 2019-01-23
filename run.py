@@ -1,4 +1,5 @@
 from devapp.app import app
+from devapp.server import server
 
 if __name__ == '__main__':
     import requests_cache
