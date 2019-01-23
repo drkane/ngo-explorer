@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
-import os
-import json
-
 import dash_core_components as dcc
 import dash_html_components as html
 
 from .server import app
-
-from .utils.utils import get_charity_row
 
 from .components import *
 
