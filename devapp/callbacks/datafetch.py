@@ -23,6 +23,8 @@ from ..data import fetch_charities
      Input(component_id='operation-filter', component_property='value')]
 )
 def update_filter_store(input_value, aoo, max_countries, include_oa, search, min_income, max_income, causes, beneficiaries, operations):
+    # because of <https://community.plot.ly/t/adding-ability-to-delete-numbers-from-input-type-number/12802>
+    max_income = None if max_income == 0 else max_income
     return {
         "aoo": aoo,
         "regnos": input_value.splitlines(),
