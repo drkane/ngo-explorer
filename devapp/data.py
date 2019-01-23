@@ -24,6 +24,15 @@ def fetch_charities(filters: dict):
     if filters.get("include_oa", True):
         query['causes.id'] = "106"
 
+    if filters.get("search"):
+        query['search'] = filters.get("search")
+
+    if filters.get("min_income") or filters.get("max_income"):
+        query['incomeRange'] = '{},{}'.format(
+            filters.get("min_income", ""),
+            filters.get("max_income", "")
+        ).replace("None", "")
+
     print(query)
 
     res = charityBase.charity.list(query)
