@@ -44,7 +44,7 @@ def update_fetch_button(new_filters, current_filters):
 )
 def update_results_json(_, filters):
     if filters:
-        return fetch_charities(**filters)
+        return fetch_charities(filters)
 
 # new results trigger changes to the download link
 @app.callback(

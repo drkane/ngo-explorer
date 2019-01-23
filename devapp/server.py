@@ -43,7 +43,8 @@ def download_file():
         "max_countries": int(flask.request.args.get("max_countries")),
         "aoo": json.loads(flask.request.args.get("aoo")),
     }
-    results = fetch_charities(**filters)
+    # @TODO: update these with latest filters
+    results = fetch_charities(filters)
 
     output = io.StringIO()
     writer = csv.DictWriter(output, fieldnames=[

@@ -2,8 +2,8 @@ import os
 
 from charitybase import CharityBase
 
-def fetch_charities(regnos: list, aoo: list, max_countries: int = 200, include_oa: bool = True):
-    if not regnos and not aoo:
+def fetch_charities(filters: dict):
+    if not filters.get("regnos") and not filters.get("aoo"):
         return []
 
     charityBase = CharityBase(apiKey=os.getenv('CHARITYBASE_API_KEY'))
@@ -15,13 +15,13 @@ def fetch_charities(regnos: list, aoo: list, max_countries: int = 200, include_o
         'skip': 0,
     }
 
-    if regnos:
-        query['ids.GB-CHC'] = ",".join(regnos)
+    if filters.get("regnos"):
+        query['ids.GB-CHC'] = ",".join(filters.get("regnos"))
 
-    if aoo:
-        query['areasOfOperation.id'] = ",".join(aoo)
+    if filters.get("aoo"):
+        query['areasOfOperation.id'] = ",".join(filters.get("aoo"))
 
-    if include_oa:
+    if filters.get("include_oa", True):
         query['causes.id'] = "106"
 
     print(query)
@@ -34,7 +34,7 @@ def fetch_charities(regnos: list, aoo: list, max_countries: int = 200, include_o
             ctry['name'] for ctry in c['areasOfOperation']
             if ctry['locationType'] == "Country" and ctry['name'] not in ['Scotland', 'Northern Ireland']
         ]
-        if len(c['countries']) > max_countries:
+        if len(c['countries']) > filters.get("max_countries", 200):
             continue
         if not c['countries']:
             continue
