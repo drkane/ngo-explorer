@@ -2,11 +2,11 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 def sidebar_box(contents: list, title=None):
-    return html.Div(className='mb3', children=[
+    return html.Div(className='mb3 bn bg-mid-gray', children=[
         html.Div(className="pa2 bg-light-yellow white", children=[
-            html.H2(title, className="pa0 ma0 normal ttu near-black"),
+            html.H2(title, className="pa0 ma0 f5 bold ttu near-black"),
         ]) if title else None,
-        html.Div(className="pa2 ba bw1 b--light-yellow lh-copy", children=[
+        html.Div(className="pa2 lh-copy", children=[
             html.Div(
                 className='mb3',
                 children=contents
@@ -45,24 +45,28 @@ def search_filter():
         dcc.Input(
             placeholder='Search name or activities',
             id='search',
-            className='w-100 lh-copy',
+            className='mw-100 lh-copy bb-light-yellow bg-inherit near-white pa2',
         )
     ])
 
 def income_range():
     return filter_item([
-        dcc.Input(
-            placeholder='Minimum',
-            type='number',
-            id='min-income',
-            className='w-100 lh-copy',
-        ),
-        dcc.Input(
-            placeholder='Maximum',
-            type='number',
-            id='max-income',
-            className='w-100 lh-copy',
-        ),
+        html.P(className='flex items-center', children=[
+            'Between',
+            dcc.Input(
+                placeholder='Minimum',
+                type='number',
+                id='min-income',
+                className='mh1 w-33 lh-copy bb-light-yellow bg-inherit near-white pa1',
+            ),
+            'and',
+            dcc.Input(
+                placeholder='Maximum',
+                type='number',
+                id='max-income',
+                className='mh1 w-33 lh-copy bb-light-yellow bg-inherit near-white pa1',
+            ),
+        ])
     ], "Latest income")
 
 def causes_filter():
@@ -88,7 +92,8 @@ def causes_filter():
                 {"value": "115", "label": "Human rights/religious or racial harmony/equality or diversity"},
                 {"value": "116", "label": "Recreation"},
                 {"value": "117", "label": "Other charitable purposes"}
-            ]
+            ],
+            className='bb-light-yellow'
         )
     ], "Cause")
 
@@ -105,7 +110,8 @@ def beneficiaries_filter():
                 {"value": "205", "label": "Other charities or voluntary bodies"},
                 {"value": "206", "label": "Other defined groups"},
                 {"value": "207", "label": "The general public/mankind"}
-            ]
+            ],
+            className='bb-light-yellow'
         )
     ], "Beneficiaries")
 
@@ -125,20 +131,21 @@ def operation_filter():
                 {"value": "308", "label": "Sponsors or undertakes research"},
                 {"value": "309", "label": "Acts as an umbrella or resource body"},
                 {"value": "310", "label": "Other charitable activities"}
-            ]
+            ],
+            className='bb-light-yellow'
         )
     ], "Activity")
 
 def max_countries_filter():
     return filter_item([
         'Ignore any charities that work in more than',
-        html.Span(className='bb b--light-yellow pb1', children=[
+        html.Span(className='pb1', children=[
             dcc.Input(
                 placeholder='Enter a value...',
                 type='number',
                 value='180',
                 id='max-countries',
-                className='mh1 w3 bg-dark-gray bn near-white',
+                className='mh1 w3 bb-light-yellow bg-inherit near-white pa1',
             ),
         ]),
         'countries'
@@ -156,7 +163,7 @@ def daclist_filter():
             inputClassName='mr2',
         ),
         html.A(
-            className='f6 i link gray underline',
+            className='f6 i link light-gray underline',
             href='http://www.oecd.org/dac/financing-sustainable-development/development-finance-standards/daclist.htm',
             children='About DAC List countries (OECD)',
             target='_blank',
@@ -168,7 +175,7 @@ def oa_filter():
         dcc.Checklist(
             options=[
                 {'label': 'Only include charities working in overseas aid and famine relief',
-                    'value': 'cc-oa'},
+                 'value': 'cc-oa'},
             ],
             values=['cc-oa'],
             id='include-cc-oa',

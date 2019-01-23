@@ -2,6 +2,16 @@
     min-height: 42px;
 }
 
+/* borders for inputs */
+
+.bb-light-yellow,
+.bb-light-yellow.is-focused {
+    border-color: black black #FBF1A9;
+    border-style: solid;
+    border-width: 0px 0px 1px;
+    border-radius: 0px;
+}
+
 /* generic filter dropdowns */
 
 .Select-menu-outer {
@@ -13,47 +23,44 @@
 /* Inline filter dropdown */
 
 div#area-of-operation-dropdown {
-    display: inline-block;
     margin-left: 6px;
     margin-bottom: -3px;
     min-width: 8rem;
     max-width: 32rem;
+}
+
+.Select .Select-control {
     border-color: black black #FBF1A9;
     border-style: solid;
     border-width: 0px 0px 1px;
     border-radius: 0px;
 }
 
-div#area-of-operation-dropdown .Select-control,
-div#area-of-operation-dropdown .is-focused {
-    border-width: 0px;
-    box-shadow: none;
+.Select .Select-control,
+.Select.is-focused {
+    border-width: 0px !important;
+    box-shadow: none !important;
+    background-color: inherit !important;
 }
 
-div#area-of-operation-dropdown,
-div#area-of-operation-dropdown .Select-control
-{
-    background: inherit;
-}
-
-div#area-of-operation-dropdown .Select-menu-outer {
-    background: #333333;
+.Select .Select-menu-outer {
+    background-color: #333333;
     color: #f4f4f4;
     font-size: inherit;
     min-width: 16rem;
 }
 
-div#area-of-operation-dropdown .Select-menu-outer .VirtualizedSelectOption {
+.Select .Select-menu-outer .VirtualizedSelectOption {
     cursor: pointer;
 }
 
-div#area-of-operation-dropdown .Select-value {
-    color: #f4f4f4;
+.Select .Select-value {
+    color: #f4f4f4 !important;
     margin-bottom: 7px;
 }
 
-div#area-of-operation-dropdown input {
-    color: #f4f4f4;
+.Select input {
+    color: #f4f4f4 !important;
 }
 
 

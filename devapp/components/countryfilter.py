@@ -9,7 +9,7 @@ def countryfilter():
                 options=[],
                 multi=True,
                 id='area-of-operation-dropdown',
-                className='inline-filter',
+                className='bb-light-yellow',
                 placeholder='Country'
             ),
             html.Span(' or ', className='ph2'),
