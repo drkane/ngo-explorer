@@ -79,11 +79,15 @@ def update_current_filters(_, filters):
 # A change to the results triggers a change in the page heading
 @app.callback(
     Output(component_id='results-count', component_property='children'),
-    [Input(component_id='results-store', component_property='data')]
+    [Input(component_id='results-store', component_property='data'),
+     Input(component_id='results-list',
+           component_property='derived_virtual_selected_rows')]
 )
-def update_results_header(results):
+def update_results_header(results, selected_rows):
     if not results:
         return ["No charities loaded", html.Div("Use filters to select charities", className="f5 gray")]
+    if selected_rows:
+        return "{:,.0f} charities found ({:,.0f} selected)".format(len(results), len(selected_rows))
     return "{:,.0f} charities found".format(len(results))
 
 # Show the results container when we have results
