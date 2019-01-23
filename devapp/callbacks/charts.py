@@ -28,9 +28,9 @@ def update_results_chart(results, selected_rows, field):
             data=[
                 go.Scatter(
                     x=[f['financialYear']['end']
-                        for f in c.get("income", {}).get("annual", [])],
+                       for f in c.get("income", {}).get("annual", [])],
                     y=[f[field]
-                        for f in c.get("income", {}).get("annual", [])],
+                       for f in c.get("income", {}).get("annual", [])],
                     name=c.get("name", "Unknown")
                 ) for c in results
             ],
@@ -42,7 +42,16 @@ def update_results_chart(results, selected_rows, field):
                     autorange=True,
                     rangemode='tozero',
                     tickprefix='£',
-                )
+                    linecolor='#f4f4f4',
+                ),
+                xaxis=dict(
+                    linecolor='#f4f4f4',
+                ),
+                paper_bgcolor='#444',
+                plot_bgcolor='#444',
+                font=dict(
+                    color='#f4f4f4',
+                ),
             )
         )
     )
@@ -94,8 +103,14 @@ def update_results_map(results, selected_rows):
                     showcoastlines=False,
                     projection=dict(
                         type='natural earth'
-                    )
-                )
+                    ),
+                    bgcolor='#444',
+                ),
+                paper_bgcolor='#444',
+                plot_bgcolor='#444',
+                font=dict(
+                    color='#f4f4f4',
+                ),
             )
         )
     )
