@@ -2,7 +2,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 def sidebar_box(contents: list, title=None):
-    return html.Div([
+    return html.Div(className='mb3', children=[
         html.Div(className="pa2 bg-light-yellow white", children=[
             html.H2(title, className="pa0 ma0 normal ttu near-black"),
         ]) if title else None,
@@ -13,6 +13,15 @@ def sidebar_box(contents: list, title=None):
             ),
         ]),
     ])
+
+
+def filter_item(contents: list, title=None):
+    title = [html.H3(className='', children=title)] if title else []
+
+    return html.Div(
+        className='mb3',
+        children=title + contents
+    )
 
 
 def basic_filters():
@@ -26,9 +35,7 @@ def advanced_filters():
     ], 'Advanced Filters')
 
 def max_countries_filter():
-    return html.Div(
-        className='mb3',
-        children=[
+    return filter_item([
             'Ignore any charities that work in more than',
             html.Span(className='bb b--light-yellow pb1', children=[
                 dcc.Input(
@@ -40,13 +47,10 @@ def max_countries_filter():
                 ),
             ]),
             'countries'
-        ]
-    )
+    ])
 
 def daclist_filter():
-    return html.Div(
-        className='mb3',
-        children=[
+    return filter_item([
             dcc.Checklist(
                 options=[
                     {'label': 'Only select from DAC-listed countries',
@@ -62,13 +66,10 @@ def daclist_filter():
                 children='About DAC List countries (OECD)',
                 target='_blank',
             )
-        ]
-    )
+    ])
 
 def oa_filter():
-    return html.Div(
-        className='mb3',
-        children=[
+    return filter_item([
             dcc.Checklist(
                 options=[
                     {'label': 'Only include charities working in overseas aid and famine relief',
@@ -78,8 +79,7 @@ def oa_filter():
                 id='include-cc-oa',
                 inputClassName='mr2',
             )
-        ]
-    )
+    ])
 
 def fetch_data_button():
     return html.Div(
