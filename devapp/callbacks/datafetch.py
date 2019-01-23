@@ -1,4 +1,5 @@
 import urllib.parse
+import json
 
 from dash.dependencies import Input, Output, State
 import dash_html_components as html
@@ -60,17 +61,23 @@ def update_results_json(_, filters):
 
 # new results trigger changes to the download link
 @app.callback(
-    Output(component_id='results-download-link', component_property='href'),
+    Output(component_id='results-download-link', component_property='children'),
     [Input(component_id='results-store', component_property='data')],
     [State(component_id='filters-store', component_property='data')]
 )
 def update_results_link(_, filters):
     if not filters:
-        return '#'
+        return []
     filters = {k: v for k, v in filters.items() if v}
-    return "/download?{}".format(
-        urllib.parse.urlencode(filters)
-    )
+    query_args = urllib.parse.urlencode({"filters": json.dumps(filters)})
+    return [
+        html.A(className='pa2 w4 bg-light-yellow near-black link mr2',
+               href="/download.csv?{}".format(query_args),
+               children="Download as CSV"),
+        html.A(className='pa2 w4 bg-light-yellow near-black link mr2',
+               href="/download.json?{}".format(query_args),
+               children="Download as JSON"),
+    ]
 
 # on new results, the cached filters are updated to allow checking
 # of when they are changed

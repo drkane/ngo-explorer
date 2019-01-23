@@ -5,8 +5,8 @@ from .tabs import output_tab
 
 def charitylist():
     return output_tab(
-        label='Data table',
-        value='data-table',
+        label='Show charities',
+        value='show-charities',
         children=[
             datatable(),
         ]
@@ -50,4 +50,4 @@ def datatable():
     )
 
 def download_link():
-    return html.A("Download data", id="results-download-link")
+    return html.Div(id='results-download-link', className='', children=[])

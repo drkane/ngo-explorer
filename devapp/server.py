@@ -37,26 +37,36 @@ server = app.server
 
 
 @server.route('/download')
-def download_file():
-    filters = {
-        "regnos": json.loads(flask.request.args.get("regnos")),
-        "max_countries": int(flask.request.args.get("max_countries")),
-        "aoo": json.loads(flask.request.args.get("aoo")),
-    }
-    # @TODO: update these with latest filters
+@server.route('/download.<filetype>')
+def download_file(filetype='csv'):
+    filters = json.loads(flask.request.args.get("filters"))
     results = fetch_charities(filters)
 
     output = io.StringIO()
-    writer = csv.DictWriter(output, fieldnames=[
-                            "Charity Number", "Name", "Income", "Countries of operation"])
-    writer.writeheader()
-    for c in results:
-        writer.writerow(get_charity_row(c, number_format=False))
+    if filetype == 'json':
+        json.dump(results, output, indent=4)
+        mimetype = 'application/json'
+        extension = 'json'
+
+    elif filetype == 'jsonl':
+        for c in results:
+            json.dump(c, output)
+        mimetype = 'application/x-jsonlines'
+        extension = 'jsonl'
+
+    else: # assume csv if not given
+        writer = csv.DictWriter(output, fieldnames=[
+            "Charity Number", "Name", "Income", "Countries of operation"])
+        writer.writeheader()
+        for c in results:
+            writer.writerow(get_charity_row(c, number_format=False))
+        mimetype = 'text/csv'
+        extension = 'csv'
 
     return flask.Response(
         output.getvalue(),
-        mimetype="text/csv",
+        mimetype=mimetype,
         headers={
-            "Content-disposition": "attachment; filename=download.csv"
+            "Content-disposition": "attachment; filename=download.{}".format(extension)
         }
     )
