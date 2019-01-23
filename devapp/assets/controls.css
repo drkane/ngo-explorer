@@ -2,6 +2,14 @@
     min-height: 42px;
 }
 
+/* generic filter dropdowns */
+
+.Select-menu-outer {
+    color: #111;
+    font-size: 0.875rem;
+}
+
+
 /* Inline filter dropdown */
 
 div#area-of-operation-dropdown {
@@ -30,7 +38,13 @@ div#area-of-operation-dropdown .Select-control
 
 div#area-of-operation-dropdown .Select-menu-outer {
     background: #333333;
+    color: #f4f4f4;
+    font-size: inherit;
     min-width: 16rem;
+}
+
+div#area-of-operation-dropdown .Select-menu-outer .VirtualizedSelectOption {
+    cursor: pointer;
 }
 
 div#area-of-operation-dropdown .Select-value {

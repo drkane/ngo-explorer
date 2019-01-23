@@ -16,9 +16,12 @@ from ..data import fetch_charities
      Input(component_id='include-cc-oa', component_property='values'),
      Input(component_id='search', component_property='value'),
      Input(component_id='min-income', component_property='value'),
-     Input(component_id='max-income', component_property='value')]
+     Input(component_id='max-income', component_property='value'),
+     Input(component_id='causes-filter', component_property='value'),
+     Input(component_id='beneficiary-filter', component_property='value'),
+     Input(component_id='operation-filter', component_property='value')]
 )
-def update_filter_store(input_value, aoo, max_countries, include_oa, search, min_income, max_income):
+def update_filter_store(input_value, aoo, max_countries, include_oa, search, min_income, max_income, causes, beneficiaries, operations):
     return {
         "aoo": aoo,
         "regnos": input_value.splitlines(),
@@ -27,6 +30,9 @@ def update_filter_store(input_value, aoo, max_countries, include_oa, search, min
         "search": search,
         "min_income": min_income,
         "max_income": max_income,
+        "causes": causes,
+        "beneficiaries": beneficiaries,
+        "operations": operations
     }
 
 # changing the filters store triggers a change in the submit button

@@ -16,7 +16,7 @@ def sidebar_box(contents: list, title=None):
 
 
 def filter_item(contents: list, title=None):
-    title = [html.H3(className='', children=title)] if title else []
+    title = [html.H3(className='f5 normal mv0', children=title)] if title else []
 
     return html.Div(
         className='mb3',
@@ -28,6 +28,9 @@ def basic_filters():
     return sidebar_box([
         search_filter(),
         income_range(),
+        causes_filter(),
+        beneficiaries_filter(),
+        operation_filter(),
     ], 'Filters')
 
 def advanced_filters():
@@ -60,7 +63,71 @@ def income_range():
             id='max-income',
             className='w-100 lh-copy',
         ),
-    ], "Narrow by size of charity")
+    ], "Latest income")
+
+def causes_filter():
+    return filter_item([
+        dcc.Dropdown(
+            id='causes-filter',
+            multi=True,
+            options=[
+                {"value": "101", "label": "General charitable purposes"},
+                {"value": "102", "label": "Education/training"},
+                {"value": "103", "label": "The advancement of health or saving of lives"},
+                {"value": "104", "label": "Disability"},
+                {"value": "105", "label": "The prevention or relief of poverty"},
+                {"value": "106", "label": "Overseas aid/famine relief"},
+                {"value": "107", "label": "Accommodation/housing"},
+                {"value": "108", "label": "Religious activities"},
+                {"value": "109", "label": "Arts/culture/heritage/science"},
+                {"value": "110", "label": "Amateur sport"},
+                {"value": "111", "label": "Animals"},
+                {"value": "112", "label": "Environment/conservation/heritage"},
+                {"value": "113", "label": "Economic/community development/employment"},
+                {"value": "114", "label": "Armed forces/emergency service efficiency"},
+                {"value": "115", "label": "Human rights/religious or racial harmony/equality or diversity"},
+                {"value": "116", "label": "Recreation"},
+                {"value": "117", "label": "Other charitable purposes"}
+            ]
+        )
+    ], "Cause")
+
+def beneficiaries_filter():
+    return filter_item([
+        dcc.Dropdown(
+            id='beneficiary-filter',
+            multi=True,
+            options=[
+                {"value": "201", "label": "Children/young people"},
+                {"value": "202", "label": "Elderly/old people"},
+                {"value": "203", "label": "People with disabilities"},
+                {"value": "204", "label": "People of a particular ethnic or racial origin"},
+                {"value": "205", "label": "Other charities or voluntary bodies"},
+                {"value": "206", "label": "Other defined groups"},
+                {"value": "207", "label": "The general public/mankind"}
+            ]
+        )
+    ], "Beneficiaries")
+
+def operation_filter():
+    return filter_item([
+        dcc.Dropdown(
+            id='operation-filter',
+            multi=True,
+            options=[
+                {"value": "301", "label": "Makes grants to individuals"},
+                {"value": "302", "label": "Makes grants to organisations"},
+                {"value": "303", "label": "Provides other finance"},
+                {"value": "304", "label": "Provides human resources"},
+                {"value": "305", "label": "Provides buildings/facilities/open space"},
+                {"value": "306", "label": "Provides services"},
+                {"value": "307", "label": "Provides advocacy/advice/information"},
+                {"value": "308", "label": "Sponsors or undertakes research"},
+                {"value": "309", "label": "Acts as an umbrella or resource body"},
+                {"value": "310", "label": "Other charitable activities"}
+            ]
+        )
+    ], "Activity")
 
 def max_countries_filter():
     return filter_item([

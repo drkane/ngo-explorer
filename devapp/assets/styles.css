@@ -9,16 +9,26 @@
 .dash-spreadsheet-inner td,
 .dash-spreadsheet-inner th {
     font-family: 'Open Sans', sans-serif;
+    box-shadow: none !important;
 }
 
 .dash-spreadsheet-inner td {
     background-color: #333333 !important;
 }
 
+.dash-spreadsheet-inner tr:nth-of-type(even) td {
+    background-color: #444444 !important;
+}
+
 .dash-spreadsheet-inner th {
-    background-color: #FBF1A9 !important;
-    border-top: 0px solid none;
-    color: #111;
+    /* background-color: #FBF1A9 !important;
+    color: #111; */
+    background-color: #333333 !important;
+    color: #f4f4f4;
+    border-top: 0px solid black;
+    border-bottom: 0px solid black;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .dash-spreadsheet-container .dash-spreadsheet-inner td, 

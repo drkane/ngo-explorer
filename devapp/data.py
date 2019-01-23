@@ -21,9 +21,6 @@ def fetch_charities(filters: dict):
     if filters.get("aoo"):
         query['areasOfOperation.id'] = ",".join(filters.get("aoo"))
 
-    if filters.get("include_oa", True):
-        query['causes.id'] = "106"
-
     if filters.get("search"):
         query['search'] = filters.get("search")
 
@@ -32,6 +29,19 @@ def fetch_charities(filters: dict):
             filters.get("min_income", ""),
             filters.get("max_income", "")
         ).replace("None", "")
+
+    causes = filters.get("causes") if filters.get("causes") else []
+    if filters.get("include_oa", True) and "106" not in causes:
+        causes.append("106")
+
+    if causes:
+        query['causes.id'] = ",".join(causes)
+
+    if filters.get("beneficiaries"):
+        query['beneficiaries.id'] = ",".join(filters.get("beneficiaries"))
+
+    if filters.get("operations"):
+        query['operations.id'] = ",".join(filters.get("operations"))
 
     print(query)
 
