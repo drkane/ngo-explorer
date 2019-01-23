@@ -1,9 +1,8 @@
-import dash_core_components as dcc
 import dash_html_components as html
 
 from .dashboard import dashboard
-from .charitylist import charitylist
-from .tabs import TABS_CONTAINER_STYLE
+from .charitylist import charitylist, download_tab
+from .tabs import output_tab_container
 
 def results():
     return [
@@ -12,14 +11,13 @@ def results():
             className="dn w-100",
             id="results-container",
             children=[
-                dcc.Tabs(
+                output_tab_container(
                     id="tabs",
-                    value='tab-1',
-                    className='',
-                    style=TABS_CONTAINER_STYLE,
+                    value='dashboard',
                     children=[
                         dashboard(),
                         charitylist(),
+                        download_tab(),
                     ]
                 ),
             ]

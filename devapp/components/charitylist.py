@@ -1,19 +1,22 @@
-import dash_core_components as dcc
 import dash_html_components as html
 import dash_table as dt
 
-from .tabs import TAB_STYLE, TAB_SELECTED_STYLE
-
+from .tabs import output_tab
 
 def charitylist():
-    return dcc.Tab(
+    return output_tab(
         label='Data table',
-        value='tab-2',
-        className='',
-        style=TAB_STYLE,
-        selected_style=TAB_SELECTED_STYLE,
+        value='data-table',
         children=[
             datatable(),
+        ]
+    )
+
+def download_tab():
+    return output_tab(
+        label='Download data',
+        value='download-data',
+        children=[
             download_link(),
         ]
     )
@@ -24,11 +27,11 @@ def datatable():
         id='results-list',
         columns=[
             {"name": 'Charity Number',
-            "id": "Charity Number"},
+             "id": "Charity Number"},
             {"name": 'Name', "id": "Name"},
             {"name": 'Income', "id": "Income"},
             {"name": 'Countries of operation',
-            "id": "Countries of operation"}
+             "id": "Countries of operation"}
         ],
         data=[],
         row_selectable='multi',

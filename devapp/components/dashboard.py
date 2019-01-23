@@ -1,15 +1,12 @@
 import dash_core_components as dcc
 import dash_html_components as html
 
-from .tabs import TAB_STYLE, TAB_SELECTED_STYLE
+from .tabs import output_tab
 
 def dashboard():
-    return dcc.Tab(
+    return output_tab(
         label='Dashboard',
-        value='tab-1',
-        className='',
-        style=TAB_STYLE,
-        selected_style=TAB_SELECTED_STYLE,
+        value='dashboard',
         children=[
             financial_history_chart(),
             area_of_operation_map(),
