@@ -61,6 +61,19 @@ def update_results_json(_, filters):
     if filters:
         return fetch_charities(filters)
 
+# results being present or not
+@app.callback(
+    Output(component_id='results-wrapper', component_property='className'),
+    [Input(component_id='results-store', component_property='data')],
+    [State(component_id='results-wrapper', component_property='className')]
+)
+def show_hide_results_wrapper(results, existing_classes):
+    classes = existing_classes.split(" ")
+    classes = [c for c in existing_classes if c != 'dn']
+    if not results:
+        classes.append('dn')
+    return " ".join(classes)
+
 # new results trigger changes to the download link
 @app.callback(
     Output(component_id='results-download-link', component_property='children'),

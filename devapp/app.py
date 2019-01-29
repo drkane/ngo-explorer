@@ -14,19 +14,24 @@ app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
     # headers
     header(),
     countryfilter(),
+    fetch_data_button(),
 
-    # sidebar
-    html.Div(className='fl w-25 pr2', children=[
-        basic_filters(),
-        advanced_filters(),
-        fetch_data_button(),
+    # wrapper around results
+    html.Div(id='results-wrapper', className='dn', children=[
+
+        # sidebar
+        html.Div(className='fl w-25 pr2', children=[
+            basic_filters(),
+            advanced_filters(),
+        ]),
+
+        # main window
+        html.Div(
+            className='fl w-75 pl2',
+            children=results()
+        ),
+
     ]),
-
-    # main window
-    html.Div(
-        className='fl w-75 pl2',
-        children=results()
-    ),
 
     # data stores
     dcc.Store(id='filters-store', storage_type='session'),
