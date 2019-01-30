@@ -32,7 +32,7 @@ app = dash.Dash(
     }],
     index_string=doc_template
 )
-
+app.scripts.config.serve_locally = True
 server = app.server
 
 
