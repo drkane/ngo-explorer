@@ -9,7 +9,15 @@ def fetch_charities(filters: dict):
     charityBase = CharityBase(apiKey=os.getenv('CHARITYBASE_API_KEY'))
 
     query = {
-        'fields': ['income.latest.total', 'income.annual', 'areasOfOperation'],
+        'fields': [
+            'income.latest.total',
+            'income.annual',
+            'areasOfOperation',
+            'causes',
+            'beneficiaries',
+            'operations',
+            'contact.geo.region'
+        ],
         'sort': 'income.latest.total:desc',
         'limit': 50,
         'skip': 0,

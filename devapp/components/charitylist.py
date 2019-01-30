@@ -2,12 +2,14 @@ import dash_html_components as html
 import dash_table as dt
 
 from .tabs import output_tab
+from .dashboard import financial_history_chart
 
 def charitylist():
     return output_tab(
         label='Show charities',
         value='show-charities',
         children=[
+            financial_history_chart(),
             datatable(),
         ]
     )
@@ -22,7 +24,7 @@ def download_tab():
     )
 
 
-def datatable():                            
+def datatable():
     return dt.DataTable(
         id='results-list',
         columns=[
