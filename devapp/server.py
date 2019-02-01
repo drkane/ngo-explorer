@@ -79,7 +79,6 @@ def download_file(filetype='csv'):
         worksheet.write_row(0, 0, fields)
         row = 1
         for c in results:
-            print(list(c.values()))
             worksheet.write_row(row, 0, list(c.values()))
             row += 1
         workbook.close()

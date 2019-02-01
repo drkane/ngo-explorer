@@ -64,8 +64,8 @@ def fields_to_include():
             className="f6 gray i mt1"
         ),
         html.Div(className='cf mv3 flex flex-wrap', children=[
-            html.Div(className='w-25', children=[
-                html.H4('Charity information', className='mt3 mb0 pa0'),
+            html.Div(className='w-25 pr3', children=[
+                html.H4('Charity information', className='mt3 mb0 pa1 b--light-yellow bb'),
                 dcc.Checklist(
                     id='results-download-fields-main',
                     options=[
@@ -84,8 +84,8 @@ def fields_to_include():
                     className='mt3',
                 ),
             ]),
-            html.Div(className='w-25', children=[
-                html.H4('Financial', className='mt3 mb0 pa0'),
+            html.Div(className='w-25 pr3', children=[
+                html.H4('Financial', className='mt3 mb0 pa1 b--light-yellow bb'),
                 dcc.Checklist(
                     id='results-download-fields-financial',
                     options=[
@@ -102,8 +102,8 @@ def fields_to_include():
                     className='mt3',
                 ),
             ]),
-            html.Div(className='w-25', children=[
-                html.H4('Contact details', className='mt3 mb0 pa0'),
+            html.Div(className='w-25 pr3', children=[
+                html.H4('Contact details', className='mt3 mb0 pa1 b--light-yellow bb'),
                 dcc.Checklist(
                     id='results-download-fields-contact',
                     options=[
@@ -118,8 +118,8 @@ def fields_to_include():
                     className='mt3',
                 ),
             ]),
-            html.Div(className='w-25', children=[
-                html.H4('Geography fields', className='mt3 mb0 pa0'),
+            html.Div(className='w-25 pr3', children=[
+                html.H4('Geography fields', className='mt3 mb0 pa1 b--light-yellow bb'),
                 dcc.Checklist(
                     id='results-download-fields-aoo',
                     options=[
