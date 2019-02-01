@@ -479,33 +479,56 @@ def update_results_map(results, selected_rows):
     for c in results:
         for ctry in c['areasOfOperation']:
             for ctry_iso in COUNTRIES:
-                if ctry['id'] != ctry_iso['id']:
+                if ctry['id'] != ctry_iso['id'] or ctry_iso['iso']=='GBR':
                     continue
                 if ctry_iso['iso'] not in countries:
-                    countries[ctry_iso['iso']] = 0
-                countries[ctry_iso['iso']] += 1
+                    countries[ctry_iso['iso']] = {"count": 0, "name": ctry_iso['name']}
+                countries[ctry_iso['iso']]["count"] += 1
 
     return dcc.Graph(
         figure=go.Figure(
-            data=[dict(
-                type='choropleth',
-                locations=list(countries.keys()),
-                z=list(countries.values()),
-                text=list(countries.keys()),
-                colorscale=[[0, "rgb(5, 10, 172)"], [0.35, "rgb(40, 60, 190)"], [0.5, "rgb(70, 100, 245)"],
-                            [0.6, "rgb(90, 120, 245)"], [0.7, "rgb(106, 137, 247)"], [1, "rgb(220, 220, 220)"]],
-                autocolorscale=False,
-                reversescale=True,
-                marker=dict(
-                    line=dict(
-                        color='rgb(180,180,180)',
-                        width=0.5
-                    )),
-            )],
+            data=[
+                dict(
+                    type='choropleth',
+                    locations=list(countries.keys()),
+                    z=[c["count"] for c in countries.values()],
+                    text=[c["name"] for c in countries.values()],
+                    colorscale=[[0, "rgb(5, 10, 172)"], [0.35, "rgb(40, 60, 190)"], [0.5, "rgb(70, 100, 245)"],
+                                [0.6, "rgb(90, 120, 245)"], [0.7, "rgb(106, 137, 247)"], [1, "rgb(220, 220, 220)"]],
+                    autocolorscale=False,
+                    reversescale=True,
+                    marker=dict(
+                        line=dict(
+                            color='#eee',
+                            width=0.5
+                        )
+                    ),
+                    hoverinfo='text+z',
+                ),
+                dict(
+                    type='choropleth',
+                    locations=['GBR'],
+                    z=[1],
+                    text=['GBR'],
+                    colorscale=[[0, "#fbf1a9"], [1, "#fbf1a9"]],
+                    autocolorscale=False,
+                    reversescale=True,
+                    showscale=False,
+                    marker=dict(
+                        line=dict(
+                            color='#fbf1a9',
+                            width=1
+                        )
+                    ),
+                    hoverinfo='skip',
+                )
+            ],
             layout=go.Layout(
                 geo=dict(
                     showframe=False,
                     showcoastlines=False,
+                    showland=True,
+                    landcolor='#555',
                     projection=dict(
                         type='natural earth'
                     ),
@@ -516,6 +539,7 @@ def update_results_map(results, selected_rows):
                 font=dict(
                     color='#f4f4f4',
                 ),
+                margin=dict(l=0, r=0, t=0, b=0),
             )
         )
     )
