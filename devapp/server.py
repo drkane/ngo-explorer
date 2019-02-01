@@ -6,6 +6,7 @@ import copy
 
 import dash
 import flask
+import xlsxwriter
 
 from .utils.utils import nested_to_record
 from .data import fetch_charities
@@ -42,13 +43,21 @@ server = app.server
 def download_file(filetype='csv'):
     filters = json.loads(flask.request.args.get("filters"))
     fields = flask.request.args.get("fields", "").split(",")
-    results = fetch_charities(filters, copy.copy(fields))
+    raw_results = fetch_charities(filters, copy.copy(fields))
 
-    for r in results:
+    results = []
+    for r in raw_results:
         if "countries" not in fields:
             del r["countries"]
         if "areasOfOperation" not in fields:
             del r["areasOfOperation"]
+        if filetype in ["xlsx", "csv"]:
+            r = nested_to_record(r)
+            r = {k: r.get(k) for k in fields}
+            for k, v in r.items():
+                if isinstance(v, list):
+                    r[k] = ";".join(v)
+        results.append(r)
 
     output = io.StringIO()
     if filetype == 'json':
@@ -62,12 +71,26 @@ def download_file(filetype='csv'):
         mimetype = 'application/x-jsonlines'
         extension = 'jsonl'
 
+    elif filetype == 'xlsx':
+        output = io.BytesIO()
+        workbook = xlsxwriter.Workbook(output)
+        worksheet = workbook.add_worksheet()
+
+        worksheet.write_row(0, 0, fields)
+        row = 1
+        for c in results:
+            print(list(c.values()))
+            worksheet.write_row(row, 0, list(c.values()))
+            row += 1
+        workbook.close()
+        mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        extension = 'xlsx'
+
     else: # assume csv if not given
         writer = csv.DictWriter(output, fieldnames=fields)
         writer.writeheader()
         for c in results:
-            r = nested_to_record(c)
-            writer.writerow({k: r.get(k) for k in fields})
+            writer.writerow(c)
         mimetype = 'text/csv'
         extension = 'csv'
 

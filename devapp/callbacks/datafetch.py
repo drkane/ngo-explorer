@@ -98,6 +98,9 @@ def update_results_link(_, filters, fields_main, fields_financial, fields_contac
     })
     return [
         html.A(className='pa2 w4 bg-light-yellow near-black link mr2',
+               href="/download.xlsx?{}".format(query_args),
+               children="Download for Excel"),
+        html.A(className='pa2 w4 bg-light-yellow near-black link mr2',
                href="/download.csv?{}".format(query_args),
                children="Download as CSV"),
         html.A(className='pa2 w4 bg-light-yellow near-black link mr2',
