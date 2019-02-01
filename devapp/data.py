@@ -1,23 +1,35 @@
 import os
+from typing import Optional
 
 from charitybase import CharityBase
 
-def fetch_charities(filters: dict):
+DEFAULT_FIELDS = [
+    'income.latest.total',
+    'income.annual',
+    'areasOfOperation',
+    'causes',
+    'beneficiaries',
+    'operations',
+    'contact.geo.region'
+]
+
+def fetch_charities(filters: dict, fields: Optional[list] = None):
     if not filters.get("regnos") and not filters.get("aoo"):
         return []
+
+    if not fields:
+        fields = DEFAULT_FIELDS
+
+    if "areasOfOperation" not in fields:
+        fields.append("areasOfOperation")
+
+    if "countries" in fields:
+        fields.remove("countries")
 
     charityBase = CharityBase(apiKey=os.getenv('CHARITYBASE_API_KEY'))
 
     query = {
-        'fields': [
-            'income.latest.total',
-            'income.annual',
-            'areasOfOperation',
-            'causes',
-            'beneficiaries',
-            'operations',
-            'contact.geo.region'
-        ],
+        'fields': fields,
         'sort': 'income.latest.total:desc',
         'limit': 50,
         'skip': 0,

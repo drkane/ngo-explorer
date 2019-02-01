@@ -2,11 +2,12 @@ import os
 import json
 import csv
 import io
+import copy
 
 import dash
 import flask
 
-from .utils.utils import get_charity_row
+from .utils.utils import nested_to_record
 from .data import fetch_charities
 
 with open(os.path.join(os.path.dirname(__file__), 'templates', 'index.html')) as a:
@@ -40,7 +41,14 @@ server = app.server
 @server.route('/download.<filetype>')
 def download_file(filetype='csv'):
     filters = json.loads(flask.request.args.get("filters"))
-    results = fetch_charities(filters)
+    fields = flask.request.args.get("fields", "").split(",")
+    results = fetch_charities(filters, copy.copy(fields))
+
+    for r in results:
+        if "countries" not in fields:
+            del r["countries"]
+        if "areasOfOperation" not in fields:
+            del r["areasOfOperation"]
 
     output = io.StringIO()
     if filetype == 'json':
@@ -55,11 +63,11 @@ def download_file(filetype='csv'):
         extension = 'jsonl'
 
     else: # assume csv if not given
-        writer = csv.DictWriter(output, fieldnames=[
-            "Charity Number", "Name", "Income", "Countries of operation"])
+        writer = csv.DictWriter(output, fieldnames=fields)
         writer.writeheader()
         for c in results:
-            writer.writerow(get_charity_row(c, number_format=False))
+            r = nested_to_record(c)
+            writer.writerow({k: r.get(k) for k in fields})
         mimetype = 'text/csv'
         extension = 'csv'
 

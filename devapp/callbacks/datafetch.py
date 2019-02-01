@@ -77,14 +77,25 @@ def show_hide_results_wrapper(results, existing_classes):
 # new results trigger changes to the download link
 @app.callback(
     Output(component_id='results-download-link', component_property='children'),
-    [Input(component_id='results-store', component_property='data')],
-    [State(component_id='filters-store', component_property='data')]
+    [Input(component_id='results-store', component_property='data'),
+     Input(component_id='filters-store', component_property='data'),
+     Input(component_id='results-download-fields-main', component_property='values'),
+     Input(component_id='results-download-fields-financial', component_property='values'),
+     Input(component_id='results-download-fields-contact', component_property='values'),
+     Input(component_id='results-download-fields-geo', component_property='values'),
+     Input(component_id='results-download-fields-aoo', component_property='values'),
+     ]
 )
-def update_results_link(_, filters):
+def update_results_link(_, filters, fields_main, fields_financial, fields_contact, fields_geo, fields_aoo):
     if not filters:
         return []
     filters = {k: v for k, v in filters.items() if v}
-    query_args = urllib.parse.urlencode({"filters": json.dumps(filters)})
+
+    fields = fields_main + fields_financial + fields_contact + fields_geo + fields_aoo
+    query_args = urllib.parse.urlencode({
+        "filters": json.dumps(filters),
+        "fields": ",".join(fields),
+    })
     return [
         html.A(className='pa2 w4 bg-light-yellow near-black link mr2',
                href="/download.csv?{}".format(query_args),

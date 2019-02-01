@@ -479,7 +479,7 @@ def update_results_map(results, selected_rows):
     for c in results:
         for ctry in c['areasOfOperation']:
             for ctry_iso in COUNTRIES:
-                if ctry['id'] != ctry_iso['id'] or ctry_iso['iso']=='GBR':
+                if ctry['id'] != ctry_iso['id'] or ctry_iso['iso'] == 'GBR':
                     continue
                 if ctry_iso['iso'] not in countries:
                     countries[ctry_iso['iso']] = {"count": 0, "name": ctry_iso['name']}
