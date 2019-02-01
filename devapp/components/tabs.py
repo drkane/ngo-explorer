@@ -1,7 +1,7 @@
 import dash_core_components as dcc
 
 TABS_CONTAINER_STYLE = {
-    'borderBottom': '2px solid #FBF1A9',
+    'borderBottom': '6px solid #FBF1A9',
     'marginBottom': '16px',
 }
 TAB_STYLE = {
@@ -14,7 +14,7 @@ TAB_STYLE = {
     'borderTop': '1px solid gray',
     'borderLeft': '1px solid gray',
     'borderRight': '1px solid gray',
-    'borderBottom': '1px solid gray',
+    'borderBottom': '0px solid gray',
 }
 TAB_SELECTED_STYLE = {
     'width': 'auto',

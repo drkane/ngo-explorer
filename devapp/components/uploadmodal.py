@@ -4,21 +4,32 @@ import dash_html_components as html
 from .tabs import TABS_CONTAINER_STYLE, TAB_STYLE, TAB_SELECTED_STYLE
 
 def upload_modal():
+    tab_style = {
+        **TAB_STYLE,
+        'color': '#111',
+        'borderTop': '1px solid #ddd',
+        'borderLeft': '1px solid #ddd',
+        'borderRight': '1px solid #ddd',
+        'borderBottom': '0px solid #ddd',
+    }
+
     return html.Div(
         id='upload-csv-modal',
-        className='dn',
+        className='modal',
         children=[
-            html.Div(id='upload-csv-model-overlay',
-                     className='w-100 h-100 absolute bg-dark-gray o-70'),
+            # html.Div(
+            #     id='upload-csv-modal-overlay',
+            #     className='upload-modal',  # w-100 h-100 absolute bg-dark-gray o-70',
+            # ),
             html.Div(
                 id='upload-csv-modal-content',
-                className='w-100 h-100 absolute pa7',
+                className='modal-content w-60',
                 children=[
                     html.Div(className='bg-white dark-gray', children=[
                         html.Div(className='cf', children=[
                             html.Button(
                                 id='close-upload-modal',
-                                className='fr pv1 ph2 ma1 near-white bg-light-yellow bn pointer f4 lh-none lh-solid',
+                                className='close-modal fr pv1 ph2 ma1 near-white bg-red bn pointer f4 lh-none lh-solid',
                                 children='×'
                             ),
                         ]),
@@ -34,7 +45,7 @@ def upload_modal():
                                     label='Paste a list of charities',
                                     value='tab-1',
                                     className='',
-                                    style=TAB_STYLE,
+                                    style=tab_style,
                                     selected_style=TAB_SELECTED_STYLE,
                                     children=[
                                         html.P(
@@ -51,7 +62,7 @@ def upload_modal():
                                     label='Upload a CSV file',
                                     value='tab-2',
                                     className='',
-                                    style=TAB_STYLE,
+                                    style=tab_style,
                                     selected_style=TAB_SELECTED_STYLE,
                                     children=[
                                         html.P("Enter each charity number on a different line."),
@@ -62,5 +73,5 @@ def upload_modal():
                     ]),
                 ]
             ),
-        ]
+        ],
     )
