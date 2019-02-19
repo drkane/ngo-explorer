@@ -42,8 +42,9 @@ def summary_numbers():
 def aggregate_financial_history_chart():
     return chart_wrapper(
         "Income and spending of these charities",
-        html.Div(id="aggregate-finances-chart",
-                 className="h6 mw7"),
+        html.Div(className="h6 mw7", children=[
+            dcc.Graph(id="aggregate-finances-chart")
+        ]),
         [
             html.P(
                 "Figures given are in cash terms, without adjusting for inflation",
@@ -56,24 +57,29 @@ def aggregate_financial_history_chart():
 def classification_chart(class_type):
     return chart_wrapper(
         "Charities by {}".format(class_type),
-        html.Div(id="classification-{}-chart".format(class_type.lower()),
-                 className="h6 mw7")
+        html.Div(className="h6 mw7", children=[
+            dcc.Graph(
+                id="classification-{}-chart".format(class_type.lower()),
+            )
+        ]),
     )
 
 
 def income_band_chart():
     return chart_wrapper(
         "Charities by income band",
-        html.Div(id="income-band-chart",
-                 className="h6 mw7")
+        html.Div(className="h6 mw7", children=[
+            dcc.Graph(id="income-band-chart")
+        ]),
     )
 
 
 def registered_region_chart():
     return chart_wrapper(
         "Charities by region",
-        html.Div(id="registered-region-chart",
-                 className="h6 mw7"),
+        html.Div(className="h6 mw7", children=[
+            dcc.Graph(id="registered-region-chart")
+        ]),
         [
             html.P(
                 "Based on the postcode of the charities' UK registered office",
@@ -85,8 +91,9 @@ def registered_region_chart():
 def financial_history_chart():
     return chart_wrapper(
         "Financial history of charities",
-        html.Div(id="finances-chart",
-                 className="h6 mw7"),
+        html.Div(className="h6 mw7", children=[
+            dcc.Graph(id="finances-chart")
+        ]),
         [
             html.P(
                 "Figures given are in cash terms, without adjusting for inflation",
@@ -108,6 +115,7 @@ def financial_history_chart():
 def area_of_operation_map():
     return chart_wrapper(
         "Where these charities work",
-        html.Div(id="area-of-operation-map",
-                 className="h6 mw7")
+        html.Div(className="h6 mw7", children=[
+            dcc.Graph(id="area-of-operation-map")
+        ]),
     )

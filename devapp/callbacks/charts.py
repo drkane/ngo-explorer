@@ -1,81 +1,48 @@
 import datetime
 
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
-from dash_chartjs import ChartJS
 
 from ..server import app, COUNTRIES
 from ..utils.utils import date_to_financial_year, get_scaling_factor
 
-@app.callback(
-    Output(component_id='finances-chart', component_property='children'),
-    [Input(component_id='results-store', component_property='data'),
-     Input(component_id='results-list',
-           component_property='derived_virtual_selected_rows'),
-     Input(component_id="financial-history-type", component_property='value')]
-)
-def update_results_chart(results, selected_rows, field):
-    if not results:
-        return
+DEFAULT_LAYOUT = {
+    'yaxis': {
+        'automargin': True,
+        'rangemode': 'tozero',
+    },
+    'xaxis': {
+        'automargin': True,
+    },
+    'paper_bgcolor': '#444',
+    'plot_bgcolor': '#444',
+    'font': dict(
+        color='#f4f4f4',
+    ),
+    'margin': go.layout.Margin(
+        l=40,
+        r=0,
+        b=40,
+        t=0,
+        pad=4
+    ),
+    'clickmode': 'event+select',
+    'dragmode': 'select',
+}
 
-    if selected_rows:
-        results = [v for k, v in enumerate(results) if k in selected_rows]
-
-    field = {
-        "inc": "income",
-        "exp": "expend"
-    }.get(field, "income")
-
-    return ChartJS(
-        type='line',
-        data=dict(
-            datasets=[
-                {
-                    'label': c.get("name", "Unknown"),
-                    'data': [{
-                        'x': datetime.datetime.strptime(f['financialYear']['end'][0:10], "%Y-%m-%d"),
-                        'y': f[field]
-                    } for f in c.get("income", {}).get("annual", [])],
-                    'fill': False,
-                    'borderColor': 'gray',
-                    'lineTension': 0,
-                    'pointRadius': 0,
-                } for c in results
-            ],
-        ),
-        options=dict(
-            legend=dict(
-                labels=dict(
-                    fontColor='#ccc',
-                ),
-                display=False,
-            ),
-            scales=dict(
-                xAxes=[dict(
-                    type='time',
-                    ticks=dict(
-                        min=1,
-                    ),
-                )],
-                yAxes=[dict(
-                    type='logarithmic',
-                )],
-            ),
-        ),
-    )
 
 @app.callback(
     Output(component_id='aggregate-finances-chart',
-           component_property='children'),
+           component_property='figure'),
     [Input(component_id='results-store', component_property='data'),
      Input(component_id='results-list',
            component_property='derived_virtual_selected_rows')]
 )
 def update_aggregate_finances_chart(results, selected_rows):
     if not results:
-        return
+        return {'data': [], 'layout': DEFAULT_LAYOUT}
 
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
@@ -105,56 +72,22 @@ def update_aggregate_finances_chart(results, selected_rows):
         max([v["Income"] for fy, v in financial_years.items()] + [v["Spending"] for fy, v in financial_years.items()])
     )
 
-    return ChartJS(
-        type='line',
-        data=dict(
-            labels=list(financial_years.keys()),
-            datasets=[
-                {
-                    'label': f,
-                    'data': [v[f] / scaling[0] for fy, v in financial_years.items()],
-                    'fill': False,
-                    'borderColor': colours.get(f),
-                    'lineTension': 0,
-                    'pointRadius': 1,
-                } for f in ["Income", "Spending"]
-            ],
-        ),
-        options=dict(
-            legend=dict(
-                labels=dict(
-                    fontColor='#ccc',
-                ),
-                display=True,
-            ),
-            scales=dict(
-                xAxes=[dict(
-                    gridLines=dict(
-                        display=False
-                    ),
-                    ticks=dict(
-                        fontColor='#ccc',
-                    ),
-                )],
-                yAxes=[dict(
-                    type='linear',
-                    gridLines=dict(
-                        display=False
-                    ),
-                    ticks=dict(
-                        beginAtZero=True,
-                        min=0,
-                        fontColor='#ccc',
-                    ),
-                )],
-            ),
-        ),
+    return go.Figure(
+        data=[
+            dict(
+                x=list(financial_years.keys()),
+                y=[v[f] / scaling[0] for fy, v in financial_years.items()],
+                name=f,
+                type='scatter',
+            ) for f in ["Income", "Spending"]
+        ],
+        layout=DEFAULT_LAYOUT,
     )
 
 
 @app.callback(
     Output(component_id='classification-causes-chart',
-           component_property='children'),
+           component_property='figure'),
     [Input(component_id='results-store', component_property='data'),
      Input(component_id='results-list',
            component_property='derived_virtual_selected_rows')]
@@ -164,8 +97,18 @@ def update_classification_causes_chart(results, selected_rows):
 
 
 @app.callback(
+    Output(component_id='causes-filter', component_property='value'),
+    [Input(component_id='classification-causes-chart',
+           component_property='selectedData')],
+    [State(component_id='causes-filter', component_property='options'),
+     State(component_id='causes-filter', component_property='value')]
+)
+def selected_classification_causes_chart(selectedPoints, filter_options, existing_values):
+    return update_selected_points(selectedPoints, filter_options, existing_values)
+
+@app.callback(
     Output(component_id='classification-beneficiaries-chart',
-           component_property='children'),
+           component_property='figure'),
     [Input(component_id='results-store', component_property='data'),
      Input(component_id='results-list',
            component_property='derived_virtual_selected_rows')]
@@ -175,8 +118,18 @@ def update_classification_beneficiaries_chart(results, selected_rows):
 
 
 @app.callback(
+    Output(component_id='beneficiary-filter', component_property='value'),
+    [Input(component_id='classification-beneficiaries-chart',
+           component_property='selectedData')],
+    [State(component_id='beneficiary-filter', component_property='options'),
+     State(component_id='beneficiary-filter', component_property='value')]
+)
+def selected_classification_beneficiary_chart(selectedPoints, filter_options, existing_values):
+    return update_selected_points(selectedPoints, filter_options, existing_values)
+
+@app.callback(
     Output(component_id='classification-operations-chart',
-           component_property='children'),
+           component_property='figure'),
     [Input(component_id='results-store', component_property='data'),
      Input(component_id='results-list',
            component_property='derived_virtual_selected_rows')]
@@ -185,9 +138,28 @@ def update_classification_operations_chart(results, selected_rows):
     return update_classification_chart(results, selected_rows, "operations")
 
 
+@app.callback(
+    Output(component_id='operation-filter', component_property='value'),
+    [Input(component_id='classification-operations-chart', component_property='selectedData')],
+    [State(component_id='operation-filter', component_property='options'),
+     State(component_id='operation-filter', component_property='value')]
+)
+def selected_classification_operations_chart(selectedPoints, filter_options, existing_values):
+    return update_selected_points(selectedPoints, filter_options, existing_values)
+
+
+def update_selected_points(selectedPoints, filter_options, existing_values):
+    if selectedPoints:
+        selectedPoints = [i['y'] for i in selectedPoints.get('points', [])]
+        existing_values = [
+            i['value'] for i in filter_options if i['label'] in selectedPoints
+        ]
+    return existing_values
+
+
 def update_classification_chart(results, selected_rows, class_type):
     if not results:
-        return
+        return {'data': [], 'layout': DEFAULT_LAYOUT}
 
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
@@ -201,40 +173,17 @@ def update_classification_chart(results, selected_rows, class_type):
 
     categories = dict(sorted(categories.items(), key=lambda x: -x[1]))
 
-    return ChartJS(
-        type='horizontalBar',
-        data=dict(
-            labels=list(categories.keys()),
-            datasets=[
-                {
-                    'label': "Charities",
-                    'data': list(categories.values()),
-                    'backgroundColor': '#fbf1a9',
-                }
-            ],
-        ),
-        options=dict(
-            legend=dict(
-                labels=dict(
-                    fontColor='#ccc',
-                ),
-                display=False,
-            ),
-            scales=dict(
-                yAxes=[dict(
-                    ticks=dict(
-                        fontColor='#ccc',
-                    ),
-                )],
-                xAxes=[dict(
-                    ticks=dict(
-                        beginAtZero=True,
-                        min=0,
-                        fontColor='#ccc',
-                    ),
-                )],
-            ),
-        ),
+    return go.Figure(
+        data=[
+            dict(
+                y=list(categories.keys()),
+                x=list(categories.values()),
+                name="Charities",
+                type='bar',
+                orientation='h',
+            )
+        ],
+        layout=DEFAULT_LAYOUT,
     )
 
 @app.callback(
@@ -246,7 +195,7 @@ def update_classification_chart(results, selected_rows, class_type):
 )
 def update_summary_numbers(results, selected_rows):
     if not results:
-        return
+        return []
 
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
@@ -307,14 +256,14 @@ def update_summary_numbers(results, selected_rows):
 
 @app.callback(
     Output(component_id='income-band-chart',
-           component_property='children'),
+           component_property='figure'),
     [Input(component_id='results-store', component_property='data'),
      Input(component_id='results-list',
            component_property='derived_virtual_selected_rows')]
 )
 def update_income_band_chart(results, selected_rows):
     if not results:
-        return
+        return {'data': [], 'layout': DEFAULT_LAYOUT}
 
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
@@ -341,71 +290,34 @@ def update_income_band_chart(results, selected_rows):
                 income_band_results[i[0]]["income"] += latest_income
                 break
 
-    return ChartJS(
-        type='bar',
-        data=dict(
-            labels=list(income_band_results.keys()),
-            datasets=[
-                {
-                    'label': "Charities",
-                    'data': [i["count"] for i in income_band_results.values()],
-                    'backgroundColor': '#fbf1a9',
-                    'yAxisID': 'y-axis-1',
-                }, {
-                    'label': "Latest income",
-                    'data': [i["income"] for i in income_band_results.values()],
-                    'backgroundColor': '#fff',
-                    'yAxisID': 'y-axis-2',
-                }
-            ],
-        ),
-        options=dict(
-            legend=dict(
-                labels=dict(
-                    fontColor='#ccc',
-                ),
-                display=False,
+    return go.Figure(
+        data=[
+            dict(
+                x=list(income_band_results.keys()),
+                y=[i["count"] for i in income_band_results.values()],
+                name="Charities",
+                type='bar',
             ),
-            scales=dict(
-                xAxes=[dict(
-                    ticks=dict(
-                        fontColor='#ccc',
-                    ),
-                )],
-                yAxes=[
-                    dict(
-                        ticks=dict(
-                            beginAtZero=True,
-                            min=0,
-                            fontColor='#ccc',
-                        ),
-                        position='left',
-                        id='y-axis-1',
-                    ),
-                    dict(
-                        ticks=dict(
-                            beginAtZero=True,
-                            min=0,
-                            fontColor='#ccc',
-                        ),
-                        position='right',
-                        id='y-axis-2',
-                    )
-                ],
-            ),
-        ),
+            dict(
+                x=list(income_band_results.keys()),
+                y=[i["income"] for i in income_band_results.values()],
+                name="Income",
+                type='bar',
+            )
+        ],
+        layout=DEFAULT_LAYOUT,
     )
 
 @app.callback(
     Output(component_id='registered-region-chart',
-           component_property='children'),
+           component_property='figure'),
     [Input(component_id='results-store', component_property='data'),
      Input(component_id='results-list',
            component_property='derived_virtual_selected_rows')]
 )
 def update_registered_region_chart(results, selected_rows):
     if not results:
-        return
+        return {'data': [], 'layout': DEFAULT_LAYOUT}
 
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
@@ -423,54 +335,29 @@ def update_registered_region_chart(results, selected_rows):
 
     regions = dict(sorted(regions.items(), key=lambda x: -x[1]["count"] if x[0] != "Unknown" else float("inf")))
 
-    return ChartJS(
-        type='horizontalBar',
-        data=dict(
-            labels=list(regions.keys()),
-            datasets=[
-                {
-                    'label': "Charities",
-                    'data': [i["count"] for i in regions.values()],
-                    'backgroundColor': '#fbf1a9',
-                }
-            ],
-        ),
-        options=dict(
-            legend=dict(
-                labels=dict(
-                    fontColor='#ccc',
-                ),
-                display=False,
+    return go.Figure(
+        data=[
+            dict(
+                y=list(regions.keys()),
+                x=[i["count"] for i in regions.values()],
+                name="Charities",
+                type='bar',
+                orientation='h',
             ),
-            scales=dict(
-                yAxes=[dict(
-                    ticks=dict(
-                        fontColor='#ccc',
-                    ),
-                )],
-                xAxes=[
-                    dict(
-                        ticks=dict(
-                            beginAtZero=True,
-                            min=0,
-                            fontColor='#ccc',
-                        )
-                    )
-                ],
-            ),
-        ),
+        ],
+        layout=DEFAULT_LAYOUT,
     )
 
 
 @app.callback(
     Output(component_id='area-of-operation-map',
-           component_property='children'),
+           component_property='figure'),
     [Input(component_id='results-store', component_property='data'),
      Input(component_id='results-list', component_property='derived_virtual_selected_rows')]
 )
 def update_results_map(results, selected_rows):
     if not results:
-        return
+        return {'data': [], 'layout': DEFAULT_LAYOUT}
 
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
@@ -485,61 +372,59 @@ def update_results_map(results, selected_rows):
                     countries[ctry_iso['iso']] = {"count": 0, "name": ctry_iso['name']}
                 countries[ctry_iso['iso']]["count"] += 1
 
-    return dcc.Graph(
-        figure=go.Figure(
-            data=[
-                dict(
-                    type='choropleth',
-                    locations=list(countries.keys()),
-                    z=[c["count"] for c in countries.values()],
-                    text=[c["name"] for c in countries.values()],
-                    colorscale=[[0, "rgb(5, 10, 172)"], [0.35, "rgb(40, 60, 190)"], [0.5, "rgb(70, 100, 245)"],
-                                [0.6, "rgb(90, 120, 245)"], [0.7, "rgb(106, 137, 247)"], [1, "rgb(220, 220, 220)"]],
-                    autocolorscale=False,
-                    reversescale=True,
-                    marker=dict(
-                        line=dict(
-                            color='#eee',
-                            width=0.5
-                        )
-                    ),
-                    hoverinfo='text+z',
+    return go.Figure(
+        data=[
+            dict(
+                type='choropleth',
+                locations=list(countries.keys()),
+                z=[c["count"] for c in countries.values()],
+                text=[c["name"] for c in countries.values()],
+                colorscale=[[0, "rgb(5, 10, 172)"], [0.35, "rgb(40, 60, 190)"], [0.5, "rgb(70, 100, 245)"],
+                            [0.6, "rgb(90, 120, 245)"], [0.7, "rgb(106, 137, 247)"], [1, "rgb(220, 220, 220)"]],
+                autocolorscale=False,
+                reversescale=True,
+                marker=dict(
+                    line=dict(
+                        color='#eee',
+                        width=0.5
+                    )
                 ),
-                dict(
-                    type='choropleth',
-                    locations=['GBR'],
-                    z=[1],
-                    text=['GBR'],
-                    colorscale=[[0, "#fbf1a9"], [1, "#fbf1a9"]],
-                    autocolorscale=False,
-                    reversescale=True,
-                    showscale=False,
-                    marker=dict(
-                        line=dict(
-                            color='#fbf1a9',
-                            width=1
-                        )
-                    ),
-                    hoverinfo='skip',
-                )
-            ],
-            layout=go.Layout(
-                geo=dict(
-                    showframe=False,
-                    showcoastlines=False,
-                    showland=True,
-                    landcolor='#555',
-                    projection=dict(
-                        type='natural earth'
-                    ),
-                    bgcolor='#444',
+                hoverinfo='text+z',
+            ),
+            dict(
+                type='choropleth',
+                locations=['GBR'],
+                z=[1],
+                text=['GBR'],
+                colorscale=[[0, "#fbf1a9"], [1, "#fbf1a9"]],
+                autocolorscale=False,
+                reversescale=True,
+                showscale=False,
+                marker=dict(
+                    line=dict(
+                        color='#fbf1a9',
+                        width=1
+                    )
                 ),
-                paper_bgcolor='#444',
-                plot_bgcolor='#444',
-                font=dict(
-                    color='#f4f4f4',
-                ),
-                margin=dict(l=0, r=0, t=0, b=0),
+                hoverinfo='skip',
             )
+        ],
+        layout=go.Layout(
+            geo=dict(
+                showframe=False,
+                showcoastlines=False,
+                showland=True,
+                landcolor='#555',
+                projection=dict(
+                    type='natural earth'
+                ),
+                bgcolor='#444',
+            ),
+            paper_bgcolor='#444',
+            plot_bgcolor='#444',
+            font=dict(
+                color='#f4f4f4',
+            ),
+            margin=dict(l=0, r=0, t=0, b=0),
         )
     )
