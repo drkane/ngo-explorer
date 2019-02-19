@@ -2,9 +2,13 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 def sidebar_box(contents: list, title=None):
+    if not isinstance(title, list):
+        title = [title]
     return html.Div(className='mb3 bn bg-mid-gray', children=[
         html.Div(className="pa2 bg-light-yellow white", children=[
-            html.H2(title, className="pa0 ma0 f5 bold ttu near-black"),
+            html.H2(className="pa0 ma0 f5 bold ttu near-black", children=[
+                html.I(className='material-icons md-18', children='filter_list'),
+            ] + title),
         ]) if title else None,
         html.Div(className="pa2 lh-copy", children=[
             html.Div(
@@ -15,12 +19,12 @@ def sidebar_box(contents: list, title=None):
     ])
 
 
-def filter_item(contents: list, title=None):
+def filter_item(children: list, title=None, div_class=''):
     title = [html.H3(className='f5 normal mv0', children=title)] if title else []
 
     return html.Div(
-        className='mb3',
-        children=title + contents
+        className='mb3 ' + div_class,
+        children=title + children
     )
 
 
@@ -31,7 +35,12 @@ def basic_filters():
         causes_filter(),
         beneficiaries_filter(),
         operation_filter(),
-    ], 'Filters')
+    ], [
+        'Filters',
+        html.Button(id='clear-filters',
+                    className='fr ttn f6 link blue underline normal bn bg-transparent pointer pa0',
+                    children='Clear')
+    ])
 
 def advanced_filters():
     return sidebar_box([
@@ -41,13 +50,17 @@ def advanced_filters():
     ], 'Base Filters')
 
 def search_filter():
-    return filter_item([
-        dcc.Input(
-            placeholder='Search name or activities',
-            id='search',
-            className='mw-100 lh-copy bb-light-yellow bg-inherit near-white pa2',
-        )
-    ])
+    return filter_item(
+        div_class='bb-light-yellow w-100 flex items-center',
+        children=[
+            html.I(className='material-icons', children='search'),
+            dcc.Input(
+                placeholder='Search name or activities',
+                id='search',
+                className='w-100 lh-copy bn bg-inherit near-white pa2 border-box',
+            ),
+        ],
+    )
 
 def income_range():
     return filter_item([

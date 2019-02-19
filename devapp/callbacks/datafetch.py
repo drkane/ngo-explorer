@@ -4,76 +4,8 @@ import json
 from dash.dependencies import Input, Output, State
 import dash_html_components as html
 
-from ..server import app, COUNTRIES
+from ..server import app
 from ..data import fetch_charities
-from ..components.countryfilter import COUNTRY_GROUPS, UNDP_GROUPS, DAC_OPTIONS
-
-def determine_countries(aoo):
-
-    countries = []
-    country_groups = {
-        i[0]: {
-            "type": i[1],
-            "label": i[2],
-        } for i in COUNTRY_GROUPS
-    }
-
-    if not isinstance(aoo, list):
-        aoo = [aoo]
-
-    for item in aoo:
-
-        if item == '__all':
-            return [c['id'] for c in COUNTRIES if c['iso'] != "GB"]
-
-        elif item.startswith('dac-'):
-            if item == 'dac-all':
-                countries.extend([c['id']
-                                  for c in COUNTRIES if c['dac_status']])
-            else:
-                countries.extend([c['id']
-                                  for c in COUNTRIES if c['dac_status']] == country_groups.get(item)['label'])
-
-        elif item.startswith('undp-'):
-            iso_codes = UNDP_GROUPS.get(country_groups.get(item)['label'], [])
-            countries.extend([c['id'] for c in COUNTRIES if c['iso'] in iso_codes])
-
-        else:
-            countries.append(item)
-
-    return countries
-
-
-# When filters change, update the filters store
-@app.callback(
-    Output(component_id='filters-store', component_property='data'),
-    [Input(component_id='charity-list', component_property='value'),
-     Input(component_id='area-of-operation-dropdown',
-           component_property='value'),
-     Input(component_id='max-countries', component_property='value'),
-     Input(component_id='include-cc-oa', component_property='values'),
-     Input(component_id='search', component_property='value'),
-     Input(component_id='min-income', component_property='value'),
-     Input(component_id='max-income', component_property='value'),
-     Input(component_id='causes-filter', component_property='value'),
-     Input(component_id='beneficiary-filter', component_property='value'),
-     Input(component_id='operation-filter', component_property='value')]
-)
-def update_filter_store(input_value, aoo, max_countries, include_oa, search, min_income, max_income, causes, beneficiaries, operations):
-    # because of <https://community.plot.ly/t/adding-ability-to-delete-numbers-from-input-type-number/12802>
-    max_income = None if max_income == 0 else max_income
-    return {
-        "aoo": determine_countries(aoo),
-        "regnos": input_value.splitlines(),
-        "max_countries": int(max_countries),
-        "include_oa": 'cc-oa' in include_oa,
-        "search": search,
-        "min_income": min_income,
-        "max_income": max_income,
-        "causes": causes,
-        "beneficiaries": beneficiaries,
-        "operations": operations
-    }
 
 # fetch the results every time the filters change
 @app.callback(

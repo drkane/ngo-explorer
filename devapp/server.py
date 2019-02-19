@@ -27,6 +27,9 @@ app = dash.Dash(
     }, {
         "rel": "stylesheet",
         "href": "https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans",
+    }, {
+        "rel": "stylesheet",
+        "href": "https://fonts.googleapis.com/icon?family=Material+Icons"
     }],
     meta_tags=[{
         "name": "viewport",
