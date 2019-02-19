@@ -60,12 +60,24 @@ def fields_to_include():
     return html.Div([
         html.H3('Fields to include in download', className='mv2 pa0'),
         html.P(
-            "Charities will be included based on the criteria you have selected.",
-            className="f6 gray i mt1"
+            className="f6 gray i mt1",
+            children=[
+                "Charities will be included based on the criteria you have selected.",
+            ],
         ),
+        html.P([
+            html.A('Select all fields', id='results-download-select-all'),
+            " | ",
+            html.A('Clear all fields', id='results-download-clear-all'),
+        ]),
         html.Div(className='cf mv3 flex flex-wrap', children=[
             html.Div(className='w-25 pr3', children=[
                 html.H4('Charity information', className='mt3 mb0 pa1 b--light-yellow bb'),
+                html.P([
+                    html.A('Select all', id='results-download-fields-main-select-all'),
+                    " | ",
+                    html.A('Clear', id='results-download-fields-main-clear-all'),
+                ]),
                 dcc.Checklist(
                     id='results-download-fields-main',
                     options=[
@@ -86,6 +98,11 @@ def fields_to_include():
             ]),
             html.Div(className='w-25 pr3', children=[
                 html.H4('Financial', className='mt3 mb0 pa1 b--light-yellow bb'),
+                html.P([
+                    html.A('Select all', id='results-download-fields-financial-select-all'),
+                    " | ",
+                    html.A('Clear', id='results-download-fields-financial-clear-all'),
+                ]),
                 dcc.Checklist(
                     id='results-download-fields-financial',
                     options=[
@@ -104,6 +121,11 @@ def fields_to_include():
             ]),
             html.Div(className='w-25 pr3', children=[
                 html.H4('Contact details', className='mt3 mb0 pa1 b--light-yellow bb'),
+                html.P([
+                    html.A('Select all', id='results-download-fields-contact-select-all'),
+                    " | ",
+                    html.A('Clear', id='results-download-fields-contact-clear-all'),
+                ]),
                 dcc.Checklist(
                     id='results-download-fields-contact',
                     options=[
@@ -120,6 +142,11 @@ def fields_to_include():
             ]),
             html.Div(className='w-25 pr3', children=[
                 html.H4('Geography fields', className='mt3 mb0 pa1 b--light-yellow bb'),
+                html.P([
+                    html.A('Select all', id='results-download-fields-aoo-select-all'),
+                    " | ",
+                    html.A('Clear', id='results-download-fields-aoo-clear-all'),
+                ]),
                 dcc.Checklist(
                     id='results-download-fields-aoo',
                     options=[
@@ -136,6 +163,11 @@ def fields_to_include():
                     "The following fields are based on the postcode of the charities' UK registered office",
                     className="f6 gray i mt1"
                 ),
+                html.P([
+                    html.A('Select all', id='results-download-fields-geo-select-all'),
+                    " | ",
+                    html.A('Clear', id='results-download-fields-geo-clear-all'),
+                ]),
                 dcc.Checklist(
                     id='results-download-fields-geo',
                     options=[
