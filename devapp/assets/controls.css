@@ -28,6 +28,12 @@ div#area-of-operation-dropdown {
     min-width: 8rem;
     max-width: 32rem;
 }
+div#area-of-operation-dropdown .Select .Select-menu-outer {
+    min-width: 16rem;
+    max-width: 32rem;
+    font-size: 14px;
+    line-height: 16px;
+}
 
 .Select .Select-control {
     border-color: black black #FBF1A9;
@@ -38,7 +44,9 @@ div#area-of-operation-dropdown {
 
 .Select .Select-control,
 .Select.is-focused {
-    border-width: 0px !important;
+    border-color: black black #FBF1A9;
+    border-style: solid;
+    border-width: 0px 0px 1px;
     box-shadow: none !important;
     background-color: inherit !important;
 }
