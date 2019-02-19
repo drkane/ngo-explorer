@@ -19,19 +19,22 @@ def dashboard():
         ]
     )
 
-def chart_wrapper(title, contents, caption=None):
+def chart_wrapper(title, contents, caption=None, id=None):
     figcaption = [html.H3(title, className='pv2 ma0 f3')]
     if isinstance(caption, list):
         figcaption += caption
 
-    return html.Figure(
+    atts = dict(
         className='w-100 mh0 mt0 mb4 pa2',
-        # style={'backgroundColor': '#444'},
         children=[
             html.Figcaption(figcaption),
             contents
         ]
     )
+    if id:
+        atts['id'] = id
+
+    return html.Figure(**atts)
 
 def summary_numbers():
     return html.Div(
@@ -49,7 +52,18 @@ def aggregate_financial_history_chart():
             html.P(
                 "Figures given are in cash terms, without adjusting for inflation",
                 className="f6 gray i mb2 mt0"
-            )
+            ),
+            dcc.RadioItems(
+                options=[
+                    {'label': 'Income', 'value': 'inc'},
+                    {'label': 'Spending', 'value': 'exp'},
+                ],
+                value='inc',
+                id="financial-history-type",
+                labelClassName="pr2 f6",
+                inputClassName="mr1 f6",
+                className='',
+            ),
         ]
     )
 
@@ -84,30 +98,6 @@ def registered_region_chart():
             html.P(
                 "Based on the postcode of the charities' UK registered office",
                 className="f6 gray i mb2 mt0"
-            ),
-        ]
-    )
-
-def financial_history_chart():
-    return chart_wrapper(
-        "Financial history of charities",
-        html.Div(className="h6 mw7", children=[
-            dcc.Graph(id="finances-chart")
-        ]),
-        [
-            html.P(
-                "Figures given are in cash terms, without adjusting for inflation",
-                className="f6 gray i mb2 mt0"
-            ),
-            dcc.RadioItems(
-                options=[
-                    {'label': 'Income', 'value': 'inc'},
-                    {'label': 'Spending', 'value': 'exp'},
-                ],
-                value='inc',
-                id="financial-history-type",
-                labelClassName="pr2 f6",
-                inputClassName="mr1 f6",
             ),
         ]
     )

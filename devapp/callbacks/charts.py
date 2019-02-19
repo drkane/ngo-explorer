@@ -16,11 +16,6 @@ DEFAULT_LAYOUT = {
     'xaxis': {
         'automargin': True,
     },
-    # 'paper_bgcolor': '#444',
-    # 'plot_bgcolor': '#444',
-    # 'font': dict(
-    #     color='#f4f4f4',
-    # ),
     'margin': go.layout.Margin(
         l=40,
         r=0,
@@ -33,19 +28,62 @@ DEFAULT_LAYOUT = {
 }
 
 
+def update_finances_chart(results, field='income'):
+
+    field = {
+        "inc": "income",
+        "exp": "expend"
+    }.get(field, "income")
+
+    return go.Figure(
+        data=[
+            dict(
+                x=[datetime.datetime.strptime(f['financialYear']['end'][0:10], "%Y-%m-%d") for f in c.get("income", {}).get("annual", [])],
+                y=[f[field] for f in c.get("income", {}).get("annual", [])],
+                name=c.get("name", "Unknown"),
+                type='scatter',
+            ) for c in results
+        ],
+        layout=DEFAULT_LAYOUT,
+    )
+
+
+@app.callback(
+    Output(component_id='financial-history-type',
+           component_property='className'),
+    [Input(component_id='results-list',
+           component_property='derived_virtual_selected_rows')],
+    [State(component_id='financial-history-type',
+           component_property='className')]
+)
+def update_chart_radio_wrapper(selected_rows, existing_class):
+    existing_class = existing_class.split(" ")
+    if selected_rows and len(selected_rows) <= 5:
+        if "dn" in existing_class:
+            existing_class.remove("dn")
+    else:
+        if "dn" not in existing_class:
+            existing_class.append("dn")
+
+    return " ".join(existing_class)
+
 @app.callback(
     Output(component_id='aggregate-finances-chart',
            component_property='figure'),
     [Input(component_id='results-store', component_property='data'),
      Input(component_id='results-list',
-           component_property='derived_virtual_selected_rows')]
+           component_property='derived_virtual_selected_rows'),
+     Input(component_id='financial-history-type',
+           component_property='value')]
 )
-def update_aggregate_finances_chart(results, selected_rows):
+def update_aggregate_finances_chart(results, selected_rows, field):
     if not results:
         return {'data': [], 'layout': DEFAULT_LAYOUT}
 
     if selected_rows:
         results = [v for k, v in enumerate(results) if k in selected_rows]
+        if len(selected_rows) <= 5:
+            return update_finances_chart(results, field)
 
 
     financial_years = {}
@@ -418,12 +456,6 @@ def update_results_map(results, selected_rows):
                 projection=dict(
                     type='natural earth'
                 ),
-                # bgcolor='#444',
-            ),
-            # paper_bgcolor='#444',
-            # plot_bgcolor='#444',
-            font=dict(
-                # color='#f4f4f4',
             ),
             margin=dict(l=0, r=0, t=0, b=0),
         )
