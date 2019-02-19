@@ -17,7 +17,7 @@ app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
     fetch_data_button(),
 
     # wrapper around results
-    html.Div(id='results-wrapper', className='dn', children=[
+    html.Div(children=[
 
         # sidebar
         html.Div(className='fl w-25 pr2', children=[
@@ -27,7 +27,8 @@ app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
 
         # main window
         html.Div(
-            className='fl w-75 pl2',
+            id='results-wrapper',
+            className='dn fl w-75 pl2',
             children=results()
         ),
 
