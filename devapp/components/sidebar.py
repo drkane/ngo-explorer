@@ -38,7 +38,7 @@ def advanced_filters():
         max_countries_filter(),
         daclist_filter(),
         oa_filter()
-    ], 'Advanced Filters')
+    ], 'Base Filters')
 
 def search_filter():
     return filter_item([

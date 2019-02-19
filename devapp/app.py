@@ -21,8 +21,8 @@ app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
 
         # sidebar
         html.Div(className='fl w-25 pr2', children=[
-            basic_filters(),
             advanced_filters(),
+            basic_filters(),
         ]),
 
         # main window
