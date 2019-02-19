@@ -41,6 +41,6 @@ def update_country_groups(*args):
     clicked_item = max(args, key=operator.itemgetter(1))
 
     if clicked_item[1] == 0:
-        return []
+        return ['__all']
 
     return clicked_item[0][0]

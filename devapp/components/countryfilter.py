@@ -47,11 +47,15 @@ def countryfilter():
         html.P(id='simple-filter', className='mb4 f4 flex items-center', children=[
             "Show charities operating in ",
             dcc.Dropdown(
-                options=[],
+                options=[{
+                    "label": "All countries",
+                    "value": "__all"
+                }],
                 multi=True,
                 id='area-of-operation-dropdown',
                 className='bb-light-yellow',
-                placeholder='Country'
+                placeholder='Country',
+                value='__all',
             ),
             html.Span(' or ', className='ph2'),
             html.Button(
