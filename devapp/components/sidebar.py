@@ -182,16 +182,3 @@ def oa_filter():
             inputClassName='mr2',
         )
     ])
-
-def fetch_data_button():
-    return html.Div(
-        className='mt3',
-        children=[
-            html.Button(
-                id='submit-button',
-                n_clicks=0,
-                children='Fetch data',
-                className='link ph3 pv2 mb2 dib white bg-blue b--blue br3 ba'
-            )
-        ],
-    )

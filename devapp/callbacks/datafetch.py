@@ -75,28 +75,15 @@ def update_filter_store(input_value, aoo, max_countries, include_oa, search, min
         "operations": operations
     }
 
-# changing the filters store triggers a change in the submit button
-# it compare the new filters against the cached ones to check whether
-# the submit button should be updated
-@app.callback(
-    Output(component_id='submit-button', component_property='children'),
-    [Input(component_id='filters-store', component_property='data'),
-     Input(component_id='current-filters-store', component_property='data')]
-)
-def update_fetch_button(new_filters, current_filters):
-    if new_filters == current_filters:
-        return '_'
-    return 'Filters have changed: update results'
-
-# pressing the fetch data button triggers a data fetch
+# fetch the results every time the filters change
 @app.callback(
     Output(component_id='results-store', component_property='data'),
-    [Input(component_id='submit-button', component_property='n_clicks')],
-    [State(component_id='filters-store', component_property='data')]
+    [Input(component_id='filters-store', component_property='data')]
 )
-def update_results_json(_, filters):
+def update_results_json(filters):
     if filters:
         return fetch_charities(filters)
+    return {}
 
 # results being present or not
 @app.callback(
@@ -144,16 +131,6 @@ def update_results_link(_, filters, fields_main, fields_financial, fields_contac
                href="/download.json?{}".format(query_args),
                children="Download as JSON"),
     ]
-
-# on new results, the cached filters are updated to allow checking
-# of when they are changed
-@app.callback(
-    Output(component_id='current-filters-store', component_property='data'),
-    [Input(component_id='results-store', component_property='data')],
-    [State(component_id='filters-store', component_property='data')]
-)
-def update_current_filters(_, filters):
-    return filters
 
 # A change to the results triggers a change in the page heading
 @app.callback(

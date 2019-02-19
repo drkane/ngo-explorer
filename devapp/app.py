@@ -14,7 +14,6 @@ app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
     # headers
     header(),
     countryfilter(),
-    fetch_data_button(),
 
     # wrapper around results
     html.Div(children=[
@@ -36,7 +35,6 @@ app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
 
     # data stores
     dcc.Store(id='filters-store', storage_type='session'),
-    dcc.Store(id='current-filters-store', storage_type='session'),
     dcc.Store(id='results-store', storage_type='session'),
 ])
 
