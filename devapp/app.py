@@ -6,7 +6,7 @@ from .server import app
 
 from .components import *
 
-app.title = 'Development Charities Data Explorer'
+app.title = 'NGO Explorer'
 app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
     # modals
     upload_modal(),
