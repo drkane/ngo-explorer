@@ -158,7 +158,7 @@ def daclist_filter():
                 {'label': 'Only select from DAC-listed countries',
                  'value': 'dac'},
             ],
-            values=['dac'],
+            values=[],
             id='include-dac',
             inputClassName='mr2',
         ),
