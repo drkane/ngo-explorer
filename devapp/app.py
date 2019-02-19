@@ -19,7 +19,7 @@ app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
     html.Div(children=[
 
         # sidebar
-        html.Div(className='fl w-25 pr2', children=[
+        html.Div(className='fl w-25 pr4', children=[
             advanced_filters(),
             basic_filters(),
         ]),
@@ -27,7 +27,7 @@ app.layout = html.Div(className="mw9 center ph3-ns mb4 cf", children=[
         # main window
         html.Div(
             id='results-wrapper',
-            className='dn fl w-75 pl2',
+            className='dn fl w-75 pl4',
             children=results()
         ),
 

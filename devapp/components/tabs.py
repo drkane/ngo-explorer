@@ -9,12 +9,12 @@ TAB_STYLE = {
     'marginRight': '8px',
     'padding': '8px',
     'fontSize': '1.25rem',
-    'color':  '#f4f4f4',
-    'backgroundColor': 'inherit',
-    'borderTop': '1px solid gray',
-    'borderLeft': '1px solid gray',
-    'borderRight': '1px solid gray',
-    'borderBottom': '0px solid gray',
+    'color':  '#111',
+    'backgroundColor': '#eee',
+    'borderTop': '1px solid #eee',
+    'borderLeft': '1px solid #eee',
+    'borderRight': '1px solid #eee',
+    'borderBottom': '0px solid #eee',
 }
 TAB_SELECTED_STYLE = {
     'width': 'auto',

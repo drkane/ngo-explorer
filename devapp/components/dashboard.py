@@ -20,13 +20,13 @@ def dashboard():
     )
 
 def chart_wrapper(title, contents, caption=None):
-    figcaption = [html.H3(title, className='pv2 ma0')]
+    figcaption = [html.H3(title, className='pv2 ma0 f3')]
     if isinstance(caption, list):
         figcaption += caption
 
     return html.Figure(
-        className='w-100 mh0 mt0 mb3 pa2',
-        style={'backgroundColor': '#444'},
+        className='w-100 mh0 mt0 mb4 pa2',
+        # style={'backgroundColor': '#444'},
         children=[
             html.Figcaption(figcaption),
             contents

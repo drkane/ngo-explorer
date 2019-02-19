@@ -66,21 +66,21 @@ def get_country_list(include_dac):
 
 
 # filter countries if a selection made
-@app.callback(
-    Output('area-of-operation-dropdown', 'value'),
-    [
-        Input("country-group-{}".format(g[0]), 'n_clicks_timestamp')
-        for g in COUNTRY_GROUPS
-    ],
-)
-def update_country_groups(*args):
-    args = list(zip(COUNTRY_GROUPS, [a if a else 0 for a in args]))
-    clicked_item = max(args, key=operator.itemgetter(1))
+# @app.callback(
+#     Output('area-of-operation-dropdown', 'value'),
+#     [
+#         Input("country-group-{}".format(g[0]), 'n_clicks_timestamp')
+#         for g in COUNTRY_GROUPS
+#     ],
+# )
+# def update_country_groups(*args):
+#     args = list(zip(COUNTRY_GROUPS, [a if a else 0 for a in args]))
+#     clicked_item = max(args, key=operator.itemgetter(1))
 
-    if clicked_item[1] == 0:
-        return ['__all']
+#     if clicked_item[1] == 0:
+#         return ['__all']
 
-    return clicked_item[0][0]
+#     return clicked_item[0][0]
 
 # When filters change, update the filters store
 

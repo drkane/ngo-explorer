@@ -6,17 +6,10 @@
 
 .bb-light-yellow,
 .bb-light-yellow.is-focused {
-    border-color: black black #FBF1A9;
+    border-color: black black rgb(59, 59, 59);
     border-style: solid;
     border-width: 0px 0px 1px;
     border-radius: 0px;
-}
-
-/* generic filter dropdowns */
-
-.Select-menu-outer {
-    color: #111;
-    font-size: 0.875rem;
 }
 
 
@@ -36,7 +29,7 @@ div#area-of-operation-dropdown .Select .Select-menu-outer {
 }
 
 .Select .Select-control {
-    border-color: black black #FBF1A9;
+    border-color: black black rgb(59, 59, 59);
     border-style: solid;
     border-width: 0px 0px 1px;
     border-radius: 0px;
@@ -44,7 +37,7 @@ div#area-of-operation-dropdown .Select .Select-menu-outer {
 
 .Select .Select-control,
 .Select.is-focused {
-    border-color: black black #FBF1A9;
+    border-color: black black rgb(59, 59, 59);
     border-style: solid;
     border-width: 0px 0px 1px;
     box-shadow: none !important;
@@ -52,8 +45,8 @@ div#area-of-operation-dropdown .Select .Select-menu-outer {
 }
 
 .Select .Select-menu-outer {
-    background-color: #333333;
-    color: #f4f4f4;
+    /* background-color: #333333;
+    color: #f4f4f4; */
     font-size: inherit;
     min-width: 16rem;
 }
@@ -63,12 +56,12 @@ div#area-of-operation-dropdown .Select .Select-menu-outer {
 }
 
 .Select .Select-value {
-    color: #f4f4f4 !important;
+    /* color: #f4f4f4 !important; */
     margin-bottom: 7px;
 }
 
 .Select input {
-    color: #f4f4f4 !important;
+    /* color: #f4f4f4 !important; */
 }
 
 

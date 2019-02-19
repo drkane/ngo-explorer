@@ -59,24 +59,24 @@ def countryfilter():
             ),
             html.Span(' or ', className='ph2'),
             html.Button(
-                className='link underline bg-inherit bn light-yellow pa0 pointer',
+                className='link underline bg-inherit bn pa0 pointer',
                 children='upload a list of charities',
                 id='open-upload-modal',
             ),
             '.',
         ]),
-        html.P(className='', children=[
-            html.Abbr("ODA", title="Overseas Development Assistance"),
-            " Recipient Countries: ",
-        ] + [
-            html.A(id="country-group-dac-{}".format(slugify(g)), href='#', className='mr2', children=g)
-            for g in DAC_OPTIONS
-        ]),
-        html.P(className='', children=[
-            html.Abbr("UNDP", title="United Nations Development Programme"),
-            " regions: ",
-        ] + [
-            html.A(id="country-group-undp-{}".format(slugify(g)), href='#', className='mr2', children=g)
-            for g in UNDP_GROUPS.keys()
-        ]),
+        # html.P(className='', children=[
+        #     html.Abbr("ODA", title="Overseas Development Assistance"),
+        #     " Recipient Countries: ",
+        # ] + [
+        #     html.A(id="country-group-dac-{}".format(slugify(g)), href='#', className='mr2', children=g)
+        #     for g in DAC_OPTIONS
+        # ]),
+        # html.P(className='', children=[
+        #     html.Abbr("UNDP", title="United Nations Development Programme"),
+        #     " regions: ",
+        # ] + [
+        #     html.A(id="country-group-undp-{}".format(slugify(g)), href='#', className='mr2', children=g)
+        #     for g in UNDP_GROUPS.keys()
+        # ]),
     ])

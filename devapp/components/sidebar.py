@@ -4,7 +4,7 @@ import dash_html_components as html
 def sidebar_box(contents: list, title=None):
     if not isinstance(title, list):
         title = [title]
-    return html.Div(className='mb3 bn bg-mid-gray', children=[
+    return html.Div(className='mb4 bn bg-light-gray', children=[
         html.Div(className="pa2 bg-light-yellow white", children=[
             html.H2(className="pa0 ma0 f5 bold ttu near-black", children=[
                 html.I(className='material-icons md-18', children='filter_list'),
@@ -57,7 +57,7 @@ def search_filter():
             dcc.Input(
                 placeholder='Search name or activities',
                 id='search',
-                className='w-100 lh-copy bn bg-inherit near-white pa2 border-box',
+                className='w-100 lh-copy bn bg-inherit pa2 border-box',
             ),
         ],
     )
@@ -70,14 +70,14 @@ def income_range():
                 placeholder='Minimum',
                 type='number',
                 id='min-income',
-                className='mh1 w-33 lh-copy bb-light-yellow bg-inherit near-white pa1',
+                className='mh1 w-33 lh-copy bb-light-yellow bg-inherit pa1',
             ),
             'and',
             dcc.Input(
                 placeholder='Maximum',
                 type='number',
                 id='max-income',
-                className='mh1 w-33 lh-copy bb-light-yellow bg-inherit near-white pa1',
+                className='mh1 w-33 lh-copy bb-light-yellow bg-inherit pa1',
             ),
         ])
     ], "Latest income")
@@ -106,7 +106,7 @@ def causes_filter():
                 {"value": "116", "label": "Recreation"},
                 {"value": "117", "label": "Other charitable purposes"}
             ],
-            className='bb-light-yellow'
+            className=''
         )
     ], "Cause")
 
@@ -124,7 +124,7 @@ def beneficiaries_filter():
                 {"value": "206", "label": "Other defined groups"},
                 {"value": "207", "label": "The general public/mankind"}
             ],
-            className='bb-light-yellow'
+            className=''
         )
     ], "Beneficiaries")
 
@@ -145,7 +145,7 @@ def operation_filter():
                 {"value": "309", "label": "Acts as an umbrella or resource body"},
                 {"value": "310", "label": "Other charitable activities"}
             ],
-            className='bb-light-yellow'
+            className=''
         )
     ], "Activity")
 
@@ -158,7 +158,7 @@ def max_countries_filter():
                 type='number',
                 value='180',
                 id='max-countries',
-                className='mh1 w3 bb-light-yellow bg-inherit near-white pa1',
+                className='mh1 w3 bb-light-yellow bg-inherit pa1',
             ),
         ]),
         'countries'
@@ -176,7 +176,7 @@ def daclist_filter():
             inputClassName='mr2',
         ),
         html.A(
-            className='f6 i link light-gray underline',
+            className='f6 i link underline',
             href='http://www.oecd.org/dac/financing-sustainable-development/development-finance-standards/daclist.htm',
             children='About DAC List countries (OECD)',
             target='_blank',

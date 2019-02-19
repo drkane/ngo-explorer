@@ -16,11 +16,11 @@ DEFAULT_LAYOUT = {
     'xaxis': {
         'automargin': True,
     },
-    'paper_bgcolor': '#444',
-    'plot_bgcolor': '#444',
-    'font': dict(
-        color='#f4f4f4',
-    ),
+    # 'paper_bgcolor': '#444',
+    # 'plot_bgcolor': '#444',
+    # 'font': dict(
+    #     color='#f4f4f4',
+    # ),
     'margin': go.layout.Margin(
         l=40,
         r=0,
@@ -414,16 +414,16 @@ def update_results_map(results, selected_rows):
                 showframe=False,
                 showcoastlines=False,
                 showland=True,
-                landcolor='#555',
+                landcolor='#eee',
                 projection=dict(
                     type='natural earth'
                 ),
-                bgcolor='#444',
+                # bgcolor='#444',
             ),
-            paper_bgcolor='#444',
-            plot_bgcolor='#444',
+            # paper_bgcolor='#444',
+            # plot_bgcolor='#444',
             font=dict(
-                color='#f4f4f4',
+                # color='#f4f4f4',
             ),
             margin=dict(l=0, r=0, t=0, b=0),
         )
