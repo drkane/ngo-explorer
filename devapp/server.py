@@ -100,3 +100,7 @@ def download_file(filetype='csv'):
             "Content-disposition": "attachment; filename=download.{}".format(extension)
         }
     )
+
+@server.route('/about')
+def about_page():
+    return flask.render_template('about.html')

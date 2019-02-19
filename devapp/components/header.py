@@ -14,6 +14,8 @@ def header():
         dcc.Markdown(className='pt2', children='''
 An explorer for data on development charities based in the UK.
 Uses data from the Charity Commission for England and Wales.
-Powered by [CharityBase](https://charitybase.uk/).
-    '''),
+Powered by [CharityBase](https://charitybase.uk/).'''),
+        html.P(
+            html.A(href='/about', children='About this tool'),
+        )
     ], className='pb3 bb b--gray')
