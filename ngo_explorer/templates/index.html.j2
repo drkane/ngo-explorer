@@ -1,0 +1,50 @@
+{% extends "base.html.j2" %}
+
+{% block title %}NGO Explorer{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <h2 class="ma0 mv2-l">Explore UK charities working across the world</h2>
+    <div class="cf lh-copy">
+        <div class="db fl w-20-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
+        <div class="db fl w-80-l w-100 ma0">
+            <div class="mb1 bb b--gray w-100 flex items-center">
+                <i class="material-icons">search</i>
+                <input id="filter-country-list" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Type to search this list" value="" autocomplete="off" />
+            </div>
+        </div>
+    </div>
+    <div class="" id="country-list">
+        {% for group, country_list in countries %}
+        <div class="cf country-group lh-copy">
+            <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">
+                {% if group and group.lower() in config.PLOTLY_GEO_SCOPES %}
+                <div class="w-100 fr country-group-name">
+                {{ group or "&nbsp;" }}
+                </div>
+                <div class="w-50 fr dn db-l">
+                {{ []|location_map(continents=[group.lower()], height=120, landcolor='#666') }}
+                </div>
+                {% else %}
+                <div class="country-group-name">{{ group or "&nbsp;" }}</div>
+                {% endif %}
+            </div>
+            <div class="db fl w-60-l w-100 mh0 mv2 country-group-list">
+                <ul class="list pa0 ma0">
+                    {% for c in country_list %}
+                    <li class="di mr2 pb2">
+                        <a href="{{ c.id }}" class="link dim blue underline">{{ c.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

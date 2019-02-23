@@ -1,0 +1,50 @@
+{% extends "base.html.j2" %}
+{% set active_page = "Show charities" %}
+
+{% block title %}{{ area.name }} | NGO Explorer{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    {% include '_data_header.html.j2' %}
+    {% include '_data_sidebar.html.j2' %}
+
+    <div class="fl w-100 w-80-l">
+        <div class="mv4">
+            <table class="collapse f6">
+                <thead>
+                    <tr>
+                        <th class="pa2 v-top">Charity number</th>
+                        <th class="pa2 v-top">Name</th>
+                        <th class="pa2 v-top tr">Latest income</th>
+                        <th class="pa2 v-top tr">Latest income date</th>
+                        <th class="pa2 v-top">Activities</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for c in data.list %}
+                    <tr class="striped--near-white">
+                        <td class="pa2 v-top"><a class="link dim dark-blue" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">{{ c.id }}</a></td>
+                        <td class="pa2 v-top">{{ c.name }}</td>
+                        <td class="pa2 v-top tr">{% if c.income.latest.total %}{{ "£{:,.0f}".format(c.income.latest.total) }}{% endif %}</td>
+                        <td class="pa2 v-top tr">{% if c.income.latest.total %}{{ c.income.latest.date[0:10] }}{% endif %}</td>
+                        <td class="pa2 v-top f7 i">{{ c.activities|default("", true) }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/choices.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/data.js') }}"></script>
+<script src="{{ url_for('static', filename='js/data-download.js') }}"></script>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/choices.min.css') }}">
+{{ super() }}
+{% endblock %}
