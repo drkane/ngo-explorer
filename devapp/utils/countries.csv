@@ -1,249 +1,249 @@
-id,name,iso,dac_status
-D-1,Afghanistan,AFG,Least Developed
-D-2,Albania,ALB,
-D-3,Algeria,DZA,
-D-5,Andorra,AND,
-D-6,Angola,AGO,Least Developed
-D-9,Antigua And Barbuda,ATG,
-D-10,Argentina,ARG,
-D-11,Armenia,ARM,Lower Middle Income
-D-13,Australia,AUS,
-D-14,Austria,AUT,
-D-15,Azerbaijan,AZE,
-D-17,Bahamas,BHS,
-D-18,Bahrain,BHR,
-D-19,Bangladesh,BGD,Least Developed
-D-20,Barbados,BRB,
-D-21,Belarus,BLR,
-D-22,Belgium,BEL,
-D-23,Belize,BLZ,
-D-24,Benin,BEN,Least Developed
-D-26,Bhutan,BTN,Least Developed
-D-27,Bolivia,BOL,Lower Middle Income
-D-28,Bosnia And Herzegovina,BIH,
-D-29,Botswana,BWA,
-D-30,Brazil,BRA,
-D-31,Brunei,BRN,
-D-32,Bulgaria,BGR,
-D-33,Burkina Faso,BFA,Least Developed
-D-34,Burundi,BDI,Least Developed
-D-35,Cambodia,KHM,Least Developed
-D-36,Cameroon,CMR,Lower Middle Income
-D-37,Canada,CAN,
-D-38,Cape Verde,CPV,Lower Middle Income
-D-40,Central African Republic,CAF,Least Developed
-D-41,Chad,TCD,Least Developed
-D-42,Chile,CHL,
-D-43,China,CHN,
-D-44,Colombia,COL,
-D-45,Comoros,COM,Least Developed
-D-46,Congo,COG,Lower Middle Income
-D-48,Costa Rica,CRI,
-D-49,Croatia,HRV,
-D-50,Cuba,CUB,
-D-51,Cyprus,CYP,
-D-52,Czech Republic,CZE,
-D-53,Denmark,DNK,
-D-54,Djibouti,DJI,Least Developed
-D-55,Dominica,DMA,
-D-56,Dominican Republic,DOM,
-D-57,Ecuador,ECU,
-D-58,Egypt,EGY,Lower Middle Income
-D-59,El Salvador,SLV,Lower Middle Income
-D-60,Equatorial Guinea,GNQ,
-D-61,Eritrea,ERI,Least Developed
-D-62,Estonia,EST,
-D-63,Ethiopia,ETH,Least Developed
-D-66,Fiji,FJI,
-D-67,Finland,FIN,
-D-68,France,FRA,
-D-71,Gabon,GAB,
-D-72,The Gambia,GMB,Least Developed
-D-74,Georgia,GEO,Lower Middle Income
-D-75,Germany,DEU,
-D-76,Ghana,GHA,Lower Middle Income
-D-78,Greece,GRC,
-D-80,Grenada,GRD,
-D-83,Guatemala,GTM,Lower Middle Income
-D-85,Guinea,GIN,Least Developed
-D-86,Guinea-Bissau,GNB,Least Developed
-D-87,Guyana,GUY,
-D-88,Haiti,HTI,Least Developed
-D-89,Honduras,HND,Lower Middle Income
-D-91,Hungary,HUN,
-D-92,Iceland,ISL,
-D-93,India,IND,Lower Middle Income
-D-94,Indonesia,IDN,Lower Middle Income
-D-95,Iran,IRN,
-D-96,Iraq,IRQ,
-D-97,Israel,ISR,
-D-98,Italy,ITA,
-D-99,Ivory Coast,CIV,Lower Middle Income
-D-100,Jamaica,JAM,
-D-101,Japan,JPN,
-D-103,Jordan,JOR,Lower Middle Income
-D-104,Kazakhstan,KAZ,
-D-105,Kenya,KEN,Lower Middle Income
-D-106,Kiribati,KIR,Least Developed
-D-107,Kuwait,KWT,
-D-108,Kyrgyzstan,KGZ,Lower Middle Income
-D-109,Laos,LAO,Least Developed
-D-110,Latvia,LVA,
-D-111,Lebanon,LBN,
-D-112,Lesotho,LSO,Least Developed
-D-113,Liberia,LBR,Least Developed
-D-114,Libya,LBY,
-D-115,Liechtenstein,LIE,
-D-116,Lithuania,LTU,
-D-117,Luxembourg,LUX,
-D-119,Macedonia,MKD,
-D-120,Madagascar,MDG,Least Developed
-D-122,Malawi,MWI,Least Developed
-D-123,Malaysia,MYS,
-D-124,Maldives,MDV,
-D-125,Mali,MLI,Least Developed
-D-126,Malta,MLT,
-D-127,Marshall Islands,MHL,
-D-129,Mauritania,MRT,Least Developed
-D-130,Mauritius,MUS,
-D-132,Mexico,MEX,
-D-133,Micronesia,FSM,Lower Middle Income
-D-134,Moldova,MDA,Lower Middle Income
-D-135,Monaco,MCO,
-D-136,Mongolia,MNG,Lower Middle Income
-D-138,Morocco,MAR,Lower Middle Income
-D-139,Mozambique,MOZ,Least Developed
-D-140,Burma,MMR,Least Developed
-D-141,Namibia,NAM,
-D-142,Nauru,NRU,
-D-143,Nepal,NPL,Least Developed
-D-144,Netherlands,NLD,
-D-147,New Zealand,NZL,
-D-148,Nicaragua,NIC,Lower Middle Income
-D-149,Niger,NER,Least Developed
-D-150,Nigeria,NGA,Lower Middle Income
-D-152,North Korea,PRK,Other Low Income
-D-154,Norway,NOR,
-D-155,Oman,OMN,
-D-156,Pakistan,PAK,Lower Middle Income
-D-157,Palau,PLW,
-D-159,Panama,PAN,
-D-160,Papua New Guinea,PNG,Lower Middle Income
-D-161,Paraguay,PRY,
-D-162,Peru,PER,
-D-163,Philippines,PHL,Lower Middle Income
-D-164,Poland,POL,
-D-165,Portugal,PRT,
-D-167,Qatar,QAT,
-D-168,Ireland,IRL,
-D-170,Romania,ROU,
-D-171,Russia,RUS,
-D-172,Rwanda,RWA,Least Developed
-D-174,St Kitts-Nevis,KNA,
-D-175,St Lucia,LCA,
-D-176,St Vincent And Grenadines,VCT,
-D-177,Samoa,WSM,
-D-178,San Marino,SMR,
-D-179,Sao Tome And Principe,STP,Least Developed
-D-180,Saudi Arabia,SAU,
-D-181,Senegal,SEN,Least Developed
-D-182,Seychelles,SYC,
-D-183,Sierra Leone,SLE,Least Developed
-D-184,Singapore,SGP,
-D-185,Slovakia,SVK,
-D-186,Slovenia,SVN,
-D-187,Solomon Islands,SLB,Least Developed
-D-188,Somalia,SOM,Least Developed
-D-189,South Africa,ZAF,
-D-190,South Korea,KOR,
-D-191,Spain,ESP,
-D-192,Sri Lanka,LKA,Lower Middle Income
-D-193,Sudan,SDN,Least Developed
-D-194,Surinam,SUR,
-D-195,Swaziland,SWZ,Lower Middle Income
-D-196,Sweden,SWE,
-D-197,Switzerland,CHE,
-D-198,Syria,SYR,Lower Middle Income
-D-200,Tajikistan,TJK,Lower Middle Income
-D-201,Tanzania,TZA,Least Developed
-D-202,Thailand,THA,
-D-204,Togo,TGO,Least Developed
-D-205,Tonga,TON,
-D-206,Trinidad And Tobago,TTO,
-D-207,Tunisia,TUN,Lower Middle Income
-D-208,Turkey,TUR,
-D-209,Turkmenistan,TKM,
-D-211,Tuvalu,TUV,Least Developed
-D-212,Uganda,UGA,Least Developed
-D-213,Ukraine,UKR,Lower Middle Income
-D-214,United Arab Emirates,ARE,
-D-216,United States,USA,
-D-217,Uruguay,URY,
-D-218,Uzbekistan,UZB,Lower Middle Income
-D-219,Vanuatu,VUT,Least Developed
-D-221,Venezuela,VEN,
-D-222,Vietnam,VNM,Lower Middle Income
-D-224,Yemen,YEM,Least Developed
-D-225,Serbia,SRB,
-D-226,Democratic Republic Of The Congo,COD,Least Developed
-D-227,Zambia,ZMB,Least Developed
-D-228,Zimbabwe,ZWE,Other Low Income
-D-233,Montenegro,MNE,
-D-234,Scotland,GBR,
-D-235,Northern Ireland,GBR,
-D-236,Antarctica,ATA,
-D-237,Timor-Leste,TLS,Least Developed
-D-238,Occupied Palestinian Territories,PSE,Lower Middle Income
-D-239,Kosovo,UNK,Lower Middle Income
-D-240,Akrotiri And Dhekelia,ALA,
-D-241,American Samoa,ASM,
-D-242,Anguilla,AIA,
-D-243,Aruba,ABW,
-D-244,Bermuda,BMU,
-D-245,British Indian Ocean Territory,IOT,
-D-246,British Virgin Islands,VGB,
-D-247,Cayman Islands,CYM,
-D-248,Christmas Island,CXR,
-D-249,Clipperton Island,CPT,
-D-250,Cocos (Keeling) Islands,CCK,
-D-251,Cook Islands,COK,
-D-252,Easter  Island,CHL,
-D-253,Falkland Islands,FLK,
-D-254,Faroe Islands,FRO,
-D-255,French Guyana,GUF,
-D-256,French Polynesia,PYF,
-D-257,Gibraltar,GIB,
-D-258,Greenland,GRL,
-D-259,Guadeloupe,GLP,
-D-260,Guam,GUM,
-D-261,Guernsey,GGY,
-D-262,Hong Kong,HKG,
-D-263,Isle Of Man,IMN,
-D-264,Jan Mayen,SJM,
-D-265,Jersey,JEY,
-D-266,Juan Fernandez Islands,CHL,
-D-267,Macau,MAC,
-D-268,Martinique,MTQ,
-D-269,Mayotte,MYT,
-D-270,Montserrat,MSR,
-D-271,Netherlands Antilles,ANT,
-D-272,New Caledonia,NCL,
-D-273,Niue,NIU,
-D-274,Norfolk Island,NFK,
-D-275,Northern Mariana Island,MNP,
-D-276,Pitcairn Islands,PCN,
-D-277,Puerto Rico,PRI,
-D-278,Reunion,REU,
-D-279,Ross Dependency,ATA,
-D-280,St Barthelemy,BLM,
-D-281,St Helena,SHN,
-D-282,St Martin,MAF,
-D-283,St Pierre And Miquelon,SPM,
-D-284,South Georgia,SGS,
-D-285,Svalbard,SJM,
-D-286,Taiwan,TWN,
-D-287,Tokelau,TKL,Lower Middle Income
-D-288,Turks And Caicos Islands,TCA,
-D-289,U.S. Virgin Islands,VIR,
-D-290,Wallis And Futuna,WLF,
-D-293,Republic Of South Sudan,SSD,Least Developed
+id,name,iso,dac_status,undp,continent,iso2,ngoaidmap
+D-1,Afghanistan,AFG,Least Developed,South Asia,Asia,AF,gn_1149361
+D-2,Albania,ALB,,Europe and Central Asia,Europe,AL,gn_783754
+D-3,Algeria,DZA,,Arab States,Africa,DZ,gn_2589581
+D-5,Andorra,AND,,,Europe,AD,gn_3041565
+D-6,Angola,AGO,Least Developed,Sub-Saharan Africa,Africa,AO,gn_3351879
+D-9,Antigua And Barbuda,ATG,,Latin America and the Caribbean,North America,AG,gn_3576396
+D-10,Argentina,ARG,,Latin America and the Caribbean,South America,AR,gn_3865483
+D-11,Armenia,ARM,Lower Middle Income,Europe and Central Asia,Asia,AM,gn_174982
+D-13,Australia,AUS,,,Oceania,AU,gn_2077456
+D-14,Austria,AUT,,,Europe,AT,gn_2782113
+D-15,Azerbaijan,AZE,,Europe and Central Asia,Asia,AZ,gn_587116
+D-17,Bahamas,BHS,,Latin America and the Caribbean,North America,BS,gn_3572887
+D-18,Bahrain,BHR,,Arab States,Asia,BH,cust_880000
+D-19,Bangladesh,BGD,Least Developed,South Asia,Asia,BD,gn_1210997
+D-20,Barbados,BRB,,Latin America and the Caribbean,North America,BB,gn_3374084
+D-21,Belarus,BLR,,,Europe,BY,gn_630336
+D-22,Belgium,BEL,,,Europe,BE,gn_2802361
+D-23,Belize,BLZ,,Latin America and the Caribbean,North America,BZ,gn_3582678
+D-24,Benin,BEN,Least Developed,Sub-Saharan Africa,Africa,BJ,gn_2395170
+D-26,Bhutan,BTN,Least Developed,South Asia,Asia,BT,gn_1252634
+D-27,Bolivia,BOL,Lower Middle Income,Latin America and the Caribbean,South America,BO,gn_3923057
+D-28,Bosnia And Herzegovina,BIH,,Europe and Central Asia,Europe,BA,gn_3277605
+D-29,Botswana,BWA,,Sub-Saharan Africa,Africa,BW,gn_933860
+D-30,Brazil,BRA,,Latin America and the Caribbean,South America,BR,gn_3469034
+D-31,Brunei,BRN,,,Asia,BN,gn_1820814
+D-32,Bulgaria,BGR,,,Europe,BG,gn_732800
+D-33,Burkina Faso,BFA,Least Developed,Sub-Saharan Africa,Africa,BF,gn_2361809
+D-34,Burundi,BDI,Least Developed,Sub-Saharan Africa,Africa,BI,gn_433561
+D-35,Cambodia,KHM,Least Developed,East Asia and the Pacific,Asia,KH,gn_1831722
+D-36,Cameroon,CMR,Lower Middle Income,Sub-Saharan Africa,Africa,CM,gn_2233387
+D-37,Canada,CAN,,,North America,CA,gn_6251999
+D-38,Cape Verde,CPV,Lower Middle Income,Sub-Saharan Africa,Africa,CV,gn_3374766
+D-40,Central African Republic,CAF,Least Developed,Sub-Saharan Africa,Africa,CF,gn_239880
+D-41,Chad,TCD,Least Developed,Sub-Saharan Africa,Africa,TD,gn_2434508
+D-42,Chile,CHL,,Latin America and the Caribbean,South America,CL,gn_3895114
+D-43,China,CHN,,East Asia and the Pacific,Asia,CN,gn_1814991
+D-44,Colombia,COL,,Latin America and the Caribbean,South America,CO,gn_3686110
+D-45,Comoros,COM,Least Developed,Sub-Saharan Africa,Africa,KM,gn_921929
+D-46,Congo,COG,Lower Middle Income,Sub-Saharan Africa,Africa,CG,gn_2260494
+D-48,Costa Rica,CRI,,Latin America and the Caribbean,North America,CR,gn_3624060
+D-49,Croatia,HRV,,,Europe,HR,gn_3202326
+D-50,Cuba,CUB,,Latin America and the Caribbean,North America,CU,gn_3562981
+D-51,Cyprus,CYP,,,Asia,CY,gn_146669
+D-52,Czech Republic,CZE,,,Europe,CZ,gn_3077311
+D-53,Denmark,DNK,,,Europe,DK,gn_2623032
+D-54,Djibouti,DJI,Least Developed,Arab States,Africa,DJ,gn_223816
+D-55,Dominica,DMA,,Latin America and the Caribbean,North America,DM,gn_3575830
+D-56,Dominican Republic,DOM,,Latin America and the Caribbean,North America,DO,gn_3508796
+D-57,Ecuador,ECU,,Latin America and the Caribbean,South America,EC,gn_3658394
+D-58,Egypt,EGY,Lower Middle Income,Arab States,Africa,EG,gn_357994
+D-59,El Salvador,SLV,Lower Middle Income,Latin America and the Caribbean,North America,SV,gn_3585968
+D-60,Equatorial Guinea,GNQ,,Sub-Saharan Africa,Africa,GQ,gn_2309096
+D-61,Eritrea,ERI,Least Developed,Sub-Saharan Africa,Africa,ER,gn_338010
+D-62,Estonia,EST,,,Europe,EE,gn_453733
+D-63,Ethiopia,ETH,Least Developed,Sub-Saharan Africa,Africa,ET,gn_337996
+D-66,Fiji,FJI,,East Asia and the Pacific,Oceania,FJ,gn_2205218
+D-67,Finland,FIN,,,Europe,FI,gn_660013
+D-68,France,FRA,,,Europe,FR,gn_3017382
+D-71,Gabon,GAB,,Sub-Saharan Africa,Africa,GA,gn_2400553
+D-72,The Gambia,GMB,Least Developed,Sub-Saharan Africa,Africa,GM,gn_2413451
+D-74,Georgia,GEO,Lower Middle Income,Europe and Central Asia,Asia,GE,gn_614540
+D-75,Germany,DEU,,,Europe,DE,gn_2921044
+D-76,Ghana,GHA,Lower Middle Income,Sub-Saharan Africa,Africa,GH,gn_2300660
+D-78,Greece,GRC,,,Europe,GR,gn_390903
+D-80,Grenada,GRD,,Latin America and the Caribbean,North America,GD,gn_3580239
+D-83,Guatemala,GTM,Lower Middle Income,Latin America and the Caribbean,North America,GT,gn_3595528
+D-85,Guinea,GIN,Least Developed,Sub-Saharan Africa,Africa,GN,gn_2420477
+D-86,Guinea-Bissau,GNB,Least Developed,Sub-Saharan Africa,Africa,GW,gn_2372248
+D-87,Guyana,GUY,,Latin America and the Caribbean,South America,GY,gn_3378535
+D-88,Haiti,HTI,Least Developed,Latin America and the Caribbean,North America,HT,osm_307829
+D-89,Honduras,HND,Lower Middle Income,Latin America and the Caribbean,North America,HN,gn_3608932
+D-91,Hungary,HUN,,,Europe,HU,gn_719819
+D-92,Iceland,ISL,,,Europe,IS,gn_2629691
+D-93,India,IND,Lower Middle Income,South Asia,Asia,IN,gn_1269750
+D-94,Indonesia,IDN,Lower Middle Income,East Asia and the Pacific,Asia,ID,gn_1643084
+D-95,Iran,IRN,,South Asia,Asia,IR,gn_130758
+D-96,Iraq,IRQ,,Arab States,Asia,IQ,gn_99237
+D-97,Israel,ISR,,,Asia,IL,gn_294640
+D-98,Italy,ITA,,,Europe,IT,gn_3175395
+D-99,Ivory Coast,CIV,Lower Middle Income,Sub-Saharan Africa,Africa,CI,gn_2287781
+D-100,Jamaica,JAM,,Latin America and the Caribbean,North America,JM,gn_3489940
+D-101,Japan,JPN,,,Asia,JP,gn_1861060
+D-103,Jordan,JOR,Lower Middle Income,Arab States,Asia,JO,gn_248816
+D-104,Kazakhstan,KAZ,,Europe and Central Asia,Asia,KZ,gn_1522867
+D-105,Kenya,KEN,Lower Middle Income,Sub-Saharan Africa,Africa,KE,osm_880011
+D-106,Kiribati,KIR,Least Developed,East Asia and the Pacific,Oceania,KI,gn_4030945
+D-107,Kuwait,KWT,,Arab States,Asia,KW,gn_285570
+D-108,Kyrgyzstan,KGZ,Lower Middle Income,Europe and Central Asia,Asia,KG,gn_1527747
+D-109,Laos,LAO,Least Developed,East Asia and the Pacific,Asia,LA,gn_1655842
+D-110,Latvia,LVA,,,Europe,LV,gn_458258
+D-111,Lebanon,LBN,,Arab States,Asia,LB,gn_272103
+D-112,Lesotho,LSO,Least Developed,Sub-Saharan Africa,Africa,LS,gn_932692
+D-113,Liberia,LBR,Least Developed,Sub-Saharan Africa,Africa,LR,gn_2275384
+D-114,Libya,LBY,,Arab States,Africa,LY,gn_2215636
+D-115,Liechtenstein,LIE,,,Europe,LI,gn_3042058
+D-116,Lithuania,LTU,,,Europe,LT,gn_597427
+D-117,Luxembourg,LUX,,,Europe,LU,gn_2960313
+D-119,Macedonia,MKD,,Europe and Central Asia,Europe,MK,gn_718075
+D-120,Madagascar,MDG,Least Developed,Sub-Saharan Africa,Africa,MG,gn_1062947
+D-122,Malawi,MWI,Least Developed,Sub-Saharan Africa,Africa,MW,gn_927384
+D-123,Malaysia,MYS,,East Asia and the Pacific,Asia,MY,gn_1733045
+D-124,Maldives,MDV,,South Asia,Asia,MV,ne_880120
+D-125,Mali,MLI,Least Developed,Sub-Saharan Africa,Africa,ML,gn_2453866
+D-126,Malta,MLT,,,Europe,MT,gn_2562770
+D-127,Marshall Islands,MHL,,East Asia and the Pacific,Oceania,MH,gn_2080185
+D-129,Mauritania,MRT,Least Developed,Sub-Saharan Africa,Africa,MR,gn_2378080
+D-130,Mauritius,MUS,,Sub-Saharan Africa,Africa,MU,gn_934292
+D-132,Mexico,MEX,,Latin America and the Caribbean,North America,MX,gn_3996063
+D-133,Micronesia,FSM,Lower Middle Income,East Asia and the Pacific,Oceania,FM,gn_2081918
+D-134,Moldova,MDA,Lower Middle Income,Europe and Central Asia,Europe,MD,gn_617790
+D-135,Monaco,MCO,,,Europe,MC,gn_2993457
+D-136,Mongolia,MNG,Lower Middle Income,East Asia and the Pacific,Asia,MN,gn_2029969
+D-138,Morocco,MAR,Lower Middle Income,Arab States,Africa,MA,gn_2542007
+D-139,Mozambique,MOZ,Least Developed,Sub-Saharan Africa,Africa,MZ,gn_1036973
+D-140,Burma,MMR,Least Developed,East Asia and the Pacific,Asia,MM,gn_1327865
+D-141,Namibia,NAM,,Sub-Saharan Africa,Africa,NA,gn_3355338
+D-142,Nauru,NRU,,East Asia and the Pacific,Oceania,NR,gn_2110425
+D-143,Nepal,NPL,Least Developed,South Asia,Asia,NP,gn_1282988
+D-144,Netherlands,NLD,,,Europe,NL,gn_2750405
+D-147,New Zealand,NZL,,,Oceania,NZ,gn_2186224
+D-148,Nicaragua,NIC,Lower Middle Income,Latin America and the Caribbean,North America,NI,gn_3617476
+D-149,Niger,NER,Least Developed,Sub-Saharan Africa,Africa,NE,gn_2440476
+D-150,Nigeria,NGA,Lower Middle Income,Sub-Saharan Africa,Africa,NG,gn_2328926
+D-152,North Korea,PRK,Other Low Income,East Asia and the Pacific,Asia,KP,gn_1873107
+D-154,Norway,NOR,,,Europe,NO,gn_3144096
+D-155,Oman,OMN,,Arab States,Asia,OM,gn_286963
+D-156,Pakistan,PAK,Lower Middle Income,South Asia,Asia,PK,gn_1168579
+D-157,Palau,PLW,,East Asia and the Pacific,Oceania,PW,gn_1559582
+D-159,Panama,PAN,,Latin America and the Caribbean,North America,PA,gn_3703430
+D-160,Papua New Guinea,PNG,Lower Middle Income,East Asia and the Pacific,Oceania,PG,gn_2088628
+D-161,Paraguay,PRY,,Latin America and the Caribbean,South America,PY,gn_3437598
+D-162,Peru,PER,,Latin America and the Caribbean,South America,PE,gn_3932488
+D-163,Philippines,PHL,Lower Middle Income,East Asia and the Pacific,Asia,PH,gn_1694008
+D-164,Poland,POL,,,Europe,PL,gn_798544
+D-165,Portugal,PRT,,,Europe,PT,gn_2264397
+D-167,Qatar,QAT,,Arab States,Asia,QA,gn_289688
+D-168,Ireland,IRL,,,Europe,IE,cust_880146
+D-170,Romania,ROU,,,Europe,RO,gn_798549
+D-171,Russia,RUS,,,Asia,RU,gn_2017370
+D-172,Rwanda,RWA,Least Developed,Sub-Saharan Africa,Africa,RW,gn_49518
+D-174,St Kitts-Nevis,KNA,,Latin America and the Caribbean,North America,KN,gn_3575174
+D-175,St Lucia,LCA,,Latin America and the Caribbean,North America,LC,gn_3576468
+D-176,St Vincent And Grenadines,VCT,,Latin America and the Caribbean,North America,VC,gn_3577815
+D-177,Samoa,WSM,,East Asia and the Pacific,Oceania,WS,gn_4034894
+D-178,San Marino,SMR,,,Europe,SM,gn_3168068
+D-179,Sao Tome And Principe,STP,Least Developed,Sub-Saharan Africa,Africa,ST,gn_2410758
+D-180,Saudi Arabia,SAU,,Arab States,Asia,SA,gn_102358
+D-181,Senegal,SEN,Least Developed,Sub-Saharan Africa,Africa,SN,gn_2245662
+D-182,Seychelles,SYC,,Sub-Saharan Africa,Africa,SC,gn_241170
+D-183,Sierra Leone,SLE,Least Developed,Sub-Saharan Africa,Africa,SL,gn_2403846
+D-184,Singapore,SGP,,,Asia,SG,gn_1880251
+D-185,Slovakia,SVK,,,Europe,SK,gn_3057568
+D-186,Slovenia,SVN,,,Europe,SI,gn_3190538
+D-187,Solomon Islands,SLB,Least Developed,East Asia and the Pacific,Oceania,SB,gn_2103350
+D-188,Somalia,SOM,Least Developed,Arab States,Africa,SO,gn_51537
+D-189,South Africa,ZAF,,Sub-Saharan Africa,Africa,ZA,gn_953987
+D-190,South Korea,KOR,,,Asia,KR,gn_1835841
+D-191,Spain,ESP,,,Europe,ES,gn_2510769
+D-192,Sri Lanka,LKA,Lower Middle Income,South Asia,Asia,LK,gn_1227603
+D-193,Sudan,SDN,Least Developed,Arab States,Africa,SD,gn_366755
+D-194,Surinam,SUR,,Latin America and the Caribbean,South America,SR,gn_3382998
+D-195,Swaziland,SWZ,Lower Middle Income,Sub-Saharan Africa,Africa,SZ,gn_934841
+D-196,Sweden,SWE,,,Europe,SE,gn_2661886
+D-197,Switzerland,CHE,,,Europe,CH,gn_2658434
+D-198,Syria,SYR,Lower Middle Income,Arab States,Asia,SY,gn_163843
+D-200,Tajikistan,TJK,Lower Middle Income,Europe and Central Asia,Asia,TJ,gn_1220409
+D-201,Tanzania,TZA,Least Developed,Sub-Saharan Africa,Africa,TZ,gn_149590
+D-202,Thailand,THA,,East Asia and the Pacific,Asia,TH,gn_1605651
+D-204,Togo,TGO,Least Developed,Sub-Saharan Africa,Africa,TG,gn_2363686
+D-205,Tonga,TON,,East Asia and the Pacific,Oceania,TO,gn_4032283
+D-206,Trinidad And Tobago,TTO,,Latin America and the Caribbean,North America,TT,gn_3573591
+D-207,Tunisia,TUN,Lower Middle Income,Arab States,Africa,TN,gn_2464461
+D-208,Turkey,TUR,,Europe and Central Asia,Asia,TR,gn_298795
+D-209,Turkmenistan,TKM,,Europe and Central Asia,Asia,TM,gn_1218197
+D-211,Tuvalu,TUV,Least Developed,East Asia and the Pacific,Oceania,TV,gn_2110297
+D-212,Uganda,UGA,Least Developed,Sub-Saharan Africa,Africa,UG,gn_226074
+D-213,Ukraine,UKR,Lower Middle Income,Europe and Central Asia,Europe,UA,gn_690791
+D-214,United Arab Emirates,ARE,,Arab States,Asia,AE,gn_290557
+D-216,United States,USA,,,North America,US,gn_6252001
+D-217,Uruguay,URY,,Latin America and the Caribbean,South America,UY,gn_3439705
+D-218,Uzbekistan,UZB,Lower Middle Income,Europe and Central Asia,Asia,UZ,gn_1512440
+D-219,Vanuatu,VUT,Least Developed,East Asia and the Pacific,Oceania,VU,gn_2134431
+D-221,Venezuela,VEN,,Latin America and the Caribbean,South America,VE,gn_3625428
+D-222,Vietnam,VNM,Lower Middle Income,East Asia and the Pacific,Asia,VN,gn_1562822
+D-224,Yemen,YEM,Least Developed,Arab States,Asia,YE,gn_69543
+D-225,Serbia,SRB,,Europe and Central Asia,Europe,RS,gn_6290252
+D-226,Democratic Republic Of The Congo,COD,Least Developed,Sub-Saharan Africa,Africa,CD,gn_203312
+D-227,Zambia,ZMB,Least Developed,Sub-Saharan Africa,Africa,ZM,gn_895949
+D-228,Zimbabwe,ZWE,Other Low Income,Sub-Saharan Africa,Africa,ZW,gn_878675
+D-233,Montenegro,MNE,,Europe and Central Asia,Europe,ME,gn_3194884
+D-234,Scotland,GBR,,,Europe,GB,gn_2635167
+D-235,Northern Ireland,GBR,,,Europe,GB,gn_2635167
+D-236,Antarctica,ATA,,,Antarctica,AQ,gn_6697173
+D-237,Timor-Leste,TLS,Least Developed,East Asia and the Pacific,Asia,TL,gn_1966436
+D-238,Occupied Palestinian Territories,PSE,Lower Middle Income,Arab States,Asia,PS,gn_6254930
+D-239,Kosovo,UNK,Lower Middle Income,,Europe,XK,gn_831053
+D-240,Akrotiri And Dhekelia,ALA,,,Europe,AX,
+D-241,American Samoa,ASM,,,Oceania,AS,gn_5880801
+D-242,Anguilla,AIA,,,North America,AI,gn_3573511
+D-243,Aruba,ABW,,,North America,AW,gn_3577279
+D-244,Bermuda,BMU,,,North America,BM,gn_3573345
+D-245,British Indian Ocean Territory,IOT,,,Asia,IO,gn_1282588
+D-246,British Virgin Islands,VGB,,,North America,VG,gn_3577718
+D-247,Cayman Islands,CYM,,,North America,KY,gn_3580718
+D-248,Christmas Island,CXR,,,Asia,CX,gn_2078138
+D-249,Clipperton Island,CPT,,,North America,CP,
+D-250,Cocos (Keeling) Islands,CCK,,,Asia,CC,gn_1547376
+D-251,Cook Islands,COK,,,Oceania,CK,gn_1899402
+D-252,Easter  Island,CHL,,Latin America and the Caribbean,South America,CL,
+D-253,Falkland Islands,FLK,,,South America,FK,gn_3474414
+D-254,Faroe Islands,FRO,,,Europe,FO,gn_2622320
+D-255,French Guyana,GUF,,,South America,GF,
+D-256,French Polynesia,PYF,,,Oceania,PF,
+D-257,Gibraltar,GIB,,,Europe,GI,gn_2411586
+D-258,Greenland,GRL,,,North America,GL,gn_3425505
+D-259,Guadeloupe,GLP,,,North America,GP,
+D-260,Guam,GUM,,,Oceania,GU,gn_4043988
+D-261,Guernsey,GGY,,,Europe,GG,gn_3042362
+D-262,Hong Kong,HKG,,,Asia,HK,
+D-263,Isle Of Man,IMN,,,Europe,IM,gn_3042225
+D-264,Jan Mayen,SJM,,,Europe,SJ,
+D-265,Jersey,JEY,,,Europe,JE,gn_3042142
+D-266,Juan Fernandez Islands,CHL,,Latin America and the Caribbean,South America,CL,
+D-267,Macau,MAC,,,Asia,MO,
+D-268,Martinique,MTQ,,,North America,MQ,
+D-269,Mayotte,MYT,,,Africa,YT,
+D-270,Montserrat,MSR,,,North America,MS,gn_3578097
+D-271,Netherlands Antilles,ANT,,,North America,AN,
+D-272,New Caledonia,NCL,,,Oceania,NC,gn_2139685
+D-273,Niue,NIU,,,Oceania,NU,gn_4036232
+D-274,Norfolk Island,NFK,,,Oceania,NF,gn_2155115
+D-275,Northern Mariana Island,MNP,,,Oceania,MP,gn_4041468
+D-276,Pitcairn Islands,PCN,,,Oceania,PN,
+D-277,Puerto Rico,PRI,,,North America,PR,gn_4566966
+D-278,Reunion,REU,,,Africa,RE,
+D-279,Ross Dependency,ATA,,,Antarctica,AQ,
+D-280,St Barthelemy,BLM,,,North America,BL,
+D-281,St Helena,SHN,,,Africa,SH,gn_3370751
+D-282,St Martin,MAF,,,North America,MF,gn_7609695
+D-283,St Pierre And Miquelon,SPM,,,North America,PM,
+D-284,South Georgia,SGS,,,Antarctica,GS,gn_3474415
+D-285,Svalbard,SJM,,,Europe,SJ,cust_880142
+D-286,Taiwan,TWN,,,Asia,TW,gn_1668284
+D-287,Tokelau,TKL,Lower Middle Income,,Oceania,TK,gn_4031074
+D-288,Turks And Caicos Islands,TCA,,,North America,TC,gn_3576916
+D-289,U.S. Virgin Islands,VIR,,,North America,VI,gn_4796775
+D-290,Wallis And Futuna,WLF,,,Oceania,WF,
+D-293,Republic Of South Sudan,SSD,Least Developed,Sub-Saharan Africa,Africa,SS,gn_7909807

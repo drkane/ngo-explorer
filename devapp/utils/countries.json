@@ -4,1489 +4,2481 @@
             "id": "D-1",
             "name": "Afghanistan",
             "iso": "AFG",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "AF",
+            "ngoaidmap": "gn_1149361"
         },
         {
             "id": "D-2",
             "name": "Albania",
             "iso": "ALB",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Europe",
+            "iso2": "AL",
+            "ngoaidmap": "gn_783754"
         },
         {
             "id": "D-3",
             "name": "Algeria",
             "iso": "DZA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Africa",
+            "iso2": "DZ",
+            "ngoaidmap": "gn_2589581"
         },
         {
             "id": "D-5",
             "name": "Andorra",
             "iso": "AND",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "AD",
+            "ngoaidmap": "gn_3041565"
         },
         {
             "id": "D-6",
             "name": "Angola",
             "iso": "AGO",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "AO",
+            "ngoaidmap": "gn_3351879"
         },
         {
             "id": "D-9",
             "name": "Antigua And Barbuda",
             "iso": "ATG",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "AG",
+            "ngoaidmap": "gn_3576396"
         },
         {
             "id": "D-10",
             "name": "Argentina",
             "iso": "ARG",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "AR",
+            "ngoaidmap": "gn_3865483"
         },
         {
             "id": "D-11",
             "name": "Armenia",
             "iso": "ARM",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "AM",
+            "ngoaidmap": "gn_174982"
         },
         {
             "id": "D-13",
             "name": "Australia",
             "iso": "AUS",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "AU",
+            "ngoaidmap": "gn_2077456"
         },
         {
             "id": "D-14",
             "name": "Austria",
             "iso": "AUT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "AT",
+            "ngoaidmap": "gn_2782113"
         },
         {
             "id": "D-15",
             "name": "Azerbaijan",
             "iso": "AZE",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "AZ",
+            "ngoaidmap": "gn_587116"
         },
         {
             "id": "D-17",
             "name": "Bahamas",
             "iso": "BHS",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "BS",
+            "ngoaidmap": "gn_3572887"
         },
         {
             "id": "D-18",
             "name": "Bahrain",
             "iso": "BHR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "BH",
+            "ngoaidmap": "cust_880000"
         },
         {
             "id": "D-19",
             "name": "Bangladesh",
             "iso": "BGD",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "BD",
+            "ngoaidmap": "gn_1210997"
         },
         {
             "id": "D-20",
             "name": "Barbados",
             "iso": "BRB",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "BB",
+            "ngoaidmap": "gn_3374084"
         },
         {
             "id": "D-21",
             "name": "Belarus",
             "iso": "BLR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "BY",
+            "ngoaidmap": "gn_630336"
         },
         {
             "id": "D-22",
             "name": "Belgium",
             "iso": "BEL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "BE",
+            "ngoaidmap": "gn_2802361"
         },
         {
             "id": "D-23",
             "name": "Belize",
             "iso": "BLZ",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "BZ",
+            "ngoaidmap": "gn_3582678"
         },
         {
             "id": "D-24",
             "name": "Benin",
             "iso": "BEN",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "BJ",
+            "ngoaidmap": "gn_2395170"
         },
         {
             "id": "D-26",
             "name": "Bhutan",
             "iso": "BTN",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "BT",
+            "ngoaidmap": "gn_1252634"
         },
         {
             "id": "D-27",
             "name": "Bolivia",
             "iso": "BOL",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "BO",
+            "ngoaidmap": "gn_3923057"
         },
         {
             "id": "D-28",
             "name": "Bosnia And Herzegovina",
             "iso": "BIH",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Europe",
+            "iso2": "BA",
+            "ngoaidmap": "gn_3277605"
         },
         {
             "id": "D-29",
             "name": "Botswana",
             "iso": "BWA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "BW",
+            "ngoaidmap": "gn_933860"
         },
         {
             "id": "D-30",
             "name": "Brazil",
             "iso": "BRA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "BR",
+            "ngoaidmap": "gn_3469034"
         },
         {
             "id": "D-31",
             "name": "Brunei",
             "iso": "BRN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "BN",
+            "ngoaidmap": "gn_1820814"
         },
         {
             "id": "D-32",
             "name": "Bulgaria",
             "iso": "BGR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "BG",
+            "ngoaidmap": "gn_732800"
         },
         {
             "id": "D-33",
             "name": "Burkina Faso",
             "iso": "BFA",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "BF",
+            "ngoaidmap": "gn_2361809"
         },
         {
             "id": "D-34",
             "name": "Burundi",
             "iso": "BDI",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "BI",
+            "ngoaidmap": "gn_433561"
         },
         {
             "id": "D-35",
             "name": "Cambodia",
             "iso": "KHM",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "KH",
+            "ngoaidmap": "gn_1831722"
         },
         {
             "id": "D-36",
             "name": "Cameroon",
             "iso": "CMR",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "CM",
+            "ngoaidmap": "gn_2233387"
         },
         {
             "id": "D-37",
             "name": "Canada",
             "iso": "CAN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "CA",
+            "ngoaidmap": "gn_6251999"
         },
         {
             "id": "D-38",
             "name": "Cape Verde",
             "iso": "CPV",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "CV",
+            "ngoaidmap": "gn_3374766"
         },
         {
             "id": "D-40",
             "name": "Central African Republic",
             "iso": "CAF",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "CF",
+            "ngoaidmap": "gn_239880"
         },
         {
             "id": "D-41",
             "name": "Chad",
             "iso": "TCD",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "TD",
+            "ngoaidmap": "gn_2434508"
         },
         {
             "id": "D-42",
             "name": "Chile",
             "iso": "CHL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "CL",
+            "ngoaidmap": "gn_3895114"
         },
         {
             "id": "D-43",
             "name": "China",
             "iso": "CHN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "CN",
+            "ngoaidmap": "gn_1814991"
         },
         {
             "id": "D-44",
             "name": "Colombia",
             "iso": "COL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "CO",
+            "ngoaidmap": "gn_3686110"
         },
         {
             "id": "D-45",
             "name": "Comoros",
             "iso": "COM",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "KM",
+            "ngoaidmap": "gn_921929"
         },
         {
             "id": "D-46",
             "name": "Congo",
             "iso": "COG",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "CG",
+            "ngoaidmap": "gn_2260494"
         },
         {
             "id": "D-48",
             "name": "Costa Rica",
             "iso": "CRI",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "CR",
+            "ngoaidmap": "gn_3624060"
         },
         {
             "id": "D-49",
             "name": "Croatia",
             "iso": "HRV",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "HR",
+            "ngoaidmap": "gn_3202326"
         },
         {
             "id": "D-50",
             "name": "Cuba",
             "iso": "CUB",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "CU",
+            "ngoaidmap": "gn_3562981"
         },
         {
             "id": "D-51",
             "name": "Cyprus",
             "iso": "CYP",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "CY",
+            "ngoaidmap": "gn_146669"
         },
         {
             "id": "D-52",
             "name": "Czech Republic",
             "iso": "CZE",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "CZ",
+            "ngoaidmap": "gn_3077311"
         },
         {
             "id": "D-53",
             "name": "Denmark",
             "iso": "DNK",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "DK",
+            "ngoaidmap": "gn_2623032"
         },
         {
             "id": "D-54",
             "name": "Djibouti",
             "iso": "DJI",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Arab States",
+            "continent": "Africa",
+            "iso2": "DJ",
+            "ngoaidmap": "gn_223816"
         },
         {
             "id": "D-55",
             "name": "Dominica",
             "iso": "DMA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "DM",
+            "ngoaidmap": "gn_3575830"
         },
         {
             "id": "D-56",
             "name": "Dominican Republic",
             "iso": "DOM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "DO",
+            "ngoaidmap": "gn_3508796"
         },
         {
             "id": "D-57",
             "name": "Ecuador",
             "iso": "ECU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "EC",
+            "ngoaidmap": "gn_3658394"
         },
         {
             "id": "D-58",
             "name": "Egypt",
             "iso": "EGY",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Arab States",
+            "continent": "Africa",
+            "iso2": "EG",
+            "ngoaidmap": "gn_357994"
         },
         {
             "id": "D-59",
             "name": "El Salvador",
             "iso": "SLV",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "SV",
+            "ngoaidmap": "gn_3585968"
         },
         {
             "id": "D-60",
             "name": "Equatorial Guinea",
             "iso": "GNQ",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "GQ",
+            "ngoaidmap": "gn_2309096"
         },
         {
             "id": "D-61",
             "name": "Eritrea",
             "iso": "ERI",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "ER",
+            "ngoaidmap": "gn_338010"
         },
         {
             "id": "D-62",
             "name": "Estonia",
             "iso": "EST",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "EE",
+            "ngoaidmap": "gn_453733"
         },
         {
             "id": "D-63",
             "name": "Ethiopia",
             "iso": "ETH",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "ET",
+            "ngoaidmap": "gn_337996"
         },
         {
             "id": "D-66",
             "name": "Fiji",
             "iso": "FJI",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "FJ",
+            "ngoaidmap": "gn_2205218"
         },
         {
             "id": "D-67",
             "name": "Finland",
             "iso": "FIN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "FI",
+            "ngoaidmap": "gn_660013"
         },
         {
             "id": "D-68",
             "name": "France",
             "iso": "FRA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "FR",
+            "ngoaidmap": "gn_3017382"
         },
         {
             "id": "D-71",
             "name": "Gabon",
             "iso": "GAB",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "GA",
+            "ngoaidmap": "gn_2400553"
         },
         {
             "id": "D-72",
             "name": "The Gambia",
             "iso": "GMB",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "GM",
+            "ngoaidmap": "gn_2413451"
         },
         {
             "id": "D-74",
             "name": "Georgia",
             "iso": "GEO",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "GE",
+            "ngoaidmap": "gn_614540"
         },
         {
             "id": "D-75",
             "name": "Germany",
             "iso": "DEU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "DE",
+            "ngoaidmap": "gn_2921044"
         },
         {
             "id": "D-76",
             "name": "Ghana",
             "iso": "GHA",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "GH",
+            "ngoaidmap": "gn_2300660"
         },
         {
             "id": "D-78",
             "name": "Greece",
             "iso": "GRC",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "GR",
+            "ngoaidmap": "gn_390903"
         },
         {
             "id": "D-80",
             "name": "Grenada",
             "iso": "GRD",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "GD",
+            "ngoaidmap": "gn_3580239"
         },
         {
             "id": "D-83",
             "name": "Guatemala",
             "iso": "GTM",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "GT",
+            "ngoaidmap": "gn_3595528"
         },
         {
             "id": "D-85",
             "name": "Guinea",
             "iso": "GIN",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "GN",
+            "ngoaidmap": "gn_2420477"
         },
         {
             "id": "D-86",
             "name": "Guinea-Bissau",
             "iso": "GNB",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "GW",
+            "ngoaidmap": "gn_2372248"
         },
         {
             "id": "D-87",
             "name": "Guyana",
             "iso": "GUY",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "GY",
+            "ngoaidmap": "gn_3378535"
         },
         {
             "id": "D-88",
             "name": "Haiti",
             "iso": "HTI",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "HT",
+            "ngoaidmap": "osm_307829"
         },
         {
             "id": "D-89",
             "name": "Honduras",
             "iso": "HND",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "HN",
+            "ngoaidmap": "gn_3608932"
         },
         {
             "id": "D-91",
             "name": "Hungary",
             "iso": "HUN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "HU",
+            "ngoaidmap": "gn_719819"
         },
         {
             "id": "D-92",
             "name": "Iceland",
             "iso": "ISL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "IS",
+            "ngoaidmap": "gn_2629691"
         },
         {
             "id": "D-93",
             "name": "India",
             "iso": "IND",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "IN",
+            "ngoaidmap": "gn_1269750"
         },
         {
             "id": "D-94",
             "name": "Indonesia",
             "iso": "IDN",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "ID",
+            "ngoaidmap": "gn_1643084"
         },
         {
             "id": "D-95",
             "name": "Iran",
             "iso": "IRN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "IR",
+            "ngoaidmap": "gn_130758"
         },
         {
             "id": "D-96",
             "name": "Iraq",
             "iso": "IRQ",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "IQ",
+            "ngoaidmap": "gn_99237"
         },
         {
             "id": "D-97",
             "name": "Israel",
             "iso": "ISR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "IL",
+            "ngoaidmap": "gn_294640"
         },
         {
             "id": "D-98",
             "name": "Italy",
             "iso": "ITA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "IT",
+            "ngoaidmap": "gn_3175395"
         },
         {
             "id": "D-99",
             "name": "Ivory Coast",
             "iso": "CIV",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "CI",
+            "ngoaidmap": "gn_2287781"
         },
         {
             "id": "D-100",
             "name": "Jamaica",
             "iso": "JAM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "JM",
+            "ngoaidmap": "gn_3489940"
         },
         {
             "id": "D-101",
             "name": "Japan",
             "iso": "JPN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "JP",
+            "ngoaidmap": "gn_1861060"
         },
         {
             "id": "D-103",
             "name": "Jordan",
             "iso": "JOR",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "JO",
+            "ngoaidmap": "gn_248816"
         },
         {
             "id": "D-104",
             "name": "Kazakhstan",
             "iso": "KAZ",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "KZ",
+            "ngoaidmap": "gn_1522867"
         },
         {
             "id": "D-105",
             "name": "Kenya",
             "iso": "KEN",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "KE",
+            "ngoaidmap": "osm_880011"
         },
         {
             "id": "D-106",
             "name": "Kiribati",
             "iso": "KIR",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "KI",
+            "ngoaidmap": "gn_4030945"
         },
         {
             "id": "D-107",
             "name": "Kuwait",
             "iso": "KWT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "KW",
+            "ngoaidmap": "gn_285570"
         },
         {
             "id": "D-108",
             "name": "Kyrgyzstan",
             "iso": "KGZ",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "KG",
+            "ngoaidmap": "gn_1527747"
         },
         {
             "id": "D-109",
             "name": "Laos",
             "iso": "LAO",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "LA",
+            "ngoaidmap": "gn_1655842"
         },
         {
             "id": "D-110",
             "name": "Latvia",
             "iso": "LVA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "LV",
+            "ngoaidmap": "gn_458258"
         },
         {
             "id": "D-111",
             "name": "Lebanon",
             "iso": "LBN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "LB",
+            "ngoaidmap": "gn_272103"
         },
         {
             "id": "D-112",
             "name": "Lesotho",
             "iso": "LSO",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "LS",
+            "ngoaidmap": "gn_932692"
         },
         {
             "id": "D-113",
             "name": "Liberia",
             "iso": "LBR",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "LR",
+            "ngoaidmap": "gn_2275384"
         },
         {
             "id": "D-114",
             "name": "Libya",
             "iso": "LBY",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Africa",
+            "iso2": "LY",
+            "ngoaidmap": "gn_2215636"
         },
         {
             "id": "D-115",
             "name": "Liechtenstein",
             "iso": "LIE",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "LI",
+            "ngoaidmap": "gn_3042058"
         },
         {
             "id": "D-116",
             "name": "Lithuania",
             "iso": "LTU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "LT",
+            "ngoaidmap": "gn_597427"
         },
         {
             "id": "D-117",
             "name": "Luxembourg",
             "iso": "LUX",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "LU",
+            "ngoaidmap": "gn_2960313"
         },
         {
             "id": "D-119",
             "name": "Macedonia",
             "iso": "MKD",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Europe",
+            "iso2": "MK",
+            "ngoaidmap": "gn_718075"
         },
         {
             "id": "D-120",
             "name": "Madagascar",
             "iso": "MDG",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "MG",
+            "ngoaidmap": "gn_1062947"
         },
         {
             "id": "D-122",
             "name": "Malawi",
             "iso": "MWI",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "MW",
+            "ngoaidmap": "gn_927384"
         },
         {
             "id": "D-123",
             "name": "Malaysia",
             "iso": "MYS",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "MY",
+            "ngoaidmap": "gn_1733045"
         },
         {
             "id": "D-124",
             "name": "Maldives",
             "iso": "MDV",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "MV",
+            "ngoaidmap": "ne_880120"
         },
         {
             "id": "D-125",
             "name": "Mali",
             "iso": "MLI",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "ML",
+            "ngoaidmap": "gn_2453866"
         },
         {
             "id": "D-126",
             "name": "Malta",
             "iso": "MLT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "MT",
+            "ngoaidmap": "gn_2562770"
         },
         {
             "id": "D-127",
             "name": "Marshall Islands",
             "iso": "MHL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "MH",
+            "ngoaidmap": "gn_2080185"
         },
         {
             "id": "D-129",
             "name": "Mauritania",
             "iso": "MRT",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "MR",
+            "ngoaidmap": "gn_2378080"
         },
         {
             "id": "D-130",
             "name": "Mauritius",
             "iso": "MUS",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "MU",
+            "ngoaidmap": "gn_934292"
         },
         {
             "id": "D-132",
             "name": "Mexico",
             "iso": "MEX",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "MX",
+            "ngoaidmap": "gn_3996063"
         },
         {
             "id": "D-133",
             "name": "Micronesia",
             "iso": "FSM",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "FM",
+            "ngoaidmap": "gn_2081918"
         },
         {
             "id": "D-134",
             "name": "Moldova",
             "iso": "MDA",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Europe and Central Asia",
+            "continent": "Europe",
+            "iso2": "MD",
+            "ngoaidmap": "gn_617790"
         },
         {
             "id": "D-135",
             "name": "Monaco",
             "iso": "MCO",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "MC",
+            "ngoaidmap": "gn_2993457"
         },
         {
             "id": "D-136",
             "name": "Mongolia",
             "iso": "MNG",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "MN",
+            "ngoaidmap": "gn_2029969"
         },
         {
             "id": "D-138",
             "name": "Morocco",
             "iso": "MAR",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Arab States",
+            "continent": "Africa",
+            "iso2": "MA",
+            "ngoaidmap": "gn_2542007"
         },
         {
             "id": "D-139",
             "name": "Mozambique",
             "iso": "MOZ",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "MZ",
+            "ngoaidmap": "gn_1036973"
         },
         {
             "id": "D-140",
             "name": "Burma",
             "iso": "MMR",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "MM",
+            "ngoaidmap": "gn_1327865"
         },
         {
             "id": "D-141",
             "name": "Namibia",
             "iso": "NAM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "NA",
+            "ngoaidmap": "gn_3355338"
         },
         {
             "id": "D-142",
             "name": "Nauru",
             "iso": "NRU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "NR",
+            "ngoaidmap": "gn_2110425"
         },
         {
             "id": "D-143",
             "name": "Nepal",
             "iso": "NPL",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "NP",
+            "ngoaidmap": "gn_1282988"
         },
         {
             "id": "D-144",
             "name": "Netherlands",
             "iso": "NLD",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "NL",
+            "ngoaidmap": "gn_2750405"
         },
         {
             "id": "D-147",
             "name": "New Zealand",
             "iso": "NZL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "NZ",
+            "ngoaidmap": "gn_2186224"
         },
         {
             "id": "D-148",
             "name": "Nicaragua",
             "iso": "NIC",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "NI",
+            "ngoaidmap": "gn_3617476"
         },
         {
             "id": "D-149",
             "name": "Niger",
             "iso": "NER",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "NE",
+            "ngoaidmap": "gn_2440476"
         },
         {
             "id": "D-150",
             "name": "Nigeria",
             "iso": "NGA",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "NG",
+            "ngoaidmap": "gn_2328926"
         },
         {
             "id": "D-152",
             "name": "North Korea",
             "iso": "PRK",
-            "dac_status": "Other Low Income"
+            "dac_status": "Other Low Income",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "KP",
+            "ngoaidmap": "gn_1873107"
         },
         {
             "id": "D-154",
             "name": "Norway",
             "iso": "NOR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "NO",
+            "ngoaidmap": "gn_3144096"
         },
         {
             "id": "D-155",
             "name": "Oman",
             "iso": "OMN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "OM",
+            "ngoaidmap": "gn_286963"
         },
         {
             "id": "D-156",
             "name": "Pakistan",
             "iso": "PAK",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "PK",
+            "ngoaidmap": "gn_1168579"
         },
         {
             "id": "D-157",
             "name": "Palau",
             "iso": "PLW",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "PW",
+            "ngoaidmap": "gn_1559582"
         },
         {
             "id": "D-159",
             "name": "Panama",
             "iso": "PAN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "PA",
+            "ngoaidmap": "gn_3703430"
         },
         {
             "id": "D-160",
             "name": "Papua New Guinea",
             "iso": "PNG",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "PG",
+            "ngoaidmap": "gn_2088628"
         },
         {
             "id": "D-161",
             "name": "Paraguay",
             "iso": "PRY",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "PY",
+            "ngoaidmap": "gn_3437598"
         },
         {
             "id": "D-162",
             "name": "Peru",
             "iso": "PER",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "PE",
+            "ngoaidmap": "gn_3932488"
         },
         {
             "id": "D-163",
             "name": "Philippines",
             "iso": "PHL",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "PH",
+            "ngoaidmap": "gn_1694008"
         },
         {
             "id": "D-164",
             "name": "Poland",
             "iso": "POL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "PL",
+            "ngoaidmap": "gn_798544"
         },
         {
             "id": "D-165",
             "name": "Portugal",
             "iso": "PRT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "PT",
+            "ngoaidmap": "gn_2264397"
         },
         {
             "id": "D-167",
             "name": "Qatar",
             "iso": "QAT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "QA",
+            "ngoaidmap": "gn_289688"
         },
         {
             "id": "D-168",
             "name": "Ireland",
             "iso": "IRL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "IE",
+            "ngoaidmap": "cust_880146"
         },
         {
             "id": "D-170",
             "name": "Romania",
             "iso": "ROU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "RO",
+            "ngoaidmap": "gn_798549"
         },
         {
             "id": "D-171",
             "name": "Russia",
             "iso": "RUS",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "RU",
+            "ngoaidmap": "gn_2017370"
         },
         {
             "id": "D-172",
             "name": "Rwanda",
             "iso": "RWA",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "RW",
+            "ngoaidmap": "gn_49518"
         },
         {
             "id": "D-174",
             "name": "St Kitts-Nevis",
             "iso": "KNA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "KN",
+            "ngoaidmap": "gn_3575174"
         },
         {
             "id": "D-175",
             "name": "St Lucia",
             "iso": "LCA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "LC",
+            "ngoaidmap": "gn_3576468"
         },
         {
             "id": "D-176",
             "name": "St Vincent And Grenadines",
             "iso": "VCT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "VC",
+            "ngoaidmap": "gn_3577815"
         },
         {
             "id": "D-177",
             "name": "Samoa",
             "iso": "WSM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "WS",
+            "ngoaidmap": "gn_4034894"
         },
         {
             "id": "D-178",
             "name": "San Marino",
             "iso": "SMR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "SM",
+            "ngoaidmap": "gn_3168068"
         },
         {
             "id": "D-179",
             "name": "Sao Tome And Principe",
             "iso": "STP",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "ST",
+            "ngoaidmap": "gn_2410758"
         },
         {
             "id": "D-180",
             "name": "Saudi Arabia",
             "iso": "SAU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "SA",
+            "ngoaidmap": "gn_102358"
         },
         {
             "id": "D-181",
             "name": "Senegal",
             "iso": "SEN",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "SN",
+            "ngoaidmap": "gn_2245662"
         },
         {
             "id": "D-182",
             "name": "Seychelles",
             "iso": "SYC",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "SC",
+            "ngoaidmap": "gn_241170"
         },
         {
             "id": "D-183",
             "name": "Sierra Leone",
             "iso": "SLE",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "SL",
+            "ngoaidmap": "gn_2403846"
         },
         {
             "id": "D-184",
             "name": "Singapore",
             "iso": "SGP",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "SG",
+            "ngoaidmap": "gn_1880251"
         },
         {
             "id": "D-185",
             "name": "Slovakia",
             "iso": "SVK",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "SK",
+            "ngoaidmap": "gn_3057568"
         },
         {
             "id": "D-186",
             "name": "Slovenia",
             "iso": "SVN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "SI",
+            "ngoaidmap": "gn_3190538"
         },
         {
             "id": "D-187",
             "name": "Solomon Islands",
             "iso": "SLB",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "SB",
+            "ngoaidmap": "gn_2103350"
         },
         {
             "id": "D-188",
             "name": "Somalia",
             "iso": "SOM",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Arab States",
+            "continent": "Africa",
+            "iso2": "SO",
+            "ngoaidmap": "gn_51537"
         },
         {
             "id": "D-189",
             "name": "South Africa",
             "iso": "ZAF",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "ZA",
+            "ngoaidmap": "gn_953987"
         },
         {
             "id": "D-190",
             "name": "South Korea",
             "iso": "KOR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "KR",
+            "ngoaidmap": "gn_1835841"
         },
         {
             "id": "D-191",
             "name": "Spain",
             "iso": "ESP",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "ES",
+            "ngoaidmap": "gn_2510769"
         },
         {
             "id": "D-192",
             "name": "Sri Lanka",
             "iso": "LKA",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "South Asia",
+            "continent": "Asia",
+            "iso2": "LK",
+            "ngoaidmap": "gn_1227603"
         },
         {
             "id": "D-193",
             "name": "Sudan",
             "iso": "SDN",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Arab States",
+            "continent": "Africa",
+            "iso2": "SD",
+            "ngoaidmap": "gn_366755"
         },
         {
             "id": "D-194",
             "name": "Surinam",
             "iso": "SUR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "SR",
+            "ngoaidmap": "gn_3382998"
         },
         {
             "id": "D-195",
             "name": "Swaziland",
             "iso": "SWZ",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "SZ",
+            "ngoaidmap": "gn_934841"
         },
         {
             "id": "D-196",
             "name": "Sweden",
             "iso": "SWE",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "SE",
+            "ngoaidmap": "gn_2661886"
         },
         {
             "id": "D-197",
             "name": "Switzerland",
             "iso": "CHE",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "CH",
+            "ngoaidmap": "gn_2658434"
         },
         {
             "id": "D-198",
             "name": "Syria",
             "iso": "SYR",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "SY",
+            "ngoaidmap": "gn_163843"
         },
         {
             "id": "D-200",
             "name": "Tajikistan",
             "iso": "TJK",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "TJ",
+            "ngoaidmap": "gn_1220409"
         },
         {
             "id": "D-201",
             "name": "Tanzania",
             "iso": "TZA",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "TZ",
+            "ngoaidmap": "gn_149590"
         },
         {
             "id": "D-202",
             "name": "Thailand",
             "iso": "THA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "TH",
+            "ngoaidmap": "gn_1605651"
         },
         {
             "id": "D-204",
             "name": "Togo",
             "iso": "TGO",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "TG",
+            "ngoaidmap": "gn_2363686"
         },
         {
             "id": "D-205",
             "name": "Tonga",
             "iso": "TON",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "TO",
+            "ngoaidmap": "gn_4032283"
         },
         {
             "id": "D-206",
             "name": "Trinidad And Tobago",
             "iso": "TTO",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "North America",
+            "iso2": "TT",
+            "ngoaidmap": "gn_3573591"
         },
         {
             "id": "D-207",
             "name": "Tunisia",
             "iso": "TUN",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Arab States",
+            "continent": "Africa",
+            "iso2": "TN",
+            "ngoaidmap": "gn_2464461"
         },
         {
             "id": "D-208",
             "name": "Turkey",
             "iso": "TUR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "TR",
+            "ngoaidmap": "gn_298795"
         },
         {
             "id": "D-209",
             "name": "Turkmenistan",
             "iso": "TKM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "TM",
+            "ngoaidmap": "gn_1218197"
         },
         {
             "id": "D-211",
             "name": "Tuvalu",
             "iso": "TUV",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "TV",
+            "ngoaidmap": "gn_2110297"
         },
         {
             "id": "D-212",
             "name": "Uganda",
             "iso": "UGA",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "UG",
+            "ngoaidmap": "gn_226074"
         },
         {
             "id": "D-213",
             "name": "Ukraine",
             "iso": "UKR",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Europe and Central Asia",
+            "continent": "Europe",
+            "iso2": "UA",
+            "ngoaidmap": "gn_690791"
         },
         {
             "id": "D-214",
             "name": "United Arab Emirates",
             "iso": "ARE",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "AE",
+            "ngoaidmap": "gn_290557"
         },
         {
             "id": "D-216",
             "name": "United States",
             "iso": "USA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "US",
+            "ngoaidmap": "gn_6252001"
         },
         {
             "id": "D-217",
             "name": "Uruguay",
             "iso": "URY",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "UY",
+            "ngoaidmap": "gn_3439705"
         },
         {
             "id": "D-218",
             "name": "Uzbekistan",
             "iso": "UZB",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Europe and Central Asia",
+            "continent": "Asia",
+            "iso2": "UZ",
+            "ngoaidmap": "gn_1512440"
         },
         {
             "id": "D-219",
             "name": "Vanuatu",
             "iso": "VUT",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "East Asia and the Pacific",
+            "continent": "Oceania",
+            "iso2": "VU",
+            "ngoaidmap": "gn_2134431"
         },
         {
             "id": "D-221",
             "name": "Venezuela",
             "iso": "VEN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "VE",
+            "ngoaidmap": "gn_3625428"
         },
         {
             "id": "D-222",
             "name": "Vietnam",
             "iso": "VNM",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "VN",
+            "ngoaidmap": "gn_1562822"
         },
         {
             "id": "D-224",
             "name": "Yemen",
             "iso": "YEM",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "YE",
+            "ngoaidmap": "gn_69543"
         },
         {
             "id": "D-225",
             "name": "Serbia",
             "iso": "SRB",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Europe",
+            "iso2": "RS",
+            "ngoaidmap": "gn_6290252"
         },
         {
             "id": "D-226",
             "name": "Democratic Republic Of The Congo",
             "iso": "COD",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "CD",
+            "ngoaidmap": "gn_203312"
         },
         {
             "id": "D-227",
             "name": "Zambia",
             "iso": "ZMB",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "ZM",
+            "ngoaidmap": "gn_895949"
         },
         {
             "id": "D-228",
             "name": "Zimbabwe",
             "iso": "ZWE",
-            "dac_status": "Other Low Income"
+            "dac_status": "Other Low Income",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "ZW",
+            "ngoaidmap": "gn_878675"
         },
         {
             "id": "D-233",
             "name": "Montenegro",
             "iso": "MNE",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Europe and Central Asia",
+            "continent": "Europe",
+            "iso2": "ME",
+            "ngoaidmap": "gn_3194884"
         },
         {
             "id": "D-234",
             "name": "Scotland",
             "iso": "GBR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "GB",
+            "ngoaidmap": "gn_2635167"
         },
         {
             "id": "D-235",
             "name": "Northern Ireland",
             "iso": "GBR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "GB",
+            "ngoaidmap": "gn_2635167"
         },
         {
             "id": "D-236",
             "name": "Antarctica",
             "iso": "ATA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Antarctica",
+            "iso2": "AQ",
+            "ngoaidmap": "gn_6697173"
         },
         {
             "id": "D-237",
             "name": "Timor-Leste",
             "iso": "TLS",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "East Asia and the Pacific",
+            "continent": "Asia",
+            "iso2": "TL",
+            "ngoaidmap": "gn_1966436"
         },
         {
             "id": "D-238",
             "name": "Occupied Palestinian Territories",
             "iso": "PSE",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": "Arab States",
+            "continent": "Asia",
+            "iso2": "PS",
+            "ngoaidmap": "gn_6254930"
         },
         {
             "id": "D-239",
             "name": "Kosovo",
             "iso": "UNK",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "XK",
+            "ngoaidmap": "gn_831053"
         },
         {
             "id": "D-240",
             "name": "Akrotiri And Dhekelia",
             "iso": "ALA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "AX",
+            "ngoaidmap": null
         },
         {
             "id": "D-241",
             "name": "American Samoa",
             "iso": "ASM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "AS",
+            "ngoaidmap": "gn_5880801"
         },
         {
             "id": "D-242",
             "name": "Anguilla",
             "iso": "AIA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "AI",
+            "ngoaidmap": "gn_3573511"
         },
         {
             "id": "D-243",
             "name": "Aruba",
             "iso": "ABW",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "AW",
+            "ngoaidmap": "gn_3577279"
         },
         {
             "id": "D-244",
             "name": "Bermuda",
             "iso": "BMU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "BM",
+            "ngoaidmap": "gn_3573345"
         },
         {
             "id": "D-245",
             "name": "British Indian Ocean Territory",
             "iso": "IOT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "IO",
+            "ngoaidmap": "gn_1282588"
         },
         {
             "id": "D-246",
             "name": "British Virgin Islands",
             "iso": "VGB",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "VG",
+            "ngoaidmap": "gn_3577718"
         },
         {
             "id": "D-247",
             "name": "Cayman Islands",
             "iso": "CYM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "KY",
+            "ngoaidmap": "gn_3580718"
         },
         {
             "id": "D-248",
             "name": "Christmas Island",
             "iso": "CXR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "CX",
+            "ngoaidmap": "gn_2078138"
         },
         {
             "id": "D-249",
             "name": "Clipperton Island",
             "iso": "CPT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "CP",
+            "ngoaidmap": null
         },
         {
             "id": "D-250",
             "name": "Cocos (Keeling) Islands",
             "iso": "CCK",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "CC",
+            "ngoaidmap": "gn_1547376"
         },
         {
             "id": "D-251",
             "name": "Cook Islands",
             "iso": "COK",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "CK",
+            "ngoaidmap": "gn_1899402"
         },
         {
             "id": "D-252",
             "name": "Easter  Island",
             "iso": "CHL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "CL",
+            "ngoaidmap": null
         },
         {
             "id": "D-253",
             "name": "Falkland Islands",
             "iso": "FLK",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "South America",
+            "iso2": "FK",
+            "ngoaidmap": "gn_3474414"
         },
         {
             "id": "D-254",
             "name": "Faroe Islands",
             "iso": "FRO",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "FO",
+            "ngoaidmap": "gn_2622320"
         },
         {
             "id": "D-255",
             "name": "French Guyana",
             "iso": "GUF",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "South America",
+            "iso2": "GF",
+            "ngoaidmap": null
         },
         {
             "id": "D-256",
             "name": "French Polynesia",
             "iso": "PYF",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "PF",
+            "ngoaidmap": null
         },
         {
             "id": "D-257",
             "name": "Gibraltar",
             "iso": "GIB",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "GI",
+            "ngoaidmap": "gn_2411586"
         },
         {
             "id": "D-258",
             "name": "Greenland",
             "iso": "GRL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "GL",
+            "ngoaidmap": "gn_3425505"
         },
         {
             "id": "D-259",
             "name": "Guadeloupe",
             "iso": "GLP",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "GP",
+            "ngoaidmap": null
         },
         {
             "id": "D-260",
             "name": "Guam",
             "iso": "GUM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "GU",
+            "ngoaidmap": "gn_4043988"
         },
         {
             "id": "D-261",
             "name": "Guernsey",
             "iso": "GGY",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "GG",
+            "ngoaidmap": "gn_3042362"
         },
         {
             "id": "D-262",
             "name": "Hong Kong",
             "iso": "HKG",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "HK",
+            "ngoaidmap": null
         },
         {
             "id": "D-263",
             "name": "Isle Of Man",
             "iso": "IMN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "IM",
+            "ngoaidmap": "gn_3042225"
         },
         {
             "id": "D-264",
             "name": "Jan Mayen",
             "iso": "SJM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "SJ",
+            "ngoaidmap": null
         },
         {
             "id": "D-265",
             "name": "Jersey",
             "iso": "JEY",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "JE",
+            "ngoaidmap": "gn_3042142"
         },
         {
             "id": "D-266",
             "name": "Juan Fernandez Islands",
             "iso": "CHL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": "Latin America and the Caribbean",
+            "continent": "South America",
+            "iso2": "CL",
+            "ngoaidmap": null
         },
         {
             "id": "D-267",
             "name": "Macau",
             "iso": "MAC",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "MO",
+            "ngoaidmap": null
         },
         {
             "id": "D-268",
             "name": "Martinique",
             "iso": "MTQ",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "MQ",
+            "ngoaidmap": null
         },
         {
             "id": "D-269",
             "name": "Mayotte",
             "iso": "MYT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Africa",
+            "iso2": "YT",
+            "ngoaidmap": null
         },
         {
             "id": "D-270",
             "name": "Montserrat",
             "iso": "MSR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "MS",
+            "ngoaidmap": "gn_3578097"
         },
         {
             "id": "D-271",
             "name": "Netherlands Antilles",
             "iso": "ANT",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "AN",
+            "ngoaidmap": null
         },
         {
             "id": "D-272",
             "name": "New Caledonia",
             "iso": "NCL",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "NC",
+            "ngoaidmap": "gn_2139685"
         },
         {
             "id": "D-273",
             "name": "Niue",
             "iso": "NIU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "NU",
+            "ngoaidmap": "gn_4036232"
         },
         {
             "id": "D-274",
             "name": "Norfolk Island",
             "iso": "NFK",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "NF",
+            "ngoaidmap": "gn_2155115"
         },
         {
             "id": "D-275",
             "name": "Northern Mariana Island",
             "iso": "MNP",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "MP",
+            "ngoaidmap": "gn_4041468"
         },
         {
             "id": "D-276",
             "name": "Pitcairn Islands",
             "iso": "PCN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "PN",
+            "ngoaidmap": null
         },
         {
             "id": "D-277",
             "name": "Puerto Rico",
             "iso": "PRI",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "PR",
+            "ngoaidmap": "gn_4566966"
         },
         {
             "id": "D-278",
             "name": "Reunion",
             "iso": "REU",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Africa",
+            "iso2": "RE",
+            "ngoaidmap": null
         },
         {
             "id": "D-279",
             "name": "Ross Dependency",
             "iso": "ATA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Antarctica",
+            "iso2": "AQ",
+            "ngoaidmap": null
         },
         {
             "id": "D-280",
             "name": "St Barthelemy",
             "iso": "BLM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "BL",
+            "ngoaidmap": null
         },
         {
             "id": "D-281",
             "name": "St Helena",
             "iso": "SHN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Africa",
+            "iso2": "SH",
+            "ngoaidmap": "gn_3370751"
         },
         {
             "id": "D-282",
             "name": "St Martin",
             "iso": "MAF",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "MF",
+            "ngoaidmap": "gn_7609695"
         },
         {
             "id": "D-283",
             "name": "St Pierre And Miquelon",
             "iso": "SPM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "PM",
+            "ngoaidmap": null
         },
         {
             "id": "D-284",
             "name": "South Georgia",
             "iso": "SGS",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Antarctica",
+            "iso2": "GS",
+            "ngoaidmap": "gn_3474415"
         },
         {
             "id": "D-285",
             "name": "Svalbard",
             "iso": "SJM",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Europe",
+            "iso2": "SJ",
+            "ngoaidmap": "cust_880142"
         },
         {
             "id": "D-286",
             "name": "Taiwan",
             "iso": "TWN",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Asia",
+            "iso2": "TW",
+            "ngoaidmap": "gn_1668284"
         },
         {
             "id": "D-287",
             "name": "Tokelau",
             "iso": "TKL",
-            "dac_status": "Lower Middle Income"
+            "dac_status": "Lower Middle Income",
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "TK",
+            "ngoaidmap": "gn_4031074"
         },
         {
             "id": "D-288",
             "name": "Turks And Caicos Islands",
             "iso": "TCA",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "TC",
+            "ngoaidmap": "gn_3576916"
         },
         {
             "id": "D-289",
             "name": "U.S. Virgin Islands",
             "iso": "VIR",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "North America",
+            "iso2": "VI",
+            "ngoaidmap": "gn_4796775"
         },
         {
             "id": "D-290",
             "name": "Wallis And Futuna",
             "iso": "WLF",
-            "dac_status": null
+            "dac_status": null,
+            "undp": null,
+            "continent": "Oceania",
+            "iso2": "WF",
+            "ngoaidmap": null
         },
         {
             "id": "D-293",
             "name": "Republic Of South Sudan",
             "iso": "SSD",
-            "dac_status": "Least Developed"
+            "dac_status": "Least Developed",
+            "undp": "Sub-Saharan Africa",
+            "continent": "Africa",
+            "iso2": "SS",
+            "ngoaidmap": "gn_7909807"
         }
     ]
 }
