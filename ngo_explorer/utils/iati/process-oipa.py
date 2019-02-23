@@ -1,6 +1,8 @@
 import json
 import os
 
+# @TODO: turn in flask command line script
+
 with open(os.path.join(os.path.dirname(__file__), "oipa-country-participant.json"), encoding='utf8') as a:
     data = json.load(a)
     countries = {}
