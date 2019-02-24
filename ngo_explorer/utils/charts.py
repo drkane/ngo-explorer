@@ -268,7 +268,7 @@ def word_cloud(charity_data):
         "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very",
         "s", "t", "can", "will", "just", "don", "should", "now",
         # others
-        "throughout", "around",
+        "throughout", "around", "charity", "charitable",
     ]
     alpha_regex = r'[^a-zA-Z]+'
 
