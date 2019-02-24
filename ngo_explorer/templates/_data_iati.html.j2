@@ -52,7 +52,7 @@
                         {% for r in iati_data.get(c.iso2, [])|sort(attribute='count', reverse=True) %}
                         {% if r.name %}
                         <li class="di mr2 pb0">
-                            <a href="http://d-portal.org/ctrack.html?publisher={{ r.ref }}#view=list_transactions&country_code={{ c.iso2 }}" target="_blank" 
+                            <a href="https://d-portal.org/ctrack.html?publisher={{ r.ref }}#view=list_transactions&country_code={{ c.iso2 }}" target="_blank" 
                                 class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
                                 {{ r.name }}
                             </a>
@@ -74,26 +74,26 @@
         <div class="db fl w-60-l w-100 mh0 mv2">
             {% if area.countries|length == 1 %}
             <h3 class="mh0 mt3 mb0 pa0">
-                <a href="http://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
+                <a href="https://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
                     target="_blank" class="normal link b black">
                     Data from IATI d-portal
                 </a>
             </h3>
             <iframe scrolling="no"
-                src="http://d-portal.org/ctrack.html?flava=original&rgba=inspire&country={{ area.countries[0].iso2 }}&#view=frame&frame=stats&size=640"
+                src="https://d-portal.org/ctrack.html?flava=original&rgba=inspire&country={{ area.countries[0].iso2 }}&#view=frame&frame=stats&size=640"
                 style="height: 304px;"
                 class="w-100"
                 frameborder="0"></iframe>
             {% elif area.countries|length < 20 %}
             <h3 class="mh0 mt3 mb0 pa0">
-                <a href="http://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
+                <a href="https://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
                     target="_blank" class="underline link blue dim f5 normal">
                     Find more data on IATI d-portal
                 </a>
             </h3>
             {% else %}
             <h3 class="mh0 mt3 mb0 pa0">
-                <a href="http://d-portal.org/"
+                <a href="https://d-portal.org/"
                     target="_blank" class="underline link blue dim f5 normal">
                     Find more data on IATI d-portal
                 </a>
