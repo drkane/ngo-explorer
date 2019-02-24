@@ -93,15 +93,35 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
 
     return new_ds
 
+
 def correct_titlecase(s):
-    s = re.sub(r'\'S\b', "'s", s)
-    s = re.sub(r'\bOf\b', "of", s)
-    s = re.sub(r'\bThe\b', "the", s)
-    s = re.sub(r'\bFor\b', "for", s)
-    s = re.sub(r'\bAnd\b', "and", s)
-    s = re.sub(r'\bIn\b', "in", s)
-    s = re.sub(r'\bWith\b', "with", s)
-    s = re.sub(r'\bTo\b', "to", s)
-    s = re.sub(r'\bUk\b', "UK", s)
+
+    consonants = r'[^aeiouAEIOU]+'
+    
+    substitutions = [
+        (r'\b([^aeiouAEIOU,0-9]+)\b', lambda x: x[0].upper() if x[0] else x),
+        (r'\'S\b', "'s"),
+        (r'\bOf\b', "of"),
+        (r'\bThe\b', "the"),
+        (r'\bFor\b', "for"),
+        (r'\bAnd\b', "and"),
+        (r'\bIn\b', "in"),
+        (r'\bWith\b', "with"),
+        (r'\bTo\b', "to"),
+        (r'\bUk\b', "UK"),
+        (r'\bSt\b', "St"),
+        (r'([0,4-9])Th\b', r"\1th"),
+        (r'1St\b', "1st"),
+        (r'2Nd\b', "2nd"),
+        (r'\bmr\b', "Mr"),
+        (r'\bmrs\b', "Mrs"),
+    ]
+
+    for pattern, replacement in substitutions:
+        try:
+            s = re.sub(pattern, replacement, s, flags=re.IGNORECASE)
+        except:
+            continue
+    
     s = s[0].upper() + s[1:]
     return s
