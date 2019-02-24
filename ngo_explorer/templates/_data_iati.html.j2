@@ -25,7 +25,7 @@
                 {% for c in area.countries %}
                     {% if iati_data.get(c["iso2"], []) %}
                     <li class="di mr2 pb0">
-                        <a href="{{ url_for('data.country', countryid=c.iso.lower()) }}" target="_blank" 
+                        <a href="{{ url_for('data.country', countryid=c.iso.lower()) }}"
                             class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
                             {{ c.name }}
                         </a>
