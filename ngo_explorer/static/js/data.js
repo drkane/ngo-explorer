@@ -32,16 +32,18 @@ const choices = new Choices('.js-choice', {
 });
 
 // draw the charts initially
-Object.keys(charts).forEach(function (key) {
-    if(charts[key]["id"]){
-        Plotly.newPlot(
-            `chart_${key}`,
-            charts[key].data,
-            charts[key].layout,
-            {displayModebar: false}
-        );
-    }
-});
+if (typeof charts !== "undefined"){
+    Object.keys(charts).forEach(function (key) {
+        if(charts[key]["id"]){
+            Plotly.newPlot(
+                `chart_${key}`,
+                charts[key].data,
+                charts[key].layout,
+                {displayModebar: false}
+            );
+        }
+    });
+}
 
 // when form is submitted, get the filters and fetch new data from the API
 const filter_form = document.getElementById('filter-form');
