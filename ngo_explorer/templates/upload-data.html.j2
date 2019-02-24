@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 
-{% block title %}{{ area.name }} | NGO Explorer{% endblock %}
+{% block title %}Data Upload | NGO Explorer{% endblock %}
 
 {% macro figure(chart_id, caption=None) %}
 <figure class="fl w-100 w-50-l pr3-l mh0 mv2">
@@ -10,11 +10,11 @@
 {% endmacro %}
 
 {% block content %}
-{% set active_page =  "dashboard" %}
-{% include '_data_header.html.j2' %}
-<div class="w-100 pa2 bg-light-gray cf mt2">
-    {% include '_data_sidebar.html.j2' %}
-
+{% include '_upload_data_header.html.j2' %}
+<div class="w-100 cf mt2">
+    <div class="fl w-100 w-20-l pr3">
+        &nbsp;
+    </div>
     <div class="fl w-100 w-80-l">
 
         <figure class="fl w-100 w-50-l pr3-l mh0 mv2">
@@ -31,9 +31,6 @@
         {% endfor %}
     </div>
 </div>
-
-{% include '_data_iati.html.j2' %}
-{% include '_data_other_resources.html.j2' %}
 {% endblock %}
 
 {% block scripts %}

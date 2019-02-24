@@ -17,10 +17,13 @@
             {% block header %}
                 {% include "_header.html.j2" %}
             {% endblock %}
+            <div class="page-content cf">
             {% block content %}
             {% endblock %}
+            </div>
         </div>
         {% block scripts %}
+        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
         {% endblock %}
     </body>
 </html> 

@@ -1,0 +1,40 @@
+{% extends "base.html.j2" %}
+
+{% block title %}Upload your data | NGO Explorer{% endblock %}
+
+{% block content %}
+<div class="cf lh-copy">
+    <div class="db fl w-20-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
+    <div class="db fl w-60-l w-100 ma0">
+        <h2 class="ma0 mv2-l">Upload your own data</h2>
+        <p> 
+            If you have a list of UK charity numbers, you can 
+            upload your data to explore your group of
+            charities.
+        </p>
+        <form method='post'>
+            <h3 class="">Paste a list of charity numbers</h3>
+            <textarea class="w-100 pa2 js-only" id="charity-numbers" autocomplete="off"></textarea>
+            <textarea class="w-100 pa2 js-hide" id="charity-numbers-parsed" name="charitynumbers" autocomplete="off"></textarea>
+            <div id="charity-number-output"></div>
+            <input type="submit" class="pa2 bg-blue white dim bn mt3" value="Fetch data on these charities" />
+        </form>
+        <div class="js-only">
+            <h3 class="">or<br>Upload a CSV file and select the column to use</h3>
+            <input class="w-100 pa2" type="file" id="file-upload" autocomplete="off" />
+            <select class="ma2 pa1" id="file-upload-columns" autocomplete="off"></select>
+            <div id="file-upload-output"></div>
+            <form method='post'>
+                <textarea class="dn" id="file-charity-numbers" name="charitynumbers" autocomplete="off"></textarea>
+                <input type="submit" class="pa2 bg-blue white dim bn mt3" value="Fetch data from CSV" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{ url_for('static', filename='vendor/papa-parse/papaparse.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+{% endblock %}

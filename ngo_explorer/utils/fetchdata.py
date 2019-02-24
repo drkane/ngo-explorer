@@ -72,6 +72,20 @@ def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, 
         raise Exception(result.get("errors"))
     return result.get("data", {}).get("CHC", {}).get("getCharities")
 
+def fetch_charitybase_fromids(ids: list):
+    client = GraphQLClientRequests('https://charitybase.uk/api/graphql')
+    client.inject_token('Apikey {}'.format(current_app.config["CHARITYBASE_API_KEY"]))
+
+    result = client.execute(GQL_QUERIES["charity_aggregation"], {
+        "filters": {
+            "id": ids
+        }
+    })
+    
+    if result.get("errors") or not result.get("data", {}).get("CHC", {}).get("getCharities"):
+        raise Exception(result.get("errors"))
+    return result.get("data", {}).get("CHC", {}).get("getCharities")
+
 
 with open(os.path.join(os.path.dirname(__file__), 'iati', "oipa-country-participant-gb.json")) as iati_file:
     IATI_DATA = json.load(iati_file)

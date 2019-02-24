@@ -4,7 +4,7 @@ from flask import Flask
 from slugify import slugify
 import requests_cache
 
-from .blueprints import home, data
+from .blueprints import home, data, upload
 from .utils.charts import location_map, plotly_json
 from .utils.utils import update_url_values
 
@@ -16,8 +16,14 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         PLOTLY_GEO_SCOPES=['europe', 'asia',
                            'africa', 'north america', 'south america'],
-        CHARITYBASE_API_KEY=os.environ.get("CHARITYBASE_API_KEY")
+        CHARITYBASE_API_KEY=os.environ.get("CHARITYBASE_API_KEY"),
+        DATA_CONTAINER=os.environ.get(
+            "DATA_CONTAINER",
+            os.path.join(os.getcwd(), "uploads")
+        ),
     )
+
+    print(app.config["DATA_CONTAINER"])
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -29,7 +35,11 @@ def create_app(test_config=None):
     # set up url caching
     # @TODO set to a redis instance for live version
     one_week = 60 * 60 * 24 * 7 # in seconds
-    requests_cache.install_cache('demo_cache', expire_after=one_week, allowable_methods=('GET', 'POST'))
+    requests_cache.install_cache(
+        os.path.join(app.config["DATA_CONTAINER"], 'demo_cache'),
+        expire_after=one_week,
+        allowable_methods=('GET', 'POST')
+    )
 
     # ensure the instance folder exists
     try:
@@ -39,6 +49,7 @@ def create_app(test_config=None):
 
     app.register_blueprint(home.bp)
     app.register_blueprint(data.bp)
+    app.register_blueprint(upload.bp)
 
     # register template filters
     @app.template_filter('slugify')

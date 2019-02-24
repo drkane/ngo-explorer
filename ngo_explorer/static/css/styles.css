@@ -6,6 +6,14 @@
     display: inherit;
 }
 
+.js-hide {
+    display: inherit;
+}
+
+.js-hide.js-present {
+    display: none;
+}
+
 .wb-normal {
     word-break: normal;
 }
