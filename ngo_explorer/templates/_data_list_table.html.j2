@@ -61,3 +61,28 @@
     {% endfor %}
     </tbody>
 </table>
+<div>
+    <ul class="list mh0 mb0 mt2 pa0 f5">
+        {% if (skip - 30) > 0 %}
+        <li class="dib mr2">
+            <a class="link white dim ph2 pv1 bg-gray" href="{{ pages[active_page].url|update_url({"filter-skip": 0}) }}">
+                &laquo;
+            </a>
+        </li>
+        {% endif %}
+        {% if skip > 0 %}
+        <li class="dib mr2">
+            <a class="link white dim ph2 pv1 bg-gray" href="{{ pages[active_page].url|update_url({"filter-skip": skip - 30}) }}">
+                &lsaquo; Previous
+            </a>
+        </li>
+        {% endif %}
+        {% if skip + 30 < data.count %}
+        <li class="dib">
+            <a class="link white dim ph2 pv1 bg-gray" href="{{ pages[active_page].url|update_url({"filter-skip": skip + 30}) }}">
+                Next &rsaquo;
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
