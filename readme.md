@@ -32,4 +32,11 @@ dokku letsencrypt ngo-explorer
 
 # add charitybase api key
 dokku config:set ngo-explorer CHARITYBASE_API_KEY=123456789
+
+# setup volume storage
+mkdir -p /var/lib/dokku/data/storage/ngo-explorer
+chown -R dokku:dokku /var/lib/dokku/data/storage/ngo-explorer
+chown -R 32767:32767 /var/lib/dokku/data/storage/ngo-explorer
+dokku storage:mount ngo-explorer /var/lib/dokku/data/storage/ngo-explorer:/app/storage
+dokku config:set --no-restart ngo-explorer DATA_CONTAINER=/app/storage
 ```
