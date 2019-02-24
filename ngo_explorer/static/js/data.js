@@ -18,7 +18,7 @@ if (typeof charts !== "undefined"){
                 `chart_${key}`,
                 charts[key].data,
                 charts[key].layout,
-                {displayModebar: false}
+                {displayModeBar: false}
             );
         }
     });
@@ -47,7 +47,7 @@ filter_form.addEventListener('submit', (event)=> {
                         `chart_${key}`,
                         response["charts"][key].data,
                         response["charts"][key].layout,
-                        { displayModebar: false }
+                        { displayModeBar: false }
                     );
                 }
             });

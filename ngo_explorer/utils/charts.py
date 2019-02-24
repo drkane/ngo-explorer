@@ -131,6 +131,7 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
         ),
     }, output_type='div', include_plotlyjs=False, config=dict(
         displayModeBar=False,
+        staticPlot=True,
     ))
 
 
