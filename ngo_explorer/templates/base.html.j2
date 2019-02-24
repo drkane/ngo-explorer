@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/tachyons/tachyons.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/material-icons/material-icons.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        {% endblock %}
+        {% block headscripts %}
+        <script src="{{ url_for('static', filename='vendor/plotly/plotly-latest.min.js') }}"></script>
+        {% endblock %}
+    </head>
+    <body class="sans-serif">
+        <div class="mw9 center ph3-ns ph2 mb4 cf">
+            {% block header %}
+                {% include "_header.html.j2" %}
+            {% endblock %}
+            <div class="page-content cf">
+            {% block content %}
+            {% endblock %}
+            </div>
+            {% block footer %}
+                {% include "_footer.html.j2" %}
+            {% endblock %}
+        </div>
+        {% block scripts %}
+        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+        {% endblock %}
+    </body>
+</html> 

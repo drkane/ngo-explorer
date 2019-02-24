@@ -1,0 +1,45 @@
+fragment allBucket on Aggregation {
+  buckets {
+  	id
+  	name
+  	count
+  	sumIncome
+  }
+}
+
+query getCharityAggregation($filters: FilterCHCInput!, $limit: PageLimit) {
+  CHC {
+    getCharities(filters: $filters) {
+      aggregate {
+        income {
+          ...allBucket
+        }
+        causes {
+          ...allBucket
+        }
+				beneficiaries {
+          ...allBucket
+        }
+				operations {
+          ...allBucket
+        }
+      }
+      count
+      list(limit: $limit) {
+        id
+        name
+        activities
+        areas {	
+          name
+          id
+        }
+        income {
+          latest {
+            date
+            total
+          }
+        }
+      }
+    }
+  }
+}

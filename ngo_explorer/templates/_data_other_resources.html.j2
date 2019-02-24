@@ -1,0 +1,66 @@
+<div class="w-100 pa2 bg-light-gray cf mt2">
+    <div class="cf">
+        <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">&nbsp;</div>
+        <div class="db fl w-60-l w-100 mh0 mv2">
+            <h3 class="lh-title pa0 ma0">Other resources</h3>
+            <p class="lh-copy pa0 ma0">
+            </p>
+        </div>
+    </div>
+    
+    <div class="cf">
+        <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">
+            <a href="https://ngoaidmap.org/" target="_blank" class="normal link b black">NGO Aid Map</a>
+        </div>
+        <div class="db fl w-60-l w-100 mh0 mv2">
+            <p class="mt0 mb2">
+                NGO Aid Map is an InterAction initiative that provides detailed
+                information on InterAction's members’ work around the world through a
+                web-based mapping platform.
+            </p>
+            <ul class="list pa0 ma0">
+            {% for c in area["countries"] %}
+                <li class="di mr2 pb0">
+                    <a href="https://ngoaidmap.org/location/{{ c.ngoaidmap }}" target="_blank" 
+                        class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
+                        {{ c.name }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    <div class="cf">
+        <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">
+            <a href="https://ngoaidmap.org/" target="_blank" class="normal link b black">WANGO</a>
+        </div>
+        <div class="db fl w-60-l w-100 mh0 mv2">
+            <a href="https://www.wango.org/resources.aspx?section=ngodir" target="_blank" 
+                class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
+                Worldwide NGO Directory
+            </a>
+        </div>
+    </div>
+
+    {% for c in area.countries %}
+        {% if c.iso.lower() in similar_initiative %}
+            {% for i in similar_initiative[c.iso.lower()] %}
+            <div class="cf">
+                <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">
+                    <a href="{{ i.homepage }}" target="_blank" class="normal link b black">{{ i.title }}</a>
+                </div>
+                <div class="db fl w-60-l w-100 mh0 mv2">
+                    <a href="{{ i.directlink }}" target="_blank" 
+                        class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
+                        {{ i.directlinktext }}
+                    </a>
+                    {% if i.description %}
+                    <p class="pa0 ma0 lh-copy">{{ i.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>

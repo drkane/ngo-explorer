@@ -1,0 +1,15 @@
+<dl>
+{% for c in data.list[0:3] %}
+    <dt class="b">{{ c.name }}</dt>
+    <dd class="mw6-l ml3">
+        <p class="f6">
+            Charity number <a class="link dim dark-blue b" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">{{ c.id }}</a>
+            {% if c.income.latest.total %} | 
+            Income <strong>{{ "£{:,.0f}".format(c.income.latest.total) }}</strong>
+            <span class="f7 i gray">[year ending {{ c.income.latest.date[0:10] }}]</span>
+            {% endif %}
+        </p>
+        <p class="f7 lh-copy">{{ c.activities }}</p>
+    </dd>
+{% endfor %}
+</dl>

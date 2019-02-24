@@ -1,0 +1,104 @@
+<div class="w-100 pa2 bg-light-gray cf mt2" id="iati">
+    <div class="cf">
+        <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">&nbsp;</div>
+        <div class="db fl w-60-l w-100 mh0 mv2">
+            <h3 class="lh-title pa0 ma0">IATI Activity data</h3>
+            <p class="lh-copy pa0 ma0">
+                {% if area.countries|length > 5 %}
+                Select a country below to see a list of UK-registered organisations operating in 
+                these countries, sourced from data published by IATI publishers.
+                {% else %}
+                List of UK-registered organisations operating in {% if area.countries|length > 1 %}these countries{% else %}this country{% endif %},
+                sourced from data published by IATI publishers.
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <div class="cf">
+    {% if area.countries|length > 5 %}
+        <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">&nbsp;</div>
+        <div class="db fl w-60-l w-100 mh0 mv2">
+            <ul class="list pa0 ma0">
+                {% for c in area.countries %}
+                    {% if iati_data.get(c["iso2"], []) %}
+                    <li class="di mr2 pb0">
+                        <a href="{{ url_for('data.country', countryid=c.iso.lower()) }}#iati"
+                            class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
+                            {{ c.name }}
+                        </a>
+                        <span class="dib mw5 nowrap dib overflow-hidden truncate f7 gray">
+                            [{{ iati_data.get(c["iso2"], [])|length }} organisations]
+                        </span>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        {% for c in area.countries %}
+            {% if iati_data.get(c["iso2"], []) %}
+            <div class="cf country-group lh-copy">
+                <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">
+                    <div class="w-100 fr country-group-name">
+                    {% if area.countries|length > 1 %}
+                    {{ c["name"] }}
+                    {% else %}
+                    &nbsp;
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="db fl w-60-l w-100 mh0 mv2 country-group-list">
+                    <ul class="list pa0 ma0">
+                        {% for r in iati_data.get(c.iso2, [])|sort(attribute='count', reverse=True) %}
+                        {% if r.name %}
+                        <li class="di mr2 pb0">
+                            <a href="http://d-portal.org/ctrack.html?publisher={{ r.ref }}#view=list_transactions&country_code={{ c.iso2 }}" target="_blank" 
+                                class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
+                                {{ r.name }}
+                            </a>
+                            <span class="dib mw5 nowrap dib overflow-hidden truncate f7 gray">
+                                [{{r.count}}]
+                            </span>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </div>
+    <div class="cf">
+        <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">&nbsp;</div>
+        <div class="db fl w-60-l w-100 mh0 mv2">
+            {% if area.countries|length == 1 %}
+            <h3 class="mh0 mt3 mb0 pa0">
+                <a href="http://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
+                    target="_blank" class="normal link b black">
+                    Data from IATI d-portal
+                </a>
+            </h3>
+            <iframe scrolling="no"
+                src="http://d-portal.org/ctrack.html?flava=original&rgba=inspire&country={{ area.countries[0].iso2 }}&#view=frame&frame=stats&size=640"
+                style="height: 304px;"
+                class="w-100"
+                frameborder="0"></iframe>
+            {% elif area.countries|length < 20 %}
+            <h3 class="mh0 mt3 mb0 pa0">
+                <a href="http://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
+                    target="_blank" class="underline link blue dim f5 normal">
+                    Find more data on IATI d-portal
+                </a>
+            </h3>
+            {% else %}
+            <h3 class="mh0 mt3 mb0 pa0">
+                <a href="http://d-portal.org/"
+                    target="_blank" class="underline link blue dim f5 normal">
+                    Find more data on IATI d-portal
+                </a>
+            </h3>
+            {% endif %}
+        </div>
+    </div>
+</div>

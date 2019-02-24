@@ -1,0 +1,30 @@
+.js-only {
+    display: none;
+}
+
+.js-only.js-present {
+    display: inherit;
+}
+
+.js-hide {
+    display: inherit;
+}
+
+.js-hide.js-present {
+    display: none;
+}
+
+.wb-normal {
+    word-break: normal;
+}
+
+.choices__item.choices__item--choice.choices__item--selectable {
+    padding-right: 10px;
+}
+.choices__item.choices__item--choice.choices__item--selectable::after {
+	display: none;
+}
+
+g.infolayer .annotation {
+    /* font-weight: bold; */
+}
