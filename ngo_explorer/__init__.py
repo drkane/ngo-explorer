@@ -3,7 +3,9 @@ import os
 from flask import Flask
 from slugify import slugify
 import requests_cache
+import click
 
+from .commands.countries import update_countries
 from .blueprints import home, data, upload
 from .utils.charts import location_map, plotly_json
 from .utils.utils import update_url_values, correct_titlecase
@@ -69,5 +71,10 @@ def create_app(test_config=None):
     @app.template_filter('correct_titlecase')
     def template_correct_titlecase(s: str):
         return correct_titlecase(s)
+
+    # add custom commands
+    @app.cli.command('update-countries')
+    def cli_update_countries():
+        update_countries()
 
     return app

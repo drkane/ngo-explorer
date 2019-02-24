@@ -85,10 +85,10 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
     return plotly.offline.plot({
         "data": [
             go.Scattergeo(
-                locationmode='ISO-3',
-                locations=[c['iso'] for c in countries],
+                lon=[c['longitude'] for c in countries],
+                lat=[c['latitude'] for c in countries],
                 text=[c['name'] for c in countries],
-                hoverinfo="none",
+                hoverinfo="text",
                 marker=dict(
                     size=6,
                     color='rgb(0, 0, 0)',
