@@ -272,6 +272,8 @@ def word_cloud(charity_data):
 
     words = Counter()
     for c in charity_data:
+        if not c.get("activities", ""):
+            continue
         a = c.get("activities", "").split()
         for word in a:
             word = re.sub(alpha_regex, '', word.lower())
