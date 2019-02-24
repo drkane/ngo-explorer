@@ -97,7 +97,8 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
         inserts = {
             "selected-filters": render_template('_data_selected_filters.html.j2', filters=request.values, classification=CLASSIFICATION),
             "example-charities": render_template('_data_example_charities.html.j2', data=charity_data),
-            "charity-count": "{:,.0f} UK NGO{}".format(charity_data["count"], "" if charity_data["count"] == 1 else "s")
+            "charity-count": "{:,.0f} UK NGO{}".format(charity_data["count"], "" if charity_data["count"] == 1 else "s"),
+            "word-cloud": render_template('_data_word_cloud.html.j2', charts=charts),
         }
 
         if page=="show-charities":

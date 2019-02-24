@@ -26,6 +26,12 @@
 
         {{ figure("count", "Number of charities by size")}}
         {{ figure("amount", "Amount of income by size (£)")}}
+        <figure class="fl w-100 w-50-l pr3-l mh0 mv2">
+            <figcaption class="f4 b mv1 lh-title">How organisations describe themselves</figcaption>
+            <div id="word-cloud">
+            {% include '_data_word_cloud.html.j2' %}
+            </div>
+        </figure>
         {% for k in ["causes", "beneficiaries", "operations"] %}
         {{ figure(k, k|title )}}
         {% endfor %}

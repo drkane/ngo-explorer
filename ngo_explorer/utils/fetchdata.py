@@ -28,12 +28,7 @@ class GraphQLClientRequests(GraphQLClient):
             headers[self.headername] = '{}'.format(self.token)
 
         r = requests.post(self.endpoint, json=data, headers=headers)
-
         r.raise_for_status()
-        if r.from_cache:
-            print("Used cache")
-        else:
-            print("cache not used")
         return r.json()
 
 

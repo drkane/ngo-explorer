@@ -1,5 +1,7 @@
 import copy
 import uuid
+from collections import Counter
+import re
 
 from flask import current_app
 import plotly.graph_objs as go
@@ -69,6 +71,7 @@ def get_charts(data):
             k: horizontal_bar(data["aggregate"][k]["buckets"], "count")
             for k in CLASSIFICATION.keys()
         },
+        "word_cloud": word_cloud(data["list"]),
     }
 
 
@@ -247,3 +250,33 @@ def parse_income_buckets(income_buckets: list):
         income_buckets.append(i)
 
     return income_buckets
+
+def word_cloud(charity_data):
+    stop_words = [
+        # from https://gist.github.com/sebleier/554280
+        "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself",
+        "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its",
+        "itself", "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom",
+        "this", "that", "these", "those", "am", "is", "are", "was", "were", "be", "been", "being",
+        "have", "has", "had", "having", "do", "does", "did", "doing", "a", "an", "the", "and", "but",
+        "if", "or", "because", "as", "until", "while", "of", "at", "by", "for", "with", "about", "against",
+        "between", "into", "through", "during", "before", "after", "above", "below", "to", "from", "up",
+        "down", "in", "out", "on", "off", "over", "under", "again", "further", "then", "once", "here",
+        "there", "when", "where", "why", "how", "all", "any", "both", "each", "few", "more", "most",
+        "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very",
+        "s", "t", "can", "will", "just", "don", "should", "now",
+        # others
+        "throughout",
+    ]
+    alpha_regex = r'[^a-zA-Z]+'
+
+    words = Counter()
+    for c in charity_data:
+        a = c.get("activities", "").split()
+        for word in a:
+            word = re.sub(alpha_regex, '', word.lower())
+            if word in stop_words or len(word) <=3:
+                continue
+            words.update([word])
+
+    return dict(words.most_common(50))
