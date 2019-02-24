@@ -42,6 +42,12 @@ CLASSIFICATION = {
     }
 }
 
+# def clean_filters(filters):
+
+#     return {
+#         k: v 
+#     }
+
 
 def parse_filters(filters):
     return_filters = {}

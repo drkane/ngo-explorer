@@ -1,0 +1,24 @@
+<ul class="list ma0 pa0 f7 lh-copy">
+    {% if filters.get("filter-search") %}
+    <li class="flex items-center mb1">
+        <i class="material-icons md-18">filter_list</i> 
+        <strong class="pr1">Search</strong> 
+        "{{ filters.get("filter-search") }}"
+    </li>
+    {% endif %}
+
+    {% if filters.get("filter-classification") %}
+    {% set categories = filters.getlist("filter-classification") %}
+    {% for i in classification.keys() %}
+        {% for j in classification[i].keys() %}
+            {% if j in categories %}
+            <li class="flex items-center mb1">
+                <i class="material-icons md-18">filter_list</i> 
+                <strong class="pr1">{{ i|title }}</strong>
+                {{ classification[i][j] }}
+            </li>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% endif %}
+</ul>

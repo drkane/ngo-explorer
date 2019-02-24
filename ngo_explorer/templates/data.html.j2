@@ -20,21 +20,9 @@
 
             <figure class="fl w-100 w-50-l pr3-l mh0 mv2">
                 <figcaption class="f4 b mv1 lh-title">Example charities</figcaption>
-                <dl>
-                {% for c in data.list %}
-                    <dt class="b">{{ c.name }}</dt>
-                    <dd class="mw6-l ml3">
-                        <p class="f6">
-                            Charity number <a class="link dim dark-blue b" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">{{ c.id }}</a>
-                            {% if c.income.latest.total %} | 
-                            Income <strong>{{ "£{:,.0f}".format(c.income.latest.total) }}</strong>
-                            <span class="f7 i gray">[year ending {{ c.income.latest.date[0:10] }}]</span>
-                            {% endif %}
-                        </p>
-                        <p class="f7 lh-copy">{{ c.activities }}</p>
-                    </dd>
-                {% endfor %}
-                </dl>
+                <div id="example-charities">
+                {% include '_data_example_charities.html.j2' %}
+                </div>
             </figure>
 
             {{ figure("count", "Number of charities by size")}}
@@ -60,6 +48,7 @@
 {% block scripts %}
 {{ super() }}
 <script src="{{ url_for('static', filename='vendor/choices/choices.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/dom-purify/purify.min.js') }}"></script>
 <script>
     const api_url = '{{ request.path }}.json';
     const charts = {{ charts|to_plotlyjson }};

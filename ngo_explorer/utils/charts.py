@@ -138,6 +138,12 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False):
     #   ...various values
     # }
 
+    if not categories:
+        return dict(
+            data=[],
+            layout={},
+        )
+
     hb_plot = plotly.tools.make_subplots(
         rows=len(categories),
         cols=1,
@@ -192,14 +198,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False):
         data=hb_plot.to_dict().get('data', []),
         layout=hb_plot.to_dict().get('layout', {}),
         id=str(uuid.uuid4()).replace("-", "_"),
-        # config=plotly.offline._get_jconfig(dict(
-        #     displayModeBar=False
-        # ))
     )
-
-    return plotly.offline.plot(hb_plot, output_type='div', include_plotlyjs=False, config=dict(
-        displayModeBar=False,
-    ))
 
 def plotly_json(data):
     return _json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)

@@ -1,12 +1,12 @@
-{% macro tabs(current_page, base_path) %}
+{% macro tabs(current_page, pages) %}
 <nav class="w-100 mb2 cf" id="tabs">
     <ul class="list mh0 mv2 pa0">
-    {% for i  in ["Dashboard", "Show charities", "Download"] %}
-        <li class="mr2 dib">
-        {% if current_page==i %}
-            <a class="link white pa2 bg-gray f4" href="{{ request.path }}">{{ i }}</a>
+    {% for page_id, page  in pages.items() %}
+        <li class="mr2 dib tab">
+        {% if current_page==page.name %}
+            <a class="link white pa2 bg-gray f4 tab-url" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
         {% else %}
-            <a class="link near-black pa2 bg-light-gray f4" href="{{ base_path }}{% if not loop.first %}/{{ i|slugify }}{% endif %}">{{ i }}</a>
+            <a class="link near-black pa2 bg-light-gray f4 tab-url" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
         {% endif %}
         </li>
     {% endfor %}

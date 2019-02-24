@@ -73,18 +73,18 @@ filter_form.addEventListener('submit', (event)=> {
                 }
             });
 
-            // update the charity count
-            if (response["data"]["count"] == 1) {
-                document.getElementById("charity-count").innerText = "one UK NGO";
-            } else {
-                document.getElementById("charity-count").innerText = response["data"]["count"].toLocaleString(undefined, { maximumFractionDigits: 0 }) + " UK NGOs";
-            }
+            // update the charity count & example charities
+            // add list of what the filters are
+            Object.keys(response["inserts"]).forEach((key)=> {
+                document.getElementById(key).innerHTML = DOMPurify.sanitize(response["inserts"][key]);
+            });
 
             // update the show_charities and download urls
-
-            // update the example charities
-
-            // add list of what the filters are
+            navtabs = document.getElementById('tabs');
+            for (const tab of navtabs.getElementsByClassName('tab-url')) {
+                var tab_id = tab.id.replace(/^tab\-/, "");
+                tab.href = response["pages"][tab_id]["url"];
+            }
         });
 
 
