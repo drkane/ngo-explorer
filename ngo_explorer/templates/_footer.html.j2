@@ -9,17 +9,29 @@
         <p class="normal ma0 f3">
             Building networks across development NGOs
         </p>
+        <p class="normal mb0 mt3 f6">
+            Built by <a href="https://dkane.net/" target="_blank">David Kane</a> |
+            {# Design by <a href=""></a> | #}
+            Data from <a href="https://charitybase.uk/" target="_blank">Charitybase</a>;
+            <a href="http://d-portal.org/ctrack.html#view=search" target="_blank">IATI</a>
+        </p>
     </div>
-    <div class="fr-ns fl w-50-ns w-100 mid-gray">
-        <a class="bg-gray pa1 fr" href="https://siid.group.shef.ac.uk/">
-            <img class=""
-                 src="{{ url_for('static', filename='images/siid-logo.svg') }}"
-                 title="Sheffield Institute for International Development (SIID, University of Sheffield)" />
-        </a>
-        <a class="mr2 fr" href="https://www.gdi.manchester.ac.uk/">
-            <img class=""
-                  src="{{ url_for('static', filename='images/gdi_logo.png') }}"
-                  title="Global Development Institute (GDI, University of Manchester)" />
-        </a>
+    <div class="fr-ns fl w-50-ns mt2 mt0-ns w-100 mid-gray tr">
+        <ul class="list ma0 pa0 flex-ns items-start justify-between">
+            <li class="dib mv0 mr2-ns mb2 mb0-ns pa0 bg-gray" style="margin-left: auto;">
+                <a class="pa2" href="https://siid.group.shef.ac.uk/">
+                    <img class="cf"
+                        src="{{ url_for('static', filename='images/siid-logo.svg') }}"
+                        title="Sheffield Institute for International Development (SIID, University of Sheffield)" />
+                </a>
+            </li>
+            <li class="dib ma0 pa0 mt2 mt0-ns">
+                <a class="mw3" href="https://www.gdi.manchester.ac.uk/">
+                    <img class="cf"
+                        src="{{ url_for('static', filename='images/gdi_logo.png') }}"
+                        title="Global Development Institute (GDI, University of Manchester)" />
+                </a>
+            </li>
+        </ul>
     </div>
 </footer>

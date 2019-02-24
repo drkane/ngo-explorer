@@ -4,13 +4,14 @@ Data tool to help international development NGOs to navigate charity commission 
 
 ## Project partners:
 
-- [The Sheffield Institute for International Development](http://siid.group.shef.ac.uk/)
+- [Global Development Institute (GDI, University of Manchester)](http://siid.group.shef.ac.uk/)
+- [Sheffield Institute for International Development (SIID, University of Sheffield)](https://www.gdi.manchester.ac.uk/)
 - [David Kane](https://dkane.net/)
 - [CharityBase](https://charitybase.uk/)
 
 ## About this app
 
-This app uses [Dash by plotly](https://dash.plot.ly/) to fetch and display data from the
+This app uses [Flask](http://flask.pocoo.org/) to fetch and display data from the
 [CharityBase API](https://charity-base.github.io/charity-base-docs).
 
 ## Installing app using dokku
