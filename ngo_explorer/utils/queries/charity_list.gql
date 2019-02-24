@@ -16,6 +16,11 @@ query getCharityList($filters: FilterCHCInput!, $limit: PageLimit = 30, $skip: I
             total
           }
         }
+        geo {
+          latitude
+          longitude
+          region
+        }
       }
     }
   }

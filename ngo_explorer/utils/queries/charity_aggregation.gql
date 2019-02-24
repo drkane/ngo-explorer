@@ -39,6 +39,11 @@ query getCharityAggregation($filters: FilterCHCInput!, $limit: PageLimit) {
             total
           }
         }
+        geo {
+          latitude
+          longitude
+          region
+        }
       }
     }
   }
