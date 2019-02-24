@@ -1,4 +1,4 @@
-<div class="w-100 pa2 bg-light-gray cf mt2">
+<div class="w-100 pa2 bg-light-gray cf mt2" id="iati">
     <div class="cf">
         <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-60-l w-100 mh0 mv2">
@@ -18,14 +18,11 @@
     {% if area.countries|length > 5 %}
         <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-60-l w-100 mh0 mv2">
-            <p class="lh-copy pa0 ma0">
-                Select a country below to see a list of UK-registered organisations 
-            </p>
             <ul class="list pa0 ma0">
                 {% for c in area.countries %}
                     {% if iati_data.get(c["iso2"], []) %}
                     <li class="di mr2 pb0">
-                        <a href="{{ url_for('data.country', countryid=c.iso.lower()) }}"
+                        <a href="{{ url_for('data.country', countryid=c.iso.lower()) }}#iati"
                             class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
                             {{ c.name }}
                         </a>
