@@ -21,6 +21,9 @@
             {% block content %}
             {% endblock %}
             </div>
+            {% block footer %}
+                {% include "_footer.html.j2" %}
+            {% endblock %}
         </div>
         {% block scripts %}
         <script src="{{ url_for('static', filename='js/base.js') }}"></script>
