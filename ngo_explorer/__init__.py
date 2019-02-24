@@ -6,6 +6,7 @@ import requests_cache
 
 from .blueprints import home, data
 from .utils.charts import location_map, plotly_json
+from .utils.utils import update_url_values
 
 def create_app(test_config=None):
     
@@ -28,7 +29,7 @@ def create_app(test_config=None):
     # set up url caching
     # @TODO set to a redis instance for live version
     one_week = 60 * 60 * 24 * 7 # in seconds
-    requests_cache.install_cache('demo_cache', expire_after=one_week)
+    requests_cache.install_cache('demo_cache', expire_after=one_week, allowable_methods=('GET', 'POST'))
 
     # ensure the instance folder exists
     try:
@@ -51,5 +52,9 @@ def create_app(test_config=None):
     @app.template_filter('to_plotlyjson')
     def template_to_plotlyjson(data: dict):
         return plotly_json(data)
+
+    @app.template_filter('update_url')
+    def template_update_url_values(url: str, values: dict):
+        return update_url_values(url, values)
 
     return app

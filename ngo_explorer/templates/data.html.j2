@@ -1,5 +1,4 @@
 {% extends "base.html.j2" %}
-{% set active_page =  "Dashboard" %}
 
 {% block title %}{{ area.name }} | NGO Explorer{% endblock %}
 
@@ -11,6 +10,7 @@
 {% endmacro %}
 
 {% block content %}
+{% set active_page =  "dashboard" %}
 <div class="page-content">
     {% include '_data_header.html.j2' %}
     <div class="w-100 pa2 bg-light-gray cf mt2">
@@ -50,7 +50,7 @@
 <script src="{{ url_for('static', filename='vendor/choices/choices.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/dom-purify/purify.min.js') }}"></script>
 <script>
-    const api_url = '{{ request.path }}.json';
+    const api_url = '{{ api_url }}';
     const charts = {{ charts|to_plotlyjson }};
 </script>
 <script src="{{ url_for('static', filename='js/data.js') }}"></script>

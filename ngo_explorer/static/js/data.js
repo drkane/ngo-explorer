@@ -74,9 +74,12 @@ filter_form.addEventListener('submit', (event)=> {
             });
 
             // update the charity count & example charities
+            // update list of charities
             // add list of what the filters are
             Object.keys(response["inserts"]).forEach((key)=> {
-                document.getElementById(key).innerHTML = DOMPurify.sanitize(response["inserts"][key]);
+                if (document.getElementById(key)){
+                    document.getElementById(key).innerHTML = DOMPurify.sanitize(response["inserts"][key]);
+                }
             });
 
             // update the show_charities and download urls
@@ -86,8 +89,4 @@ filter_form.addEventListener('submit', (event)=> {
                 tab.href = response["pages"][tab_id]["url"];
             }
         });
-
-
-
-
 });

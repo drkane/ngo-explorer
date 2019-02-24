@@ -29,40 +29,44 @@ class GraphQLClientRequests(GraphQLClient):
 
         r = requests.post(self.endpoint, json=data, headers=headers)
 
-        try:
-            r.raise_for_status()
-            return r.json()
-        except requests.exceptions.HTTPError as e:
-            print((e.read()))
-            print('')
-            raise e
+        r.raise_for_status()
+        if r.from_cache:
+            print("Used cache")
+        else:
+            print("cache not used")
+        return r.json()
 
 
-def fetch_charitybase(countries: list, filters=None, limit=10, query: str="charity_aggregation"):
+def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, query: str="charity_aggregation"):
     client = GraphQLClientRequests('https://charitybase.uk/api/graphql')
     client.inject_token('Apikey {}'.format(current_app.config["CHARITYBASE_API_KEY"]))
 
-    filters_ = {
-        "areas": {
-            "some": [c['id'] for c in countries],
-            "length": {
-                "lessThanInclusive": filters.get("max_countries", 50)
+    variables = {
+        "filters": {
+            "areas": {
+                "some": [c['id'] for c in countries],
+                "length": {
+                    "lessThanInclusive": filters.get("max_countries", 50)
+                }
             }
-        }
+        },
+        "limit": limit
     }
 
     if filters:
         if "search" in filters:
-            filters_["search"] = filters["search"]
+            variables["filters"]["search"] = filters["search"]
 
         for c in CLASSIFICATION.keys():
             if c in filters:
-                filters_[c] = {
+                variables["filters"][c] = {
                     "some": filters[c]
                 }
+    
+    if query=="charity_list" and skip > 0:
+        variables["skip"] = skip
 
-    variables = {"filters": filters_, "limit": limit}
-    result = client.execute(GQL_QUERIES["charity_aggregation"], variables)
+    result = client.execute(GQL_QUERIES[query], variables)
     
     if result.get("errors") or not result.get("data", {}).get("CHC", {}).get("getCharities"):
         raise Exception(result.get("errors"))

@@ -1,0 +1,53 @@
+<div class="mb2 lh-copy f6">
+    {% set skip = filters.get("filter-skip", 0)|int %}
+    <p class="ma0 pa0">
+        Showing <strong>{{ "{:,.0f}".format(1 + skip) }}</strong>
+        to <strong>{{ "{:,.0f}".format([30 + skip, data.count]|min) }}</strong>
+        of <strong>{{ "{:,.0f}".format(data.count) }}</strong> NGOs
+    </p>
+    <ul class="list mh0 mb0 mt1 pa0 f5">
+        {% if (skip - 30) > 0 %}
+        <li class="dib mr2">
+            <a class="link white dim ph2 pv1 bg-gray" href="{{ pages[active_page].url|update_url({"filter-skip": 0}) }}">
+                &laquo;
+            </a>
+        </li>
+        {% endif %}
+        {% if skip > 0 %}
+        <li class="dib mr2">
+            <a class="link white dim ph2 pv1 bg-gray" href="{{ pages[active_page].url|update_url({"filter-skip": skip - 30}) }}">
+                &lsaquo; Previous
+            </a>
+        </li>
+        {% endif %}
+        {% if skip + 30 < data.count %}
+        <li class="dib">
+            <a class="link white dim ph2 pv1 bg-gray" href="{{ pages[active_page].url|update_url({"filter-skip": skip + 30}) }}">
+                Next &rsaquo;
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+<table class="collapse f6">
+    <thead>
+        <tr>
+            <th class="pa2 v-top">Charity number</th>
+            <th class="pa2 v-top">Name</th>
+            <th class="pa2 v-top tr">Latest income</th>
+            <th class="pa2 v-top tr">Latest income date</th>
+            <th class="pa2 v-top">Activities</th>
+        </tr>
+    </thead>
+    <tbody id="data-list">
+    {% for c in data.list %}
+        <tr class="striped--near-white">
+            <td class="pa2 v-top"><a class="link dim dark-blue" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">{{ c.id }}</a></td>
+            <td class="pa2 v-top">{{ c.name }}</td>
+            <td class="pa2 v-top tr">{% if c.income.latest.total %}{{ "£{:,.0f}".format(c.income.latest.total) }}{% endif %}</td>
+            <td class="pa2 v-top tr">{% if c.income.latest.total %}{{ c.income.latest.date[0:10] }}{% endif %}</td>
+            <td class="pa2 v-top f7 i">{{ c.activities|default("", true) }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

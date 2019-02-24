@@ -3,7 +3,7 @@
     <ul class="list mh0 mv2 pa0">
     {% for page_id, page  in pages.items() %}
         <li class="mr2 dib tab">
-        {% if current_page==page.name %}
+        {% if current_page==page_id %}
             <a class="link white pa2 bg-gray f4 tab-url" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
         {% else %}
             <a class="link near-black pa2 bg-light-gray f4 tab-url" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>

@@ -19,6 +19,7 @@ SIMILAR_INITIATIVE = {
 }
 
 
+@bp.route('/region/<regiontype>/<regionid>/<subpage>.<filetype>', methods=['GET', 'POST'])
 @bp.route('/region/<regiontype>/<regionid>.<filetype>', methods=['GET', 'POST'])
 @bp.route('/region/<regiontype>/<regionid>/<subpage>')
 @bp.route('/region/<regiontype>/<regionid>')
@@ -32,8 +33,9 @@ def region(regionid, regiontype="continent", filetype="html", subpage="dashboard
     )
 
 
-@bp.route('/country/<countryid>/<subpage>')
+@bp.route('/country/<countryid>/<subpage>.<filetype>', methods=['GET', 'POST'])
 @bp.route('/country/<countryid>.<filetype>', methods=['GET', 'POST'])
+@bp.route('/country/<countryid>/<subpage>')
 @bp.route('/country/<countryid>')
 def country(countryid, filetype="html", subpage='dashboard'):
     area = get_multiple_countries(countryid)
@@ -55,23 +57,27 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
         "dashboard": {
             "name": "Dashboard",
             "template": 'data.html.j2',
-            "url": url_for(url_base[0], **{**url_base[1], **filters_raw})
+            "url": url_for(url_base[0], **{**url_base[1], **filters_raw}),
+            "api_url": url_for(url_base[0], **{**url_base[1], **filters_raw, "filetype": "json"}),
         },
         "show-charities": {
-            "name": "Show charities",
+            "name": "Show NGOs",
             "template": 'data-show-charities.html.j2',
-            "url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "show-charities"})
+            "url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "show-charities"}),
+            "api_url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "show-charities", "filetype": "json"}),
         },
         "download": {
             "name": "Download",
             "template": 'data-download.html.j2',
-            "url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "download"})
+            "url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "download"}),
+            "api_url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "download", "filetype": "json"}),
         },
     }
+    qgl_query = "charity_aggregation" if page=="dashboard" else "charity_list"
 
     filters = parse_filters(request.values)
-    charity_data = fetch_charitybase(area["countries"], filters=filters, limit=3)
-    charts = get_charts(charity_data)
+    charity_data = fetch_charitybase(area["countries"], filters=filters, limit=30, skip=filters.get("skip", 0), query=qgl_query)
+    charts = get_charts(charity_data) if page=="dashboard" else {}
 
     if filetype=="json":
 
@@ -80,6 +86,10 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
             "example-charities": render_template('_data_example_charities.html.j2', data=charity_data),
             "charity-count": "{:,.0f} UK NGO{}".format(charity_data["count"], "" if charity_data["count"] == 1 else "s")
         }
+
+        if page=="show-charities":
+            inserts["data-list"] = render_template(
+                '_data_list_table.html.j2', pages=pages, active_page='show-charities', filters=request.values, data=charity_data)
 
         return jsonify(dict(
             area=area,
@@ -99,6 +109,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
                            charts=charts,
                            filters=request.values,
                            pages=pages,
+                           api_url=pages[page]['api_url'],
                            download_options=DOWNLOAD_OPTIONS,
                            classification=CLASSIFICATION,
                            similar_initiative=SIMILAR_INITIATIVE)

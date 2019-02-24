@@ -71,4 +71,8 @@ def parse_filters(filters):
     # max_countries
     return_filters["max_countries"] = int(filters.get("filter-max-countries", 50))
 
+    # page for lists
+    if filters.get("filter-skip"):
+        return_filters['skip'] = int(filters.get("filter-skip"))
+
     return return_filters
