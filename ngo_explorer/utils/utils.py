@@ -1,5 +1,6 @@
 import urllib.parse
 import copy
+import re
 
 def get_scaling_factor(value):
     if value > 2000000000:
@@ -91,3 +92,16 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
         return new_ds[0]
 
     return new_ds
+
+def correct_titlecase(s):
+    s = re.sub(r'\'S\b', "'s", s)
+    s = re.sub(r'\bOf\b', "of", s)
+    s = re.sub(r'\bThe\b', "the", s)
+    s = re.sub(r'\bFor\b', "for", s)
+    s = re.sub(r'\bAnd\b', "and", s)
+    s = re.sub(r'\bIn\b', "in", s)
+    s = re.sub(r'\bWith\b', "with", s)
+    s = re.sub(r'\bTo\b', "to", s)
+    s = re.sub(r'\bUk\b', "UK", s)
+    s = s[0].upper() + s[1:]
+    return s

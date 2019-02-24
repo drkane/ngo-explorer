@@ -36,22 +36,24 @@
 <table class="collapse f6">
     <thead>
         <tr>
-            <th class="pa2 v-top">Charity number</th>
-            <th class="pa2 v-top">Name</th>
+            <th class="pa2 v-top tl">Charity number</th>
+            <th class="pa2 v-top tl">Name</th>
             <th class="pa2 v-top tr">Latest income</th>
-            <th class="pa2 v-top">Activities</th>
+            <th class="pa2 v-top tl">Activities</th>
+            <th class="pa2 v-top tl">Region<br><span class="normal gray f7">(based on registered office of UK charity)</span></th>
         </tr>
     </thead>
     <tbody id="data-list">
     {% for c in data.list %}
         <tr class="striped--near-white">
             <td class="pa2 v-top"><a class="link dim dark-blue" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">{{ c.id }}</a></td>
-            <td class="pa2 v-top">{{ c.name }}</td>
+            <td class="pa2 v-top">{{ c.name|correct_titlecase }}</td>
             <td class="pa2 v-top tr">
                 {% if c.income.latest.total %}<p class="pa0 ma0">{{ "£{:,.0f}".format(c.income.latest.total) }}</p>{% endif %}
-                {% if c.income.latest.total %}<p class="f7 gray mb0 mt2">[{{ c.income.latest.date[0:10] }}]</p>{% endif %}
+                {% if c.income.latest.date and c.income.latest.total %}<p class="f7 gray mb0 mt2">[{{ c.income.latest.date[0:10] }}]</p>{% endif %}
             </td>
             <td class="pa2 v-top f7">{{ c.activities|default("", true) }}</td>
+            <td class="pa2 v-top f7">{{ c.geo.region|default("", true) }}</td>
         </tr>
     {% endfor %}
     </tbody>

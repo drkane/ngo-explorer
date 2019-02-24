@@ -153,6 +153,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False):
         subplot_titles=[x["name"] for x in categories],
         shared_xaxes=True,
         vertical_spacing=0.05,
+        print_grid=False,
     )
     for k, x in enumerate(categories):
         hb_plot.append_trace(dict(
@@ -266,7 +267,7 @@ def word_cloud(charity_data):
         "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very",
         "s", "t", "can", "will", "just", "don", "should", "now",
         # others
-        "throughout",
+        "throughout", "around",
     ]
     alpha_regex = r'[^a-zA-Z]+'
 

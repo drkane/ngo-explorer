@@ -6,7 +6,7 @@ import requests_cache
 
 from .blueprints import home, data, upload
 from .utils.charts import location_map, plotly_json
-from .utils.utils import update_url_values
+from .utils.utils import update_url_values, correct_titlecase
 
 def create_app(test_config=None):
     
@@ -65,5 +65,9 @@ def create_app(test_config=None):
     @app.template_filter('update_url')
     def template_update_url_values(url: str, values: dict):
         return update_url_values(url, values)
+
+    @app.template_filter('correct_titlecase')
+    def template_correct_titlecase(s: str):
+        return correct_titlecase(s)
 
     return app
