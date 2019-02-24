@@ -1,9 +1,13 @@
 <dl>
 {% for c in data.list[0:3] %}
-    <dt class="b">{{ c.name }}</dt>
+    <dt class="b">
+        <a class="link dim dark-blue b" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">
+            {{ c.name }}
+        </a>
+    </dt>
     <dd class="mw6-l ml3">
         <p class="f6">
-            Charity number <a class="link dim dark-blue b" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">{{ c.id }}</a>
+            Charity number <a class="link dim black b" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">{{ c.id }}</a>
             {% if c.income.latest.total %} | 
             Income <strong>{{ "£{:,.0f}".format(c.income.latest.total) }}</strong>
             <span class="f7 i gray">[year ending {{ c.income.latest.date[0:10] }}]</span>
