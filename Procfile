@@ -1,1 +1,1 @@
-web: gunicorn ngo_explorer:create_app
+web: gunicorn "ngo_explorer:create_app()"
