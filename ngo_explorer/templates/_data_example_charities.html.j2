@@ -1,3 +1,7 @@
+<div class="">
+    <span class="f1">{{ data.count }}</span> NGO{{ "s" if data.count > 1 else "" }} found
+</div>
+<h3>Example charities</h3>
 <dl>
 {% for c in data.list[0:3] %}
     <dt class="b">
@@ -7,13 +11,12 @@
     </dt>
     <dd class="mw6-l ml3">
         <p class="f6">
-            Charity number <a class="link dim black b" href="{{ url_for('data.charity', charityid=c.id) }}">{{ c.id }}</a>
-            {% if c.income.latest.total %} | 
+            {# Charity number <a class="link dim black b" href="{{ url_for('data.charity', charityid=c.id) }}">{{ c.id }}</a> #}
+            {% if c.income.latest.total %}
             Income <strong>{{ "£{:,.0f}".format(c.income.latest.total) }}</strong>
             <span class="f7 i gray">[year ending {{ c.income.latest.date[0:10] }}]</span>
             {% endif %}
         </p>
-        <p class="f7 lh-copy">{{ c.activities }}</p>
     </dd>
 {% endfor %}
 </dl>
