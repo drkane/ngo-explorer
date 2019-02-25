@@ -8,7 +8,7 @@
                 Select a country below to see a list of UK-registered organisations operating in 
                 these countries, sourced from data published by IATI publishers.
                 {% else %}
-                List of UK-registered organisations operating in {% if area.countries|length > 1 %}these countries{% else %}this country{% endif %},
+                List of UK-registered organisations operating in {% if area.countries|length > 1 %}these countries{% else %}{{ area.countries|map(attribute="name")|first }}{% endif %},
                 sourced from data published by IATI publishers.
                 {% endif %}
             </p>
@@ -76,7 +76,7 @@
             <h3 class="mh0 mt3 mb0 pa0">
                 <a href="https://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
                     target="_blank" class="normal link b black">
-                    Data from IATI d-portal
+                    Data on {{ area.countries|map(attribute="name")|first }} from IATI d-portal
                 </a>
             </h3>
             <iframe scrolling="no"

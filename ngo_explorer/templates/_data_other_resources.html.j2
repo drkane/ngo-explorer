@@ -23,7 +23,7 @@
                 <li class="di mr2 pb0">
                     <a href="https://ngoaidmap.org/location/{{ c.ngoaidmap }}" target="_blank" 
                         class="link dim blue underline mw5 nowrap dib overflow-hidden truncate external-link">
-                        {{ c.name }}
+                        {{ c.name }}{% if loop.length == 1 %} on NGO Aid Map{% endif %}
                     </a>
                 </li>
             {% endfor %}
@@ -45,7 +45,7 @@
                 <li class="di mr2 pb0">
                     <a href="https://devtracker.dfid.gov.uk/countries/{{ c.iso2 }}/" target="_blank" 
                         class="link dim blue underline mw5 nowrap dib overflow-hidden truncate external-link">
-                        {{ c.name }}
+                        {{ c.name }}{% if loop.length == 1 %} on devtracker{% endif %}
                     </a>
                 </li>
             {% endfor %}
