@@ -4,8 +4,8 @@ import csv
 from flask import Blueprint, render_template, request, jsonify, url_for, Response
 import xlsxwriter
 
-from ..utils.countries import get_country_groups, get_multiple_countries
-from ..utils.fetchdata import fetch_charitybase, fetch_iati
+from ..utils.countries import get_country_groups, get_multiple_countries, COUNTRIES
+from ..utils.fetchdata import fetch_charitybase, fetch_iati, fetch_charitybase_fromids
 from ..utils.filters import CLASSIFICATION, parse_filters
 from ..utils.download import DOWNLOAD_OPTIONS
 from ..utils.charts import get_charts
@@ -206,3 +206,11 @@ def download_file(countries, filters, fields, filetype='csv'):
             "Content-disposition": "attachment; filename=download.{}".format(extension)
         }
     )
+
+@bp.route('/charity/<charityid>')
+def charity(charityid):
+    charity_data = fetch_charitybase_fromids([charityid])
+    data = charity_data["list"][0]
+    countries = [c["id"] for c in data["areas"] if c["id"].startswith("D-")]
+    data["countries"] = [c for c in COUNTRIES if c["id"] in countries]
+    return render_template('charity.html.j2', data=data)

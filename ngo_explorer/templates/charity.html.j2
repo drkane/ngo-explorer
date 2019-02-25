@@ -1,0 +1,41 @@
+{% extends "base.html.j2" %}
+
+{% block title %}{{ data.name|correct_titlecase }} | NGO Explorer{% endblock %}
+
+{% block content %}
+<div class="page-header mb4 w-100 cf">
+    <div class="w-100 w-50-l fl">
+        <h2 class="lh-title ma0">{{ data.name|correct_titlecase }}</h2>
+        <span class="f1 fl h1 gray mr1">&ldquo;</span>
+        <p class="lh-copy mv2 pa0 f5 gray mw6">
+            {{ data.activities }}
+            {# <span class="f1 fr h2 mr1">&rdquo;</span> #}
+        <p>
+        <ul class="list">
+            <li>
+                <a href="https://charitybase.uk/charities/{{ data.id }}" target="_blank">
+                    Charitybase <i class="material-icons md-18">open_in_new</i>
+                </a>
+            </li>
+            <li>
+                <a href="http://beta.charitycommission.gov.uk/charity-details/?regid={{ data.id }}&subid=0" target="_blank">
+                    Charity Commission <i class="material-icons md-18">open_in_new</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="mb3 w-100 w-25-l fr">
+    {% if data.countries|length > 0 %}
+        {{ data.countries|location_map() }}
+        {% if data.countries|length > 5 %}
+        <p>{{ data.name|correct_titlecase }} works in {{ "{:,.0f}".format(data.countries|length) }} countries</p>
+        {% else %}
+        <p>{{ data.name|correct_titlecase }} works in {% for c in data.countries %}
+            <a href="{{ url_for('data.country', countryid=c.iso) }}">
+            {{ c.name }}</a>{% if loop.revindex0 == 1 %} and{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
+        {% endif %}
+    {% endif %}
+    </div>
+    
+</div>
+{% endblock %}

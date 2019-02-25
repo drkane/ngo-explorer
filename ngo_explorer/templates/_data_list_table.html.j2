@@ -46,7 +46,7 @@
     {% for c in data.list %}
         <tr class="striped--near-white">
             <td class="pa2 v-top">
-                <a class="link dim dark-blue" href="https://charitybase.uk/charities/{{ c.id }}" target="_blank">
+                <a class="link dim dark-blue" href="{{ url_for('data.charity', charityid=c.id) }}">
                     <p class="pa0 ma0 f5 b">{{ c.name|correct_titlecase }}</p>
                     <p class="f7 gray mb0 mt2">Charity number <strong>{{ c.id }}</strong></p>
                 </a>
