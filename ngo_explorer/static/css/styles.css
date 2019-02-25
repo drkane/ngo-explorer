@@ -28,3 +28,9 @@
 g.infolayer .annotation {
     /* font-weight: bold; */
 }
+
+.external-link::after {
+    content: 'open_in_new';
+    font-family: 'Material Icons';
+    font-size: 80%;
+}

@@ -211,6 +211,9 @@ def download_file(countries, filters, fields, filetype='csv'):
 def charity(charityid):
     charity_data = fetch_charitybase_fromids([charityid])
     data = charity_data["list"][0]
+    if (data.get("website") or "").strip() != "":
+        if not data["website"].startswith("http"):
+            data["website"] = "//" + data["website"]
     countries = [c["id"] for c in data["areas"] if c["id"].startswith("D-")]
     data["countries"] = [c for c in COUNTRIES if c["id"] in countries]
     return render_template('charity.html.j2', data=data)
