@@ -101,6 +101,7 @@ def correct_titlecase(s):
     substitutions = [
         (r'\b([^aeiouAEIOU,0-9]+)\b', lambda x: x[0].upper() if x[0] else x),
         (r'\'S\b', "'s"),
+        (r'\'T\b', "'t"),
         (r'\bOf\b', "of"),
         (r'\bThe\b', "the"),
         (r'\bFor\b', "for"),
