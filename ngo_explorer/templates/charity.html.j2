@@ -9,17 +9,22 @@
         <span class="f1 fl h1 gray mr1">&ldquo;</span>
         <p class="lh-copy mv2 pa0 f5 gray mw6">
             {{ data.activities }}
-            {# <span class="f1 fr h2 mr1">&rdquo;</span> #}
         <p>
-        {# <pre>{{ data|tojson(indent=4)}}</pre> #}
+        {% if data.website %}
+        <p>
+            <a href="{{ data.website }}" target="_blank" class="external-link">
+                {{ data.website|replace("https://", "")|replace("http://", "")|replace("//", "") }}
+            </a>
+        </p>
+        {% endif %}
+        {% if data.income.latest.total %}
+        <p>
+            <strong>Latest income:</strong> {{ "£{:,.0f}".format(data.income.latest.total) }}
+            <span class="f6 gray">({{ data.income.latest.date[0:10] }})</span>
+        </p>
+        {% endif %}
+        <p class="b">Other links:</p>
         <ul class="list">
-            {% if data.website %}
-            <li>
-                <a href="{{ data.website }}" target="_blank" class="external-link">
-                    {{ data.website|replace("https://", "")|replace("http://", "")|replace("//", "") }}
-                </a>
-            </li>
-            {% endif %}
             <li>
                 <a href="https://charitybase.uk/charities/{{ data.id }}" target="_blank" class="external-link">
                     Charitybase
