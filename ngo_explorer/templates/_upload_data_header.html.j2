@@ -1,6 +1,11 @@
 <div class="page-header mb4 w-100 cf">
     <div class="w-100 w-50-l fl">
+        {% if title %}
+        <h2 class="lh-title ma0">{{ title }}</h2>
+        <h3 class="lh-title ma0 gray">Data on {{ "{:,.0f}".format(charitynumbers|length) }} charities</h2>
+        {% else %}
         <h2 class="lh-title ma0">Data on {{ "{:,.0f}".format(charitynumbers|length) }} charities</h2>
+        {% endif %}
         <p class="lh-copy mv2 pa0 f6 gray mw6">
             Figures refer to charities registered with the Charity Commission for England and Wales,
             based on a selection of charities uploaded by a user.

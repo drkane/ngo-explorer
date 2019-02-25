@@ -29,9 +29,12 @@ def process_data():
 
     list_id = str(uuid.uuid4())
 
+    title = request.values.get("upload-name")
+
     # @TODO: save list here using list ID
     with open(os.path.join(current_app.config["DATA_CONTAINER"], "{}.pkl".format(list_id)), "wb") as a:
         pickle.dump(dict(
+            title=title,
             charitynumbers=charitynumbers,
             data=charity_data,
             charts=charts
