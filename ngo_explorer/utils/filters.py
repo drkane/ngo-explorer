@@ -55,6 +55,8 @@ def parse_filters(filters):
     # search
     if filters.get("filter-search"):
         return_filters["search"] = filters.get("filter-search")
+        if '"' not in return_filters["search"] and " OR " not in return_filters["search"]:
+            return_filters["search"] = '"{}"'.format(return_filters["search"])
 
     # cause, beneficiaries, operations
     if filters.get("filter-classification"):
