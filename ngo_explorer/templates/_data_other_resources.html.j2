@@ -33,6 +33,28 @@
     
     <div class="cf">
         <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">
+            <a href="https://devtracker.dfid.gov.uk/" target="_blank" class="normal link b black">DfID Dev Tracker</a>
+        </div>
+        <div class="db fl w-60-l w-100 mh0 mv2">
+            <p class="mt0 mb2">
+                Dev Tracker shows the international development projects led by the Department for International Development
+                (DFID), other UK government departments and partners.
+            </p>
+            <ul class="list pa0 ma0">
+            {% for c in area["countries"] %}
+                <li class="di mr2 pb0">
+                    <a href="https://devtracker.dfid.gov.uk/countries/{{ c.iso2 }}/" target="_blank" 
+                        class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
+                        {{ c.name }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    <div class="cf">
+        <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">
             <a href="https://ngoaidmap.org/" target="_blank" class="normal link b black">WANGO</a>
         </div>
         <div class="db fl w-60-l w-100 mh0 mv2">
