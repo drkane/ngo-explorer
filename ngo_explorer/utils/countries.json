@@ -14,7 +14,7 @@
         },
         {
             "id": "D-240",
-            "name": "Akrotiri And Dhekelia",
+            "name": "Akrotiri and Dhekelia",
             "iso": "ALA",
             "dac_status": null,
             "undp": null,
@@ -110,7 +110,7 @@
         },
         {
             "id": "D-9",
-            "name": "Antigua And Barbuda",
+            "name": "Antigua and Barbuda",
             "iso": "ATG",
             "dac_status": null,
             "undp": "Latin America and the Caribbean",
@@ -326,7 +326,7 @@
         },
         {
             "id": "D-28",
-            "name": "Bosnia And Herzegovina",
+            "name": "Bosnia and Herzegovina",
             "iso": "BIH",
             "dac_status": null,
             "undp": "Europe and Central Asia",
@@ -698,7 +698,7 @@
         },
         {
             "id": "D-226",
-            "name": "Democratic Republic Of The Congo",
+            "name": "Democratic Republic of the Congo",
             "iso": "COD",
             "dac_status": "Least Developed",
             "undp": "Sub-Saharan Africa",
@@ -1238,7 +1238,7 @@
         },
         {
             "id": "D-263",
-            "name": "Isle Of Man",
+            "name": "Isle of Man",
             "iso": "IMN",
             "dac_status": null,
             "undp": null,
@@ -2162,7 +2162,7 @@
         },
         {
             "id": "D-293",
-            "name": "Republic Of South Sudan",
+            "name": "South Sudan",
             "iso": "SSD",
             "dac_status": "Least Developed",
             "undp": "Sub-Saharan Africa",
@@ -2258,7 +2258,7 @@
         },
         {
             "id": "D-179",
-            "name": "Sao Tome And Principe",
+            "name": "Sao Tome and Principe",
             "iso": "STP",
             "dac_status": "Least Developed",
             "undp": "Sub-Saharan Africa",
@@ -2522,7 +2522,7 @@
         },
         {
             "id": "D-283",
-            "name": "St Pierre And Miquelon",
+            "name": "St Pierre and Miquelon",
             "iso": "SPM",
             "dac_status": null,
             "undp": null,
@@ -2534,7 +2534,7 @@
         },
         {
             "id": "D-176",
-            "name": "St Vincent And Grenadines",
+            "name": "St Vincent and Grenadines",
             "iso": "VCT",
             "dac_status": null,
             "undp": "Latin America and the Caribbean",
@@ -2738,7 +2738,7 @@
         },
         {
             "id": "D-206",
-            "name": "Trinidad And Tobago",
+            "name": "Trinidad and Tobago",
             "iso": "TTO",
             "dac_status": null,
             "undp": "Latin America and the Caribbean",
@@ -2786,7 +2786,7 @@
         },
         {
             "id": "D-288",
-            "name": "Turks And Caicos Islands",
+            "name": "Turks and Caicos Islands",
             "iso": "TCA",
             "dac_status": null,
             "undp": null,
@@ -2930,7 +2930,7 @@
         },
         {
             "id": "D-290",
-            "name": "Wallis And Futuna",
+            "name": "Wallis and Futuna",
             "iso": "WLF",
             "dac_status": null,
             "undp": null,
