@@ -95,8 +95,6 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
 
 
 def correct_titlecase(s):
-
-    consonants = r'[^aeiouAEIOU]+'
     
     substitutions = [
         (r'\b([^aeiouAEIOU,0-9]+)\b', lambda x: x[0].upper() if x[0] else x),
@@ -114,6 +112,7 @@ def correct_titlecase(s):
         (r'([0,4-9])Th\b', r"\1th"),
         (r'1St\b', "1st"),
         (r'2Nd\b', "2nd"),
+        (r'3Rd\b', "3rd"),
         (r'\bmr\b', "Mr"),
         (r'\bmrs\b', "Mrs"),
     ]
