@@ -41,7 +41,7 @@ def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, 
             "areas": {
                 "some": [c['id'] for c in countries],
                 "length": {
-                    "lessThanInclusive": filters.get("max_countries", 50)
+                    "lte": filters.get("max_countries", 50)
                 }
             }
         },
