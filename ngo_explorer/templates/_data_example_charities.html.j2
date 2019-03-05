@@ -1,6 +1,9 @@
 <div class="">
     <span class="f1">{{ "{:,.0f}".format(data.count) }}</span> NGO{{ "s" if data.count > 1 else "" }} found
 </div>
+<div class="">
+    <span class="f1">£{{ data.aggregate.income.buckets|map(attribute='sumIncome')|sum|number_format }}</span> total income
+</div>
 <h3>Example charities</h3>
 <dl>
 {% for c in data.list[0:3] %}
