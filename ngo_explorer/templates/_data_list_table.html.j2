@@ -36,27 +36,32 @@
 <table class="collapse f6">
     <thead>
         <tr>
-            <th class="pa2 v-top tl"></th>
-            <th class="pa2 v-top tr">Latest income</th>
-            <th class="pa2 v-top tl">Activities</th>
-            <th class="pa2 v-top tl">Region<br><span class="normal gray f7">(based on registered office of UK charity)</span></th>
+            <th class="pa2 v-top tl dn dtc-ns"></th>
+            <th class="pa2 v-top tr dn dtc-ns">Latest income</th>
+            <th class="pa2 v-top tl dn dtc-ns">Activities</th>
+            <th class="pa2 v-top tl dn dtc-ns">Region<br><span class="normal gray f7">(based on registered office of UK charity)</span></th>
         </tr>
     </thead>
     <tbody id="data-list">
     {% for c in data.list %}
-        <tr class="striped--near-white">
-            <td class="pa2 v-top">
+        <tr class="striped--near-white db dt-row-ns">
+            <td class="pa2 v-top db dtc-ns">
                 <a class="link dim dark-blue" href="{{ url_for('data.charity', charityid=c.id) }}">
                     <p class="pa0 ma0 f5 b">{{ c.name|correct_titlecase }}</p>
                     <p class="f7 gray mb0 mt2">Charity number <strong>{{ c.id }}</strong></p>
                 </a>
             </td>
-            <td class="pa2 v-top tr">
-                {% if c.income.latest.total %}<p class="pa0 ma0">{{ "£{:,.0f}".format(c.income.latest.total) }}</p>{% endif %}
-                {% if c.income.latest.date and c.income.latest.total %}<p class="f7 gray mb0 mt2">[{{ c.income.latest.date[0:10] }}]</p>{% endif %}
+            <td class="pa2 v-top tr db dtc-ns">
+                {% if c.income.latest.total %}
+                <p class="pa0 ma0 di db-ns">
+                    <span class="di dn-ns">Latest income </span>
+                    {{ "£{:,.0f}".format(c.income.latest.total) }}
+                </p>
+                {% endif %}
+                {% if c.income.latest.date and c.income.latest.total %}<p class="f7 gray mb0 mt2 di db-ns">[{{ c.income.latest.date[0:10] }}]</p>{% endif %}
             </td>
-            <td class="pa2 v-top f7">{{ c.activities|default("", true) }}</td>
-            <td class="pa2 v-top f7">{{ c.geo.region|default("", true) }}</td>
+            <td class="pa2 v-top f7 db dtc-ns">{{ c.activities|default("", true) }}</td>
+            <td class="pa2 v-top f7 db dtc-ns"><span class="di dn-ns">UK registered office: </span>{{ c.geo.region|default("", true) }}</td>
         </tr>
     {% endfor %}
     </tbody>
