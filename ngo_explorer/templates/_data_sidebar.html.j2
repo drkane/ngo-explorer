@@ -20,16 +20,14 @@
                 </p>
             </div>
             <div class="mv3 w-100">
-                <h3 class="f5 normal mb2 b">Classification</h3>
+                {% for group, options in classification.items() %}
+                <h3 class="f5 normal mb2 b">{{ group|title }}</h3>
                 <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-classification" multiple="true">
-                    {% for group, options in classification.items() %}
-                    <optgroup label="{{ group|title }}">
-                        {% for value, label in options.items() %}
-                        <option value="{{value}}">{{label}}</option>
-                        {% endfor %}
-                    </optgroup>
+                    {% for value, label in options.items() %}
+                    <option value="{{value}}">{{label}}</option>
                     {% endfor %}
                 </select>
+                {% endfor %}
             </div>
             <div class="mv3 w-100">
                 <p class="gray i f6">
