@@ -82,6 +82,10 @@ def parse_filters(filters):
     if filters.get("filter-exclude-grantmakers"):
         return_filters['exclude_grantmakers'] = True
 
+    # exclude grantmakers
+    if filters.get("filter-exclude-religious"):
+        return_filters['exclude_religious'] = True
+
     # max_countries
     return_filters["max_countries"] = int(filters.get("filter-max-countries", 50))
 

@@ -76,6 +76,11 @@ def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, 
             if "operations" not in variables["filters"]:
                 variables["filters"]["operations"] = {}
             variables["filters"]["operations"]["notSome"] = ["302"]
+
+        if filters.get("exclude_religious"):
+            if "causes" not in variables["filters"]:
+                variables["filters"]["causes"] = {}
+            variables["filters"]["causes"]["notSome"] = ["108"]
     
     if query=="charity_list" and skip > 0:
         variables["skip"] = skip

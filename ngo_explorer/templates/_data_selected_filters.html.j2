@@ -1,7 +1,7 @@
 {% macro showfilter(title, content, icon="filter_list") %}
 <li class="flex items-center mb1">
     <i class="material-icons md-18">{{ icon }}</i> 
-    <strong class="pr1">{{ title }}</strong> 
+    {% if title %}<strong class="pr1">{{ title }}</strong>{% endif %}
     {{ content }}
 </li>
 {% endmacro %}
@@ -9,7 +9,7 @@
 
 <ul class="list ma0 pa0 f7 lh-copy">
     {% if filters.get("filter-search") %}
-    {{ showfilter("Search", '"{}"'.format(filters.get("filter-search"))) }}
+    {{ showfilter("Search", '"{}"'.format(filters.get("filter-search")), "search") }}
     {% endif %}
 
     {% if filters.get("filter-max-income") and filters.get("filter-min-income") %}
@@ -28,7 +28,11 @@
     {% endif %}
 
     {% if filters.get("filter-exclude-grantmakers") %}
-        {{ showfilter("&nbsp;", "Does not make grants to organisations") }}
+        {{ showfilter("", "Does not make grants to organisations") }}
+    {% endif %}
+
+    {% if filters.get("filter-exclude-religious") %}
+        {{ showfilter("", "Is not a religious organisation") }}
     {% endif %}
 
     {% if filters.get("filter-countries") %}
