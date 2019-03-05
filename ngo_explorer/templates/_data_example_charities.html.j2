@@ -1,5 +1,5 @@
 <div class="">
-    <span class="f1">{{ data.count }}</span> NGO{{ "s" if data.count > 1 else "" }} found
+    <span class="f1">{{ "{:,.0f}".format(data.count) }}</span> NGO{{ "s" if data.count > 1 else "" }} found
 </div>
 <h3>Example charities</h3>
 <dl>

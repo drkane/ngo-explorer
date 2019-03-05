@@ -8,15 +8,17 @@
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
             <h2 class="ma0 mv2-l">Explore UK charities working across the world</h2>
+            <form action="{{ url_for('data.country', **{'countryid': 'all'}) }}">
             <div class="mb1 bb b--gray w-100 flex items-center">
                 <i class="material-icons">search</i>
-                <input id="filter-country-list" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Type to search this list" value="" autocomplete="off" />
+                <input id="filter-country-list" name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Type to search (try a country)" value="" autocomplete="off" />
             </div>
+            </form>
         </div>
     </div>
     <div class="" id="country-list">
-        {% for group, country_list in countries %}
-        <div class="cf country-group lh-copy">
+        {% for group, country_list, show_initial in countries %}
+        <div class="cf country-group lh-copy {% if show_initial %}db{% else %}dn{% endif %}" data-initialclass="{% if show_initial %}db{% else %}dn{% endif %}">
             <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
                 {% if group and group.lower() in config.PLOTLY_GEO_SCOPES %}
                 <div class="w-100 fr country-group-name">
@@ -32,14 +34,44 @@
             <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
                 <ul class="list pa0 ma0">
                     {% for c in country_list|sort(attribute="name") %}
-                    <li class="di mr2 pb2">
-                        <a href="{{ c.id }}" class="link dim blue underline">{{ c.name }}</a>
+                    <li class="dib mr2 pb0">
+                        <a href="{{ c.id }}" class="link dim blue underline">{{ c.name[0].upper() }}{{ c.name[1:] }}</a>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
         {% endfor %}
+        {% for group in [("causes", "What the charity does"), ("beneficiaries", "Who the charity works with"), ("operations", "How the charity works")] %}
+        <div class="cf country-group lh-copy dn" data-initialclass="dn">
+            <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
+                <div class="country-group-name">{{ group[1] }}</div>
+            </div>
+            <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
+                <ul class="list pa0 ma0">
+                    {% for code, name in classification[group[0]].items() %}
+                    <li class="dib mr2 pb0">
+                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-classification': code}) }}" class="link dim blue underline">{{ name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="cf country-group lh-copy dn" data-initialclass="dn">
+            <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
+                <div class="country-group-name">Search</div>
+            </div>
+            <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
+                <ul class="list pa0 ma0">
+                    <li class="dib mr2 pb0">
+                        <a href="#" data-baseurl="{{ url_for('data.country', **{'countryid': 'all'}) }}" class="link dim blue underline" id="search-link">
+                             "<span id='search-term'></span>" in charity name and description
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <div class="fl w-30-l w-100">
