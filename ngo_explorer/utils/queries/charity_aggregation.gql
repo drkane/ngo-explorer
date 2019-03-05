@@ -1,6 +1,6 @@
 fragment allBucket on Aggregation {
   buckets {
-  	id
+  	key
   	name
   	count
   	sumIncome
