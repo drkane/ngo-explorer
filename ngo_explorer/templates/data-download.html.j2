@@ -20,18 +20,6 @@
             </ul>
         </div>
 
-        <div class="bg-gray white pa2 mb3">
-            <h3 class="red bg-white pa1 ma0">Beta version</h3>
-            <p>Please note these fields do not currently work. The download will contain the following fields:</p>
-            <ul>
-                <li>id</li>
-                <li>name</li>
-                <li>activities</li>
-                <li>areas of operation</li>
-                <li>income.latest.date</li>
-                <li>income.latest.total</li>
-            </ul>
-        </div>
     
         <h3 class="mv2 pa0">Fields to include in download</h3>
         <p class="f6 gray i mt1">Charities will be included based on the criteria you have selected.</p>
@@ -39,6 +27,7 @@
             <a id="results-download-select-all" class="link dim dark-blue underline js-select-all" href="#">Select all fields</a> | 
             <a id="results-download-clear-all" class="link dim dark-blue underline js-clear-all" href="#">Clear all fields</a>
         </p>
+        <p class="b">Downloads are limited to {{ "{:,.0f}".format(config['DOWNLOAD_LIMIT']) }} records</p>
         <div class="cf mv3 flex flex-wrap f6">
             {% for slug, options in download_options.items() %}
             <div class="w-100 w-50-m w-25-l pr3">
@@ -53,7 +42,7 @@
                     <div id="results-download-fields-{{ slug }}-{{subslug}}" class="mt3 ">
                         {% for o in suboptions %}
                         <label class="db mv2">
-                            <input type="checkbox" class="mr2" disabled value="{{ o.value }}" name="fields[]" autocomplete="off" {% if o.checked %} checked="checked"{% endif %}>
+                            <input type="checkbox" class="mr2" value="{{ o.value }}" name="fields" autocomplete="off" {% if o.checked %} checked="checked"{% endif %}>
                             {{ o.label }}
                         </label>
                         {% endfor %}
@@ -67,7 +56,7 @@
                 <div id="results-download-fields-{{ slug }}" class="mt3">
                     {% for o in options.options %}
                     <label class="db mv2">
-                        <input type="checkbox" class="mr2" disabled value="{{ o.value }}" name="fields[]" autocomplete="off" {% if o.checked %} checked="checked"{% endif %}>
+                        <input type="checkbox" class="mr2" value="{{ o.value }}" name="fields" autocomplete="off" {% if o.checked %} checked="checked"{% endif %}>
                         {{ o.label }}
                     </label>
                     {% endfor %}

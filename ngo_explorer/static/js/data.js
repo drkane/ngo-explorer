@@ -78,7 +78,7 @@ for (const select_all of document.getElementsByClassName('js-select-all')) {
     if (select_all_id != "results-download") {
         var base_element = document.getElementById(select_all_id);
     }
-    const elements = base_element.querySelectorAll('[name="fields[]"]');
+    const elements = base_element.querySelectorAll('[name="fields"]');
     select_all.addEventListener('click', (event) => {
         event.preventDefault();
         for (const field_checkbox of elements) {
@@ -94,7 +94,7 @@ for (const clear_all of document.getElementsByClassName('js-clear-all')) {
     if (clear_all_id != "results-download") {
         var base_element = document.getElementById(clear_all_id);
     }
-    const elements = base_element.querySelectorAll('[name="fields[]"]');
+    const elements = base_element.querySelectorAll('[name="fields"]');
     clear_all.addEventListener('click', (event) => {
         event.preventDefault();
         for (const field_checkbox of elements) {

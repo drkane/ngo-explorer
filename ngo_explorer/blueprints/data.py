@@ -1,13 +1,9 @@
-import io
-import csv
-
 from flask import Blueprint, render_template, request, jsonify, url_for, Response
-import xlsxwriter
 
 from ..utils.countries import get_country_groups, get_multiple_countries, COUNTRIES
-from ..utils.fetchdata import fetch_charitybase, fetch_iati, fetch_charitybase_fromids
+from ..utils.fetchdata import fetch_charitybase, fetch_iati, fetch_charitybase_fromids, dict_to_gql
 from ..utils.filters import CLASSIFICATION, parse_filters
-from ..utils.download import DOWNLOAD_OPTIONS
+from ..utils.download import DOWNLOAD_OPTIONS, download_file
 from ..utils.charts import get_charts
 from ..utils.utils import nested_to_record
 
@@ -83,7 +79,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
 
     if "download_type" in request.values:
         return download_file(
-            countries=area["countries"],
+            area=area,
             filters=filters,
             fields=request.values.getlist("fields"),
             filetype=request.values.get("download_type").lower(),
@@ -129,84 +125,6 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
                            classification=CLASSIFICATION,
                            similar_initiative=SIMILAR_INITIATIVE)
 
-
-def download_file(countries, filters, fields, filetype='csv'):
-    raw_results = fetch_charitybase(
-        countries,
-        filters=filters,
-        limit=30,
-        skip=0,
-        query="charity_list"
-    )
-    # raw_results = fetch_charities(filters, copy.copy(fields))
-
-    if filetype.lower() in ["excel", "xlsx", "xls"]:
-        filetype = 'xlsx'
-    else:
-        filetype = filetype.lower()
-
-    fieldnames = set()
-    results = []
-    for r in raw_results["list"]:
-        # if "countries" not in fields:
-        #     del r["countries"]
-        # if "areasOfOperation" not in fields:
-        #     del r["areasOfOperation"]
-        if filetype in ["xlsx", "csv"]:
-            r = nested_to_record(r)
-            # r = {k: r.get(k) for k in fields}
-            for k, v in r.items():
-                if isinstance(v, list):
-                    if isinstance(v[0], dict):
-                        v = [i.get("name", list(i.values())[0]) for i in v]
-                    r[k] = ";".join(v)
-            fieldnames.update(r.keys())
-        results.append(r)
-
-    fieldnames = ["id", "name"] + sorted([v for v in fieldnames if v not in ["id", "name"]])
-
-    output = io.StringIO()
-    if filetype == 'json':
-        json.dump(results, output, indent=4)
-        mimetype = 'application/json'
-        extension = 'json'
-
-    elif filetype == 'jsonl':
-        for c in results:
-            output.write(json.dumps(c, output))
-        mimetype = 'application/x-jsonlines'
-        extension = 'jsonl'
-
-    elif filetype == 'xlsx':
-        output = io.BytesIO()
-        workbook = xlsxwriter.Workbook(output)
-        worksheet = workbook.add_worksheet()
-
-        worksheet.write_row(0, 0, fieldnames)
-        row = 1
-        for c in results:
-            vals = [c.get(f) for f in fieldnames]
-            worksheet.write_row(row, 0, vals)
-            row += 1
-        workbook.close()
-        mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        extension = 'xlsx'
-
-    else:  # assume csv if not given
-        writer = csv.DictWriter(output, fieldnames=list(fieldnames))
-        writer.writeheader()
-        for c in results:
-            writer.writerow(c)
-        mimetype = 'text/csv'
-        extension = 'csv'
-
-    return Response(
-        output.getvalue(),
-        mimetype=mimetype,
-        headers={
-            "Content-disposition": "attachment; filename=download.{}".format(extension)
-        }
-    )
 
 @bp.route('/charity/<charityid>')
 def charity(charityid):

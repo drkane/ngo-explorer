@@ -1,0 +1,10 @@
+query getCharityList($filters: FilterCHCInput!, $limit: PageLimit = 30, $skip: Int = 0) {
+  CHC {
+    getCharities(filters: $filters) {
+      count
+      list(limit: $limit, skip: $skip) {
+%s
+      }
+    }
+  }
+}

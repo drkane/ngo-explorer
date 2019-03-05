@@ -32,7 +32,7 @@ class GraphQLClientRequests(GraphQLClient):
         return r.json()
 
 
-def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, query: str="charity_aggregation"):
+def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, query: str="charity_aggregation", query_fields: dict=None):
     client = GraphQLClientRequests('https://charitybase.uk/api/graphql')
     client.inject_token('Apikey {}'.format(current_app.config["CHARITYBASE_API_KEY"]))
 
@@ -79,8 +79,13 @@ def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, 
     
     if query=="charity_list" and skip > 0:
         variables["skip"] = skip
+    
+    if query == "charity_download":
+        query_str = GQL_QUERIES[query] % dict_to_gql(query_fields, 8)
+    else:
+        query_str = GQL_QUERIES[query]
 
-    result = client.execute(GQL_QUERIES[query], variables)
+    result = client.execute(query_str, variables)
     
     if result.get("errors") or not result.get("data", {}).get("CHC", {}).get("getCharities"):
         raise Exception(result.get("errors"))
@@ -99,6 +104,18 @@ def fetch_charitybase_fromids(ids: list):
     if result.get("errors") or not result.get("data", {}).get("CHC", {}).get("getCharities"):
         raise Exception(result.get("errors"))
     return result.get("data", {}).get("CHC", {}).get("getCharities")
+
+
+def dict_to_gql(values, indent=0):
+        lines = []
+        for k, v in values.items():
+            if isinstance(v, dict) and v:
+                lines.append((" " * indent) + k + "{")
+                lines.append(dict_to_gql(v, indent+2))
+                lines.append((" " * indent) + "}")
+            else:
+                lines.append((" " * indent) + k)
+        return "\n".join(lines)
 
 
 with open(os.path.join(os.path.dirname(__file__), 'iati', "oipa-country-participant-gb.json")) as iati_file:

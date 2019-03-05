@@ -33,6 +33,18 @@ def update_url_values(url, values: dict):
         o.scheme, o.netloc, o.path, o.params, query, o.fragment
     ))
 
+
+def record_to_nested(fields: list):
+    fields = [f.split(".") for f in fields]
+    new_fields = {}
+    for f in fields:
+        this_field = new_fields
+        for i in f:
+            if i not in this_field:
+                this_field[i] = {}
+            this_field = this_field[i]
+    return new_fields
+
     
 # from https://github.com/pandas-dev/pandas/blob/v0.24.0/pandas/io/json/normalize.py#L28-L96
 # used under BSD licence

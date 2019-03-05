@@ -23,6 +23,7 @@ def create_app(test_config=None):
             "DATA_CONTAINER",
             os.path.join(os.getcwd(), "uploads")
         ),
+        DOWNLOAD_LIMIT=500,
     )
 
     if test_config is None:
