@@ -5,7 +5,7 @@
         <p class="lh-copy mv2 pa0 f6 gray mw6">
             Figures refer to charities registered with the Charity Commission for England and Wales,
             based on areas of operation supplied to the Charity Commission by the charities themselves.
-            Charities that say they work in more than {{ "50" }} countries are not included.
+            Charities that say they work in more than <span id="max-countries-header">{{ filters.get("filter-max-countries", 50) }}</span> countries are not included.
         <p>
         {% if area.countries|length > 1 %}
         <div class="lh-title mt1 f6 mw6 dn">
@@ -13,7 +13,7 @@
             <ul class="list pa0 ma0 di">
             {% for c in area.countries %}
                 <li class="dib pr1">
-                    <a class="link dim dark-blue" href="{{ url_for("data.country", countryid=c["iso"]|slugify) }}">{{ c["name"] }}</a>
+                    <a class="link dim dark-blue" href="{{ url_for('data.country', countryid=c['iso']|slugify) }}">{{ c["name"] }}</a>
                 </li>
             {% endfor %}
             </ul>

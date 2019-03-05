@@ -10,6 +10,7 @@ from requests.compat import json as _json
 
 from .filters import CLASSIFICATION
 from .utils import get_scaling_factor
+from .countries import get_country_by_id
 
 LAYOUT = {
     'yaxis': {
@@ -53,7 +54,7 @@ H_LAYOUT = {
     }
 }
 
-def get_charts(data):
+def get_charts(data, selected_countries=None):
 
     for i in CLASSIFICATION.keys():
         for x in data["aggregate"][i]["buckets"]:
@@ -63,10 +64,20 @@ def get_charts(data):
         data["aggregate"]["income"]["buckets"]
     )
 
+    countries = [
+        {"count": i["count"], **get_country_by_id(i['id']), "id": i["id"]}
+        for i in data["aggregate"]["areas"]["buckets"]
+        if get_country_by_id(i['id'])
+    ]
+    if len(selected_countries)==1:
+        selected_country = selected_countries[0]['id']
+        countries = [c for c in countries if c['id'] != selected_country]
+
     return {
         "buckets": income_buckets,
         "count": horizontal_bar(income_buckets, "count"),
         "amount": horizontal_bar(income_buckets, "sumIncome", "sumIncomeText", log_axis=True),
+        "countries": horizontal_bar(countries[0:12], "count"),
         **{
             k: horizontal_bar(data["aggregate"][k]
                               ["buckets"], "count")

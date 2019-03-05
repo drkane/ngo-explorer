@@ -31,6 +31,7 @@
             {% include '_data_word_cloud.html.j2' %}
             </div>
         </figure>
+        {{ figure("countries", "Where else do these charities work?")}}
         {% for k in ["causes", "beneficiaries", "operations"] %}
         {{ figure(k, k|title )}}
         {% endfor %}

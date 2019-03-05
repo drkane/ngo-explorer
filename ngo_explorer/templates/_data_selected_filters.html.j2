@@ -27,6 +27,10 @@
         )) }}
     {% endif %}
 
+    {% if filters.get("filter-exclude-grantmakers") %}
+        {{ showfilter("&nbsp;", "Does not make grants to organisations") }}
+    {% endif %}
+
     {% if filters.get("filter-classification") %}
     {% set categories = filters.getlist("filter-classification") %}
     {% for i in classification.keys() %}

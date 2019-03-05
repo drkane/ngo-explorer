@@ -23,6 +23,9 @@ query getCharityAggregation($filters: FilterCHCInput!, $limit: PageLimit) {
 				operations {
           ...allBucket
         }
+        areas {
+          ...allBucket
+        }
       }
       count
       list(limit: $limit) {

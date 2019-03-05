@@ -66,6 +66,16 @@ def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, 
                 variables["filters"]["income"]["latest"]["total"]["lte"] = filters["max_income"]
             if "min_income" in filters:
                 variables["filters"]["income"]["latest"]["total"]["gte"] = filters["min_income"]
+
+        if "countries" in filters:
+            countries = [c for c in variables["filters"]["areas"]["some"] if c in filters["countries"]]
+            if countries:
+                variables["filters"]["areas"]["some"] = countries
+
+        if filters.get("exclude_grantmakers"):
+            if "operations" not in variables["filters"]:
+                variables["filters"]["operations"] = {}
+            variables["filters"]["operations"]["notSome"] = ["302"]
     
     if query=="charity_list" and skip > 0:
         variables["skip"] = skip

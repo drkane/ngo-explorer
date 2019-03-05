@@ -85,3 +85,9 @@ def get_multiple_countries(countryid):
         area["countries"].extend(this_area["countries"])
     area["name"] = ", ".join(area["name"])
     return area
+
+def get_country_by_id(id):
+    for c in COUNTRIES:
+        if c['id'] == id or c['iso'] == id or c['iso2'] == id:
+            return c
+    return None
