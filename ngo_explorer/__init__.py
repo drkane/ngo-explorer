@@ -8,7 +8,7 @@ import click
 from .commands.countries import update_countries
 from .blueprints import home, data, upload
 from .utils.charts import location_map, plotly_json
-from .utils.utils import update_url_values, correct_titlecase
+from .utils.utils import update_url_values, correct_titlecase, scale_value
 
 def create_app(test_config=None):
     
@@ -71,6 +71,10 @@ def create_app(test_config=None):
     @app.template_filter('correct_titlecase')
     def template_correct_titlecase(s: str):
         return correct_titlecase(s)
+
+    @app.template_filter('number_format')
+    def template_number_format(v: (int, float)):
+        return scale_value(v, True)
 
     # add custom commands
     @app.cli.command('update-countries')
