@@ -2,11 +2,11 @@
 <nav class="w-100 mb2 cf" id="tabs">
     <ul class="list mh0 mv2 pa0">
     {% for page_id, page  in pages.items() %}
-        <li class="mr2 dib tab">
+        <li class="mr2 dib-ns db flex tab">
         {% if current_page==page_id %}
-            <a class="link white pa2 bg-gray f4 tab-url" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
+            <a class="link pa2 f4-ns f5 w-100 w-auto-ns tab-url white bg-gray" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
         {% else %}
-            <a class="link near-black pa2 bg-light-gray f4 tab-url" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
+            <a class="link pa2 f4-ns f5 w-100 w-auto-ns tab-url underline no-underline-ns near-black bg-light-gray" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
         {% endif %}
         </li>
     {% endfor %}
