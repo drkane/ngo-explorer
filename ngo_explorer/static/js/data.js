@@ -2,7 +2,7 @@
 const choices = new Choices('.js-choice', {
     removeItemButton: true,
     itemSelectText: "",
-    placeholderValue: "Charity classification",
+    placeholderValue: "Choose from options",
     shouldSort: false,
     classNames: {
         itemChoice: 'f7 pointer pa2 wb-normal',

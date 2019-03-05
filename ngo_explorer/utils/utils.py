@@ -10,6 +10,13 @@ def get_scaling_factor(value):
     else:
         return (1, '{:,.0f}', '{:,.0f}')
 
+def scale_value(value, abbreviate=False):
+    scale = get_scaling_factor(value)
+    if abbreviate:
+        return scale[2].format(value / scale[0])
+    else:
+        return scale[1].format(value / scale[0])
+
 def update_url_values(url, values: dict):
     # update an url to include additional query parameters
     # changes the values if they're already present

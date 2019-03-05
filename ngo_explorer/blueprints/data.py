@@ -90,7 +90,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
         )
 
     charity_data = fetch_charitybase(area["countries"], filters=filters, limit=30, skip=filters.get("skip", 0), query=qgl_query)
-    charts = get_charts(charity_data) if page=="dashboard" else {}
+    charts = get_charts(charity_data, area["countries"]) if page=="dashboard" else {}
 
     if filetype=="json":
 
@@ -99,6 +99,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
             "example-charities": render_template('_data_example_charities.html.j2', data=charity_data),
             "charity-count": "{:,.0f} UK NGO{}".format(charity_data["count"], "" if charity_data["count"] == 1 else "s"),
             "word-cloud": render_template('_data_word_cloud.html.j2', charts=charts),
+            "max-countries-header": "{:,.0f}".format(filters.get("max_countries")),
         }
 
         if page=="show-charities":

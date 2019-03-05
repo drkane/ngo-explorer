@@ -21,7 +21,7 @@
             <ul class="list pa0 ma0">
                 {% for c in area.countries %}
                     {% if iati_data.get(c["iso2"], []) %}
-                    <li class="di mr2 pb0">
+                    <li class="dib mr2 pb0">
                         <a href="{{ url_for('data.country', countryid=c.iso.lower()) }}#iati"
                             class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
                             {{ c.name }}
@@ -51,7 +51,7 @@
                     <ul class="list pa0 ma0">
                         {% for r in iati_data.get(c.iso2, [])|sort(attribute='count', reverse=True) %}
                         {% if r.name %}
-                        <li class="di mr2 pb0">
+                        <li class="dib mr2 pb0">
                             <a href="https://d-portal.org/ctrack.html?publisher={{ r.ref }}#view=list_transactions&country_code={{ c.iso2 }}" target="_blank" 
                                 class="link dim blue underline mw5 nowrap dib overflow-hidden truncate">
                                 {{ r.name }}

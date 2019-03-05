@@ -69,6 +69,18 @@ def parse_filters(filters):
                     return_filters[i].append(j)
 
     # max and min income
+    if filters.get("filter-max-income"):
+        return_filters["max_income"] = int(filters.get("filter-max-income"))
+    if filters.get("filter-min-income"):
+        return_filters["min_income"] = int(filters.get("filter-min-income"))
+
+    # further country filter (refines the main url country selection)
+    if filters.get("filter-countries"):
+        return_filters['countries'] = filters['filter-countries']
+
+    # exclude grantmakers
+    if filters.get("filter-exclude-grantmakers"):
+        return_filters['exclude_grantmakers'] = True
 
     # max_countries
     return_filters["max_countries"] = int(filters.get("filter-max-countries", 50))

@@ -19,18 +19,30 @@
                     </span>
                 </p>
             </div>
+            {% for group, options in classification.items() %}
             <div class="mv3 w-100">
-                <h3 class="f5 normal mb2 b">Classification</h3>
+                <h3 class="f5 normal mb2 b">{{ group|title }}</h3>
                 <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-classification" multiple="true">
-                    {% for group, options in classification.items() %}
-                    <optgroup label="{{ group|title }}">
-                        {% for value, label in options.items() %}
-                        <option value="{{value}}">{{label}}</option>
+                    {% for value, label in options.items() %}
+                    <option value="{{value}}">{{label}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endfor %}
+            {% if area.countries|length > 1 %}
+            <div class="mv3 w-100">
+                <h3 class="f5 normal mb2 b">Countries</h3>
+                <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-countries" multiple="true">
+                    {% for group in area.countries|groupby('continent') %}
+                    <optgroup label="{{ group.grouper }}">
+                        {% for c in group.list %}
+                        <option value="{{ c['id'] }}">{{ c['name'] }}</option>
                         {% endfor %}
                     </optgroup>
                     {% endfor %}
                 </select>
             </div>
+            {% endif %}
             <div class="mv3 w-100">
                 <p class="gray i f6">
                     Exclude any charities that say they work in more than 
@@ -39,6 +51,12 @@
                     </span>
                     countries.
                 </p>
+            </div>
+            <div class="mv3 w-100">
+                <label class="gray i f6">
+                    <input name="filter-exclude-grantmakers" type="checkbox" value="exclude-grantmakers" />
+                    Exclude charities that make grants
+                </label>
             </div>
         </div>
         <input type="hidden" class="dn" value="" name="filter-skip" />

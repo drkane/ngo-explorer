@@ -50,25 +50,25 @@ def get_country_groups(as_dict=False):
         return areas
 
     return [
-        (None, [{"id": url_for("data.country", countryid="all"), "name": "All countries"}]),
+        (None, [{"id": url_for("data.country", countryid="all"), "name": "all countries"}], True),
         ("Continents", [
             {"id": url_for("data.region", regiontype="continent", regionid= slugify(c)), "name": c} for c in continents
-        ]),
-        ("UNDP", [
-            {"id": url_for("data.region", regiontype="undp", regionid="all"), "name": "All groups"}
+        ], True),
+        ('<abbr title="United Nations Development Programme">UNDP</abbr> regions', [
+            {"id": url_for("data.region", regiontype="undp", regionid="all"), "name": "all UNDP regions"}
         ] + [
             {"id": url_for("data.region", regiontype="undp", regionid=slugify(c)), "name": c} for c in undp if c
-        ]),
-        ("DAC", [
-            {"id": url_for("data.region", regiontype="dac", regionid="all"), "name": "All groups"}
+        ], True),
+        ('<abbr title="OECD Development Assistance Committee">DAC</abbr> groups', [
+            {"id": url_for("data.region", regiontype="dac", regionid="all"), "name": "all DAC groups"}
         ] + [
             {"id": url_for("data.region", regiontype="dac", regionid=slugify(c)), "name": c} for c in dac if c
-        ]),
+        ], True),
     ] + [
         (con, [
             {"id": url_for("data.country", countryid=slugify(c["iso"])), "name": c["name"]}
             for c in COUNTRIES if c["continent"] == con
-        ])
+        ], False)
         for con in sorted(continents)
     ]
 
@@ -85,3 +85,9 @@ def get_multiple_countries(countryid):
         area["countries"].extend(this_area["countries"])
     area["name"] = ", ".join(area["name"])
     return area
+
+def get_country_by_id(id):
+    for c in COUNTRIES:
+        if c['id'] == id or c['iso'] == id or c['iso2'] == id:
+            return c
+    return None
