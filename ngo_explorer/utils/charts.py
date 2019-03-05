@@ -68,7 +68,8 @@ def get_charts(data):
         "count": horizontal_bar(income_buckets, "count"),
         "amount": horizontal_bar(income_buckets, "sumIncome", "sumIncomeText", log_axis=True),
         **{
-            k: horizontal_bar(data["aggregate"][k]["buckets"], "count")
+            k: horizontal_bar(data["aggregate"][k]
+                              ["buckets"], "count")
             for k in CLASSIFICATION.keys()
         },
         "word_cloud": word_cloud(data["list"]),
@@ -135,7 +136,7 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
     ))
 
 
-def horizontal_bar(categories, value="count", text=None, log_axis=False):
+def horizontal_bar(categories, value="count", text=None, log_axis=False, **kwargs):
 
     # categories = {
     #   "name": "category name"
@@ -153,8 +154,9 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False):
         cols=1,
         subplot_titles=[x["name"] for x in categories],
         shared_xaxes=True,
-        vertical_spacing=0.05,
         print_grid=False,
+        vertical_spacing=(0.45 / len(categories)),
+        **kwargs
     )
     for k, x in enumerate(categories):
         hb_plot.append_trace(dict(
@@ -169,6 +171,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False):
             marker=dict(
                 color='rgb(31,119,180)',
             ),
+            # width=[max([(len(categories) / 8), 0.8])]
 
         ), k+1, 1)
 
@@ -194,9 +197,8 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False):
         hb_plot['layout']['xaxis']['type'] = 'log'
 
     hb_plot['layout']['margin']['l'] = 0
-    height_calc = 65 * len(categories)
-    height_calc = min(height_calc, 650)
-    height_calc = max(height_calc, 450)
+    height_calc = 55 * len(categories)
+    height_calc = max([height_calc, 350])
     hb_plot['layout']['height'] = height_calc
 
     return dict(
