@@ -31,6 +31,15 @@
         {{ showfilter("&nbsp;", "Does not make grants to organisations") }}
     {% endif %}
 
+    {% if filters.get("filter-countries") %}
+    {% set filtered_countries = filters.getlist("filter-countries") %}
+        {% for c in area.countries %}
+            {% if c.id in filtered_countries %}
+                {{ showfilter("Country", c.name) }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     {% if filters.get("filter-classification") %}
     {% set categories = filters.getlist("filter-classification") %}
     {% for i in classification.keys() %}
