@@ -1,9 +1,9 @@
 fragment allBucket on Aggregation {
   buckets {
-  	id
-  	name
-  	count
-  	sumIncome
+    key
+    name
+    count
+    sumIncome
   }
 }
 

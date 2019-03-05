@@ -57,7 +57,7 @@ def get_charts(data):
 
     for i in CLASSIFICATION.keys():
         for x in data["aggregate"][i]["buckets"]:
-            x['name'] = CLASSIFICATION.get(i, {}).get(x["id"], x["id"])
+            x['name'] = CLASSIFICATION.get(i, {}).get(x["key"], x["key"])
 
     income_buckets = parse_income_buckets(
         data["aggregate"]["income"]["buckets"]
@@ -236,7 +236,7 @@ def parse_income_buckets(income_buckets: list):
     # merge all the buckets into one
     new_buckets = {}
     for i in income_buckets:
-        id_ = new_bucket_labels.get(i["name"], i["id"])
+        id_ = new_bucket_labels.get(i["name"], i["key"])
         if id_ not in new_buckets:
             new_buckets[id_] = copy.copy(i)
             new_buckets[id_]["name"] = id_
