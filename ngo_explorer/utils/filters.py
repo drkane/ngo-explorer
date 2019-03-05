@@ -69,6 +69,10 @@ def parse_filters(filters):
                     return_filters[i].append(j)
 
     # max and min income
+    if filters.get("filter-max-income"):
+        return_filters["max_income"] = int(filters.get("filter-max-income"))
+    if filters.get("filter-min-income"):
+        return_filters["min_income"] = int(filters.get("filter-min-income"))
 
     # max_countries
     return_filters["max_countries"] = int(filters.get("filter-max-countries", 50))

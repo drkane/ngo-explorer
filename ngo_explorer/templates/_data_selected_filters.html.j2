@@ -1,10 +1,30 @@
+{% macro showfilter(title, content, icon="filter_list") %}
+<li class="flex items-center mb1">
+    <i class="material-icons md-18">{{ icon }}</i> 
+    <strong class="pr1">{{ title }}</strong> 
+    {{ content }}
+</li>
+{% endmacro %}
+
+
 <ul class="list ma0 pa0 f7 lh-copy">
     {% if filters.get("filter-search") %}
-    <li class="flex items-center mb1">
-        <i class="material-icons md-18">filter_list</i> 
-        <strong class="pr1">Search</strong> 
-        "{{ filters.get("filter-search") }}"
-    </li>
+    {{ showfilter("Search", '"{}"'.format(filters.get("filter-search"))) }}
+    {% endif %}
+
+    {% if filters.get("filter-max-income") and filters.get("filter-min-income") %}
+        {{ showfilter("Income", "between £{:,.0f} and £{:,.0f}".format(
+            filters.get("filter-min-income")|int,
+            filters.get("filter-max-income")|int
+        )) }}
+    {% elif filters.get("filter-max-income") %}
+        {{ showfilter("Income", "up to £{:,.0f}".format(
+            filters.get("filter-max-income")|int
+        )) }}
+    {% elif filters.get("filter-min-income") %}
+        {{ showfilter("Income", "over £{:,.0f}".format(
+            filters.get("filter-min-income")|int
+        )) }}
     {% endif %}
 
     {% if filters.get("filter-classification") %}
@@ -12,11 +32,7 @@
     {% for i in classification.keys() %}
         {% for j in classification[i].keys() %}
             {% if j in categories %}
-            <li class="flex items-center mb1">
-                <i class="material-icons md-18">filter_list</i> 
-                <strong class="pr1">{{ i|title }}</strong>
-                {{ classification[i][j] }}
-            </li>
+            {{ showfilter(i|title, classification[i][j]) }}
             {% endif %}
         {% endfor %}
     {% endfor %}

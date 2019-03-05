@@ -57,6 +57,15 @@ def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, 
                 variables["filters"][c] = {
                     "some": filters[c]
                 }
+
+        if "max_income" or "min_income" in filters:
+            variables["filters"]["income"] = {
+                "latest": {"total": {}}
+            }
+            if "max_income" in filters:
+                variables["filters"]["income"]["latest"]["total"]["lte"] = filters["max_income"]
+            if "min_income" in filters:
+                variables["filters"]["income"]["latest"]["total"]["gte"] = filters["min_income"]
     
     if query=="charity_list" and skip > 0:
         variables["skip"] = skip
