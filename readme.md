@@ -48,7 +48,7 @@ A custom build of tachyons is maintained in <https://github.com/drkane/ngo-explo
 
 Colours used include:
 
- - yellow: #f9af42
- - dark-green: #043942
- - green: #237756
- - light-green: #0ca777
+ - yellow: `#f9af42` ![](https://dummyimage.com/50x20/f9b042/000&text=+)    
+ - dark-green: `#043942` ![](https://dummyimage.com/50x20/043942/000&text=+) 
+ - green: `#237756` ![](https://dummyimage.com/50x20/237756/000&text=+) 
+ - light-green: `#0ca777` ![](https://dummyimage.com/50x20/0ca777/000&text=+) 
