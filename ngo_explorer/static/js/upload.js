@@ -23,7 +23,6 @@ fileUpload.addEventListener('change', (event) => {
                 charity_numbers = [];
                 values = 0;
                 for(r of results.data){
-                    // @TODO: could check charity number against regex here
                     if(r[e.target.value] && (r[e.target.value] != "")){
                         var c_match = r[e.target.value].match(charity_number_regex);
                         if (c_match){
