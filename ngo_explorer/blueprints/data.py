@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, url_for, Response
 
 from ..utils.countries import get_country_groups, get_multiple_countries, COUNTRIES
-from ..utils.fetchdata import fetch_charitybase, fetch_iati, fetch_charitybase_fromids, dict_to_gql
+from ..utils.fetchdata import fetch_charitybase, fetch_iati, dict_to_gql
 from ..utils.filters import CLASSIFICATION, parse_filters
 from ..utils.download import DOWNLOAD_OPTIONS, download_file
 from ..utils.charts import get_charts
@@ -93,7 +93,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
             filetype=request.values.get("download_type").lower(),
         )
 
-    charity_data = fetch_charitybase(area["countries"], filters=filters, limit=30, skip=filters.get("skip", 0), query=qgl_query)
+    charity_data = fetch_charitybase(countries=area["countries"], filters=filters, limit=30, skip=filters.get("skip", 0), query=qgl_query)
     charts = get_charts(charity_data, area["countries"]) if page=="dashboard" else {}
 
     for c in area["countries"]:
@@ -144,7 +144,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
 
 @bp.route('/charity/<charityid>')
 def charity(charityid):
-    charity_data = fetch_charitybase_fromids([charityid])
+    charity_data = fetch_charitybase(ids=[charityid])
     data = charity_data["list"][0]
     if (data.get("website") or "").strip() != "":
         if not data["website"].startswith("http"):

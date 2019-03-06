@@ -1,3 +1,4 @@
+{% import "_tabs.html.j2" as tabs %}
 <div class="page-header mb4 w-100 cf">
     <div class="w-100 w-50-l fl">
         {% if title %}
@@ -11,4 +12,10 @@
             based on a selection of charities uploaded by a user.
         <p>
     </div>
+    <div class="mb3 w-100 w-25-l fr">
+        <a href="{{ url_for('upload.data') }}" class="f4 link dim dark-blue underline fr">Upload more data</a>
+    </div>
+</div>
+<div>
+    {{ tabs.tabs(active_page, pages) }}
 </div>

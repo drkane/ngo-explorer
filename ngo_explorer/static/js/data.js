@@ -1,19 +1,21 @@
 // better multi-select boxes
-const choices = new Choices('.js-choice', {
-    removeItemButton: true,
-    itemSelectText: "",
-    placeholderValue: "Choose from options",
-    shouldSort: false,
-    classNames: {
-        itemChoice: 'f7 pointer pa2 wb-normal',
-        itemSelectable: 'hover-bg-light-gray bg-animate',
-    }
-});
+if (document.getElementsByClassName('js-choice').length>0) {
+    new Choices('.js-choice', {
+        removeItemButton: true,
+        itemSelectText: "",
+        placeholderValue: "Choose from options",
+        shouldSort: false,
+        classNames: {
+            itemChoice: 'f7 pointer pa2 wb-normal',
+            itemSelectable: 'hover-bg-light-gray bg-animate',
+        }
+    });
+}
 
 // draw the charts initially
 if (typeof charts !== "undefined"){
     Object.keys(charts).forEach(function (key) {
-        if(charts[key]["id"]){
+        if (charts[key]["id"] && document.getElementById(`chart_${key}`)){
             Plotly.newPlot(
                 `chart_${key}`,
                 charts[key].data,
@@ -26,49 +28,55 @@ if (typeof charts !== "undefined"){
 
 // when form is submitted, get the filters and fetch new data from the API
 const filter_form = document.getElementById('filter-form');
-filter_form.addEventListener('submit', (event)=> {
-    event.preventDefault();
+if(filter_form){
+    filter_form.addEventListener('submit', (event) => {
+        // fetch the filters
+        var formData = new FormData(filter_form);
+        if (document.activeElement.name=="download_type"){
+            return true;
+        }
 
-    // fetch the filters
-    var formData = new FormData(filter_form);
+        event.preventDefault();
 
-    // construct the API query
-    fetch(api_url, {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.json())
-        .catch(error => console.error('Error:', error))
-        .then((response) => {
-            // update the charts
-            Object.keys(response["charts"]).forEach(function (key) {
-                if (response["charts"][key]["id"]) {
-                    Plotly.react(
-                        `chart_${key}`,
-                        response["charts"][key].data,
-                        response["charts"][key].layout,
-                        { displayModeBar: false }
-                    );
+
+        // construct the API query
+        fetch(api_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .catch(error => console.error('Error:', error))
+            .then((response) => {
+                // update the charts
+                Object.keys(response["charts"]).forEach(function (key) {
+                    if (response["charts"][key]["id"]) {
+                        Plotly.react(
+                            `chart_${key}`,
+                            response["charts"][key].data,
+                            response["charts"][key].layout,
+                            { displayModeBar: false }
+                        );
+                    }
+                });
+
+                // update the charity count & example charities
+                // update list of charities
+                // add list of what the filters are
+                Object.keys(response["inserts"]).forEach((key)=> {
+                    if (document.getElementById(key)){
+                        document.getElementById(key).innerHTML = DOMPurify.sanitize(response["inserts"][key]);
+                    }
+                });
+
+                // update the show_charities and download urls
+                navtabs = document.getElementById('tabs');
+                for (const tab of navtabs.getElementsByClassName('tab-url')) {
+                    var tab_id = tab.id.replace(/^tab\-/, "");
+                    tab.href = response["pages"][tab_id]["url"];
                 }
             });
-
-            // update the charity count & example charities
-            // update list of charities
-            // add list of what the filters are
-            Object.keys(response["inserts"]).forEach((key)=> {
-                if (document.getElementById(key)){
-                    document.getElementById(key).innerHTML = DOMPurify.sanitize(response["inserts"][key]);
-                }
-            });
-
-            // update the show_charities and download urls
-            navtabs = document.getElementById('tabs');
-            for (const tab of navtabs.getElementsByClassName('tab-url')) {
-                var tab_id = tab.id.replace(/^tab\-/, "");
-                tab.href = response["pages"][tab_id]["url"];
-            }
-        });
-});
+    });
+}
 
 
 // Select all download options

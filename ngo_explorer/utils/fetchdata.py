@@ -32,21 +32,27 @@ class GraphQLClientRequests(GraphQLClient):
         return r.json()
 
 
-def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, query: str="charity_aggregation", query_fields: dict=None):
+def fetch_charitybase(countries:list = None, ids:list = None, filters=None, limit: int = 10, skip: int = 0, query: str = "charity_aggregation", query_fields: dict = None):
     client = GraphQLClientRequests('https://charitybase.uk/api/graphql')
     client.inject_token('Apikey {}'.format(current_app.config["CHARITYBASE_API_KEY"]))
 
     variables = {
         "filters": {
-            "areas": {
-                "some": [c['id'] for c in countries],
-                "length": {
-                    "lte": filters.get("max_countries", 50)
-                }
-            }
         },
-        "limit": limit
+        "limit": limit,
+        "skip": skip,
     }
+
+    if countries:
+        variables["filters"]["areas"] = {
+            "some": [c['id'] for c in countries],
+            "length": {
+                "lte": filters.get("max_countries", 50)
+            }
+        }
+    
+    if ids:
+        variables["filters"]["id"] = ids
 
     if filters:
         if "search" in filters:
@@ -82,29 +88,12 @@ def fetch_charitybase(countries: list, filters=None, limit:int=10, skip: int=0, 
                 variables["filters"]["causes"] = {}
             variables["filters"]["causes"]["notSome"] = ["108"]
     
-    if query=="charity_list" and skip > 0:
-        variables["skip"] = skip
-    
     if query == "charity_download":
         query_str = GQL_QUERIES[query] % dict_to_gql(query_fields, 8)
     else:
         query_str = GQL_QUERIES[query]
 
     result = client.execute(query_str, variables)
-    
-    if result.get("errors") or not result.get("data", {}).get("CHC", {}).get("getCharities"):
-        raise Exception(result.get("errors"))
-    return result.get("data", {}).get("CHC", {}).get("getCharities")
-
-def fetch_charitybase_fromids(ids: list):
-    client = GraphQLClientRequests('https://charitybase.uk/api/graphql')
-    client.inject_token('Apikey {}'.format(current_app.config["CHARITYBASE_API_KEY"]))
-
-    result = client.execute(GQL_QUERIES["charity_aggregation"], {
-        "filters": {
-            "id": ids
-        }
-    })
     
     if result.get("errors") or not result.get("data", {}).get("CHC", {}).get("getCharities"):
         raise Exception(result.get("errors"))

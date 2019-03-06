@@ -62,6 +62,7 @@
             </td>
             <td class="pa2 v-top f7 db dtc-ns">
                 {{ c.activities|default("", true) }}
+                {% if area %}
                 {% set cids = area.countries|map(attribute="id")|list %}
                 <p class="i">
                 Work in 
@@ -70,6 +71,7 @@
                     {%- if not loop.last and not loop.first -%}, {% endif %}
                     {{- a.name -}}
                 {% endfor %}
+                {% endif %}
                 <p>
             </td>
             <td class="pa2 v-top f7 db dtc-ns"><span class="di dn-ns">UK registered office: </span>{{ c.geo.region|default("", true) }}</td>

@@ -21,6 +21,7 @@
             <span class="f7 i gray">({{ c.income.latest.date[0:4] }})</span>
             {% endif %}
         </p>
+        {% if area %}
         <p class="f7 near-black">
             {% set cids = area.countries|map(attribute="id")|list %}
             Work in 
@@ -30,6 +31,7 @@
                 {{- a.name -}}
             {% endfor %}
         </p>
+        {% endif %}
     </dd>
 {% endfor %}
 </dl>

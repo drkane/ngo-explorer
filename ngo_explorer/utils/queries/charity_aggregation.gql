@@ -7,7 +7,7 @@ fragment allBucket on Aggregation {
   }
 }
 
-query getCharityAggregation($filters: FilterCHCInput!, $limit: PageLimit) {
+query getCharityAggregation($filters: FilterCHCInput!, $limit: PageLimit = 30, $skip: Int = 0) {
   CHC {
     getCharities(filters: $filters) {
       aggregate {
@@ -28,7 +28,7 @@ query getCharityAggregation($filters: FilterCHCInput!, $limit: PageLimit) {
         }
       }
       count
-      list(limit: $limit) {
+      list(limit: $limit, skip: $skip) {
         id
         name
         activities

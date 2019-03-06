@@ -13,7 +13,9 @@
 {% set active_page =  "dashboard" %}
 {% include '_data_header.html.j2' %}
 <div class="w-100 pa2 bg-light-gray cf mt2">
-    {% include '_data_sidebar.html.j2' %}
+    <form action="{{request.path}}" id="filter-form">
+        {% include '_data_sidebar.html.j2' %}
+    </form>
 
     <div class="fl w-100 w-80-l flex flex-wrap">
 

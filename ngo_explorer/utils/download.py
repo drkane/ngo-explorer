@@ -116,7 +116,6 @@ def parse_download_fields(fields):
 
 
 def download_file(area, filters, fields, filetype='csv', max_results=500):
-    countries = area["countries"]
     limit = 30
     cb_variables = dict(
         filters=filters,
@@ -126,7 +125,16 @@ def download_file(area, filters, fields, filetype='csv', max_results=500):
         query_fields=parse_download_fields(fields)
     )
 
-    raw_results = fetch_charitybase(countries, **cb_variables)
+    print(filters)
+
+    if "ids" in area:
+        # assume it's a list of ids
+        cb_variables["ids"] = area["ids"]
+    elif "countries" in area:
+        # assume it's an "Area" object with countries in
+        cb_variables["countries"] = area["countries"]
+
+    raw_results = fetch_charitybase(**cb_variables)
     # check here if query has failed
 
     charity_list = raw_results["list"]
@@ -135,7 +143,7 @@ def download_file(area, filters, fields, filetype='csv', max_results=500):
         [raw_results["count"], current_app.config['DOWNLOAD_LIMIT']])
     cb_variables['skip'] += limit
     while cb_variables['skip'] < stop_searching:
-        raw_results = fetch_charitybase(countries, **cb_variables)
+        raw_results = fetch_charitybase(**cb_variables)
         charity_list.extend(raw_results["list"])
         cb_variables['skip'] += limit
 

@@ -69,7 +69,7 @@ def get_charts(data, selected_countries=None):
         for i in data["aggregate"]["areas"]["buckets"]
         if get_country_by_id(i['key'])
     ]
-    if len(selected_countries)==1:
+    if selected_countries and len(selected_countries) == 1:
         selected_country = selected_countries[0]['id']
         countries = [c for c in countries if c['id'] != selected_country]
 
