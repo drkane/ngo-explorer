@@ -171,18 +171,33 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, **kwarg
     )
     for k, x in enumerate(categories):
         hb_plot.append_trace(dict(
-            type='bar',
-            orientation='h',
-            y=[x["name"]],
-            x=[x[value]],
-            text=[x.get(text, "{:,.0f}".format(x[value]))],
-            textposition='auto',
-            constraintext='both',
-            hoverinfo='y',
-            marker=dict(
-                color='#237756',
+            type='scatter',
+            mode='lines+markers',
+            y=[x["name"], x["name"]],
+            x=[x[value], 0],
+            text=[x.get(text, "{:,.0f}".format(x[value])), ""],
+            hoverinfo='text',
+            hoverlabel=dict(
+                bgcolor='#237756',
+                bordercolor='#237756',
+                font=dict(
+                    color='#fff',
+                ),
             ),
-            # width=[max([(len(categories) / 8), 0.8])]
+            line=dict(
+                color='#237756',
+                width=6,
+            ),
+            marker=dict(
+                color='#fff',
+                symbol='circle',
+                size=16,
+                line=dict(
+                    width=6,
+                    color='#237756',
+                ),
+                maxdisplayed=1,
+            ),
 
         ), k+1, 1)
 
