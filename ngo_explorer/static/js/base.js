@@ -14,6 +14,7 @@ for (const el of document.getElementsByClassName("js-toggle")) {
     if (target) {
         target.classList.add("dn");
         el.addEventListener('click', (event) => {
+            event.preventDefault();
             target.classList.toggle('dn');
             if (el.textContent.indexOf("Show") !== -1) {
                 el.textContent = el.textContent.replace("Show", "Hide");
