@@ -12,7 +12,7 @@
 </div>
 <h3>Example charities</h3>
 <dl>
-{% for c in data.list[0:3] %}
+{% for c in data.list|randomn(3) %}
     <dt class="b">
         <a class="link dim green b" href="{{ url_for('data.charity', charityid=c.id) }}">
             {{ c.name|correct_titlecase }}

@@ -1,4 +1,5 @@
 import os
+import random
 
 from flask import Flask
 from slugify import slugify
@@ -76,6 +77,10 @@ def create_app(test_config=None):
     @app.template_filter('number_format')
     def template_number_format(v: (int, float)):
         return scale_value(v, True)
+
+    @app.template_filter('randomn')
+    def template_randomn(seq, n=1):
+        return random.sample(seq, min((n, len(seq))))
 
     # add custom commands
     @app.cli.command('update-countries')
