@@ -126,6 +126,10 @@ SIMILAR_INITIATIVE = {
         'source': 'Forus',
         'source_link': 'http://forus-international.org/en/about-us/who-we-are'
     }],
+    "hti": [{
+        "homepage": "http://coeh.eu/members/",
+        "title": "Coordination Europe-Haiti"
+    }],
     'chl': [{'title': 'ACCIÓN - Asociación Chilena de ONG',
              'homepage': 'http://www.accionag.cl',
              'source': 'Forus',
@@ -329,7 +333,9 @@ SIMILAR_INITIATIVE = {
     'npl': [{'title': 'NFN - NGO Federation of Nepal',
              'homepage': 'http://www.ngofederation.org/',
              'source': 'Forus',
-             'source_link': 'http://forus-international.org/en/about-us/who-we-are'}],
+             'source_link': 'http://forus-international.org/en/about-us/who-we-are'},
+            {'title': 'British and Nepal NGO Network (BRANNGO)',
+             'homepage': 'https://www.branngo.org/'}],
     'nga': [{'title': 'NNNGO - Nigeria Network of NGOs',
              'homepage': 'http://www.nnngo.org',
              'source': 'Forus',
