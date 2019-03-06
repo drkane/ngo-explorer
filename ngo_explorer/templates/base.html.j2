@@ -13,7 +13,7 @@
         <script src="{{ url_for('static', filename='vendor/plotly/plotly-latest.min.js') }}"></script>
         {% endblock %}
     </head>
-    <body class="sans-serif">
+    <body class="sans-serif {% if 'debug' in request.values %}debug debug-grid{% endif %}">
         <div class="mw9 center ph3-ns ph2 mb4 cf">
             {% block header %}
                 {% include "_header.html.j2" %}
