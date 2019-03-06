@@ -26,7 +26,7 @@
                 {{ group or "&nbsp;" }}
                 </div>
                 <div class="w-50 fr dn db-l">
-                {{ []|location_map(continents=[group.lower()], height=120, landcolor='#666') }}
+                {{ []|location_map(continents=[group.lower()], height=120, landcolor='#666', static=True) }}
                 </div>
                 {% else %}
                 <div class="country-group-name">{{ group or "&nbsp;" }}</div>

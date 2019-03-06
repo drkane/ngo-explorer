@@ -20,6 +20,7 @@ LAYOUT = {
         'showline': False,
         'linewidth': 0,
         'rangemode': 'tozero',
+        'fixedrange': True,
         'tickfont': {
             # 'size': 20
         },
@@ -29,6 +30,7 @@ LAYOUT = {
         'showgrid': False,
         'showline': False,
         'rangemode': 'tozero',
+        'fixedrange': True,
         'linewidth': 0,
         'tickfont': {
             # 'size': 20
@@ -42,7 +44,7 @@ LAYOUT = {
         pad=4
     ),
     'clickmode': 'event+select',
-    'dragmode': 'select',
+    'dragmode': False,
     'paper_bgcolor': 'rgba(1, 1, 1, 0.0)',
     'plot_bgcolor': 'rgba(1, 1, 1, 0.0)',
 }
@@ -87,7 +89,7 @@ def get_charts(data, selected_countries=None):
     }
 
 
-def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229, 229)"):
+def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229, 229)", static=False):
     continents = continents if continents else list(
         set([c["continent"] for c in countries]))
     scope = 'world'
@@ -99,7 +101,11 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
             go.Scattergeo(
                 lon=[c['longitude'] for c in countries],
                 lat=[c['latitude'] for c in countries],
-                text=[c['name'] for c in countries],
+                text=["{} ({:,.0f} charit{})".format(
+                    c['name'],
+                    c.get("charity_count", 0),
+                    "y" if c.get("charity_count", 0) ==1 else "ies"
+                 ) for c in countries],
                 hoverinfo="text",
                 marker=dict(
                     size=6,
@@ -112,7 +118,11 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
                 locationmode='ISO-3',
                 locations=[c['iso'] for c in countries],
                 z=[1 for c in countries],
-                text=[c['name'] for c in countries],
+                text=["{} ({:,.0f} charit{})".format(
+                    c['name'],
+                    c.get("charity_count", 0),
+                    "y" if c.get("charity_count", 0) == 1 else "ies"
+                ) for c in countries],
                 colorscale=[[0, '#237756'], [1, '#237756']],
                 autocolorscale=False,
                 showscale=False,
@@ -138,12 +148,14 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
                     type='natural earth'
                 ) if scope != 'world' else {},
             ),
+            dragmode=False,
             margin=dict(l=0, r=0, t=0, b=0),
             height=height,
         ),
     }, output_type='div', include_plotlyjs=False, config=dict(
         displayModeBar=False,
-        staticPlot=True,
+        staticPlot=static,
+        scrollZoom=False,
     ))
 
 
