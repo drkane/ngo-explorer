@@ -25,12 +25,37 @@
 	display: none;
 }
 
-g.infolayer .annotation {
-    /* font-weight: bold; */
-}
-
 .external-link::after {
     content: 'open_in_new';
     font-family: 'Material Icons';
     font-size: 80%;
+}
+
+.header-logo {
+    max-width: 28rem;
+}
+
+.page-content {
+    min-height: 480px;
+}
+
+/* tachyons-style classes for colours */
+.bg-ngo-green {
+    background-color: #207654;
+}
+.ngo-green {
+    color: #207654;
+}
+.b--ngo-green {
+    border-color: #207654;
+}
+
+.bg-ngo-yellow {
+    background-color: #f8af3f;
+}
+.ngo-yellow {
+    color: #f8af3f;
+}
+.b--ngo-yellow {
+    border-color: #f8af3f;
 }

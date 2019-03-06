@@ -1,44 +1,43 @@
-<footer class="pt4 bt b--gray mv4-l mv2 cf">
-    <div class="fl w-50-ns w-100">
-        <p class="ma0 ttu f3 b">
-            <a class="link black b ttl ma0" href="{{ url_for('home.index') }}">
-                <span class="tracked-tight">NGO Explorer</span>
-                <span class="gray f5 ttl ma0">beta</span>
-            </a>
-        </p>
-        <p class="normal ma0 f3">
-            Building networks across development NGOs
-        </p>
-        <p class="normal mb0 mt3 f6">
-            Built by <a href="https://dkane.net/" target="_blank">David Kane</a>
-            {# Design by <a href=""></a> | #}
-            | Data from <a href="https://charitybase.uk/" target="_blank">Charitybase</a>;
-            <a href="http://d-portal.org/ctrack.html#view=search" target="_blank">IATI</a>
-        </p>
-        <p class="">
-            <a href="https://github.com/drkane/ngo-explorer/" target="_blank">
-                <img class="w2"
-                    src="{{ url_for('static', filename='images/github.svg') }}"
-                    title="Github repository" />
-            </a>
-        </p>
-    </div>
-    <div class="fr-ns fl w-50-ns mt2 mt0-ns w-100 mid-gray tr">
-        <ul class="list ma0 pa0 flex-ns items-start justify-between">
-            <li class="dib mv0 mr2-ns mb2 mb0-ns pa0 bg-gray" style="margin-left: auto;">
-                <a class="pa2" href="https://siid.group.shef.ac.uk/">
-                    <img class="cf"
-                        src="{{ url_for('static', filename='images/siid-logo.svg') }}"
-                        title="Sheffield Institute for International Development (SIID, University of Sheffield)" />
+<footer class="ph3-ns ph2 cf bg-light-gray">
+    <div class="mw9 center mv4-l mv2 cf">
+        <div class="fl w-50-ns w-100">
+            <p class="normal ma0 f3">
+                <a class="link black b ttl ma0" href="{{ url_for('home.index') }}">
+                    <img src="{{ url_for('static', filename='images/ngo_explorer_logo_white.svg') }}"
+                        class="mw4"
+                        alt="NGO Explorer" />
                 </a>
-            </li>
-            <li class="dib ma0 pa0 mt2 mt0-ns">
-                <a class="mw3" href="https://www.gdi.manchester.ac.uk/">
-                    <img class="cf"
-                        src="{{ url_for('static', filename='images/gdi_logo.png') }}"
-                        title="Global Development Institute (GDI, University of Manchester)" />
-                </a>
-            </li>
-        </ul>
+                {# <span class="dib mw5 ">Building networks across development NGOs</span> #}
+            </p>
+            <p class="normal mb0 mt3 f6">
+                Built by <a href="https://dkane.net/" class="link dim blue" target="_blank">David Kane</a>
+                | Design by <a href="https://inkandwater.co.uk/" class="link dim blue" target="_blank">Ink and Water</a>
+                | Data from <a href="https://charitybase.uk/" class="link dim blue" target="_blank">Charitybase</a>;
+                <a href="http://d-portal.org/ctrack.html#view=search" class="link dim blue" target="_blank">IATI</a>
+                | 
+                <a href="https://github.com/drkane/ngo-explorer/" class="link dim blue" target="_blank">
+                    Code</a> <img class="h1"
+                        src="{{ url_for('static', filename='images/github.svg') }}"
+                        title="Github repository" />
+            </p>
+        </div>
+        <div class="fr-ns fl w-50-ns mt2 mt0-ns w-100 mid-gray tr">
+            <ul class="list ma0 pa0 flex-ns items-start justify-between">
+                <li class="dib mv0 mr2-ns mb2 mb0-ns pa0 bg-gray" style="margin-left: auto;">
+                    <a class="pa2" href="https://siid.group.shef.ac.uk/">
+                        <img class="cf"
+                            src="{{ url_for('static', filename='images/siid-logo.svg') }}"
+                            title="Sheffield Institute for International Development (SIID, University of Sheffield)" />
+                    </a>
+                </li>
+                <li class="dib ma0 pa0 mt2 mt0-ns">
+                    <a class="mw3" href="https://www.gdi.manchester.ac.uk/">
+                        <img class="cf"
+                            src="{{ url_for('static', filename='images/gdi_logo.png') }}"
+                            title="Global Development Institute (GDI, University of Manchester)" />
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </footer>

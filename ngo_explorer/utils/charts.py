@@ -103,8 +103,8 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
                 hoverinfo="text",
                 marker=dict(
                     size=6,
-                    color='rgb(0, 0, 0)',
-                    symbol='circle-dot',
+                    color='#207654',
+                    symbol='circle',
                     opacity=1,
                 ),
             ),
@@ -113,14 +113,14 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
                 locations=[c['iso'] for c in countries],
                 z=[1 for c in countries],
                 text=[c['name'] for c in countries],
-                colorscale=[[0, 'rgb(0, 0, 0)'], [1, 'rgb(0, 0, 0)']],
+                colorscale=[[0, '#207654'], [1, '#207654']],
                 autocolorscale=False,
                 showscale=False,
                 hoverinfo="text",
                 marker=dict(
                     line=dict(
                         width=1,
-                        color='rgb(50, 50, 50)',
+                        color='#1e6c4d',
                     ),
                 ),
             ),
@@ -180,7 +180,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, **kwarg
             constraintext='both',
             hoverinfo='y',
             marker=dict(
-                color='rgb(31,119,180)',
+                color='#207654',
             ),
             # width=[max([(len(categories) / 8), 0.8])]
 
