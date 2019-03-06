@@ -1,10 +1,10 @@
 <div class="cf flex">
-    <div class=" bg-ngo-yellow white pa2 f4 fl mr2">
+    <div class=" bg-yellow white pa2 f4 fl mr2">
         <span class="f1">{{ "{:,.0f}".format(data.count) }}</span><br>
         NGO{{ "s" if data.count > 1 else "" }} found
     </div>
     {% if data.aggregate %}
-    <div class=" bg-ngo-yellow white pa2 f4 fl mr2">
+    <div class=" bg-yellow white pa2 f4 fl mr2">
         <span class="f1">£{{ data.aggregate.income.buckets|map(attribute='sumIncome')|sum|number_format }}</span><br>
         total income
     </div>
@@ -14,7 +14,7 @@
 <dl>
 {% for c in data.list[0:3] %}
     <dt class="b">
-        <a class="link dim ngo-green b" href="{{ url_for('data.charity', charityid=c.id) }}">
+        <a class="link dim green b" href="{{ url_for('data.charity', charityid=c.id) }}">
             {{ c.name|correct_titlecase }}
         </a>
     </dt>

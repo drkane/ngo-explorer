@@ -41,3 +41,14 @@ chown -R 32767:32767 /var/lib/dokku/data/storage/ngo-explorer
 dokku storage:mount ngo-explorer /var/lib/dokku/data/storage/ngo-explorer:/app/storage
 dokku config:set --no-restart ngo-explorer DATA_CONTAINER=/app/storage
 ```
+
+## Styles
+
+A custom build of tachyons is maintained in <https://github.com/drkane/ngo-explorer-tachyons>.
+
+Colours used include:
+
+ - yellow: #f9af42
+ - dark-green: #043942
+ - green: #237756
+ - light-green: #0ca777
