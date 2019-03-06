@@ -1,9 +1,11 @@
 <div class="">
     <span class="f1">{{ "{:,.0f}".format(data.count) }}</span> NGO{{ "s" if data.count > 1 else "" }} found
 </div>
+{% if data.aggregate %}
 <div class="">
     <span class="f1">£{{ data.aggregate.income.buckets|map(attribute='sumIncome')|sum|number_format }}</span> total income
 </div>
+{% endif %}
 <h3>Example charities</h3>
 <dl>
 {% for c in data.list[0:3] %}
@@ -14,11 +16,19 @@
     </dt>
     <dd class="mw6-l ml3">
         <p class="f6">
-            {# Charity number <a class="link dim black b" href="{{ url_for('data.charity', charityid=c.id) }}">{{ c.id }}</a> #}
             {% if c.income.latest.total %}
-            Income <strong>{{ "£{:,.0f}".format(c.income.latest.total) }}</strong>
-            <span class="f7 i gray">[year ending {{ c.income.latest.date[0:10] }}]</span>
+            Income <strong>£{{ c.income.latest.total|number_format }}</strong>
+            <span class="f7 i gray">({{ c.income.latest.date[0:4] }})</span>
             {% endif %}
+        </p>
+        <p class="f7 near-black">
+            {% set cids = area.countries|map(attribute="id")|list %}
+            Work in 
+            {% for a in c.areas if a.id in cids %}
+                {%- if loop.last and not loop.first %} and {% endif %}
+                {%- if not loop.last and not loop.first -%}, {% endif %}
+                {{- a.name -}}
+            {% endfor %}
         </p>
     </dd>
 {% endfor %}

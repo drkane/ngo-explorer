@@ -49,8 +49,16 @@ def country(countryid, filetype="html", subpage='dashboard'):
 def data_page(area, filetype="html", page='dashboard', url_base=[]):
 
     filters_raw = {
-        k: v for k, v in request.values.lists()
-        if v != ['']
+        **{
+            k: v if k in ["filter-countries", "filter-classification"] else v[0]
+            for k, v in request.args.lists()
+            if v != ['']
+        },
+        **{
+            k: v if k in ["filter-countries", "filter-classification"] else v[0]
+            for k, v in request.form.lists()
+            if v != ['']
+        }
     }
     
     pages = {
@@ -88,11 +96,19 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
     charity_data = fetch_charitybase(area["countries"], filters=filters, limit=30, skip=filters.get("skip", 0), query=qgl_query)
     charts = get_charts(charity_data, area["countries"]) if page=="dashboard" else {}
 
+    for c in area["countries"]:
+        # whether the country has been filtered to the 
+        c["filtered"] = c["id"] in filters.get("countries", []) if filters.get("countries") else True
+        # number of charities in the selection that work in the country
+        if "aggregate" in charity_data:
+            c["charity_count"] = sum(
+                [i["count"] for i in charity_data["aggregate"]["areas"]["buckets"] if i["key"] == c["id"]])
+
     if filetype=="json":
 
         inserts = {
             "selected-filters": render_template('_data_selected_filters.html.j2', filters=request.values, classification=CLASSIFICATION, area=area),
-            "example-charities": render_template('_data_example_charities.html.j2', data=charity_data),
+            "example-charities": render_template('_data_example_charities.html.j2', data=charity_data, area=area),
             "charity-count": "{:,.0f} UK NGO{}".format(charity_data["count"], "" if charity_data["count"] == 1 else "s"),
             "word-cloud": render_template('_data_word_cloud.html.j2', charts=charts),
             "max-countries-header": "{:,.0f}".format(filters.get("max_countries")),
@@ -100,7 +116,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
 
         if page=="show-charities":
             inserts["data-list"] = render_template(
-                '_data_list_table.html.j2', pages=pages, active_page='show-charities', filters=request.values, data=charity_data)
+                '_data_list_table.html.j2', pages=pages, active_page='show-charities', filters=request.values, data=charity_data, area=area)
 
         return jsonify(dict(
             area=area,

@@ -76,7 +76,7 @@ def parse_filters(filters):
 
     # further country filter (refines the main url country selection)
     if filters.get("filter-countries"):
-        return_filters['countries'] = filters['filter-countries']
+        return_filters['countries'] = filters.getlist('filter-countries')
 
     # exclude grantmakers
     if filters.get("filter-exclude-grantmakers"):

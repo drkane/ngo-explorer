@@ -60,7 +60,18 @@
                 {% endif %}
                 {% if c.income.latest.date and c.income.latest.total %}<p class="f7 gray mb0 mt2 di db-ns">[{{ c.income.latest.date[0:10] }}]</p>{% endif %}
             </td>
-            <td class="pa2 v-top f7 db dtc-ns">{{ c.activities|default("", true) }}</td>
+            <td class="pa2 v-top f7 db dtc-ns">
+                {{ c.activities|default("", true) }}
+                {% set cids = area.countries|map(attribute="id")|list %}
+                <p class="i">
+                Work in 
+                {% for a in c.areas if a.id in cids %}
+                    {%- if loop.last and not loop.first %} and {% endif %}
+                    {%- if not loop.last and not loop.first -%}, {% endif %}
+                    {{- a.name -}}
+                {% endfor %}
+                <p>
+            </td>
             <td class="pa2 v-top f7 db dtc-ns"><span class="di dn-ns">UK registered office: </span>{{ c.geo.region|default("", true) }}</td>
         </tr>
     {% endfor %}

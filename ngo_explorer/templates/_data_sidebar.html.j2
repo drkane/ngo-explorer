@@ -2,7 +2,7 @@
     <form action="{{request.path}}" id="filter-form">
         <div class="mv3 bb b--gray w-100 flex items-center">
             <i class="material-icons">search</i>
-            <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Search name or activities" value="{{ filters.get("filter-search", "") }}" autocomplete="off" />
+            <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Search name or activities" value="{{ filters.get('filter-search', '') }}" autocomplete="off" />
         </div>
         <a href="#" class="link dark-blue dim f7 underline js-toggle js-only" data-toggle-target="more-filters" id="filters-show-hide">Show filters</a>
         <div id="more-filters">
@@ -11,11 +11,23 @@
                 <p class="f6">
                     Between 
                     <span class="bb bw2 b--light-gray dib w-33">
-                        <input name="filter-min-income" type="number" id="min-income" class="input-reset pa1 bn mid-gray w-100" placeholder="Minimum" autocomplete="off">
+                        <input name="filter-min-income"
+                               type="number"
+                               id="min-income"
+                               class="input-reset pa1 bn mid-gray w-100"
+                               placeholder="Minimum"
+                               value="{{ filters.get('filter-min-income', '') }}"
+                               autocomplete="off">
                     </span>
                     and 
                     <span class="bb bw2 b--light-gray dib w-33">
-                        <input name="filter-max-income" type="number" id="max-income" class="input-reset pa1 bn mid-gray w-100" placeholder="Maximum" autocomplete="off">
+                        <input name="filter-max-income"
+                               type="number"
+                               id="max-income"
+                               class="input-reset pa1 bn mid-gray w-100"
+                               placeholder="Maximum"
+                               value="{{ filters.get('filter-max-income', '') }}"
+                               autocomplete="off">
                     </span>
                 </p>
             </div>
@@ -24,7 +36,7 @@
                 <h3 class="f5 normal mb2 b">{{ group|title }}</h3>
                 <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-classification" multiple="true">
                     {% for value, label in options.items() %}
-                    <option value="{{value}}">{{label}}</option>
+                    <option value="{{value}}" {% if value in filters.getlist('filter-classification') %}selected="selected"{% endif %}>{{label}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -36,7 +48,7 @@
                     {% for group in area.countries|groupby('continent') %}
                     <optgroup label="{{ group.grouper }}">
                         {% for c in group.list %}
-                        <option value="{{ c['id'] }}">{{ c['name'] }}</option>
+                        <option value="{{ c['id'] }}" {% if value in filters.getlist('filter-countries') %}selected="selected"{% endif %}>{{ c['name'] }}</option>
                         {% endfor %}
                     </optgroup>
                     {% endfor %}
@@ -47,18 +59,28 @@
                 <p class="gray i f6">
                     Exclude any charities that say they work in more than 
                     <span class="bb bw2 b--light-gray dib">
-                        <input name="filter-max-countries" value="50" type="number" class="input-reset pa1 bn w3 mid-gray" autocomplete="off" />
+                        <input name="filter-max-countries"
+                               value="{{ filters.get('filter-max-countries', '50') }}"
+                               type="number"
+                               class="input-reset pa1 bn w3 mid-gray"
+                               autocomplete="off" />
                     </span>
                     countries.
                 </p>
             </div>
             <div class="mv3 w-100">
                 <label class="gray i f6">
-                    <input name="filter-exclude-grantmakers" type="checkbox" value="exclude-grantmakers" />
+                    <input name="filter-exclude-grantmakers"
+                           type="checkbox"
+                           {% if filters.get('filter-exclude-grantmakers') %}checked=checked{% endif %}
+                           value="exclude-grantmakers" />
                     Exclude charities that make grants
                 </label><br>
                 <label class="gray i f6">
-                    <input name="filter-exclude-religious" type="checkbox" value="exclude-religious" />
+                    <input name="filter-exclude-religious"
+                           type="checkbox"
+                           {% if filters.get('filter-exclude-grantmakers') %}checked=checked{% endif %}
+                           value="exclude-religious" />
                     Exclude religious organisations
                 </label>
             </div>
