@@ -422,7 +422,7 @@
         },
         {
             "id": "D-140",
-            "name": "Burma",
+            "name": "Myanmar",
             "iso": "MMR",
             "dac_status": "Least developed",
             "undp": "East Asia and the Pacific",
@@ -482,7 +482,7 @@
         },
         {
             "id": "D-38",
-            "name": "Cape Verde",
+            "name": "Cabo Verde",
             "iso": "CPV",
             "dac_status": "Lower middle income",
             "undp": "Sub-Saharan Africa",
@@ -686,7 +686,7 @@
         },
         {
             "id": "D-52",
-            "name": "Czech Republic",
+            "name": "Czechia",
             "iso": "CZE",
             "dac_status": null,
             "undp": null,
@@ -1274,7 +1274,7 @@
         },
         {
             "id": "D-99",
-            "name": "Ivory Coast",
+            "name": "Côte d'Ivoire",
             "iso": "CIV",
             "dac_status": "Lower middle income",
             "undp": "Sub-Saharan Africa",
@@ -2582,7 +2582,7 @@
         },
         {
             "id": "D-195",
-            "name": "Swaziland",
+            "name": "Eswatini",
             "iso": "SWZ",
             "dac_status": "Lower middle income",
             "undp": "Sub-Saharan Africa",

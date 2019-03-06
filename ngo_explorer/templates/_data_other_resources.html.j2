@@ -3,7 +3,8 @@
         <div class="db fl w-20-l w-100 mh0 mv2 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-60-l w-100 mh0 mv2">
             <h3 class="lh-title pa0 ma0">Other resources</h3>
-            <p class="lh-copy pa0 ma0">
+            <p class="lh-copy pa0 mh0 mv2 gray">
+                We are not responsible for the content of external websites.
             </p>
         </div>
     </div>
@@ -73,12 +74,20 @@
                     <a href="{{ i.homepage }}" target="_blank" class="normal link b black">{{ i.title }}</a>
                 </div>
                 <div class="db fl w-60-l w-100 mh0 mv2">
-                    <a href="{{ i.directlink }}" target="_blank" 
+                    <a href="{{ i.directlink|default(i.homepage) }}" target="_blank" 
                         class="link dim blue underline mw5 nowrap dib overflow-hidden truncate external-link">
-                        {{ i.directlinktext }}
+                        {{ i.directlinktext|default("Homepage") }}
                     </a>
                     {% if i.description %}
                     <p class="pa0 ma0 lh-copy">{{ i.description }}</p>
+                    {% endif %}
+                    {% if i.source %}
+                    <p class="pa0 ma0 lh-copy f7 gray i">Source: 
+                        <a href="{{ i.source_link }}" target="_blank" 
+                            class="link dim gray underline external-link">
+                            {{ i.source }}
+                        </a>
+                    </p>
                     {% endif %}
                 </div>
             </div>

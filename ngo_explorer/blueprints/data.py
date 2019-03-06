@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify, url_for, Response
 
-from ..utils.countries import get_country_groups, get_multiple_countries, COUNTRIES
+from ..utils.countries import get_country_groups, get_multiple_countries, COUNTRIES, SIMILAR_INITIATIVE
 from ..utils.fetchdata import fetch_charitybase, fetch_iati, dict_to_gql
 from ..utils.filters import CLASSIFICATION, parse_filters
 from ..utils.download import DOWNLOAD_OPTIONS, download_file
@@ -8,15 +8,6 @@ from ..utils.charts import get_charts
 from ..utils.utils import nested_to_record
 
 bp = Blueprint('data', __name__, url_prefix='/')
-
-SIMILAR_INITIATIVE = {
-    "sen": [{
-        "homepage": "https://pfongue.org/",
-        "title": "Platform of European NGOs in Senegal",
-        "directlink": "https://pfongue.org/-Cartographie-.html",
-        "directlinktext": "Map of projects",
-    }]
-}
 
 
 @bp.route('/region/<regiontype>/<regionid>/<subpage>.<filetype>', methods=['GET', 'POST'])
