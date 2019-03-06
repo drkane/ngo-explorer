@@ -16,6 +16,15 @@ bp = Blueprint('data', __name__, url_prefix='/')
 @bp.route('/region/<regiontype>/<regionid>')
 def region(regionid, regiontype="continent", filetype="html", subpage="dashboard"):
     area = get_country_groups(as_dict=True).get((regiontype, regionid))
+
+    if not area:
+        return render_template(
+            '404.html.j2',
+            lookingfor='{} "{}" could not be found'.format(regiontype, regionid),
+            countries=get_country_groups(),
+            classification=CLASSIFICATION
+        ), 404
+
     return data_page(
         area,
         filetype,
@@ -30,6 +39,16 @@ def region(regionid, regiontype="continent", filetype="html", subpage="dashboard
 @bp.route('/country/<countryid>')
 def country(countryid, filetype="html", subpage='dashboard'):
     area = get_multiple_countries(countryid)
+
+    if not area:
+        return render_template(
+            '404.html.j2',
+            lookingfor='Country "{}" could not be found'.format(
+                countryid),
+            countries=get_country_groups(),
+            classification=CLASSIFICATION
+        ), 404
+
     return data_page(
         area,
         filetype,
@@ -136,6 +155,17 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
 @bp.route('/charity/<charityid>')
 def charity(charityid):
     charity_data = fetch_charitybase(ids=[charityid])
+
+    if charity_data["count"] == 0:
+        return render_template(
+            '404.html.j2',
+            lookingfor='Charity "{}" could not be found'.format(
+                charityid),
+            countries=get_country_groups(),
+            classification=CLASSIFICATION
+        ), 404
+
+
     data = charity_data["list"][0]
     if (data.get("website") or "").strip() != "":
         if not data["website"].startswith("http"):

@@ -81,8 +81,12 @@ def get_multiple_countries(countryid):
     }
     for i in countryids:
         this_area = get_country_groups(as_dict=True).get(i)
-        area["name"].append(this_area["name"])
-        area["countries"].extend(this_area["countries"])
+        if this_area:
+            area["name"].append(this_area["name"])
+            area["countries"].extend(this_area["countries"])
+    if not area["countries"]:
+        return None
+
     area["name"] = ", ".join(area["name"])
     return area
 

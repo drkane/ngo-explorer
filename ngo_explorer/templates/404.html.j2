@@ -1,0 +1,14 @@
+{% extends "index.html.j2" %}
+
+{% block title %}Not found | NGO Explorer{% endblock %}
+
+{% block message %}
+<div class="w-100 mv3 ba bw2 b--dark-red">
+    <h2 class="lh-title ma0 bg-dark-red white pa1">Not found</h2>
+    {% if lookingfor %}
+    <div class="pa2">
+        <p class="lh-title ma0 gray">{{ lookingfor }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

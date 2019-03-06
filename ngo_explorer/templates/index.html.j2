@@ -8,6 +8,7 @@
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
             <h2 class="ma0 mv2-l">Explore UK charities working across the world</h2>
+            {% block message %}{% endblock %}
             <form action="{{ url_for('data.country', **{'countryid': 'all'}) }}">
             <div class="mb1 bb b--gray w-100 flex items-center">
                 <i class="material-icons">search</i>
