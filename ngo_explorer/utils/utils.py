@@ -116,7 +116,7 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
 def correct_titlecase(s):
     
     substitutions = [
-        (r'\b([^aeiouAEIOU,0-9]+)\b', lambda x: x[0].upper() if x[0] else x),
+        (r'\b([^aeiouyAEIOUY,0-9]+)\b', lambda x: x[0].upper() if x[0] else x),
         (r'\'S\b', "'s"),
         (r'\'T\b', "'t"),
         (r'\bOf\b', "of"),
@@ -134,6 +134,11 @@ def correct_titlecase(s):
         (r'3Rd\b', "3rd"),
         (r'\bmr\b', "Mr"),
         (r'\bmrs\b', "Mrs"),
+        (r'\bltd\b', "Ltd"),
+        (r'\bdr\b', "Dr"),
+        (r'\bdrs\b', "Drs"),
+        (r'\bcwm\b', "Cwm"),
+        (r'\bClwb\b', "Clwb"),
     ]
 
     for pattern, replacement in substitutions:
