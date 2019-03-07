@@ -17,10 +17,10 @@
             </a>
         </p>
         {% endif %}
-        {% if data.income.latest.total %}
+        {% if data.finances[0].income %}
         <p>
-            <strong>Latest income:</strong> {{ "£{:,.0f}".format(data.income.latest.total) }}
-            <span class="f6 gray">({{ data.income.latest.date[0:10] }})</span>
+            <strong>Latest income:</strong> {{ "£{:,.0f}".format(data.finances[0].income) }}
+            <span class="f6 gray">({{ "{:%B %Y}".format(data.finances[0].financialYear.end) }})</span>
         </p>
         {% endif %}
         <p class="b">Other links:</p>

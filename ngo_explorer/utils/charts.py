@@ -59,16 +59,12 @@ H_LAYOUT = {
 def get_charts(data, selected_countries=None):
 
     for i in CLASSIFICATION.keys():
-        for x in data["aggregate"][i]["buckets"]:
+        for x in data.aggregate[i]:
             x['name'] = CLASSIFICATION.get(i, {}).get(x["key"], x["key"])
-
-    income_buckets = parse_income_buckets(
-        data["aggregate"]["income"]["buckets"]
-    )
 
     countries = [
         {"count": i["count"], **get_country_by_id(i['key']), "id": i["key"]}
-        for i in data["aggregate"]["areas"]["buckets"]
+        for i in data.aggregate["areas"]
         if get_country_by_id(i['key'])
     ]
     if selected_countries and len(selected_countries) == 1:
@@ -76,16 +72,14 @@ def get_charts(data, selected_countries=None):
         countries = [c for c in countries if c['id'] != selected_country]
 
     return {
-        "buckets": income_buckets,
-        "count": horizontal_bar(income_buckets, "count"),
-        "amount": horizontal_bar(income_buckets, "sumIncome", "sumIncomeText", log_axis=True),
+        "count": horizontal_bar(data.aggregate["income"], "count"),
+        "amount": horizontal_bar(data.aggregate["income"], "sumIncome", "sumIncomeText", log_axis=True),
         "countries": horizontal_bar(countries[0:12], "count"),
         **{
-            k: horizontal_bar(data["aggregate"][k]
-                              ["buckets"], "count")
+            k: horizontal_bar(data.aggregate[k], "count")
             for k in CLASSIFICATION.keys()
         },
-        "word_cloud": word_cloud(data["list"]),
+        "word_cloud": word_cloud(data.list),
     }
 
 
@@ -249,50 +243,6 @@ def plotly_json(data):
     return _json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
 
 
-def parse_income_buckets(income_buckets: list):
-
-    new_bucket_labels = {
-        "Min. £1": "Under £10k",
-        "Min. £3": "Under £10k",
-        "Min. £10": "Under £10k",
-        "Min. £32": "Under £10k",
-        "Min. £100": "Under £10k",
-        "Min. £316": "Under £10k",
-        "Min. £1000": "Under £10k",
-        "Min. £3162": "Under £10k",
-        "Min. £10000": "£10k-£100k",
-        "Min. £31623": "£10k-£100k",
-        "Min. £100000": "£100k-£1m",
-        "Min. £316228": "£100k-£1m",
-        "Min. £1000000": "£1m-£10m",
-        "Min. £3162278": "£1m-£10m",
-        "Min. £10000000": "Over £10m",
-        "Min. £31622777": "Over £10m",
-        "Min. £100000000": "Over £10m",
-        "Min. £316227766": "Over £10m",
-        "Min. £1000000000": "Over £10m",
-    }
-
-    # merge all the buckets into one
-    new_buckets = {}
-    for i in income_buckets:
-        id_ = new_bucket_labels.get(i["name"], i["key"])
-        if id_ not in new_buckets:
-            new_buckets[id_] = copy.copy(i)
-            new_buckets[id_]["name"] = id_
-        else:
-            new_buckets[id_]["count"] += i["count"]
-            new_buckets[id_]["sumIncome"] += i["sumIncome"]
-
-    # scale the money amounts and add a text representation
-    income_buckets = []
-    for i in new_buckets.values():
-        scale = get_scaling_factor(i["sumIncome"])
-        i["sumIncomeText"] = "£" + scale[2].format(i["sumIncome"] / scale[0])
-        income_buckets.append(i)
-
-    return income_buckets
-
 def word_cloud(charity_data):
     stop_words = [
         # from https://gist.github.com/sebleier/554280
@@ -314,9 +264,9 @@ def word_cloud(charity_data):
 
     words = Counter()
     for c in charity_data:
-        if not c.get("activities", ""):
+        if not getattr(c, "activities", ""):
             continue
-        a = c.get("activities", "").split()
+        a = getattr(c, "activities", "").split()
         for word in a:
             word = re.sub(alpha_regex, '', word.lower())
             if word in stop_words or len(word) <=3:

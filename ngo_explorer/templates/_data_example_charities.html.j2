@@ -20,16 +20,16 @@
     </dt>
     <dd class="mw6-l ml3">
         <p class="f6">
-            {% if c.income.latest.total %}
-            Income <strong>£{{ c.income.latest.total|number_format }}</strong>
-            <span class="f7 i gray">({{ c.income.latest.date[0:4] }})</span>
+            {% if c.finances[0].income %}
+            Income <strong>£{{ c.finances[0].income|number_format }}</strong>
+            <span class="f7 i gray">({{ c.finances[0].financialYear.end.year }})</span>
             {% endif %}
         </p>
         {% if area %}
         <p class="f7 near-black">
             {% set cids = area.countries|map(attribute="id")|list %}
             Work in 
-            {% for a in c.areas if a.id in cids %}
+            {% for a in c.countries if a.id in cids %}
                 {%- if loop.last and not loop.first %} and {% endif %}
                 {%- if not loop.last and not loop.first -%}, {% endif %}
                 {{- a.name -}}

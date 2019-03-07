@@ -1,25 +1,34 @@
-query getCharityList($filters: FilterCHCInput!, $limit: PageLimit = 30, $skip: Int = 0) {
+query getCharityList(
+  $filters: FilterCHCInput!
+  $limit: PageLimit = 30
+  $skip: Int = 0
+) {
   CHC {
     getCharities(filters: $filters) {
       count
       list(limit: $limit, skip: $skip) {
         id
-        name
+        names {
+          value
+          primary
+        }
         activities
-        areas {	
+        areas {
           name
           id
         }
-        income {
-          latest {
-            date
-            total
+        finances {
+          income
+          spending
+          financialYear {
+            end
           }
         }
         geo {
           latitude
           longitude
           region
+          country
         }
         website
       }

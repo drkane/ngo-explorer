@@ -110,6 +110,10 @@ def parse_download_fields(fields):
 
     # ID and name field always returned
     fields["id"] = {}
+    fields["names"] = {
+        "value": {},
+        "primary": {}
+    }
     fields["name"] = {}
 
     return fields
@@ -137,14 +141,14 @@ def download_file(area, filters, fields, filetype='csv', max_results=500):
     raw_results = fetch_charitybase(**cb_variables)
     # check here if query has failed
 
-    charity_list = raw_results["list"]
+    charity_list = raw_results.list
 
     stop_searching = min(
-        [raw_results["count"], current_app.config['DOWNLOAD_LIMIT']])
+        [raw_results.count, current_app.config['DOWNLOAD_LIMIT']])
     cb_variables['skip'] += limit
     while cb_variables['skip'] < stop_searching:
         raw_results = fetch_charitybase(**cb_variables)
-        charity_list.extend(raw_results["list"])
+        charity_list.extend(raw_results.list)
         cb_variables['skip'] += limit
 
     if filetype.lower() in ["excel", "xlsx", "xls"]:
@@ -154,25 +158,17 @@ def download_file(area, filters, fields, filetype='csv', max_results=500):
 
     results = []
     for r in charity_list:
-        if "countries" in fields:
-            r["countries"] = [a for a in r.get(
-                "areas", []) if a["id"].startswith("D-")]
-            if "areas" not in fields:
-                del r["areas"]
-
-        if "areas" in fields:
-            r["areas"] = [a for a in r.get(
-                "areas", []) if not a["id"].startswith("D-")]
 
         if filetype in ["xlsx", "csv"]:
-            r = nested_to_record(r)
-            # r = {k: r.get(k) for k in fields}
+            r = nested_to_record(r.__dict__)
             for k, v in r.items():
                 if isinstance(v, list):
                     if v and isinstance(v[0], dict):
                         v = [i.get("name", list(i.values())[0]) for i in v]
                     r[k] = ";".join(v)
-        results.append(r)
+            results.append(r)
+        else:
+            results.append(r.__dict__)
 
     fieldnames = ["id", "name"] + \
         sorted([v for v in fields if v not in ["id", "name"]])

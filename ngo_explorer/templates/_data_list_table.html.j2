@@ -52,29 +52,28 @@
                 </a>
             </td>
             <td class="pa2 v-top tr db dtc-ns">
-                {% if c.income.latest.total %}
+            {% if c.finances[0].income %}
                 <p class="pa0 ma0 di db-ns">
                     <span class="di dn-ns">Latest income </span>
-                    {{ "£{:,.0f}".format(c.income.latest.total) }}
+                    {{ "£{:,.0f}".format(c.finances[0].income) }}
                 </p>
+                {% if c.finances[0].financialYear %}
+                <p class="f7 gray mb0 mt2 di db-ns">[{{ "{:%b %Y}".format(c.finances[0].financialYear.end) }}]</p>
                 {% endif %}
-                {% if c.income.latest.date and c.income.latest.total %}<p class="f7 gray mb0 mt2 di db-ns">[{{ c.income.latest.date[0:10] }}]</p>{% endif %}
+            {% endif %}
             </td>
             <td class="pa2 v-top f7 db dtc-ns">
                 {{ c.activities|default("", true) }}
-                {% if area %}
-                {% set cids = area.countries|map(attribute="id")|list %}
                 <p class="i">
                 Work in 
-                {% for a in c.areas if a.id in cids %}
+                {% for a in c.countries %}
                     {%- if loop.last and not loop.first %} and {% endif %}
                     {%- if not loop.last and not loop.first -%}, {% endif %}
                     {{- a.name -}}
                 {% endfor %}
-                {% endif %}
                 <p>
             </td>
-            <td class="pa2 v-top f7 db dtc-ns"><span class="di dn-ns">UK registered office: </span>{{ c.geo.region|default("", true) }}</td>
+            <td class="pa2 v-top f7 db dtc-ns"><span class="di dn-ns">UK registered office: </span>{{ c.geo.region|default(c.geo.country|default("", true), true) }}</td>
         </tr>
     {% endfor %}
     </tbody>

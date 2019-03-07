@@ -7,7 +7,11 @@ fragment allBucket on Aggregation {
   }
 }
 
-query getCharityAggregation($filters: FilterCHCInput!, $limit: PageLimit = 30, $skip: Int = 0) {
+query getCharityAggregation(
+  $filters: FilterCHCInput!
+  $limit: PageLimit = 30
+  $skip: Int = 0
+) {
   CHC {
     getCharities(filters: $filters) {
       aggregate {
@@ -17,35 +21,45 @@ query getCharityAggregation($filters: FilterCHCInput!, $limit: PageLimit = 30, $
         causes {
           ...allBucket
         }
-				beneficiaries {
+        beneficiaries {
           ...allBucket
         }
-				operations {
+        operations {
           ...allBucket
         }
         areas {
           ...allBucket
         }
+        geo {
+          region {
+            ...allBucket
+          }
+        }
       }
       count
       list(limit: $limit, skip: $skip) {
         id
-        name
+        names {
+          value
+          primary
+        }
         activities
-        areas {	
+        areas {
           name
           id
         }
-        income {
-          latest {
-            date
-            total
+        finances {
+          income
+          spending
+          financialYear {
+            end
           }
         }
         geo {
           latitude
           longitude
           region
+          country
         }
         website
       }

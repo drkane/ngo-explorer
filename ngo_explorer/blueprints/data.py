@@ -103,16 +103,22 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
             filetype=request.values.get("download_type").lower(),
         )
 
-    charity_data = fetch_charitybase(countries=area["countries"], filters=filters, limit=30, skip=filters.get("skip", 0), query=qgl_query)
+    charity_data = fetch_charitybase(
+        countries=area["countries"],
+        filters=filters,
+        limit=30,
+        skip=filters.get("skip", 0),
+        query=qgl_query
+    )
     charts = get_charts(charity_data, area["countries"]) if page=="dashboard" else {}
 
     for c in area["countries"]:
         # whether the country has been filtered to the 
         c["filtered"] = c["id"] in filters.get("countries", []) if filters.get("countries") else True
         # number of charities in the selection that work in the country
-        if "aggregate" in charity_data:
+        if getattr(charity_data, "aggregate"):
             c["charity_count"] = sum(
-                [i["count"] for i in charity_data["aggregate"]["areas"]["buckets"] if i["key"] == c["id"]])
+                [i["count"] for i in charity_data.aggregate["areas"] if i["key"] == c["id"]])
 
     if filetype=="json":
 
@@ -126,7 +132,13 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
 
         if page=="show-charities":
             inserts["data-list"] = render_template(
-                '_data_list_table.html.j2', pages=pages, active_page='show-charities', filters=request.values, data=charity_data, area=area)
+                '_data_list_table.html.j2',
+                pages=pages,
+                active_page='show-charities',
+                filters=request.values,
+                data=charity_data,
+                area=area
+            )
 
         return jsonify(dict(
             area=area,
@@ -156,7 +168,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
 def charity(charityid):
     charity_data = fetch_charitybase(ids=[charityid])
 
-    if charity_data["count"] == 0:
+    if charity_data.count == 0:
         return render_template(
             '404.html.j2',
             lookingfor='Charity "{}" could not be found'.format(
@@ -165,11 +177,4 @@ def charity(charityid):
             classification=CLASSIFICATION
         ), 404
 
-
-    data = charity_data["list"][0]
-    if (data.get("website") or "").strip() != "":
-        if not data["website"].startswith("http"):
-            data["website"] = "//" + data["website"]
-    countries = [c["id"] for c in data["areas"] if c["id"].startswith("D-")]
-    data["countries"] = [c for c in COUNTRIES if c["id"] in countries]
-    return render_template('charity.html.j2', data=data)
+    return render_template('charity.html.j2', data=charity_data.get_charity())
