@@ -68,10 +68,13 @@ const stamen_attribution = 'Map tiles <a href="http://stamen.com">Stamen Design<
 var layer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {attribution: stamen_attribution});
 var map = new L.Map("location-map", {
     center: new L.LatLng({{ data.geo.latitude }}, {{ data.geo.longitude }}),
-    zoom: 7
+    zoom: 7,
+    scrollWheelZoom: false
 });
 map.addLayer(layer);
-var marker = L.marker([{{ data.geo.latitude }}, {{ data.geo.longitude }}]).addTo(map);
+map.on('focus', function() { map.scrollWheelZoom.enable(); });
+map.on('blur', function() { map.scrollWheelZoom.disable(); });
+var marker = L.circleMarker([{{ data.geo.latitude }}, {{ data.geo.longitude }}], {fill: false, weight: 10, color: '#237756'}).addTo(map);
 </script>
 {% endif %}
 {% endblock %}
