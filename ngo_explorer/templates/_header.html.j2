@@ -8,12 +8,20 @@
             </a>
         </h1>
     </div>
-    <div class="fr-ns fl w-third-ns w-100 mid-gray">
-        <p class="mt2 ma0-ns">
-            An explorer for data on development charities based in the UK.
-            Uses data from the Charity Commission for England and Wales.
-            Powered by <a class="link dim dark-blue" href="https://charitybase.uk/">CharityBase</a>.
-            <a class="link dim dark-blue" href="{{ url_for('home.about') }}">About this tool</a>
+    <div class="fr-ns fl w-third-ns w-100">
+        <nav class="cf mb3 mb4-ns">
+            <ul class="list ma0 pa0 fr">
+                <li class="dib b"><a class="link dim dark-green" href="{{ url_for('home.index') }}">Home</a> | </li>
+                <li class="dib b"><a class="link dim dark-green" href="{{ url_for('home.about') }}">About</a> | </li>
+                <li class="dib b"><a class="link dim dark-green" href="{{ url_for('upload.data') }}">Upload</a></li>
+            </ul>
+        </nav>
+        <p class="mt2 tr gray f6">
+            An explorer for data on development charities based in the UK.<br>
+            Uses data from the <a class="link dim dark-blue" href="http://beta.charitycommission.gov.uk/" target="_blank" title="Charity Commission for England and Wales">Charity Commission</a>.
+        </p>
+        <p class="mt1 tr gray f6">
+            Powered by <a class="link dim" style="color: rgb(236, 64, 122);" href="https://charitybase.uk/about" target="_blank">CharityBase</a>
         </p>
     </div>
 </header>
