@@ -82,6 +82,12 @@ def fetch_charitybase(countries:list = None, ids:list = None, filters=None, limi
             if countries:
                 variables["filters"]["areas"]["some"] = countries
 
+        if filters.get("regions"):
+            if "geo" not in variables["filters"]:
+                variables["filters"]["geo"] = {}
+            if countries:
+                variables["filters"]["geo"]["region"] = filters.get("regions")
+
         if filters.get("exclude_grantmakers"):
             if "operations" not in variables["filters"]:
                 variables["filters"]["operations"] = {}

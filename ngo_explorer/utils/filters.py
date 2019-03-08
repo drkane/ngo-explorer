@@ -78,6 +78,10 @@ def parse_filters(filters):
     if filters.get("filter-countries"):
         return_filters['countries'] = filters.getlist('filter-countries')
 
+    # region filter
+    if filters.get("filter-regions"):
+        return_filters['regions'] = filters.get('filter-regions')
+
     # exclude grantmakers
     if "filter-exclude-grantmakers" in filters:
         return_filters['exclude_grantmakers'] = True

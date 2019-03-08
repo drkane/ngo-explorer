@@ -40,6 +40,29 @@
             </select>
         </div>
         {% endfor %}
+        <div class="mv3 w-100">
+            <h3 class="f5 normal mb2 b">
+                UK Region
+                <p class="ma0 f6 gray normal i">Based on the UK head office</p>
+            </h3>
+            <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-regions">
+                <option value=""></option>
+                <optgroup label="England">
+                    <option value="E12000001" {% if "E12000001" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>North East</option>
+                    <option value="E12000002" {% if "E12000002" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>North West</option>
+                    <option value="E12000003" {% if "E12000003" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>Yorkshire and The Humber</option>
+                    <option value="E12000004" {% if "E12000004" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>East Midlands</option>
+                    <option value="E12000005" {% if "E12000005" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>West Midlands</option>
+                    <option value="E12000006" {% if "E12000006" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>East of England</option>
+                    <option value="E12000007" {% if "E12000007" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>London</option>
+                    <option value="E12000008" {% if "E12000008" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>South East</option>
+                    <option value="E12000009" {% if "E12000009" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>South West</option>
+                </optgroup>
+                <optgroup label="">
+                    <option value="W92000004" {% if "W92000004" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>Wales</option>
+                </optgroup>
+            </select>
+        </div>
         {% if area.countries|length > 1 %}
         <div class="mv3 w-100">
             <h3 class="f5 normal mb2 b">Countries</h3>

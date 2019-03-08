@@ -35,6 +35,13 @@
         {{ showfilter("", "Is not a religious organisation") }}
     {% endif %}
 
+    {% if filters.get("filter-regions") %}
+    {% set filtered_regions = filters.getlist("filter-regions") %}
+        {% for c in filtered_regions %}
+            {{ showfilter("UK Region", c) }}
+        {% endfor %}
+    {% endif %}
+
     {% if filters.get("filter-countries") %}
     {% set filtered_countries = filters.getlist("filter-countries") %}
         {% for c in area.countries %}
