@@ -2,6 +2,7 @@ query getCharityList(
   $filters: FilterCHCInput!
   $limit: PageLimit = 30
   $skip: Int = 0
+  $allFinances: Boolean = false
 ) {
   CHC {
     getCharities(filters: $filters) {
@@ -17,7 +18,7 @@ query getCharityList(
           name
           id
         }
-        finances {
+        finances(all: $allFinances) {
           income
           spending
           financialYear {
@@ -29,6 +30,10 @@ query getCharityList(
           longitude
           region
           country
+        }
+        registrations(all: true) {
+          registrationDate
+          removalDate
         }
         website
       }

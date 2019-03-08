@@ -6,7 +6,6 @@ import os
 from flask import Blueprint, render_template, request, jsonify, url_for, redirect, current_app
 
 from ..utils.fetchdata import fetch_charitybase
-from ..utils.charts import get_charts
 from ..utils.download import DOWNLOAD_OPTIONS, download_file
 from ..utils.filters import parse_filters
 
@@ -63,9 +62,6 @@ def fetch_uploaded_data(fileid):
 
     with open(os.path.join(current_app.config["DATA_CONTAINER"], "{}.pkl".format(fileid)), "rb") as a:
         data = pickle.load(a)
-    data["charts"] = get_charts(data["data"])
-    print(data["charitynumbers"])
-
     return render_template('upload-data.html.j2', pages=upload_pages(fileid), **data)
 
 @bp.route('/<fileid>/show')

@@ -36,6 +36,27 @@
                 </a>
             </li>
         </ul>
+        {% if data.finances %}
+        <div id="chart_finances" class="h5 h6-ns"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="tl">Date</th>
+                    <th class="tr">Income</th>
+                    <th class="tr">Spending</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for f in data.finances %}
+                <tr>
+                    <td>{{ "{:%d %B %Y}".format(f.financialYear.end) }}</td>
+                    <td class="w4 tr">£{{ "{:,.0f}".format(f.income) }}</td>
+                    <td class="w4 tr">£{{ "{:,.0f}".format(f.spending) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
     </div>
     <div class="mb3 w-100 w-25-l fr">
         {% if data.countries|length > 0 %}
@@ -57,6 +78,9 @@
 {% endblock %}
 
 {% block scripts %}
+<script type="text/javascript">
+    const charts = {{ {"finances": data.finance_chart()}|to_plotlyjson }};
+</script>
 {{super()}}
 {% if data.geo.latitude and data.geo.longitude %}
 <script src="{{ url_for('static', filename='vendor/leaflet/leaflet.js') }}"></script>

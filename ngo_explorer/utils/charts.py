@@ -56,32 +56,6 @@ H_LAYOUT = {
     }
 }
 
-def get_charts(data, selected_countries=None):
-
-    for i in CLASSIFICATION.keys():
-        for x in data.aggregate[i]:
-            x['name'] = CLASSIFICATION.get(i, {}).get(x["key"], x["key"])
-
-    countries = [
-        {"count": i["count"], **get_country_by_id(i['key']), "id": i["key"]}
-        for i in data.aggregate["areas"]
-        if get_country_by_id(i['key'])
-    ]
-    if selected_countries and len(selected_countries) == 1:
-        selected_country = selected_countries[0]['id']
-        countries = [c for c in countries if c['id'] != selected_country]
-
-    return {
-        "count": horizontal_bar(data.aggregate["income"], "count"),
-        "amount": horizontal_bar(data.aggregate["income"], "sumIncome", "sumIncomeText", log_axis=True),
-        "countries": horizontal_bar(countries[0:12], "count"),
-        **{
-            k: horizontal_bar(data.aggregate[k], "count")
-            for k in CLASSIFICATION.keys()
-        },
-        "word_cloud": word_cloud(data.list),
-    }
-
 
 def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229, 229)", static=False):
     continents = continents if continents else list(
@@ -274,3 +248,23 @@ def word_cloud(charity_data):
             words.update([word])
 
     return dict(words.most_common(50))
+
+
+def line_chart(data):
+
+    chart_data = []
+    for d in data:
+        chart_data.append(go.Scatter(
+            **d
+        ))
+
+    layout = copy.deepcopy(LAYOUT)
+    layout["yaxis"]["rangemode"] = 'tozero'
+    # layout["yaxis"]["autorange"] = True
+    layout["yaxis"]["visible"] = True
+
+    return dict(
+        data=chart_data,
+        layout=layout,
+        id=str(uuid.uuid4()).replace("-", "_"),
+    )

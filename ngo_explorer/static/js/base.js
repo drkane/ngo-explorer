@@ -24,3 +24,18 @@ for (const el of document.getElementsByClassName("js-toggle")) {
         });
     }
 }
+
+// draw the charts initially
+if (typeof charts !== "undefined") {
+    Object.keys(charts).forEach(function (key) {
+        if (document.getElementById(`chart_${key}`)) {
+            console.log(key);
+            Plotly.newPlot(
+                `chart_${key}`,
+                charts[key].data,
+                charts[key].layout,
+                { displayModeBar: false }
+            );
+        }
+    });
+}

@@ -3,9 +3,9 @@
         <span class="f1">{{ "{:,.0f}".format(data.count) }}</span><br>
         NGO{{ "s" if data.count > 1 else "" }} found
     </div>
-    {% if data.aggregate %}
+    {% if data.total_income %}
     <div class=" bg-yellow white pa2 f4 fl mr2">
-        <span class="f1">£{{ data.aggregate.income.buckets|map(attribute='sumIncome')|sum|number_format }}</span><br>
+        <span class="f1">£{{ data.total_income|number_format }}</span><br>
         total income
     </div>
     {% endif %}

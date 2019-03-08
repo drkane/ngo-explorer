@@ -1,4 +1,9 @@
-query getCharityList($filters: FilterCHCInput!, $limit: PageLimit = 30, $skip: Int = 0) {
+
+query getCharityAggregation(
+  $filters: FilterCHCInput!
+  $limit: PageLimit = 30
+  $skip: Int = 0
+) {
   CHC {
     getCharities(filters: $filters) {
       count

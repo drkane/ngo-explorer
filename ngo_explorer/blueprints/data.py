@@ -4,7 +4,6 @@ from ..utils.countries import get_country_groups, get_multiple_countries, COUNTR
 from ..utils.fetchdata import fetch_charitybase, fetch_iati, dict_to_gql
 from ..utils.filters import CLASSIFICATION, parse_filters
 from ..utils.download import DOWNLOAD_OPTIONS, download_file
-from ..utils.charts import get_charts
 from ..utils.utils import nested_to_record
 
 bp = Blueprint('data', __name__, url_prefix='/')
@@ -58,42 +57,40 @@ def country(countryid, filetype="html", subpage='dashboard'):
 
 def data_page(area, filetype="html", page='dashboard', url_base=[]):
 
-    filters_raw = {
-        **{
-            k: v if k in ["filter-countries", "filter-classification"] else v[0]
-            for k, v in request.args.lists()
-            if v != ['']
-        },
-        **{
-            k: v if k in ["filter-countries", "filter-classification"] else v[0]
-            for k, v in request.form.lists()
-            if v != ['']
-        }
+    if request.method=="POST":
+        filters_raw = request.form
+    else:
+        filters_raw = request.args
+    filters_url = {
+        k: v if k in ["filter-countries",
+                        "filter-classification"] else v[0]
+        for k, v in filters_raw.lists()
+        if v != ['']
     }
     
     pages = {
         "dashboard": {
             "name": "Dashboard",
             "template": 'data.html.j2',
-            "url": url_for(url_base[0], **{**url_base[1], **filters_raw}),
-            "api_url": url_for(url_base[0], **{**url_base[1], **filters_raw, "filetype": "json"}),
+            "url": url_for(url_base[0], **{**url_base[1], **filters_url}),
+            "api_url": url_for(url_base[0], **{**url_base[1], **filters_url, "filetype": "json"}),
         },
         "show-charities": {
             "name": "Show NGOs",
             "template": 'data-show-charities.html.j2',
-            "url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "show-charities"}),
-            "api_url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "show-charities", "filetype": "json"}),
+            "url": url_for(url_base[0], **{**url_base[1], **filters_url, "subpage": "show-charities"}),
+            "api_url": url_for(url_base[0], **{**url_base[1], **filters_url, "subpage": "show-charities", "filetype": "json"}),
         },
         "download": {
             "name": "Download",
             "template": 'data-download.html.j2',
-            "url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "download"}),
-            "api_url": url_for(url_base[0], **{**url_base[1], **filters_raw, "subpage": "download", "filetype": "json"}),
+            "url": url_for(url_base[0], **{**url_base[1], **filters_url, "subpage": "download"}),
+            "api_url": url_for(url_base[0], **{**url_base[1], **filters_url, "subpage": "download", "filetype": "json"}),
         },
     }
     qgl_query = "charity_aggregation" if page=="dashboard" else "charity_list"
 
-    filters = parse_filters(request.values)
+    filters = parse_filters(filters_raw)
 
     if "download_type" in request.values:
         return download_file(
@@ -110,13 +107,13 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
         skip=filters.get("skip", 0),
         query=qgl_query
     )
-    charts = get_charts(charity_data, area["countries"]) if page=="dashboard" else {}
+    charity_data.set_charts()
 
     for c in area["countries"]:
         # whether the country has been filtered to the 
         c["filtered"] = c["id"] in filters.get("countries", []) if filters.get("countries") else True
         # number of charities in the selection that work in the country
-        if getattr(charity_data, "aggregate"):
+        if getattr(charity_data, "aggregate", None):
             c["charity_count"] = sum(
                 [i["count"] for i in charity_data.aggregate["areas"] if i["key"] == c["id"]])
 
@@ -125,8 +122,8 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
         inserts = {
             "selected-filters": render_template('_data_selected_filters.html.j2', filters=request.values, classification=CLASSIFICATION, area=area),
             "example-charities": render_template('_data_example_charities.html.j2', data=charity_data, area=area),
-            "charity-count": "{:,.0f} UK NGO{}".format(charity_data["count"], "" if charity_data["count"] == 1 else "s"),
-            "word-cloud": render_template('_data_word_cloud.html.j2', charts=charts),
+            "charity-count": "{:,.0f} UK NGO{}".format(charity_data.count, "" if charity_data.count == 1 else "s"),
+            "word-cloud": render_template('_data_word_cloud.html.j2', data=charity_data),
             "max-countries-header": "{:,.0f}".format(filters.get("max_countries")),
         }
 
@@ -135,17 +132,16 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
                 '_data_list_table.html.j2',
                 pages=pages,
                 active_page='show-charities',
-                filters=request.values,
+                filters=filters_raw,
                 data=charity_data,
                 area=area
             )
 
         return jsonify(dict(
             area=area,
-            data=charity_data,
             inserts=inserts,
-            charts=charts,
-            filters=request.values,
+            charts=charity_data.get_charts(),
+            filters=filters_raw,
             pages=pages,
         ))
 
@@ -155,8 +151,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
                            area=area,
                            data=charity_data,
                            iati_data=iati_data,
-                           charts=charts,
-                           filters=request.values,
+                           filters=filters_raw,
                            pages=pages,
                            api_url=pages[page]['api_url'],
                            download_options=DOWNLOAD_OPTIONS,
@@ -166,7 +161,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
 
 @bp.route('/charity/<charityid>')
 def charity(charityid):
-    charity_data = fetch_charitybase(ids=[charityid])
+    charity_data = fetch_charitybase(ids=[charityid], all_finances=True)
 
     if charity_data.count == 0:
         return render_template(

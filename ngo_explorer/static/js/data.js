@@ -12,20 +12,6 @@ if (document.getElementsByClassName('js-choice').length>0) {
     });
 }
 
-// draw the charts initially
-if (typeof charts !== "undefined"){
-    Object.keys(charts).forEach(function (key) {
-        if (charts[key]["id"] && document.getElementById(`chart_${key}`)){
-            Plotly.newPlot(
-                `chart_${key}`,
-                charts[key].data,
-                charts[key].layout,
-                {displayModeBar: false}
-            );
-        }
-    });
-}
-
 // when form is submitted, get the filters and fetch new data from the API
 const filter_form = document.getElementById('filter-form');
 if(filter_form){
@@ -49,7 +35,7 @@ if(filter_form){
             .then((response) => {
                 // update the charts
                 Object.keys(response["charts"]).forEach(function (key) {
-                    if (response["charts"][key]["id"]) {
+                    if (document.getElementById(`chart_${key}`)) {
                         Plotly.react(
                             `chart_${key}`,
                             response["charts"][key].data,

@@ -37,6 +37,7 @@
     <thead>
         <tr>
             <th class="pa2 v-top tl dn dtc-ns"></th>
+            <th class="pa2 v-top tr dn dtc-ns">Registration Date</th>
             <th class="pa2 v-top tr dn dtc-ns">Latest income</th>
             <th class="pa2 v-top tl dn dtc-ns">Activities</th>
             <th class="pa2 v-top tl dn dtc-ns">Region<br><span class="normal gray f7">(based on registered office of UK charity)</span></th>
@@ -50,6 +51,9 @@
                     <p class="pa0 ma0 f5 b">{{ c.name|correct_titlecase }}</p>
                     <p class="f7 gray mb0 mt2">Charity number <strong>{{ c.id }}</strong></p>
                 </a>
+            </td>
+            <td class="pa2 v-top db dtc-ns">
+                {{ c.registrationDate }}
             </td>
             <td class="pa2 v-top tr db dtc-ns">
             {% if c.finances[0].income %}
