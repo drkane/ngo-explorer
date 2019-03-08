@@ -14,6 +14,11 @@
         {% endblock %}
     </head>
     <body class="sans-serif {% if 'debug' in request.values %}debug debug-grid{% endif %}">
+        <div class="tc pa2 bg-light-yellow">
+            <i class="material-icons md-18">build</i> 
+            This site is currently in active development
+            <i class="material-icons md-18">build</i> 
+        </div>
         <div class="mw9 center ph3-ns ph2 mb4 cf">
             {% block header %}
                 {% include "_header.html.j2" %}
