@@ -4,10 +4,9 @@ import random
 from flask import Flask
 from slugify import slugify
 import requests_cache
-import click
 
-from .commands.countries import update_countries
-from .blueprints import home, data, upload
+from .commands import add_custom_commands
+from .blueprints import add_blueprints
 from .utils.charts import location_map, plotly_json
 from .utils.utils import update_url_values, correct_titlecase, scale_value
 from .utils.filters import CLASSIFICATION, REGIONS
@@ -52,10 +51,15 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    app.register_blueprint(home.bp)
-    app.register_blueprint(data.bp)
-    app.register_blueprint(upload.bp)
+    add_blueprints(app)
+    add_context_processors(app)
+    add_template_filters(app)
+    add_custom_commands(app)
 
+    return app
+
+
+def add_template_filters(app):
     # register template filters
     @app.template_filter('slugify')
     def template_slugify(s):
@@ -85,6 +89,8 @@ def create_app(test_config=None):
     def template_randomn(seq, n=1):
         return random.sample(seq, min((n, len(seq))))
 
+
+def add_context_processors(app):
     # add custom context to templates
     @app.context_processor
     def inject_context_vars():
@@ -95,10 +101,3 @@ def create_app(test_config=None):
             similar_initiative=SIMILAR_INITIATIVE,
             countries=get_country_groups(),
         )
-
-    # add custom commands
-    @app.cli.command('update-countries')
-    def cli_update_countries():
-        update_countries()
-
-    return app
