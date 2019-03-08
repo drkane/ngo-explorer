@@ -1,4 +1,7 @@
+import json
+
 from graphqlclient import GraphQLClient
+from flask import current_app
 import requests
 
 class GraphQLClientRequests(GraphQLClient):
@@ -16,5 +19,10 @@ class GraphQLClientRequests(GraphQLClient):
             headers[self.headername] = '{}'.format(self.token)
 
         r = requests.post(self.endpoint, json=data, headers=headers)
+        current_app.logger.info("CHARITYBASE {}{}: {}".format(
+            "[from cache] " if r.from_cache else "",
+            self.endpoint,
+            json.dumps(variables)
+        ))
         r.raise_for_status()
         return r.json()
