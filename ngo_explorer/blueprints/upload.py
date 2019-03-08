@@ -91,4 +91,4 @@ def download_uploaded_data(fileid):
             filetype=request.values.get("download_type").lower(),
         )
 
-    return render_template('upload-data-download.html.j2', pages=upload_pages(fileid), download_options=DOWNLOAD_OPTIONS, charts={}, **data)
+    return render_template('upload-data-download.html.j2', pages=upload_pages(fileid), charts={}, **data)

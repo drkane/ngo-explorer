@@ -42,11 +42,24 @@ CLASSIFICATION = {
     }
 }
 
-# def clean_filters(filters):
-
-#     return {
-#         k: v 
-#     }
+REGIONS = {
+    # "E92000001": "England",  # Lloegr
+    # "K02000001": "United Kingdom",  # Y Deyrnas Gyfunol
+    # "K03000001": "Great Britain",  # Prydain Fawr
+    # "K04000001": "England and Wales",  # Cymru a Lloegr
+    # "N92000002": "Northern Ireland",  # Gogledd Iwerddon
+    # "S92000003": "Scotland",  # Yr Alban
+    "W92000004": "Wales",  # Cymru
+    "E12000001": "North East",  # Gogledd Ddwyrain
+    "E12000002": "North West",  # Gogledd Orllewin
+    "E12000003": "Yorkshire and The Humber",  # Swydd Efrog a Humber
+    "E12000004": "East Midlands",  # Dwyrain y Canolbarth
+    "E12000005": "West Midlands",  # Gorllewin y Canolbarth
+    "E12000006": "East of England",  # Dwyrain Lloegr
+    "E12000007": "London",  # Llundain
+    "E12000008": "South East",  # De Ddwyrain
+    "E12000009": "South West",  # De Orllewin
+}
 
 
 def parse_filters(filters):

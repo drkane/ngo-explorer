@@ -48,18 +48,14 @@
             <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-regions">
                 <option value=""></option>
                 <optgroup label="England">
-                    <option value="E12000001" {% if "E12000001" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>North East</option>
-                    <option value="E12000002" {% if "E12000002" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>North West</option>
-                    <option value="E12000003" {% if "E12000003" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>Yorkshire and The Humber</option>
-                    <option value="E12000004" {% if "E12000004" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>East Midlands</option>
-                    <option value="E12000005" {% if "E12000005" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>West Midlands</option>
-                    <option value="E12000006" {% if "E12000006" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>East of England</option>
-                    <option value="E12000007" {% if "E12000007" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>London</option>
-                    <option value="E12000008" {% if "E12000008" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>South East</option>
-                    <option value="E12000009" {% if "E12000009" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>South West</option>
+                    {% for k, v in regions.items() if k.startswith("E12") %}
+                    <option value="{{ k }}" {% if k in filters.getlist('filter-regions') %}selected="selected"{% endif %}>{{ v }}</option>
+                    {% endfor %}
                 </optgroup>
                 <optgroup label="">
-                    <option value="W92000004" {% if "W92000004" in filters.getlist('filter-regions') %}selected="selected"{% endif %}>Wales</option>
+                    {% for k, v in regions.items() if not k.startswith("E12") %}
+                    <option value="{{ k }}" {% if k in filters.getlist('filter-regions') %}selected="selected"{% endif %}>{{ v }}</option>
+                    {% endfor %}
                 </optgroup>
             </select>
         </div>

@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, jsonify, url_for, Response
 
-from ..utils.countries import get_country_groups, get_multiple_countries, COUNTRIES, SIMILAR_INITIATIVE
+from ..utils.countries import get_country_groups, get_multiple_countries
 from ..utils.fetchdata import fetch_charitybase, fetch_iati, dict_to_gql
-from ..utils.filters import CLASSIFICATION, parse_filters
-from ..utils.download import DOWNLOAD_OPTIONS, download_file
+from ..utils.filters import parse_filters
+from ..utils.download import download_file
 from ..utils.utils import nested_to_record
 
 bp = Blueprint('data', __name__, url_prefix='/')
@@ -20,8 +20,6 @@ def region(regionid, regiontype="continent", filetype="html", subpage="dashboard
         return render_template(
             '404.html.j2',
             lookingfor='{} "{}" could not be found'.format(regiontype, regionid),
-            countries=get_country_groups(),
-            classification=CLASSIFICATION
         ), 404
 
     return data_page(
@@ -44,8 +42,6 @@ def country(countryid, filetype="html", subpage='dashboard'):
             '404.html.j2',
             lookingfor='Country "{}" could not be found'.format(
                 countryid),
-            countries=get_country_groups(),
-            classification=CLASSIFICATION
         ), 404
 
     return data_page(
@@ -120,7 +116,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
     if filetype=="json":
 
         inserts = {
-            "selected-filters": render_template('_data_selected_filters.html.j2', filters=filters_raw, classification=CLASSIFICATION, area=area),
+            "selected-filters": render_template('_data_selected_filters.html.j2', filters=filters_raw, area=area),
             "example-charities": render_template('_data_example_charities.html.j2', data=charity_data, area=area),
             "charity-count": "{:,.0f} UK NGO{}".format(charity_data.count, "" if charity_data.count == 1 else "s"),
             "word-cloud": render_template('_data_word_cloud.html.j2', data=charity_data),
@@ -153,10 +149,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
                            iati_data=iati_data,
                            filters=filters_raw,
                            pages=pages,
-                           api_url=pages[page]['api_url'],
-                           download_options=DOWNLOAD_OPTIONS,
-                           classification=CLASSIFICATION,
-                           similar_initiative=SIMILAR_INITIATIVE)
+                           api_url=pages[page]['api_url'])
 
 
 @bp.route('/charity/<charityid>')
@@ -168,8 +161,6 @@ def charity(charityid):
             '404.html.j2',
             lookingfor='Charity "{}" could not be found'.format(
                 charityid),
-            countries=get_country_groups(),
-            classification=CLASSIFICATION
         ), 404
 
     return render_template('charity.html.j2', data=charity_data.get_charity())

@@ -10,6 +10,9 @@ from .commands.countries import update_countries
 from .blueprints import home, data, upload
 from .utils.charts import location_map, plotly_json
 from .utils.utils import update_url_values, correct_titlecase, scale_value
+from .utils.filters import CLASSIFICATION, REGIONS
+from .utils.download import DOWNLOAD_OPTIONS
+from .utils.countries import SIMILAR_INITIATIVE, get_country_groups
 
 def create_app(test_config=None):
     
@@ -81,6 +84,17 @@ def create_app(test_config=None):
     @app.template_filter('randomn')
     def template_randomn(seq, n=1):
         return random.sample(seq, min((n, len(seq))))
+
+    # add custom context to templates
+    @app.context_processor
+    def inject_context_vars():
+        return dict(
+            classification=CLASSIFICATION,
+            regions=REGIONS,
+            download_options=DOWNLOAD_OPTIONS,
+            similar_initiative=SIMILAR_INITIATIVE,
+            countries=get_country_groups(),
+        )
 
     # add custom commands
     @app.cli.command('update-countries')

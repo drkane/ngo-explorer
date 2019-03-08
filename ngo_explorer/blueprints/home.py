@@ -7,7 +7,7 @@ bp = Blueprint('home', __name__, url_prefix='/')
 
 @bp.route('/')
 def index():
-    return render_template('index.html.j2', countries=get_country_groups(), classification=CLASSIFICATION)
+    return render_template('index.html.j2')
 
 
 @bp.route('/about')
