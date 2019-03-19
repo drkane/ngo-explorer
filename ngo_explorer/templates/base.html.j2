@@ -14,25 +14,27 @@
         {% endblock %}
     </head>
     <body class="source-sans tabular-nums {% if 'debug' in request.values %}debug debug-grid{% endif %}">
-        {# <div class="tc pa2 bg-light-yellow">
-            <i class="material-icons md-18">build</i> 
-            This site is currently in active development
-            <i class="material-icons md-18">build</i> 
-        </div> #}
-        {% block header %}
-            {% include "_header.html.j2" %}
-        {% endblock %}
-        <div class="mw9 center ph3-ns ph2 mb4 cf">
-            <div class="page-content cf">
-            {% block content %}
+        <div class="container">
+            {# <div class="tc pa2 bg-light-yellow">
+                <i class="material-icons md-18">build</i> 
+                This site is currently in active development
+                <i class="material-icons md-18">build</i> 
+            </div> #}
+            {% block header %}
+                {% include "_header.html.j2" %}
             {% endblock %}
-            </div>
+            <main class="mw9 center ph3-ns ph2 cf">
+                <div class="page-content cf">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </main>
+            {% block footer %}
+                {% include "_footer.html.j2" %}
+            {% endblock %}
+            {% block scripts %}
+            <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+            {% endblock %}
         </div>
-        {% block footer %}
-            {% include "_footer.html.j2" %}
-        {% endblock %}
-        {% block scripts %}
-        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-        {% endblock %}
     </body>
 </html> 

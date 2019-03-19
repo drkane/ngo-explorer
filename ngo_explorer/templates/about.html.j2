@@ -8,6 +8,81 @@
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
             <h2 class="korolev ma0 mv2-l">Explore UK charities working across the world</h2>
+
+            <h3 class="korolev ma0 mv2-l">Who's behind the site?</h3>
+            <p>
+                This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/" target="_blank" class="link blue">Sheffield Institute for International Development</a> and
+                the <a href="https://www.gdi.manchester.ac.uk/" target="_blank" class="link blue">Global Development Institute</a> (University of Manchester).
+                It was developed by <a href="https://dkane.net/" target="_blank" class="link blue">David Kane</a> and uses data from
+                <a href="https://dkane.net/" target="_blank" class="link blue">CharityBase</a> developed by 
+                <a href="https://twitter.com/dan_kwiat" target="_blank" class="link blue">Dan Kwiatkowski</a>. 
+            </p>
+            <ul class="list cf db pa0">
+                <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
+                    <img class="br3 h3 w3 dib bg-yellow" src="{{ url_for('static', filename='images/staff/dan_b.png') }}" /><br>
+                    <strong>Prof. Dan Brockington</strong><br>
+                    Director of <abbr title="Sheffield Institute for International Development">SIID</abbr>
+                </li>
+                <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
+                    <img class="br3 h3 w3 dib bg-light-green" src="{{ url_for('static', filename='images/staff/niki.png') }}" /><br>
+                    <strong>Dr Nicola Banks</strong><br>
+                    Lecturer in Urban Development, <abbr title="Global Development Institute">GDI</abbr>
+                </li>
+                <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
+                    <img class="br3 h3 w3 dib bg-yellow" src="{{ url_for('static', filename='images/staff/david.png') }}" /><br>
+                    <strong>David Kane</strong><br>
+                    Freelance data scientist
+                </li>
+                <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
+                    <img class="br3 h3 w3 dib bg-light-green" src="{{ url_for('static', filename='images/staff/dan_k.png') }}" /><br>
+                    <strong>Dan Kwiatkowski</strong><br>
+                    Freelance data scientist
+                </li>
+            </ul>
+            <p>
+                We would particularly like to thank the many staff and volunteers from
+                NGOs and others who provided feedback and advice in the development of
+                the site.
+            </p>
+            <h3 class="korolev ma0 mv2-l">Data sources</h3>
+            <p>
+                Data on the site comes from <a href="https://charitybase.uk/about" target="_blank" class="link blue">CharityBase</a>.
+                CharityBase uses data from the 
+                <a href="http://data.charitycommission.gov.uk/" target="_blank" class="link blue">Charity Commission for England and Wales</a> 
+                register of charities. Data is used under the 
+                <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank" class="link blue">Open Government Licence</a>
+            </p>
+            <ul>
+                <li>Contains OS data © Crown copyright and database right 2018.</li>
+                <li>Contains Royal Mail data © Royal Mail copyright and database right 2018.</li>
+                <li>Contains National Statistics data © Crown copyright and database right 2018.</li>
+            </ul>
+            <p>
+                NGO Explorer and CharityBase are not responsible for the content of the data on the register of charities.
+                If you have any questions or concerns about the charity data, you will need to 
+                contact the Charity Commission.
+            </p>
+            <h4 class="korolev ma0 mv2-l">IATI</h4>
+            <p>
+                The site also uses data from the <a href="" target="_blank" class="link blue">International Aid Transparency Initative</a>
+                (IATI). IATI data is published by a large number of aid funders throughout the world. The data used here is
+                sourced from <a href="https://www.oipa.nl/home" target="_blank" class="link blue">OIPA</a>, a rich API
+                for IATI data.
+            </p>
+            <h4 class="korolev ma0 mv2-l">Other resources</h4>
+            <p>
+                Where available, the site signposts to other resources, such as national registers of organisations.
+                NGO Explorer is not responsible for the content of external sites.
+            </p>
+            <h3 class="korolev ma0 mv2-l">Your privacy and cookies</h3>
+            <p>
+                This site uses Google analytics to see how it has been used. Google Analytics
+                uses cookies to help analyse your use of the site.
+            </p>
+            <p>
+                If you use the <a href="{{ url_for('upload.data') }}" class="link blue">data upload tool</a>, any charity numbers included in the data will be
+                sent to the server in order
+            </p>
         </div>
     </div>
 </div>

@@ -35,8 +35,23 @@
     max-width: 20rem;
 }
 
-.page-content {
-    min-height: 480px;
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+.container {
+    min-height: 100%;
+    position: relative;
+}
+main {
+    padding-bottom: 256px;
+}
+footer {
+   position: absolute;
+   bottom: 0;
+   height: 240px;
 }
 
 .is-focused .choices__inner,
