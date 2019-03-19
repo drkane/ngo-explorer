@@ -45,6 +45,7 @@
 .ngo-input {
     border-radius: 6px;
     border-color: #d8dedf;
+    border-style: solid;
     background-color: white;
 }
 
