@@ -19,10 +19,10 @@
             This site is currently in active development
             <i class="material-icons md-18">build</i> 
         </div> #}
+        {% block header %}
+            {% include "_header.html.j2" %}
+        {% endblock %}
         <div class="mw9 center ph3-ns ph2 mb4 cf">
-            {% block header %}
-                {% include "_header.html.j2" %}
-            {% endblock %}
             <div class="page-content cf">
             {% block content %}
             {% endblock %}

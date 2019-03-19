@@ -1,15 +1,15 @@
-<header class="pv3 ph4 bg-light-gray mb4-l mb2 cf flex items-center justify-between">
-    <div class="fl w-50-ns w-100 mt2">
-        <h1 class="korolev ma0 ttu f1">
-            <a class="link black b ttl ma0" href="{{ url_for('home.index') }}">
-                <img src="{{ url_for('static', filename='images/ngo_explorer_logo.svg') }}"
-                     class="header-logo"
-                     alt="NGO Explorer - Building networks across development NGOs" />
-            </a>
-        </h1>
-    </div>
-    <div class="fr-ns fl w-third-ns w-100">
-        <nav class="cf">
+<header class="bg-light-gray">
+    <div class="ph3-ns ph2 mw9 center pv3 mb4-l mb2 cf flex items-center justify-between">
+        <div class="fl w-50-ns w-100 mt2">
+            <h1 class="korolev ma0 ttu f1">
+                <a class="link black b ttl ma0" href="{{ url_for('home.index') }}">
+                    <img src="{{ url_for('static', filename='images/ngo_explorer_logo.svg') }}"
+                        class="header-logo"
+                        alt="NGO Explorer - Building networks across development NGOs" />
+                </a>
+            </h1>
+        </div>
+        <nav class="fr-ns fl w-50-ns w-100 cf">
             <ul class="list ma0 pa0 fr f4 korolev">
                 <li class="dib b ml3"><a class="link dim dark-green" href="{{ url_for('home.index') }}">Home</a></li>
                 <li class="dib b ml3"><a class="link dim dark-green" href="{{ url_for('home.about') }}">About</a></li>
