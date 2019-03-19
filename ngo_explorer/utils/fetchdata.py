@@ -99,7 +99,7 @@ def fetch_charitybase(
 
     result = client.execute(query_str, variables)
     
-    if result.get("errors") or not result.get("data", {}).get("CHC", {}).get("getCharities"):
+    if result.get("errors") and not result.get("data", {}).get("CHC", {}).get("getCharities"):
         raise Exception(result.get("errors"))
     return CharityBaseResult(result)
 
