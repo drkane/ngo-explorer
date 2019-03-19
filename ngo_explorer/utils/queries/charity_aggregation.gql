@@ -3,7 +3,7 @@ fragment allBucket on Aggregation {
     key
     name
     count
-    sumIncome
+    sum
   }
 }
 

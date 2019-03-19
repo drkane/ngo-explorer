@@ -31,7 +31,7 @@ class CharityBaseResult(object):
 
         if self.aggregate.get("finances", {}).get("latestIncome", {}):
             self.total_income = sum([
-                f["sumIncome"]
+                f["sum"]
                 for f in self.aggregate.get("finances", {}).get("latestIncome", {})
             ])
 
@@ -74,14 +74,14 @@ class CharityBaseResult(object):
                 new_buckets[id_]["name"] = id_
             else:
                 new_buckets[id_]["count"] += i["count"]
-                new_buckets[id_]["sumIncome"] += i["sumIncome"]
+                new_buckets[id_]["sum"] += i["sum"]
 
         # scale the money amounts and add a text representation
         income_buckets = []
         for i in new_buckets.values():
-            scale = get_scaling_factor(i["sumIncome"])
+            scale = get_scaling_factor(i["sum"])
             i["sumIncomeText"] = "£" + \
-                scale[2].format(i["sumIncome"] / scale[0])
+                scale[2].format(i["sum"] / scale[0])
             income_buckets.append(i)
 
         self.aggregate["finances"]["latestIncome"] = income_buckets
@@ -114,7 +114,7 @@ class CharityBaseResult(object):
 
         return {
             "count": horizontal_bar(self.aggregate["finances"]["latestIncome"], "count"),
-            "amount": horizontal_bar(self.aggregate["finances"]["latestIncome"], "sumIncome", "sumIncomeText", log_axis=True),
+            "amount": horizontal_bar(self.aggregate["finances"]["latestIncome"], "sum", "sumIncomeText", log_axis=True),
             "countries": horizontal_bar(countries[0:12], "count"),
             **{
                 k: horizontal_bar(self.aggregate[k], "count")
