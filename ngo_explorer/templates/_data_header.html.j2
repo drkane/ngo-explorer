@@ -1,7 +1,7 @@
 {% import "_tabs.html.j2" as tabs %}
 <div class="page-header mb4 w-100 cf">
     <div class="w-100 w-50-l fl">
-        <h2 class="lh-title ma0 dark-green">Found <span id="charity-count">{{ "{:,.0f}".format(data.count) }} UK NGOs</span> working in {{ area.name }}</h2>
+        <h2 class="korolev lh-title ma0">Found <span id="charity-count">{{ "{:,.0f}".format(data.count) }} UK NGOs</span> working in {{ area.name }}</h2>
         <p class="lh-copy mv2 pa0 f6 gray mw6">
             Figures refer to charities registered with the Charity Commission for England and Wales,
             based on areas of operation supplied to the Charity Commission by the charities themselves.
@@ -13,7 +13,7 @@
             <ul class="list pa0 ma0 di">
             {% for c in area.countries %}
                 <li class="dib pr1">
-                    <a class="link dim dark-blue" href="{{ url_for('data.country', countryid=c['iso']|slugify) }}">{{ c["name"] }}</a>
+                    <a class="link blue" href="{{ url_for('data.country', countryid=c['iso']|slugify) }}">{{ c["name"] }}</a>
                 </li>
             {% endfor %}
             </ul>

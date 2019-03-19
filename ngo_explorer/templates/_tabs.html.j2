@@ -4,9 +4,9 @@
     {% for page_id, page  in pages.items() %}
         <li class="mr2 dib-ns db flex tab">
         {% if current_page==page_id %}
-            <a class="link pa2 f4-ns f5 w-100 w-auto-ns tab-url white bg-green" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
+            <a class="link pa2 f5-ns f5 w-100 w-auto-ns tab-url bb bw3 b--green korolev green" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
         {% else %}
-            <a class="link pa2 f4-ns f5 w-100 w-auto-ns tab-url underline no-underline-ns dark-green bg-light-gray" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
+            <a class="link pa2 f5-ns f5 w-100 w-auto-ns tab-url korolev black" href="{{ page.url }}" id="tab-{{ page_id }}">{{ page.name }}</a>
         {% endif %}
         </li>
     {% endfor %}

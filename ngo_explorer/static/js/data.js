@@ -8,6 +8,7 @@ if (document.getElementsByClassName('js-choice').length>0) {
         classNames: {
             itemChoice: 'f7 pointer pa2 wb-normal',
             itemSelectable: 'hover-bg-light-gray bg-animate',
+            containerInner: 'choices__inner ba bw1 b--mid-gray',
         }
     });
 }

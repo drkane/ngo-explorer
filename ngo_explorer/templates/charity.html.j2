@@ -5,14 +5,14 @@
 {% block content %}
 <div class="page-header mb4 w-100 cf">
     <div class="w-100 w-50-l fl">
-        <h2 class="lh-title ma0">{{ data.name|correct_titlecase }}</h2>
+        <h2 class="korolev lh-title ma0">{{ data.name|correct_titlecase }}</h2>
         <span class="f1 fl h1 gray mr1">&ldquo;</span>
         <p class="lh-copy mv2 pa0 f5 gray mw6">
             {{ data.activities }}
         <p>
         {% if data.website %}
         <p>
-            <a href="{{ data.website }}" target="_blank" class="external-link">
+            <a href="{{ data.website }}" target="_blank" class="link blue external-link">
                 {{ data.website|replace("https://", "")|replace("http://", "")|replace("//", "") }}
             </a>
         </p>
@@ -26,12 +26,12 @@
         <p class="b">Other links:</p>
         <ul class="list">
             <li>
-                <a href="https://charitybase.uk/charities/{{ data.id }}" target="_blank" class="external-link">
+                <a href="https://charitybase.uk/charities/{{ data.id }}" target="_blank" class="link blue external-link">
                     Charitybase
                 </a>
             </li>
             <li>
-                <a href="http://beta.charitycommission.gov.uk/charity-details/?regid={{ data.id }}&subid=0" target="_blank" class="external-link">
+                <a href="http://beta.charitycommission.gov.uk/charity-details/?regid={{ data.id }}&subid=0" target="_blank" class="link blue external-link">
                     Charity Commission
                 </a>
             </li>
@@ -65,7 +65,7 @@
             <p>{{ data.name|correct_titlecase }} works in {{ "{:,.0f}".format(data.countries|length) }} countries</p>
             {% else %}
             <p>{{ data.name|correct_titlecase }} works in {% for c in data.countries %}
-                <a href="{{ url_for('data.country', countryid=c.iso) }}">
+                <a href="{{ url_for('data.country', countryid=c.iso) }}" class="link blue">
                 {{ c.name }}</a>{% if loop.revindex0 == 1 %} and{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
             {% endif %}
         {% endif %}
@@ -86,9 +86,9 @@
 <script src="{{ url_for('static', filename='vendor/leaflet/leaflet.js') }}"></script>
 <script type="text/javascript">
 const stamen_attribution = 'Map tiles <a href="http://stamen.com">Stamen Design</a> ' + 
-    '[<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>] | ' + 
-    'Data <a href="http://openstreetmap.org">OpenStreetMap</a> ' + 
-    '[<a href="http://www.openstreetmap.org/copyright">ODbL</a>]';
+    '[<a href="http://creativecommons.org/licenses/by/3.0" class="link blue">CC BY 3.0</a>] | ' + 
+    'Data <a href="http://openstreetmap.org" class="link blue">OpenStreetMap</a> ' + 
+    '[<a href="http://www.openstreetmap.org/copyright" class="link blue">ODbL</a>]';
 var layer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {attribution: stamen_attribution});
 var map = new L.Map("location-map", {
     center: new L.LatLng({{ data.geo.latitude }}, {{ data.geo.longitude }}),

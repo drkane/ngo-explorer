@@ -12,7 +12,7 @@
 {% block content %}
 {% set active_page =  "dashboard" %}
 {% include '_data_header.html.j2' %}
-<div class="w-100 pa2 bg-light-gray cf mt2">
+<div class="w-100 cf mt2">
     <form action="{{request.path}}" id="filter-form">
         {% include '_data_sidebar.html.j2' %}
     </form>
@@ -20,7 +20,7 @@
     <div class="fl w-100 w-80-l flex flex-wrap">
 
         <figure class="fl w-100 w-50-l pr3-l mh0 mv2">
-            <div id="example-charities">
+            <div id="example-charities" class=" bg-light-gray pa4 br3">
             {% include '_data_example_charities.html.j2' %}
             </div>
         </figure>

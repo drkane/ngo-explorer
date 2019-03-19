@@ -3,27 +3,27 @@
         <i class="material-icons">search</i>
         <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Search name or activities" value="{{ filters.get('filter-search', '') }}" autocomplete="off" />
     </div>
-    <a href="#" class="link dark-blue dim f7 underline js-toggle js-only" data-toggle-target="more-filters" id="filters-show-hide">Show filters</a>
+    <a href="#" class="link blue f7 js-toggle js-only" data-toggle-target="more-filters" id="filters-show-hide">Show filters</a>
     <div id="more-filters">
         <div class="mv3 w-100">
-            <h3 class="f5 normal mv0 b">Latest income</h3>
+            <h3 class="f6 b mv0">Latest income</h3>
             <p class="f6">
                 Between 
-                <span class="bb bw2 b--light-gray dib w-33">
+                <span class="bb bw2 b--mid-gray dib w-33">
                     <input name="filter-min-income"
                             type="number"
                             id="min-income"
-                            class="input-reset pa1 bn mid-gray w-100 f7"
+                            class="input-reset pa1 bn w-100 f7"
                             placeholder="£ min"
                             value="{{ filters.get('filter-min-income', '') }}"
                             autocomplete="off">
                 </span>
                 and 
-                <span class="bb bw2 b--light-gray dib w-33">
+                <span class="bb bw2 b--mid-gray dib w-33">
                     <input name="filter-max-income"
                             type="number"
                             id="max-income"
-                            class="input-reset pa1 bn mid-gray w-100 f7"
+                            class="input-reset pa1 bn w-100 f7"
                             placeholder="£ max"
                             value="{{ filters.get('filter-max-income', '') }}"
                             autocomplete="off">
@@ -32,7 +32,7 @@
         </div>
         {% for group, options in classification.items() %}
         <div class="mv3 w-100">
-            <h3 class="f5 normal mb2 b">{{ group|title }}</h3>
+            <h3 class="f6 b mb2">{{ group|title }}</h3>
             <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-classification" multiple="true">
                 {% for value, label in options.items() %}
                 <option value="{{value}}" {% if value in filters.getlist('filter-classification') %}selected="selected"{% endif %}>{{label}}</option>
@@ -41,7 +41,7 @@
         </div>
         {% endfor %}
         <div class="mv3 w-100">
-            <h3 class="f5 normal mb2 b">
+            <h3 class="f6 b mb2">
                 UK Region
                 <p class="ma0 f6 gray normal i">Based on the UK head office</p>
             </h3>
@@ -61,7 +61,7 @@
         </div>
         {% if area.countries|length > 1 %}
         <div class="mv3 w-100">
-            <h3 class="f5 normal mb2 b">Countries</h3>
+            <h3 class="f6 b mb2">Countries</h3>
             <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-countries" multiple="true">
                 {% for group in area.countries|groupby('continent') %}
                 <optgroup label="{{ group.grouper }}">
@@ -87,18 +87,24 @@
             </p>
         </div>
         <div class="mv3 w-100">
-            <label class="gray i f6">
+            <label class="gray i f6 custom-checkbox flex items-center mb1">
                 <input name="filter-exclude-grantmakers"
                         type="checkbox"
                         {% if filters.get('filter-exclude-grantmakers') %}checked=checked{% endif %}
                         value="exclude-grantmakers" />
+                <span class="checkmark mr2">
+                    <i class="material-icons">check</i>
+                </span>
                 Exclude charities that make grants
-            </label><br>
-            <label class="gray i f6">
+            </label>
+            <label class="gray i f6 custom-checkbox flex items-center">
                 <input name="filter-exclude-religious"
                         type="checkbox"
                         {% if filters.get('filter-exclude-grantmakers') %}checked=checked{% endif %}
                         value="exclude-religious" />
+                <span class="checkmark mr2">
+                    <i class="material-icons">check</i>
+                </span>
                 Exclude religious organisations
             </label>
         </div>

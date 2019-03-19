@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import random
 
@@ -100,4 +101,5 @@ def add_context_processors(app):
             download_options=DOWNLOAD_OPTIONS,
             similar_initiative=SIMILAR_INITIATIVE,
             countries=get_country_groups(),
+            now=datetime.now(),
         )

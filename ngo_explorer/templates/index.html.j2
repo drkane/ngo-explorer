@@ -7,7 +7,7 @@
     <div class="cf lh-copy">
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
-            <h2 class="ma0 mv2-l">Explore UK charities working across the world</h2>
+            <h2 class="korolev ma0 mv2-l">Explore UK charities working across the world</h2>
             {% block message %}{% endblock %}
             <form action="{{ url_for('data.country', **{'countryid': 'all'}) }}">
             <div class="mb1 bb b--gray w-100 flex items-center">
@@ -36,7 +36,7 @@
                 <ul class="list pa0 ma0">
                     {% for c in country_list|sort(attribute="name") %}
                     <li class="dib mr2 pb0">
-                        <a href="{{ c.id }}" class="link dim blue underline">{{ c.name[0].upper() }}{{ c.name[1:] }}</a>
+                        <a href="{{ c.id }}" class="link blue">{{ c.name[0].upper() }}{{ c.name[1:] }}</a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -52,7 +52,7 @@
                 <ul class="list pa0 ma0">
                     {% for code, name in classification[group[0]].items() %}
                     <li class="dib mr2 pb0">
-                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-classification': code}) }}" class="link dim blue underline">{{ name }}</a>
+                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-classification': code}) }}" class="link blue">{{ name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -66,7 +66,7 @@
             <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
                 <ul class="list pa0 ma0">
                     <li class="dib mr2 pb0">
-                        <a href="#" data-baseurl="{{ url_for('data.country', **{'countryid': 'all'}) }}" class="link dim blue underline" id="search-link">
+                        <a href="#" data-baseurl="{{ url_for('data.country', **{'countryid': 'all'}) }}" class="link blue" id="search-link">
                              "<span id='search-term'></span>" in charity name and description
                         </a>
                     </li>
@@ -77,14 +77,15 @@
 </div>
 <div class="fl w-30-l w-100">
     <div class="ml3-l ml0 b--green bw1 ba">
-        <h3 class="ma0 bg-green white pa2">Upload your own data</h3>
+        <h3 class="korolev ma0 bg-green white pa2">Upload your own data</h3>
         <div class="pa2">
             <p> 
                 If you have a list of UK charity numbers, you can 
                 upload your data to explore your group of
                 charities.
             </p>
-            <a href="{{ url_for('upload.data') }}" class="link underline f5 blue dim b">Upload your data</a>
+            <a href="{{ url_for('upload.data') }}"
+               class="korolev pa3 bg-yellow black no-underline dib f4 br2">Upload your data <i class="material-icons v-mid">publish</i></a>
         </div>
     </div>
 </div>

@@ -32,9 +32,68 @@
 }
 
 .header-logo {
-    max-width: 28rem;
+    max-width: 20rem;
 }
 
 .page-content {
     min-height: 480px;
+}
+
+.is-focused .choices__inner,
+.is-open .choices__inner,
+.choices__inner,
+.ngo-input {
+    border-radius: 6px;
+    border-color: #d8dedf;
+    background-color: white;
+}
+
+.choices__input {
+    background-color: white;
+}
+
+.choices__list--multiple .choices__item.is-highlighted,
+.choices__list--multiple .choices__item {
+    background-color: #f2f7f7;
+    color: #0ca777;
+    border: 0;
+}
+
+.choices[data-type*="select-multiple"] .choices__button,
+.choices[data-type*="text"] .choices__button {
+    border: 0;
+    color: #0ca777;
+    padding-left: 16px;
+    margin-left: 0px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMSAyMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjMGNhNzc3IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yLjU5Mi4wNDRsMTguMzY0IDE4LjM2NC0yLjU0OCAyLjU0OEwuMDQ0IDIuNTkyeiIvPjxwYXRoIGQ9Ik0wIDE4LjM2NEwxOC4zNjQgMGwyLjU0OCAyLjU0OEwyLjU0OCAyMC45MTJ6Ii8+PC9nPjwvc3ZnPg==);
+}
+
+
+
+.custom-checkbox input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.custom-checkbox .checkmark {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #d8dedf;
+    border-radius: 6px;
+    display: inline-block;
+}
+.custom-checkbox .checkmark i {
+    display: none;
+}
+.custom-checkbox input:checked + .checkmark i {
+    display: inherit;
+    margin-left: -2px;
+    margin-top: -6px;
+}
+
+
+/* Hover links */
+.link.blue:hover {
+    filter: brightness(80%);
+    text-decoration: underline;
 }

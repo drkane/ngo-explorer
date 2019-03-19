@@ -1,32 +1,32 @@
 <div class="cf flex">
-    <div class=" bg-yellow white pa2 f4 fl mr2">
-        <span class="f1">{{ "{:,.0f}".format(data.count) }}</span><br>
+    <div class="f5 fl mr4">
+        <span class="f1 korolev big-numbers">{{ "{:,.0f}".format(data.count) }}</span><br>
         NGO{{ "s" if data.count > 1 else "" }} found
     </div>
     {% if data.total_income %}
-    <div class=" bg-yellow white pa2 f4 fl mr2">
-        <span class="f1">£{{ data.total_income|number_format }}</span><br>
-        total income
+    <div class="f5 fl mr2">
+        <span class="f1 korolev big-numbers">£{{ data.total_income|number_format }}</span><br>
+        Total income
     </div>
     {% endif %}
 </div>
-<h3>Example charities</h3>
+<h3 class="f5">Example charities</h3>
 <dl>
 {% for c in data.list|randomn(3) %}
     <dt class="b">
-        <a class="link dim green b" href="{{ url_for('data.charity', charityid=c.id) }}">
+        <a class="link blue b" href="{{ url_for('data.charity', charityid=c.id) }}">
             {{ c.name|correct_titlecase }}
         </a>
     </dt>
-    <dd class="mw6-l ml3">
-        <p class="f6">
+    <dd class="mw6-l ml0 mb2">
+        <p class="f6 pa0 ma0 lh-copy">
             {% if c.finances[0].income %}
             Income <strong>£{{ c.finances[0].income|number_format }}</strong>
             <span class="f7 i gray">({{ c.finances[0].financialYear.end.year }})</span>
             {% endif %}
         </p>
         {% if area %}
-        <p class="f7 near-black">
+        <p class="f7 near-black pa0 ma0">
             {% set cids = area.countries|map(attribute="id")|list %}
             Work in 
             {% for a in c.countries if a.id in cids %}

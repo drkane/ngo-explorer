@@ -1,59 +1,67 @@
+{% macro pagination() %}
 <div class="mb2 lh-copy f6">
     {% set skip = filters.get("filter-skip", 0)|int %}
-    <p class="ma0 pa0">
-        {% if data.count <= 30 %}
-        Showing all <strong>{{ "{:,.0f}".format(data.count) }}</strong> NGOs
-        {% else %}
-        Showing <strong>{{ "{:,.0f}".format(1 + skip) }}</strong>
-        to <strong>{{ "{:,.0f}".format([30 + skip, data.count]|min) }}</strong>
-        of <strong>{{ "{:,.0f}".format(data.count) }}</strong> NGOs
-        {% endif %}
-    </p>
-    <ul class="list mh0 mb0 mt1 pa0 f5">
-        {% if (skip - 30) > 0 %}
-        <li class="dib mr2">
-            <a class="link white dim ph2 pv1 bg-green" href="{{ pages[active_page].url|update_url({"filter-skip": 0}) }}">
-                &laquo;
-            </a>
-        </li>
-        {% endif %}
+    <ul class="list mh0 mb0 mt1 pa0 flex justify-between">
         {% if skip > 0 %}
-        <li class="dib mr2">
-            <a class="link white dim ph2 pv1 bg-green" href="{{ pages[active_page].url|update_url({"filter-skip": skip - 30}) }}">
-                &lsaquo; Previous
+        <li class="dib">
+            {% if (skip - 30) > 0 %}
+            <a class="link blue" href="{{ pages[active_page].url|update_url({"filter-skip": 0}) }}">
+                <i class="material-icons md-18 v-mid">first_page</i>
+            </a>
+            {% endif %}
+            <a class="link blue" href="{{ pages[active_page].url|update_url({"filter-skip": skip - 30}) }}">
+                <i class="material-icons md-18 v-mid">chevron_left</i><span class="v-mid">Previous</span>
             </a>
         </li>
         {% endif %}
+        <li class="dib v-mid">
+            {% if data.count <= 30 %}
+            Showing all <strong>{{ "{:,.0f}".format(data.count) }}</strong> NGOs
+            {% else %}
+            Showing <strong>{{ "{:,.0f}".format(1 + skip) }}</strong>
+            to <strong>{{ "{:,.0f}".format([30 + skip, data.count]|min) }}</strong>
+            of <strong>{{ "{:,.0f}".format(data.count) }}</strong> NGOs
+            {% endif %}
+        </li>
         {% if skip + 30 < data.count %}
         <li class="dib">
-            <a class="link white dim ph2 pv1 bg-green" href="{{ pages[active_page].url|update_url({"filter-skip": skip + 30}) }}">
-                Next &rsaquo;
+            <a class="link blue" href="{{ pages[active_page].url|update_url({"filter-skip": skip + 30}) }}">
+                <span class="v-mid">Next</span><i class="material-icons md-18 v-mid">chevron_right</i>
             </a>
+            {% if skip + 60 < data.count %}
+            <a class="link blue" href="{{ pages[active_page].url|update_url({"filter-skip": data.count - 30}) }}">
+                <i class="material-icons md-18 v-mid">last_page</i>
+            </a>
+            {% endif %}
         </li>
         {% endif %}
     </ul>
 </div>
-<table class="collapse f6">
+{% endmacro %}
+
+
+{{ pagination() }}
+<table class="collapse f5 lh-copy">
     <thead>
-        <tr>
-            <th class="pa2 v-top tl dn dtc-ns"></th>
-            <th class="pa2 v-top tr dn dtc-ns">Registration Date</th>
+        <tr class="f4 bb b--mid-gray bw2">
+            <th class="pa2 v-top tl dn dtc-ns mw5">Charity</th>
+            <th class="pa2 v-top tr dn dtc-ns"><abbr title="Registration">Reg</abbr>. date</th>
             <th class="pa2 v-top tr dn dtc-ns">Latest income</th>
-            <th class="pa2 v-top tl dn dtc-ns">Activities</th>
-            <th class="pa2 v-top tl dn dtc-ns">Region<br><span class="normal gray f7">(based on registered office of UK charity)</span></th>
+            <th class="pa2 v-top tl dn dtc-ns mw6">Activities</th>
+            <th class="pa2 v-top tl dn dtc-ns">Region <span class="normal gray underline" title="based on registered office of UK charity">?</span></th>
         </tr>
     </thead>
     <tbody id="data-list">
     {% for c in data.list %}
-        <tr class="striped--near-white db dt-row-ns">
-            <td class="pa2 v-top db dtc-ns">
-                <a class="link dim dark-blue" href="{{ url_for('data.charity', charityid=c.id) }}">
-                    <p class="pa0 ma0 f5 b">{{ c.name|correct_titlecase }}</p>
+        <tr class="db dt-row-ns bb b--light-gray bw1">
+            <td class="pa2 v-top db dtc-ns mw5">
+                <a class="link blue" href="{{ url_for('data.charity', charityid=c.id) }}">
+                    <p class="pa0 ma0 b blue">{{ c.name|correct_titlecase }}</p>
                     <p class="f7 gray mb0 mt2">Charity number <strong>{{ c.id }}</strong></p>
                 </a>
             </td>
             <td class="pa2 v-top db dtc-ns">
-                {{ c.registrationDate }}
+                {{ "{:%d/%m/%Y}".format(c.registrationDate) }}
             </td>
             <td class="pa2 v-top tr db dtc-ns">
             {% if c.finances[0].income %}
@@ -66,9 +74,9 @@
                 {% endif %}
             {% endif %}
             </td>
-            <td class="pa2 v-top f7 db dtc-ns">
-                {{ c.activities|default("", true) }}
-                <p class="i">
+            <td class="pa2 v-top db dtc-ns mw6">
+                {{ c.activities|default("", true)|correct_titlecase }}
+                <p class="i f6">
                 Work in 
                 {% for a in c.countries %}
                     {%- if loop.last and not loop.first %} and {% endif %}
@@ -77,33 +85,9 @@
                 {% endfor %}
                 <p>
             </td>
-            <td class="pa2 v-top f7 db dtc-ns"><span class="di dn-ns">UK registered office: </span>{{ c.geo.region|default(c.geo.country|default("", true), true) }}</td>
+            <td class="pa2 v-top db dtc-ns"><span class="di dn-ns">UK registered office: </span>{{ c.geo.region|default(c.geo.country|default("", true), true) }}</td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
-<div>
-    <ul class="list mh0 mb0 mt2 pa0 f5">
-        {% if (skip - 30) > 0 %}
-        <li class="dib mr2">
-            <a class="link white dim ph2 pv1 bg-green" href="{{ pages[active_page].url|update_url({"filter-skip": 0}) }}">
-                &laquo;
-            </a>
-        </li>
-        {% endif %}
-        {% if skip > 0 %}
-        <li class="dib mr2">
-            <a class="link white dim ph2 pv1 bg-green" href="{{ pages[active_page].url|update_url({"filter-skip": skip - 30}) }}">
-                &lsaquo; Previous
-            </a>
-        </li>
-        {% endif %}
-        {% if skip + 30 < data.count %}
-        <li class="dib">
-            <a class="link white dim ph2 pv1 bg-green" href="{{ pages[active_page].url|update_url({"filter-skip": skip + 30}) }}">
-                Next &rsaquo;
-            </a>
-        </li>
-        {% endif %}
-    </ul>
-</div>
+{{ pagination() }}

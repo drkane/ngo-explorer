@@ -1,37 +1,23 @@
-<footer class="ph3-ns ph2 cf bg-light-gray">
+<footer class="ph3-ns ph2 cf bg-dark-gray white">
     <div class="mw9 center mv4-l mv2 cf">
         <div class="fl w-50-ns w-100">
-            <p class="normal ma0 f3">
-                <a class="link black b ttl ma0" href="{{ url_for('home.index') }}">
-                    <img src="{{ url_for('static', filename='images/ngo_explorer_logo_white.svg') }}"
-                        class="mw4"
-                        alt="NGO Explorer" />
-                </a>
-                {# <span class="dib mw5 ">Building networks across development NGOs</span> #}
-            </p>
-            <p class="normal mb0 mt2 f6">
-                Part of <a href="https://dkane.net/" class="link dim green underline-hover" target="_blank">
-                    <abbr title="Sheffield Institute for International Development (SIID, University of Sheffield)">SIID</abbr>
-                </a>
-                and <a href="https://www.gdi.manchester.ac.uk/" class="link dim green underline-hover" target="_blank">
-                    <abbr title="University of Manchester Global Development Institute">GDI</abbr>
-                </a>
-                <a href="https://mappingdevelopmentngos.wordpress.com/" class="link dim green underline-hover" target="_blank">Mapping Development NGOs</a> project
-                | Funded by <a href="" class="link dim green underline-hover" target="_blank">Funder</a>
-            </p>
-            <p class="normal mb0 mt2 f6">
-                Built by <a href="https://dkane.net/" class="link dim green underline-hover" target="_blank">David Kane</a>
-                | Design by <a href="https://inkandwater.co.uk/" class="link dim green underline-hover" target="_blank">Ink and Water</a>
-                | Data from <a href="https://charitybase.uk/" class="link dim green underline-hover" target="_blank">Charitybase</a>;
-                <a href="http://d-portal.org/ctrack.html#view=search" class="link dim green underline-hover" target="_blank">IATI</a>
-                | 
-                <a href="https://github.com/drkane/ngo-explorer/" class="link dim green underline-hover" target="_blank">
-                    Code</a> <img class="h1"
-                        src="{{ url_for('static', filename='images/github.svg') }}"
-                        title="Github repository" />
-            </p>
+            <a class="link black b ttl ma0 fl mr4" href="{{ url_for('home.index') }}">
+                <img src="{{ url_for('static', filename='images/ngo_explorer_logo_white.svg') }}"
+                    class=""
+                    style="width: 180px;"
+                    alt="NGO Explorer" />
+            </a>
+            <div class="f5 lh-copy">
+                <p class="mt0">
+                    An explorer for data on development charities based in the UK.<br>
+                    Uses data from the <a class="link white b underline-hover" href="http://beta.charitycommission.gov.uk/" target="_blank" title="Charity Commission for England and Wales">Charity Commission</a>.
+                </p>
+                <p class="mt1">
+                    Powered by <a class="link white b underline-hover" href="https://charitybase.uk/about" target="_blank">CharityBase</a>
+                </p>
+            </div>
         </div>
-        <div class="fr-ns fl w-50-ns mt2 mt0-ns w-100 mid-gray tr">
+        {# <div class="fr-ns fl w-50-ns mt2 mt0-ns w-100 mid-gray tr">
             <ul class="list ma0 pa0 flex-ns items-start justify-between">
                 <li class="dib mv0 mr2-ns mb2 mb0-ns pa0 bg-gray" style="margin-left: auto;">
                     <a class="pa2" href="https://siid.group.shef.ac.uk/">
@@ -48,6 +34,43 @@
                     </a>
                 </li>
             </ul>
+        </div> #}
+    </div>
+    <div class="mw9 center  cf">
+        <div class="normal mb3 mt2 f6">
+            <nav class="">
+                <ul class="list ma0 pa0">
+                    <li class="dib mr1 pr2 br bw1 b--gray">
+                        &copy; NGO Explorer {{ now.year }}
+                    </li>
+                    <li class="dib mr1 pr2 br bw1 b--gray">
+                        Part of <a href="https://dkane.net/" class="link white b underline-hover" target="_blank">
+                            <abbr title="Sheffield Institute for International Development (SIID, University of Sheffield)">SIID</abbr>
+                        </a>
+                        and <a href="https://www.gdi.manchester.ac.uk/" class="link white b underline-hover" target="_blank">
+                            <abbr title="University of Manchester Global Development Institute">GDI</abbr>
+                        </a>
+                        <a href="https://mappingdevelopmentngos.wordpress.com/" class="link white b underline-hover" target="_blank">Mapping Development NGOs</a> project
+                    </li>
+                    <li class="dib mr1 pr2 br bw1 b--gray">
+                        Funded by <a href="" class="link white b underline-hover" target="_blank">Funder</a>
+                    </li>
+                    <li class="dib mr1 pr2 br bw1 b--gray">
+                        Built by <a href="https://dkane.net/" class="link white b underline-hover" target="_blank">David Kane</a>
+                    </li>
+                    <li class="dib mr1 pr2 br bw1 b--gray">
+                        Design by <a href="https://inkandwater.co.uk/" class="link white b underline-hover" target="_blank">Ink and Water</a>
+                    </li>
+                    <li class="dib mr1 pr2 br bw1 b--gray">
+                        Data from <a href="https://charitybase.uk/" class="link white b underline-hover" target="_blank">Charitybase</a> & 
+                        <a href="http://d-portal.org/ctrack.html#view=search" class="link white b underline-hover" target="_blank">IATI</a>
+                    </li>
+                    <li class="dib">
+                        <a href="https://github.com/drkane/ngo-explorer/" class="link white b underline-hover" target="_blank">
+                            Code</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </footer>

@@ -7,7 +7,7 @@
     <div class="db fl w-20-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
     <div class="db fl w-60-l w-100 ma0">
         <form method='post' id="upload-form">
-            <h2 class="ma0 mv2-l">Upload your own data</h2>
+            <h2 class="korolev ma0 mv2-l">Upload your own data</h2>
             <p> 
                 If you have a list of UK charity numbers, you can 
                 upload your data to explore your group of
@@ -15,7 +15,7 @@
             </p>
             <p> 
                 Don't know the charity numbers? Why not try 
-                <a href="https://findthatcharity.uk/adddata" class="external-link" target="_blank">
+                <a href="https://findthatcharity.uk/adddata" class="link blue external-link" target="_blank">
                     enhancing your data on findthatcharity.uk
                 </a>
                 .
@@ -23,7 +23,7 @@
             <p class="db mt2">
                 <input type="text" class="pa2 w-100" name="upload-name" id="upload-name" autocomplete="off" placeholder="Give this dataset a name" />
             </p>
-            <h3 class="">Paste a list of charity numbers</h3>
+            <h3 class="korolev">Paste a list of charity numbers</h3>
             <textarea class="w-100 pa2 js-only" id="charity-numbers" autocomplete="off"></textarea>
             <textarea class="w-100 pa2 js-hide" id="charity-numbers-parsed" name="charitynumbers" autocomplete="off"></textarea>
             <div id="charity-number-output"></div>
@@ -33,14 +33,14 @@
             <p class="tc h1 bb b--light-silver mv4">
                 <span class="ph4 pv2 bg-white">or</span>
             </p>
-            <h3 class="">Upload a CSV file and select the column to use</h3>
+            <h3 class="korolev">Upload a CSV file and select the column to use</h3>
             <input class="w-100 pv2" type="file" id="file-upload" accept=".csv" autocomplete="off" />
             <select class="mv2 pa1 w-100" id="file-upload-columns" autocomplete="off"></select>
             <div id="file-upload-output"></div>
             <input type="submit" class="pa2 bg-green white dim bn mt3" form="upload-form" value="Fetch data from CSV" />
         </div>
         <div class="mt5 bg-yellow pa2">
-            <h4 class="mv0 white">Data protection</h4>
+            <h4 class="korolev mv0 white">Data protection</h4>
             <p class="mv1 white">
                 Your data file won't leave your computer, although the charity numbers in your
                 file will be sent as web requests to this site and <a href="https://charitybase.uk/" class="external-link white" target="_blank">charitybase</a>.
