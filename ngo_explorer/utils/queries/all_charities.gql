@@ -1,0 +1,19 @@
+query getCharityAggregation {
+  CHC {
+    getCharities(filters: {}) {
+      aggregate {
+        finances {
+          latestIncome {
+            buckets {
+              key
+              name
+              count
+              sum
+            }
+          }
+        }
+      }
+      count
+    }
+  }
+}

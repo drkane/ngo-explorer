@@ -34,6 +34,9 @@ class CharityBaseResult(object):
                 f["sum"]
                 for f in self.aggregate.get("finances", {}).get("latestIncome", {})
             ])
+            scale = get_scaling_factor(self.total_income)
+            self.total_income_text = "£" + \
+                scale[2].format(self.total_income / scale[0])
 
     def _parse_income_buckets(self):
 

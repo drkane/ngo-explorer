@@ -4,10 +4,24 @@
         NGO{{ "s" if data.count > 1 else "" }} found
     </div>
     {% if data.total_income %}
-    <div class="f5 fl mr2">
+    <div class="f5 fl mr4">
         <span class="f1 korolev big-numbers">£{{ data.total_income|number_format }}</span><br>
         Total income
     </div>
+        {% if all_charity_data.total_income %}
+        {% set proportion = (data.total_income / all_charity_data.total_income) %}
+        {% set precision = 1 if proportion < 0.0095 else 0 %}
+        <div class="f5 fl mr4">
+            <span class="f1 korolev big-numbers">
+            {% if proportion < 0.001 %}
+            &lt;0.1%
+            {% else %}
+            {{ "{:.{prec}%}".format(proportion, prec=precision) }}
+            {% endif %}
+            </span><br>
+            of all charity income
+        </div>
+        {% endif %}
     {% endif %}
 </div>
 <h3 class="f5">Example charities</h3>

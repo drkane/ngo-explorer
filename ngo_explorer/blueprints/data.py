@@ -96,6 +96,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
             filetype=request.values.get("download_type").lower(),
         )
 
+    all_charity_data = fetch_charitybase(query="all_charities")
     charity_data = fetch_charitybase(
         countries=area["countries"],
         filters=filters,
@@ -117,7 +118,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
 
         inserts = {
             "selected-filters": render_template('_data_selected_filters.html.j2', filters=filters_raw, area=area),
-            "example-charities": render_template('_data_example_charities.html.j2', data=charity_data, area=area),
+            "example-charities": render_template('_data_example_charities.html.j2', data=charity_data, area=area, all_charity_data=all_charity_data),
             "charity-count": "{:,.0f} UK NGO{}".format(charity_data.count, "" if charity_data.count == 1 else "s"),
             "word-cloud": render_template('_data_word_cloud.html.j2', data=charity_data),
             "max-countries-header": "{:,.0f}".format(filters.get("max_countries")),
@@ -146,6 +147,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
     return render_template(pages[page]["template"],
                            area=area,
                            data=charity_data,
+                           all_charity_data=all_charity_data,
                            iati_data=iati_data,
                            filters=filters_raw,
                            pages=pages,
