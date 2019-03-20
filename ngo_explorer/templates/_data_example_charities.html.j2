@@ -20,7 +20,7 @@
     </dt>
     <dd class="mw6-l ml0 mb2">
         <p class="f6 pa0 ma0 lh-copy">
-            {% if c.finances[0].income %}
+            {% if c.finances and c.finances[0].income %}
             Income <strong>£{{ c.finances[0].income|number_format }}</strong>
             <span class="f7 i gray">({{ c.finances[0].financialYear.end.year }})</span>
             {% endif %}

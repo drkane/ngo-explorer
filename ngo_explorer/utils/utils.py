@@ -114,6 +114,9 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
 
 
 def correct_titlecase(s):
+
+    if not s:
+        return s
     
     substitutions = [
         (r'\b([^aeiouyAEIOUY,0-9]+)\b', lambda x: x[0].upper() if x[0] else x),

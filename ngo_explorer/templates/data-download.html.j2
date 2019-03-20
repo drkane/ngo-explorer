@@ -7,13 +7,13 @@
     {% include '_data_sidebar.html.j2' %}
 
     <div class="fl w-100 w-80-l">
-        <div id="results-download-link" class="mv3 pv3 cf">
-            <ul class="list pa0 flex items-strech">
+        <div id="results-download-link" class="mb3 pb3 cf">
+            <ul class="list pa0 ma0 flex items-strech">
                 {% for i in ["Excel", "CSV", "JSON"] %}
                 <li class="dib fl mr2">
-                    <button class="link white dim pa2 w4 bg-yellow pointer bn tl h-100" value={{i}} type="submit" formaction="{{ pages[active_page].url }}" name="download_type">
-                        <i class="material-icons">save_alt</i>
-                        Download<br>{{ i }}
+                    <button class="link white dim pa2 pl3 bg-yellow pointer bn tl h-100 korolev" value={{i}} type="submit" formaction="{{ pages[active_page].url }}" name="download_type">
+                        Download {{ i }}
+                        <i class="material-icons w2 v-mid">save_alt</i>
                     </button>
                 </li>
                 {% endfor %}
@@ -31,7 +31,7 @@
         <div class="cf mv3 flex flex-wrap f6">
             {% for slug, options in download_options.items() %}
             <div class="w-100 w-50-m w-25-l pr3">
-                <h4 class="korolev mt3 mb0 pv1 bb">{{ options.name }}</h4>
+                <h4 class="korolev mt3 mb0 pv1 bb">{{ options.name|safe }}</h4>
                 {% if options.options is mapping %}
                     {% for subslug, suboptions in options.options.items() %}
                     {% if loop.last %}<p class="f6 gray i mt1">{{ options.description }}</p>{% endif %}
@@ -56,6 +56,7 @@
                     <a id="results-download-fields-{{ slug }}-select-all" class="link blue js-select-all" href="#">Select all</a> | 
                     <a id="results-download-fields-{{ slug }}-clear-all" class="link blue js-clear-all" href="#">Clear</a>
                 </p>
+                <p class="f6 gray i mt1">{{ options.description|safe }}</p>
                 <div id="results-download-fields-{{ slug }}" class="mt3">
                     {% for o in options.options %}
                     <label class="db mv2 custom-checkbox flex items-center">

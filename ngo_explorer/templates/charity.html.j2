@@ -44,9 +44,9 @@
                 <tr>
                     <th class="tl">Date</th>
                     <th class="tr">Income</th>
-                    <th class="tr">Income ({{ data.current_year }} prices)</th>
+                    <th class="tr">Income ({{ data._current_year }} prices)</th>
                     <th class="tr">Spending</th>
-                    <th class="tr">Spending ({{ data.current_year }} prices)</th>
+                    <th class="tr">Spending ({{ data._current_year }} prices)</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +62,7 @@
             </tbody>
         </table>
         <p class="gray lh-copy f6">
-            Financial data is adjusted to {{ data.current_year }} prices using the
+            Financial data is adjusted to {{ data._current_year }} prices using the
             <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23" target="_blank" class="link blue external-link">consumer price inflation (CPIH)</a>
             measure published by the Office for National Statistics.
         </p>

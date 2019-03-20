@@ -3,6 +3,7 @@ from datetime import datetime
 from ..utils.countries import get_country_by_id
 from ..utils.charts import line_chart
 from ..utils.inflation import fetch_inflation
+from ..utils.utils import nested_to_record
 
 class CharityBaseCharity(object):
 
@@ -19,19 +20,21 @@ class CharityBaseCharity(object):
         self._get_inflation()
 
     def _get_inflation(self):
-        self.inflation = fetch_inflation()
+        self._inflation = fetch_inflation()
 
-        self.current_year = str(datetime.now().year)
-        if self.current_year not in self.inflation.keys():
-            self.current_year = str(
-                max([int(i) for i in self.inflation.keys()]))
+        self._current_year = str(datetime.now().year)
+        if self._current_year not in self._inflation.keys():
+            self._current_year = str(
+                max([int(i) for i in self._inflation.keys()]))
 
         for f in self.finances:
             year = f["financialYear"]["end"].year
-            inflator = self.inflation.get(
-                self.current_year) / self.inflation.get(str(year))
-            f["income_inflated"] = f["income"] * inflator
-            f["spending_inflated"] = f["spending"] * inflator
+            inflator = self._inflation.get(
+                self._current_year) / self._inflation.get(str(year))
+            if "income" in f:
+                f["income_inflated"] = f["income"] * inflator
+            if "spending" in f:
+                f["spending_inflated"] = f["spending"] * inflator
 
     def _set_name(self):
         for n in self.names:
@@ -110,11 +113,11 @@ class CharityBaseCharity(object):
                                     income_real,
                                     spending_real
                                 ], "name": [
-                                    "Income ({} prices)".format(self.current_year),
-                                    "Spending ({} prices)".format(self.current_year),
+                                    "Income ({} prices)".format(self._current_year),
+                                    "Spending ({} prices)".format(self._current_year),
                                 ]}
                             ],
-                            label='{} prices'.format(self.current_year),
+                            label='{} prices'.format(self._current_year),
                             method='restyle'
                         ),
                         dict(
@@ -146,7 +149,7 @@ class CharityBaseCharity(object):
                 dict(
                     x=[f["financialYear"]["end"] for f in self.finances],
                     y=income_real,
-                    name="Income ({} prices)".format(self.current_year),
+                    name="Income ({} prices)".format(self._current_year),
                     mode="lines",
                     line=dict(
                         color="#0ca777",
@@ -157,7 +160,7 @@ class CharityBaseCharity(object):
                 dict(
                     x=[f["financialYear"]["end"] for f in self.finances],
                     y=spending_real,
-                    name="Spending ({} prices)".format(self.current_year),
+                    name="Spending ({} prices)".format(self._current_year),
                     mode="lines",
                     line=dict(
                         color="#F9AF42",
@@ -169,4 +172,45 @@ class CharityBaseCharity(object):
             chart["layout"]["updatemenus"] = updatemenus
             return chart
 
-    # def flat_dict(self):
+    def as_dict(self):
+        return {
+            k: v for k, v in self.__dict__.items() if not k.startswith("_")
+        }
+
+    def as_flat_dict(self, inflation_adjusted=False):
+        r = nested_to_record(self.as_dict())
+        data = {}
+        for k, v in r.items():
+
+            if k == "finances":
+                years_seen = []
+                for f in v:
+                    year = f["financialYear"]["end"].strftime("%Y")
+                    if year in years_seen:
+                        year = f["financialYear"]["end"].strftime("%Y%m%d")
+                    
+                    if inflation_adjusted:
+                        if "income" in f:
+                            data["income_{}_{}prices".format(
+                                year, self._current_year)] = f.get("income_inflated")
+                        if "spending" in f:
+                            data["spending_{}_{}prices".format(
+                                year, self._current_year)] = f.get("spending_inflated")
+                    else:
+                        if "income" in f:
+                            data["income_{}".format(year)] = f["income"]
+                        if "spending" in f:
+                            data["spending_{}".format(year)] = f["spending"]
+
+                    years_seen.append(year)
+
+            elif isinstance(v, list):
+                if v and isinstance(v[0], dict):
+                    v = [i.get("name", list(i.values())[0]) for i in v]
+                data[k] = ";".join(v)
+
+            else:
+                data[k] = v
+
+        print(data)
+        return data

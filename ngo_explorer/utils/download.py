@@ -6,7 +6,7 @@ from flask import current_app, Response
 import xlsxwriter
 from slugify import slugify
 
-from .utils import record_to_nested, nested_to_record
+from .utils import record_to_nested
 from .filters import CLASSIFICATION
 from .fetchdata import fetch_charitybase
 
@@ -15,10 +15,10 @@ DOWNLOAD_OPTIONS = {
         "options": [
             {'label': 'Charity number', 'value': 'id', 'checked': True},
             {'label': 'Charity name', 'value': 'name', 'checked': True},
-            # {'label': 'Governing document', 'value': 'governingDoc'},
+            {'label': 'Governing document', 'value': 'governingDoc'},
             {'label': 'Description of activities',
              'value': 'activities'},
-            # {'label': 'Charitable objects', 'value': 'objectives'},
+            {'label': 'Charitable objects', 'value': 'objectives'},
             {'label': 'Causes served', 'value': 'causes'},
             {'label': 'Beneficiaries', 'value': 'beneficiaries'},
             {'label': 'Activities', 'value': 'operations'},
@@ -29,15 +29,21 @@ DOWNLOAD_OPTIONS = {
         "options": [
             {'label': 'Latest income', 'value': 'income.latest.total', 'checked': True},
             {'label': 'Latest income date', 'value': 'income.latest.date', 'checked': True},
+            {'label': 'Income history', 'value': 'income.history', 'checked': False},
+            {'label': 'Spending history', 'value': 'spending.history', 'checked': False},
+            {'label': 'Inflation adjust income/spending history', 'value': 'inflation_adjusted', 'checked': False},
             # {'label': 'Company number', 'value': 'companiesHouseNumber'},
             # {'label': 'Financial year end', 'value': 'fyend'},
-            # {'label': 'Number of trustees',
-            #  'value': 'people.trustees'},
-            # {'label': 'Number of employees',
-            #  'value': 'people.employees'},
-            # {'label': 'Number of volunteers',
-            #  'value': 'people.volunteers'},
+            {'label': 'Number of trustees',
+             'value': 'numPeople.trustees'},
+            {'label': 'Number of employees',
+             'value': 'numPeople.employees'},
+            {'label': 'Number of volunteers',
+             'value': 'numPeople.volunteers'},
         ],
+        "description": """Financial data can be adjusted to consistent prices using the
+        <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23" target="_blank" class="link blue external-link">consumer price inflation (CPIH)</a>
+        measure published by the Office for National Statistics.""",
         "name": "Financial"
     },
     "contact": {
@@ -53,7 +59,7 @@ DOWNLOAD_OPTIONS = {
     "geo": {
         "options": {
             "aoo": [
-                # {'label': 'Description of area of benefit', 'value': 'areaOfBenefit'},
+                {'label': 'Description of area of benefit', 'value': 'areaOfBenefit'},
                 {'label': 'Area of operation',
                  'value': 'areas'},
                 {'label': 'Countries where this charity operates',
@@ -89,8 +95,35 @@ DOWNLOAD_OPTIONS = {
 }
 
 
-def parse_download_fields(fields):
-    fields = record_to_nested(fields)
+def parse_download_fields(original_fields):
+
+    fields = record_to_nested(original_fields)
+
+    # get income fields
+    finances = None
+    if "income.history" in original_fields or "spending.history" in original_fields:
+        finances_key = "finances(all:true)"
+        finances = {"financialYear": {"end": {}}}
+        if "income.history" in original_fields:
+            finances["income"] = {}
+            del fields["income"]
+        if "spending.history" in original_fields:
+            finances["spending"] = {}
+            del fields["spending"]
+    elif "income.latest.total" in original_fields or "income.latest.date" in original_fields:
+        finances_key = "finances"
+        finances = {}
+        if "income.latest.total" in original_fields:
+            finances["income"] = {}
+        if "income.latest.date" in original_fields:
+            finances["financialYear"] = {"end": {}}
+        del fields["income"]
+
+    if finances:
+        fields[finances_key] = finances
+
+    if "inflation_adjusted" in fields:
+        del fields["inflation_adjusted"]
 
     # add in country and area fields
     if "countries" in fields or "areas" in fields:
@@ -129,8 +162,6 @@ def download_file(area, filters, fields, filetype='csv', max_results=500):
         query_fields=parse_download_fields(fields)
     )
 
-    print(filters)
-
     if "ids" in area:
         # assume it's a list of ids
         cb_variables["ids"] = area["ids"]
@@ -157,21 +188,23 @@ def download_file(area, filters, fields, filetype='csv', max_results=500):
         filetype = filetype.lower()
 
     results = []
+    fieldnames_ = set()
     for r in charity_list:
-
         if filetype in ["xlsx", "csv"]:
-            r = nested_to_record(r.__dict__)
-            for k, v in r.items():
-                if isinstance(v, list):
-                    if v and isinstance(v[0], dict):
-                        v = [i.get("name", list(i.values())[0]) for i in v]
-                    r[k] = ";".join(v)
-            results.append(r)
+            result = r.as_flat_dict()
         else:
-            results.append(r.__dict__)
+            result = r.as_dict()
+        results.append(result)
+        fieldnames_.update(result.keys())
 
     fieldnames = ["id", "name"] + \
-        sorted([v for v in fields if v not in ["id", "name"]])
+        sorted([v for v in fieldnames_ if v not in ["id", "name"] and not v.startswith("income_") and not v.startswith("spending_")]) + \
+        sorted([v for v in fieldnames_ if v.startswith("income_") or v.startswith("spending_")])
+
+    # check for fields that can end up in the output without being asked for
+    for f in ["countries", "areas", "names"]:
+        if f not in fields and f in fieldnames:
+            fieldnames.remove(f)
 
     output = io.StringIO()
     if filetype == 'json':
@@ -204,7 +237,7 @@ def download_file(area, filters, fields, filetype='csv', max_results=500):
         writer = csv.DictWriter(output, fieldnames=list(fieldnames))
         writer.writeheader()
         for c in results:
-            writer.writerow(c)
+            writer.writerow({f: c.get(f) for f in fieldnames})
         mimetype = 'text/csv'
         extension = 'csv'
 

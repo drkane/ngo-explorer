@@ -64,7 +64,7 @@
                 {{ "{:%d/%m/%Y}".format(c.registrationDate) }}
             </td>
             <td class="pa2 v-top tr db dtc-ns">
-            {% if c.finances[0].income %}
+            {% if c.finances and c.finances[0].income %}
                 <p class="pa0 ma0 di db-ns">
                     <span class="di dn-ns">Latest income </span>
                     {{ "£{:,.0f}".format(c.finances[0].income) }}
