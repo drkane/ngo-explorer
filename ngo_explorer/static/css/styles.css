@@ -113,3 +113,19 @@ footer {
     filter: brightness(80%);
     text-decoration: underline;
 }
+
+/* styling of plotly chart buttons */
+.plot-container.plotly svg text {
+    font-family: 'Source Sans Pro', sans-serif !important;
+    font-size: 16px !important;
+}
+
+.plot-container.plotly svg rect.updatemenu-item-rect {
+    fill: #D8DEDF !important;
+    stroke: #D8DEDF !important;
+}
+.plot-container.plotly svg text.updatemenu-item-text {
+    /* fill: white !important; */
+    font-family: korolev, sans-serif !important;
+    font-size: 14px !important;
+}

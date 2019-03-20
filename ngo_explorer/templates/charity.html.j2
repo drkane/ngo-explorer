@@ -23,8 +23,8 @@
             <span class="f6 gray">({{ "{:%B %Y}".format(data.finances[0].financialYear.end) }})</span>
         </p>
         {% endif %}
-        <p class="b">Other links:</p>
-        <ul class="list">
+        <h4 class="b korolev">Other links:</h4>
+        <ul class="list ma0 pa0">
             <li>
                 <a href="https://charitybase.uk/charities/{{ data.id }}" target="_blank" class="link blue external-link">
                     Charitybase
@@ -37,6 +37,7 @@
             </li>
         </ul>
         {% if data.finances %}
+        <h4 class="b korolev">Income and spending over time:</h4>
         <div id="chart_finances" class="h5 h6-ns"></div>
         <table>
             <thead>
@@ -79,7 +80,7 @@
             {% endif %}
         {% endif %}
         {% if data.geo.latitude and data.geo.longitude %}
-        <p><strong><i class="material-icons md-18">place</i>Registered office:</strong> {{ data.geo.region }}</p>
+        <p><strong><i class="material-icons md-18 v-mid">place</i>Registered office:</strong> {{ data.geo.region }}</p>
         <div id="location-map" class="h5 h6-ns"></div>
         {% endif %}
     </div>

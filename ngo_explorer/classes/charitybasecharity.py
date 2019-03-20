@@ -96,22 +96,77 @@ class CharityBaseCharity(object):
 
     def finance_chart(self):
         if getattr(self, "finances", None):
-            return line_chart([{
-                "x": [f["financialYear"]["end"] for f in self.finances],
-                "y": [f.get("income") for f in self.finances],
-                "name": "Income (cash terms)",
-            }, {
-                "x": [f["financialYear"]["end"] for f in self.finances],
-                "y": [f.get("income_inflated") for f in self.finances],
-                "name": "Income ({} prices)".format(self.current_year),
-            }, {
-                "x": [f["financialYear"]["end"] for f in self.finances],
-                "y": [f.get("spending") for f in self.finances],
-                "name": "Spending (cash terms)",
-            }, {
-                "x": [f["financialYear"]["end"] for f in self.finances],
-                "y": [f.get("spending_inflated") for f in self.finances],
-                "name": "Spending ({} prices)".format(self.current_year),
-            }])
+            income_cash = [f.get("income") for f in self.finances]
+            spending_cash = [f.get("spending") for f in self.finances]
+            income_real = [f.get("income_inflated") for f in self.finances]
+            spending_real = [f.get("spending_inflated") for f in self.finances]
+
+            updatemenus = list([
+                dict(
+                    buttons=list([
+                        dict(
+                            args=[
+                                {'y': [
+                                    income_real,
+                                    spending_real
+                                ], "name": [
+                                    "Income ({} prices)".format(self.current_year),
+                                    "Spending ({} prices)".format(self.current_year),
+                                ]}
+                            ],
+                            label='{} prices'.format(self.current_year),
+                            method='restyle'
+                        ),
+                        dict(
+                            args=[
+                                {'y': [
+                                    income_cash,
+                                    spending_cash
+                                ], "name": [
+                                    "Income (cash terms)",
+                                    "Spending (cash terms)",
+                                ]}
+                            ],
+                            label='Cash terms',
+                            method='restyle'
+                        )
+                    ]),
+                    direction='down',
+                    pad={'r': 0, 't': 10},
+                    showactive=True,
+                    type='buttons',
+                    x=1.4,
+                    xanchor='right',
+                    y=0.9,
+                    # yanchor='top',
+                ),
+            ])
+
+            chart = line_chart([
+                dict(
+                    x=[f["financialYear"]["end"] for f in self.finances],
+                    y=income_real,
+                    name="Income ({} prices)".format(self.current_year),
+                    mode="lines",
+                    line=dict(
+                        color="#0ca777",
+                        width=4,
+                    ),
+                    hoverinfo='x+y',
+                ),
+                dict(
+                    x=[f["financialYear"]["end"] for f in self.finances],
+                    y=spending_real,
+                    name="Spending ({} prices)".format(self.current_year),
+                    mode="lines",
+                    line=dict(
+                        color="#F9AF42",
+                        width=4,
+                    ),
+                    hoverinfo='x+y',
+                )
+            ])
+            chart["layout"]["updatemenus"] = updatemenus
+            return chart
 
     # def flat_dict(self):
