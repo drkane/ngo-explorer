@@ -2,6 +2,7 @@ from datetime import datetime
 
 from ..utils.countries import get_country_by_id
 from ..utils.charts import line_chart
+from ..utils.inflation import fetch_inflation
 
 class CharityBaseCharity(object):
 
@@ -15,6 +16,22 @@ class CharityBaseCharity(object):
         self._get_countries()
         self._parse_website()
         self._parse_dates()
+        self._get_inflation()
+
+    def _get_inflation(self):
+        self.inflation = fetch_inflation()
+
+        self.current_year = str(datetime.now().year)
+        if self.current_year not in self.inflation.keys():
+            self.current_year = str(
+                max([int(i) for i in self.inflation.keys()]))
+
+        for f in self.finances:
+            year = f["financialYear"]["end"].year
+            inflator = self.inflation.get(
+                self.current_year) / self.inflation.get(str(year))
+            f["income_inflated"] = f["income"] * inflator
+            f["spending_inflated"] = f["spending"] * inflator
 
     def _set_name(self):
         for n in self.names:
@@ -82,11 +99,19 @@ class CharityBaseCharity(object):
             return line_chart([{
                 "x": [f["financialYear"]["end"] for f in self.finances],
                 "y": [f.get("income") for f in self.finances],
-                "name": "Income",
+                "name": "Income (cash terms)",
+            }, {
+                "x": [f["financialYear"]["end"] for f in self.finances],
+                "y": [f.get("income_inflated") for f in self.finances],
+                "name": "Income ({} prices)".format(self.current_year),
             }, {
                 "x": [f["financialYear"]["end"] for f in self.finances],
                 "y": [f.get("spending") for f in self.finances],
-                "name": "Spending",
+                "name": "Spending (cash terms)",
+            }, {
+                "x": [f["financialYear"]["end"] for f in self.finances],
+                "y": [f.get("spending_inflated") for f in self.finances],
+                "name": "Spending ({} prices)".format(self.current_year),
             }])
 
     # def flat_dict(self):

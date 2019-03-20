@@ -43,7 +43,9 @@
                 <tr>
                     <th class="tl">Date</th>
                     <th class="tr">Income</th>
+                    <th class="tr">Income ({{ data.current_year }} prices)</th>
                     <th class="tr">Spending</th>
+                    <th class="tr">Spending ({{ data.current_year }} prices)</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,11 +53,18 @@
                 <tr>
                     <td>{{ "{:%d %B %Y}".format(f.financialYear.end) }}</td>
                     <td class="w4 tr">£{{ "{:,.0f}".format(f.income) }}</td>
+                    <td class="w4 tr">£{{ "{:,.0f}".format(f.income_inflated) }}</td>
                     <td class="w4 tr">£{{ "{:,.0f}".format(f.spending) }}</td>
+                    <td class="w4 tr">£{{ "{:,.0f}".format(f.spending_inflated) }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <p class="gray lh-copy f6">
+            Financial data is adjusted to {{ data.current_year }} prices using the
+            <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23" target="_blank" class="link blue external-link">consumer price inflation (CPIH)</a>
+            measure published by the Office for National Statistics.
+        </p>
         {% endif %}
     </div>
     <div class="mb3 w-100 w-25-l fr">
