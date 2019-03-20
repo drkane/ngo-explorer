@@ -46,14 +46,15 @@ body {
     position: relative;
 }
 main {
-    padding-bottom: 256px;
+    padding-bottom: 196px;
 }
 footer {
    position: absolute;
    bottom: 0;
-   height: 240px;
+   min-height: 180px;
 }
 
+/* form inputs */
 .is-focused .choices__inner,
 .is-open .choices__inner,
 .choices__inner,
@@ -85,7 +86,7 @@ footer {
 }
 
 
-
+/* custom checkbox */
 .custom-checkbox input[type=checkbox] {
   position: absolute;
   opacity: 0;
@@ -125,7 +126,6 @@ footer {
     stroke: #D8DEDF !important;
 }
 .plot-container.plotly svg text.updatemenu-item-text {
-    /* fill: white !important; */
     font-family: korolev, sans-serif !important;
     font-size: 14px !important;
 }
