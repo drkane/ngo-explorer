@@ -24,7 +24,8 @@ def fetch_charitybase(
     skip:int = 0,
     query:str = "charity_aggregation",
     query_fields:dict = None,
-    all_finances:bool = False
+    all_finances: bool = False,
+    sort: str = "default",
     ):
     client = GraphQLClientRequests('https://charitybase.uk/api/graphql')
     client.inject_token('Apikey {}'.format(current_app.config["CHARITYBASE_API_KEY"]))
@@ -34,6 +35,7 @@ def fetch_charitybase(
         },
         "limit": limit,
         "skip": skip,
+        "sort": sort,
     }
 
     if countries:

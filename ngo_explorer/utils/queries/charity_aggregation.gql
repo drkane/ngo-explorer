@@ -12,6 +12,7 @@ query getCharityAggregation(
   $limit: PageLimit = 30
   $skip: Int = 0
   $allFinances: Boolean = false
+  $sort: SortCHC = default
 ) {
   CHC {
     getCharities(filters: $filters) {
@@ -43,7 +44,7 @@ query getCharityAggregation(
         }
       }
       count
-      list(limit: $limit, skip: $skip) {
+      list(limit: $limit, skip: $skip, sort: $sort) {
         id
         names {
           value

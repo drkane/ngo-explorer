@@ -3,11 +3,12 @@ query getCharityAggregation(
   $filters: FilterCHCInput!
   $limit: PageLimit = 30
   $skip: Int = 0
+  $sort: SortCHC = default
 ) {
   CHC {
     getCharities(filters: $filters) {
       count
-      list(limit: $limit, skip: $skip) {
+      list(limit: $limit, skip: $skip, sort: $sort) {
 %s
       }
     }

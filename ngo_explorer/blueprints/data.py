@@ -102,7 +102,8 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
         filters=filters,
         limit=30,
         skip=filters.get("skip", 0),
-        query=qgl_query
+        query=qgl_query,
+        sort="random" if page=="dashboard" else "default"
     )
     charity_data.set_charts()
 
