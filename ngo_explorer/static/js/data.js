@@ -72,6 +72,11 @@ if(filter_form){
                 loadingState.classList.add("dn");
             });
     });
+
+    document.getElementById("reset_filters").addEventListener('click', (event) => {
+        event.preventDefault();
+        filter_form.reset();
+    })
 }
 
 
