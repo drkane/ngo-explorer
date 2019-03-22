@@ -23,6 +23,11 @@ if(filter_form){
             return true;
         }
 
+        console.log(document.activeElement);
+        let loadingState = document.getElementById("loading_state");
+        loadingState.classList.remove("dn");
+        loadingState.classList.add("dib");
+
         event.preventDefault();
 
 
@@ -61,6 +66,10 @@ if(filter_form){
                     var tab_id = tab.id.replace(/^tab\-/, "");
                     tab.href = response["pages"][tab_id]["url"];
                 }
+
+                // set loading state back to default
+                loadingState.classList.remove("dib");
+                loadingState.classList.add("dn");
             });
     });
 }
