@@ -101,7 +101,7 @@
 </div>
 <div class="w-100 w-third-l pl2 fl">
     {% if data.iati %}
-    <div class="pa2 bg-light-gray mt3">
+    <div class="pa2 bg-light-gray">
         <h2 class="korolev ma0 pa0">IATI activity data</h2>
         <ul class="list pa0">
             {% for i in data.iati[0:10]|sort(attribute='count', reverse=true) %}
