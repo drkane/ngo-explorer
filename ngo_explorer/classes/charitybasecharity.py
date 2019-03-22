@@ -17,6 +17,7 @@ class CharityBaseCharity(object):
         self._get_countries()
         self._parse_website()
         self._parse_dates()
+        self._parse_orgids()
         self._get_inflation()
 
     def _get_inflation(self):
@@ -40,6 +41,10 @@ class CharityBaseCharity(object):
         for n in self.names:
             if n["primary"]:
                 self.name = n["value"]
+
+    def _parse_orgids(self):
+        if hasattr(self, "orgIds"):
+            self.orgIds = [o["id"] for o in self.orgIds]
 
     def _get_countries(self):
         areas = []
@@ -134,14 +139,14 @@ class CharityBaseCharity(object):
                             method='restyle'
                         )
                     ]),
-                    direction='down',
+                    direction='left',
                     pad={'r': 0, 't': 10},
                     showactive=True,
                     type='buttons',
-                    x=1.4,
-                    xanchor='right',
-                    y=0.9,
-                    # yanchor='top',
+                    x=0,
+                    xanchor='left',
+                    y=1.1,
+                    yanchor='top'
                 ),
             ])
 
@@ -170,6 +175,11 @@ class CharityBaseCharity(object):
                 )
             ])
             chart["layout"]["updatemenus"] = updatemenus
+            chart["layout"]["legend"] = dict(
+                # x=0.5,
+                # y=1,
+                orientation="h"
+            )
             return chart
 
     def as_dict(self):

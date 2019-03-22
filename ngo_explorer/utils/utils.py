@@ -113,7 +113,7 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
     return new_ds
 
 
-def correct_titlecase(s):
+def correct_titlecase(s, first_upper=True):
 
     if not s:
         return s
@@ -150,5 +150,6 @@ def correct_titlecase(s):
         except:
             continue
     
-    s = s[0].upper() + s[1:]
+    if first_upper:
+        s = s[0].upper() + s[1:]
     return s

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, url_for, Response
 
 from ..utils.countries import get_country_groups, get_multiple_countries
-from ..utils.fetchdata import fetch_charitybase, fetch_iati, dict_to_gql
+from ..utils.fetchdata import fetch_charitybase, fetch_iati, fetch_iati_by_charity
 from ..utils.filters import parse_filters
 from ..utils.download import download_file
 from ..utils.utils import nested_to_record
@@ -165,4 +165,7 @@ def charity(charityid):
                 charityid),
         ), 404
 
-    return render_template('charity.html.j2', data=charity_data.get_charity())
+    char = charity_data.get_charity()
+    char.iati = fetch_iati_by_charity(getattr(char, "orgIds"))
+
+    return render_template('charity.html.j2', data=char)

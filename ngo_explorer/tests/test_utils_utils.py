@@ -155,3 +155,7 @@ def test_correct_titlecase():
 
     for n in names:
         assert n == correct_titlecase(n)
+
+    assert "the PDC Trust" == correct_titlecase("The PDC Trust", False)
+    assert "Tuesday O'Hara Fund" == correct_titlecase(
+        "Tuesday O'Hara Fund", False)

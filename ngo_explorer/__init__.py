@@ -79,8 +79,8 @@ def add_template_filters(app):
         return update_url_values(url, values)
 
     @app.template_filter('correct_titlecase')
-    def template_correct_titlecase(s: str):
-        return correct_titlecase(s)
+    def template_correct_titlecase(s: str, **kwargs):
+        return correct_titlecase(s, **kwargs)
 
     @app.template_filter('number_format')
     def template_number_format(v: (int, float)):

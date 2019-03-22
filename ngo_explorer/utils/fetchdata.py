@@ -7,6 +7,7 @@ from flask import current_app
 
 from .filters import CLASSIFICATION
 from ..classes import GraphQLClientRequests, CharityBaseResult, CharityBaseCharity
+from .countries import get_country_by_id
 
 GQL_QUERIES = {}
 for f in os.scandir(os.path.join(os.path.dirname(__file__), 'queries')):
@@ -124,3 +125,15 @@ def fetch_iati(countries: list):
     return {
         k: v for k, v in IATI_DATA.items() if k in country_codes
     }
+
+def fetch_iati_by_charity(orgids):
+    if not orgids:
+        return []
+    iati_activity = []
+    for country_code, iati_orgs in IATI_DATA.items():
+        for org in iati_orgs:
+            if org["ref"] in orgids:
+                org["country"] = get_country_by_id(country_code)
+                if org["country"]:
+                    iati_activity.append(org)
+    return iati_activity
