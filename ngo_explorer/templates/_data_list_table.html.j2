@@ -76,7 +76,10 @@
             </td>
             <td class="pa2 v-top db dtc-ns mw6">
                 {{ c.activities|default("", true)|correct_titlecase }}
-                <p class="i f6">
+                {% if '302' in c.operations %}
+                <p class="i f6 mv2">Makes grants</p>
+                {% endif %}
+                <p class="i f6 mv2">
                 Work in 
                 {% for a in c.countries %}
                     {%- if loop.last and not loop.first %} and {% endif %}

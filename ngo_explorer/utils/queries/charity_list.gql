@@ -29,6 +29,9 @@ query getCharityList(
         orgIds {
           id
         }
+        operations {
+          id
+        }
         geo {
           latitude
           longitude

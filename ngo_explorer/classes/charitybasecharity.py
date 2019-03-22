@@ -18,6 +18,7 @@ class CharityBaseCharity(object):
         self._parse_website()
         self._parse_dates()
         self._parse_orgids()
+        self._parse_classifications()
         self._get_inflation()
 
     def _get_inflation(self):
@@ -45,6 +46,11 @@ class CharityBaseCharity(object):
     def _parse_orgids(self):
         if hasattr(self, "orgIds"):
             self.orgIds = [o["id"] for o in self.orgIds]
+
+    def _parse_classifications(self):
+        for i in ["operations", "beneficiaries", "causes"]:
+            if hasattr(self, i):
+                setattr(self, i, [o["id"] for o in getattr(self, i)])
 
     def _get_countries(self):
         areas = []
