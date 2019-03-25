@@ -1,10 +1,9 @@
-<div class="fl w-100 w-20-l pr3">
-    <div class="mv3 bb bw2 b--mid-gray w-100 flex items-center">
-        <i class="material-icons">search</i>
-        <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Search name or activities" value="{{ filters.get('filter-search', '') }}" autocomplete="off" />
-    </div>
-    <a href="#" class="link blue f7 js-toggle js-only" data-toggle-target="more-filters" id="filters-show-hide">Show filters</a>
-    <div id="more-filters">
+<div class="fl w-100 w-30-l pr4-l">
+    <div class="pa3 bg-light-gray br3 w-100 mb3">
+        <div class="mb3 bb bw2 b--mid-gray w-100 flex items-center">
+            <i class="material-icons">search</i>
+            <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Search name or activities" value="{{ filters.get('filter-search', '') }}" autocomplete="off" />
+        </div>
         <div class="mv3 w-100">
             <h3 class="f6 b mv0">Latest income</h3>
             <p class="f6">
@@ -109,10 +108,10 @@
             </label>
         </div>
         <a href="#" class="link blue f7 js-only" id="reset_filters">Reset filters</a>
-    </div>
-    <input type="hidden" class="dn" value="" name="filter-skip" />
-    <div class="mv3 w-100">
-        <input class="bn bg-light-green pa2 white dim pointer" type="submit" value="Update filters" id="filter-update" />
-        <div class="dn" id="loading_state">Loading <div class="lds-ellipsis v-mid"><div></div><div></div><div></div><div></div></div></div>
+        <input type="hidden" class="dn" value="" name="filter-skip" />
+        <div class="mv3 w-100">
+            <input class="bn bg-light-green pa2 white dim pointer" type="submit" value="Update filters" id="filter-update" />
+            <div class="dn" id="loading_state">Loading <div class="lds-ellipsis v-mid"><div></div><div></div><div></div><div></div></div></div>
+        </div>
     </div>
 </div>

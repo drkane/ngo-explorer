@@ -3,7 +3,7 @@
 {% block title %}{{ area.name|first_upper }} | NGO Explorer{% endblock %}
 
 {% macro figure(chart_id, caption=None) %}
-<figure class="fl w-100 w-50-l pr3-l mh0 mv2">
+<figure class="fl w-100 w-50-l pr3-l mh0 mt0 mb2">
     <figcaption class="f4 b mv2 lh-title">{{ caption }}</figcaption>
     <div id="chart_{{ chart_id }}"></div>
 </figure>
@@ -17,9 +17,9 @@
         {% include '_data_sidebar.html.j2' %}
     </form>
 
-    <div class="fl w-100 w-80-l flex flex-wrap">
+    <div class="fl w-100 w-70-l flex flex-wrap">
 
-        <figure class="fl w-100 w-50-l pr3-l mh0 mv2">
+        <figure class="fl w-100 w-50-l pr3-l mh0 mt0 mb2">
             <div id="example-charities" class=" bg-light-gray pa4 br3">
             {% include '_data_example_charities.html.j2' %}
             </div>
@@ -27,7 +27,7 @@
 
         {{ figure("count", "Number of charities by size")}}
         {{ figure("amount", "Amount of income by size (£)")}}
-        <figure class="fl w-100 w-50-l pr3-l mh0 mv2">
+        <figure class="fl w-100 w-50-l pr3-l mh0 mt0 mb2">
             <figcaption class="f4 b mv1 lh-title">How NGOs describe themselves</figcaption>
             <div id="word-cloud">
             {% include '_data_word_cloud.html.j2' %}

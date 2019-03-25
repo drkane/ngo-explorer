@@ -1,18 +1,21 @@
 {% import "_tabs.html.j2" as tabs %}
 <div class="page-header mb4 w-100 cf">
-    <div class="w-100 w-50-l fl">
-        <h2 class="korolev lh-title ma0">Found <span id="charity-count">{{ "{:,.0f}".format(data.count) }} UK NGOs</span> working in {{ area.name }}</h2>
+    <div class="flex flex-column items-center tc">
+        {{ area["countries"]|location_map() }}
+        <h2 class="korolev lh-title mb0 mt3">Found <span id="charity-count">{{ "{:,.0f}".format(data.count) }} UK NGOs</span> working in {{ area.name }}</h2>
         {% if region_type  == "undp" %}
         <p class="korolev f4 gray lh-copy mv0">United Nations Development Programme region</p>
         {% elif region_type == 'dac' %}
         <p class="korolev f4 gray lh-copy mv0">OECD Development Assistance Committee group</p>
         {% endif %}
+        <div>
         <p class="lh-copy mv2 pa0 f6 gray mw6">
             Figures refer to charities registered with the Charity Commission for England and Wales,
             based on areas of operation supplied to the Charity Commission by the charities themselves.
             Charities that say they work in more than <span id="max-countries-header">{{ filters.get("filter-max-countries", 50) }}</span> countries are not included.
             Total income of these organisations includes work they carry out outside of {{ area.name }}.
-        <p>
+        </p>
+        </div>
         {% if area.countries|length > 1 %}
         <div class="lh-title mt1 f6 mw6 dn">
             <span>Includes:</span>
@@ -28,11 +31,6 @@
         <div id="selected-filters">
         {% include '_data_selected_filters.html.j2' %}
         </div>
+        {{ tabs.tabs(active_page, pages) }}
     </div>
-    <div class="mb3 w-100 w-25-l fr">
-        {{ area["countries"]|location_map() }}
-    </div>
-</div>
-<div>
-    {{ tabs.tabs(active_page, pages) }}
 </div>

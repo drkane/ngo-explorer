@@ -13,7 +13,7 @@
         <script src="{{ url_for('static', filename='vendor/plotly/plotly-latest.min.js') }}"></script>
         {% endblock %}
     </head>
-    <body class="source-sans tabular-nums {% if 'debug' in request.values %}debug debug-grid{% endif %}">
+    <body class="source-sans tabular-nums dark-gray {% if 'debug' in request.values %}debug debug-grid{% endif %}">
         <div class="container">
             {# <div class="tc pa2 bg-light-yellow">
                 <i class="material-icons md-18">build</i> 
@@ -23,7 +23,7 @@
             {% block header %}
                 {% include "_header.html.j2" %}
             {% endblock %}
-            <main class="mw9 center ph3-ns ph2 cf">
+            <main class="mw9 center ph3-ns ph2 pb3 cf">
                 <div class="page-content cf">
                 {% block content %}
                 {% endblock %}

@@ -74,7 +74,7 @@
             {% if area.countries|length == 1 %}
             <h3 class="korolev mh0 mt3 mb0 pa0">
                 <a href="https://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
-                    target="_blank" class="normal link b black external-link">
+                    target="_blank" class="normal link b dark-gray external-link">
                     Data on {{ area.countries|map(attribute="name")|first }} from IATI d-portal
                 </a>
             </h3>

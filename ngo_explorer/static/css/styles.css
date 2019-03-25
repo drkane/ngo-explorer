@@ -40,8 +40,9 @@ body {
    margin:0;
    padding:0;
    height:100%;
+   font-size: 18px;
 }
-.container {
+/* .container {
     min-height: 100%;
     position: relative;
 }
@@ -52,7 +53,7 @@ footer {
    position: absolute;
    bottom: 0;
    min-height: 180px;
-}
+} */
 
 /* form inputs */
 .is-focused .choices__inner,

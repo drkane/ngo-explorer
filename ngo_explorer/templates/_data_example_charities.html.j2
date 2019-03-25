@@ -40,7 +40,7 @@
             {% endif %}
         </p>
         {% if area %}
-        <p class="f7 near-black pa0 ma0">
+        <p class="f7 dark-gray pa0 ma0">
             {% set cids = area.countries|map(attribute="id")|list %}
             Work in 
             {% for a in c.countries if a.id in cids %}
