@@ -47,7 +47,9 @@
 {% block scripts %}
 <script>
     const api_url = '{{ api_url }}';
+    {% if data.charts %}
     const charts = {{ data.charts|to_plotlyjson }};
+    {% endif %}
 </script>
 {{ super() }}
 <script src="{{ url_for('static', filename='vendor/choices/choices.min.js') }}"></script>

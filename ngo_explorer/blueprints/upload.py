@@ -63,6 +63,7 @@ def fetch_uploaded_data(fileid):
     with open(os.path.join(current_app.config["DATA_CONTAINER"], "{}.pkl".format(fileid)), "rb") as a:
         data = pickle.load(a)
     data["data"].set_charts()
+    data["all_charity_data"] = fetch_charitybase(query="all_charities")
     return render_template('upload-data.html.j2', pages=upload_pages(fileid), **data)
 
 @bp.route('/<fileid>/show')
