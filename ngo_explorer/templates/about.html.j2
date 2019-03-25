@@ -9,6 +9,17 @@
         <div class="db fl w-70-l w-100 ma0">
             <h2 class="korolev ma0 mv2-l">Explore UK charities working across the world</h2>
 
+            <h3 class="korolev ma0 mv2-l">What's the purpose of the site?</h3>
+            <p>
+                This site is an offshoot of a research project which 
+                <a href="https://mappingdevelopmentngos.wordpress.com/" class="link blue" target="_blank">explores the development NGO sector in the UK</a>.
+            </p>
+            <p>
+                During that project we (Nicola and Dan) learned how difficult it can be to access data from Charity
+                Commission records. We also learned how useful it can be to analyse these data, and that they could
+                be a useful networking tool if they were more easily accessible. So we decided to build this site in
+                order to make these records, which are in the public domain already, more readily available. 
+            </p>
             <h3 class="korolev ma0 mv2-l">Who's behind the site?</h3>
             <p>
                 This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/" target="_blank" class="link blue">Sheffield Institute for International Development</a> and
@@ -19,22 +30,22 @@
             </p>
             <ul class="list cf db pa0">
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
-                    <img class="br3 h3 w3 dib bg-yellow" src="{{ url_for('static', filename='images/staff/dan_b.png') }}" /><br>
+                    <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/dan_b.png') }}" /><br>
                     <strong>Prof. Dan Brockington</strong><br>
                     Director of <abbr title="Sheffield Institute for International Development">SIID</abbr>
                 </li>
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
-                    <img class="br3 h3 w3 dib bg-light-green" src="{{ url_for('static', filename='images/staff/niki.png') }}" /><br>
+                    <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/niki.png') }}" /><br>
                     <strong>Dr Nicola Banks</strong><br>
                     Lecturer in Urban Development, <abbr title="Global Development Institute">GDI</abbr>
                 </li>
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
-                    <img class="br3 h3 w3 dib bg-yellow" src="{{ url_for('static', filename='images/staff/david.png') }}" /><br>
+                    <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/david.png') }}" /><br>
                     <strong>David Kane</strong><br>
                     Freelance data scientist
                 </li>
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
-                    <img class="br3 h3 w3 dib bg-light-green" src="{{ url_for('static', filename='images/staff/dan_k.png') }}" /><br>
+                    <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/dan_k.png') }}" /><br>
                     <strong>Dan Kwiatkowski</strong><br>
                     Creator of CharityBase
                 </li>
@@ -62,6 +73,39 @@
                 NGOs and others who provided feedback and advice in the development of
                 the site.
             </p>
+            <h3 class="korolev ma0 mv2-l">Who has funded this project?</h3>
+            <p>
+                This site has been funded from 
+                <a href="https://www.ukri.org/research/global-challenges-research-fund/" class="link blue external-link" target="_blank">GCRF Global Impact Accelerator funds</a>
+                 awarded by 
+                <a href="https://www.ukri.org/" class="link blue external-link" target="_blank">UK Research and Innovation</a>
+                to the Universities of Sheffield and Manchester.
+            </p>
+            <div class="mt2 w-100">
+                <ul class="list ma0 pa0">
+                    <li class="dib mv0 mr2-l mb2 mb0-l pa0 v-mid">
+                        <a class="mw3" href="https://www.ukri.org/research/global-challenges-research-fund/">
+                            <img class="cf mw5 mr3"
+                                src="{{ url_for('static', filename='images/gcrf.jpg') }}"
+                                title="Global Challenges Research Fund" />
+                        </a>
+                    </li>
+                    <li class="dib mv0 mr2-l mb2 mb0-l pa0 v-mid">
+                        <a class="mw3" href="https://www.ukri.org/">
+                            <img class="cf mw6 mr3"
+                                src="{{ url_for('static', filename='images/ukri.png') }}"
+                                title="UK Research and Innovation" />
+                        </a>
+                    </li>
+                    <li class="dib ma0 pa0 mt2 mt0-l v-mid">
+                        <span class="">
+                            <img class="cf mw6 mv3"
+                                src="{{ url_for('static', filename='images/uk_gov.png') }}"
+                                title="Funded by UK Government" />
+                        </span>
+                    </li>
+                </ul>
+            </div>
             <h3 class="korolev ma0 mv2-l">Data sources</h3>
             <p>
                 Data on the site comes from the <a href="https://charitybase.uk/api-portal" target="_blank" class="link blue">CharityBase API</a>.
@@ -98,8 +142,13 @@
                 uses cookies to help analyse your use of the site.
             </p>
             <p>
-                If you use the <a href="{{ url_for('upload.data') }}" class="link blue">data upload tool</a>, any charity numbers included in the data will be
-                sent to the server in order
+                If you use the <a href="{{ url_for('upload.data') }}" class="link blue">data upload tool</a>,
+                any charity numbers included in the data will be
+                sent to the server in order to create a data dashboard.
+            </p>
+            <h3 class="korolev ma0 mv2-l">Get in touch</h3>
+            <p>
+                We'd love to hear your feedback on the site. Email us at <a href="mailto:info@ngoexplorer.org" class="link blue">info@ngoexplorer.org</a>
             </p>
         </div>
     </div>
