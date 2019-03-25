@@ -152,6 +152,7 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
                            iati_data=iati_data,
                            filters=filters_raw,
                            pages=pages,
+                           region_type=url_base[1].get("regiontype"),
                            api_url=pages[page]['api_url'])
 
 

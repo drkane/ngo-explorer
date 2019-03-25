@@ -2,6 +2,11 @@
 <div class="page-header mb4 w-100 cf">
     <div class="w-100 w-50-l fl">
         <h2 class="korolev lh-title ma0">Found <span id="charity-count">{{ "{:,.0f}".format(data.count) }} UK NGOs</span> working in {{ area.name }}</h2>
+        {% if region_type  == "undp" %}
+        <p class="korolev f4 gray lh-copy mv0">United Nations Development Programme region</p>
+        {% elif region_type == 'dac' %}
+        <p class="korolev f4 gray lh-copy mv0">OECD Development Assistance Committee group</p>
+        {% endif %}
         <p class="lh-copy mv2 pa0 f6 gray mw6">
             Figures refer to charities registered with the Charity Commission for England and Wales,
             based on areas of operation supplied to the Charity Commission by the charities themselves.
