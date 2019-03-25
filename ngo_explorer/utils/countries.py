@@ -22,7 +22,7 @@ def get_country_groups(as_dict=False):
     if as_dict:
         areas = {}
         areas["all"] = {
-            "name": "All countries",
+            "name": "all countries",
             "countries": COUNTRIES
         }
         for c in COUNTRIES:
@@ -37,9 +37,9 @@ def get_country_groups(as_dict=False):
                 "countries": [c for c in COUNTRIES if c["continent"] == con]
             }
 
-        for i in [("undp", "undp", "All UNDP countries", undp), ("dac", "dac_status", "All DAC countries", dac)]:
+        for i in [("undp", "undp", "all UNDP countries", undp), ("dac", "dac_status", "all DAC countries", dac)]:
             areas[(i[0], "all")] = {
-                "name": i[1],
+                "name": i[2],
                 "countries": [c for c in COUNTRIES if c[i[1]]]
             }
             for con in i[3]:

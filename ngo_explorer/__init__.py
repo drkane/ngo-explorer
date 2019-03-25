@@ -90,6 +90,10 @@ def add_template_filters(app):
     def template_randomn(seq, n=1):
         return random.sample(seq, min((n, len(seq))))
 
+    @app.template_filter('first_upper')
+    def template_randomn(s: str):
+        return s[0].upper() + s[1:]
+
 
 def add_context_processors(app):
     # add custom context to templates

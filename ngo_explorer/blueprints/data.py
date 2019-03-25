@@ -15,6 +15,8 @@ bp = Blueprint('data', __name__, url_prefix='/')
 @bp.route('/region/<regiontype>/<regionid>')
 def region(regionid, regiontype="continent", filetype="html", subpage="dashboard"):
     area = get_country_groups(as_dict=True).get((regiontype, regionid))
+    print(area)
+    print((regiontype, regionid))
 
     if not area:
         return render_template(

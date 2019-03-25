@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 
-{% block title %}{{ area.name }} | NGO Explorer{% endblock %}
+{% block title %}{{ area.name|first_upper }} | NGO Explorer{% endblock %}
 
 {% macro figure(chart_id, caption=None) %}
 <figure class="fl w-100 w-50-l pr3-l mh0 mv2">

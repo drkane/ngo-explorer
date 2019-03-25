@@ -36,7 +36,7 @@
                 <ul class="list pa0 ma0">
                     {% for c in country_list|sort(attribute="name") %}
                     <li class="dib mr2 pb0">
-                        <a href="{{ c.id }}" class="link blue">{{ c.name[0].upper() }}{{ c.name[1:] }}</a>
+                        <a href="{{ c.id }}" class="link blue">{{ c.name|first_upper }}</a>
                     </li>
                     {% endfor %}
                 </ul>
