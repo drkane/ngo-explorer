@@ -1,0 +1,1372 @@
+# Translations template for NGO Explorer.
+# Copyright (C) 2019 NGO Explorer
+# This file is distributed under the same license as the NGO Explorer
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NGO Explorer VERSION\n"
+"Report-Msgid-Bugs-To: david@dkane.net\n"
+"POT-Creation-Date: 2019-03-26 11:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ngo_explorer/blueprints/data.py:23
+#, python-format
+msgid "%(regiontype)s \"%(regionid)s\" could not be found"
+msgstr ""
+
+#: ngo_explorer/blueprints/data.py:45
+#, python-format
+msgid "Country \"%(countryid)s\" could not be found"
+msgstr ""
+
+#: ngo_explorer/blueprints/data.py:71 ngo_explorer/blueprints/upload.py:47
+msgid "Dashboard"
+msgstr ""
+
+#: ngo_explorer/blueprints/data.py:77 ngo_explorer/blueprints/upload.py:51
+msgid "Show NGOs"
+msgstr ""
+
+#: ngo_explorer/blueprints/data.py:83 ngo_explorer/blueprints/upload.py:55
+#: ngo_explorer/templates/data-download.html.j2:15
+#: ngo_explorer/templates/upload-data-download.html.j2:16
+msgid "Download"
+msgstr ""
+
+#: ngo_explorer/blueprints/data.py:168
+#, python-format
+msgid "Charity \"%(charityid)s\" could not be found"
+msgstr ""
+
+#: ngo_explorer/classes/charitybasecharity.py:130
+#: ngo_explorer/classes/charitybasecharity.py:168
+#, python-format
+msgid "Income (%(year)s prices)"
+msgstr ""
+
+#: ngo_explorer/classes/charitybasecharity.py:132
+#: ngo_explorer/classes/charitybasecharity.py:180
+#, python-format
+msgid "Spending (%(year)s prices)"
+msgstr ""
+
+#: ngo_explorer/classes/charitybasecharity.py:135
+#, python-format
+msgid "%(year)s prices"
+msgstr ""
+
+#: ngo_explorer/classes/charitybasecharity.py:144
+msgid "Income (cash terms)"
+msgstr ""
+
+#: ngo_explorer/classes/charitybasecharity.py:145
+msgid "Spending (cash terms)"
+msgstr ""
+
+#: ngo_explorer/classes/charitybasecharity.py:148
+msgid "Cash terms"
+msgstr ""
+
+#: ngo_explorer/classes/charitybaseresult.py:52
+#: ngo_explorer/classes/charitybaseresult.py:53
+#: ngo_explorer/classes/charitybaseresult.py:54
+#: ngo_explorer/classes/charitybaseresult.py:55
+#: ngo_explorer/classes/charitybaseresult.py:56
+#: ngo_explorer/classes/charitybaseresult.py:57
+#: ngo_explorer/classes/charitybaseresult.py:58
+#: ngo_explorer/classes/charitybaseresult.py:59
+msgid "Under £10k"
+msgstr ""
+
+#: ngo_explorer/classes/charitybaseresult.py:60
+#: ngo_explorer/classes/charitybaseresult.py:61
+msgid "£10k-£100k"
+msgstr ""
+
+#: ngo_explorer/classes/charitybaseresult.py:62
+#: ngo_explorer/classes/charitybaseresult.py:63
+msgid "£100k-£1m"
+msgstr ""
+
+#: ngo_explorer/classes/charitybaseresult.py:64
+#: ngo_explorer/classes/charitybaseresult.py:65
+msgid "£1m-£10m"
+msgstr ""
+
+#: ngo_explorer/classes/charitybaseresult.py:66
+#: ngo_explorer/classes/charitybaseresult.py:67
+#: ngo_explorer/classes/charitybaseresult.py:68
+#: ngo_explorer/classes/charitybaseresult.py:69
+#: ngo_explorer/classes/charitybaseresult.py:70
+msgid "Over £10m"
+msgstr ""
+
+#: ngo_explorer/templates/404.html.j2:3 ngo_explorer/templates/404.html.j2:7
+msgid "Not found"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:4
+msgid "NGO found"
+msgid_plural "NGOs found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:9
+msgid "Total income"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:22
+msgid "of all charity income"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:27
+msgid "Example charities"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:38
+#: ngo_explorer/templates/_data_selected_filters.html.j2:16
+#: ngo_explorer/templates/_data_selected_filters.html.j2:21
+#: ngo_explorer/templates/_data_selected_filters.html.j2:25
+msgid "Income"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:45
+#: ngo_explorer/templates/_data_list_table.html.j2:85
+msgid "Work in"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:47
+#: ngo_explorer/templates/_data_list_table.html.j2:87
+#: ngo_explorer/templates/_data_sidebar.html.j2:20
+#: ngo_explorer/templates/_footer.html.j2:33
+#: ngo_explorer/templates/charity.html.j2:86
+#: ngo_explorer/templates/charity.html.j2:94
+msgid "and"
+msgstr ""
+
+#: ngo_explorer/templates/_data_header.html.j2:6
+#, python-format
+msgid ""
+"\n"
+"        Found <span id=\"charity-count\">%(ccount)s UK NGO</span> working"
+" in %(areaname)s</h2>\n"
+"        "
+msgid_plural ""
+"\n"
+"        Found <span id=\"charity-count\">%(ccount)s UK NGOs</span> "
+"working in %(areaname)s</h2>\n"
+"        "
+msgstr[0] ""
+msgstr[1] ""
+
+#: ngo_explorer/templates/_data_header.html.j2:12
+msgid "United Nations Development Programme region"
+msgstr ""
+
+#: ngo_explorer/templates/_data_header.html.j2:14
+msgid "OECD Development Assistance Committee group"
+msgstr ""
+
+#: ngo_explorer/templates/_data_header.html.j2:18
+#, python-format
+msgid ""
+"Figures refer to charities registered with the Charity Commission for "
+"England and Wales, based on areas of operation supplied to the Charity "
+"Commission by the charities themselves. Charities that say they work in "
+"more than <span id=\"max-countries-header\">%(countries)s</span> "
+"countries are not included. Total income of these organisations includes "
+"work they carry out outside of %(areaname)s."
+msgstr ""
+
+#: ngo_explorer/templates/_data_header.html.j2:28
+msgid "Includes:"
+msgstr ""
+
+#: ngo_explorer/templates/_data_iati.html.j2:4
+msgid "IATI Activity data"
+msgstr ""
+
+#: ngo_explorer/templates/_data_iati.html.j2:6
+msgid ""
+"\n"
+"                <abbr title=\"International Aid Transparency "
+"Iniative\">IATI</abbr> is a global initiative to improve the transparency"
+" of \n"
+"                development and humanitarian resources and their results "
+"to address poverty and crises. The data presented here is\n"
+"                sourced from <a href=\"https://www.oipa.nl/home\" "
+"class=\"link blue external-link\" target=\"_blank\">OIPA</a>.\n"
+"                "
+msgstr ""
+
+#: ngo_explorer/templates/_data_iati.html.j2:16
+msgid ""
+"\n"
+"                Select a country below to see a list of UK-registered "
+"organisations operating in \n"
+"                these countries, sourced from data published by IATI "
+"publishers.\n"
+"                "
+msgstr ""
+
+#: ngo_explorer/templates/_data_iati.html.j2:21
+msgid ""
+"\n"
+"                List of UK-registered organisations operating in these "
+"countries,\n"
+"                sourced from data published by IATI publishers.\n"
+"                "
+msgstr ""
+
+#: ngo_explorer/templates/_data_iati.html.j2:26
+#, python-format
+msgid ""
+"\n"
+"                List of UK-registered organisations operating in "
+"%(countryname)s,\n"
+"                sourced from data published by IATI publishers.\n"
+"                "
+msgstr ""
+
+#: ngo_explorer/templates/_data_iati.html.j2:41
+msgid "organisation"
+msgid_plural "organisations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ngo_explorer/templates/_data_iati.html.j2:70
+#, python-format
+msgid ""
+"\n"
+"                    Data on %(countryname)s from IATI d-portal"
+msgstr ""
+
+#: ngo_explorer/templates/_data_iati.html.j2:83
+#: ngo_explorer/templates/_data_iati.html.j2:90
+msgid "Find more data on IATI d-portal"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:13
+msgid "Previous"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:19
+#, python-format
+msgid "Showing all <strong>%(num)s</strong> NGOs"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:21
+#, python-format
+msgid ""
+"\n"
+"            Showing <strong>%(n_start)s</strong>\n"
+"            to <strong>%(n_end)s</strong>\n"
+"            of <strong>%(n_all)s</strong> NGOs\n"
+"            "
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:31
+msgid "Next"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:49
+msgid "Charity"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:50
+msgid "<abbr title=\"Registration\">Reg</abbr>. date"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:51
+#: ngo_explorer/templates/_data_sidebar.html.j2:8
+#: ngo_explorer/utils/download.py:31
+msgid "Latest income"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:52
+#: ngo_explorer/utils/download.py:25
+msgid "Activities"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:53
+#: ngo_explorer/utils/download.py:71
+msgid "Region"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:53
+msgid "based on registered office of UK charity"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:62
+#: ngo_explorer/utils/download.py:17
+msgid "Charity number"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:82
+msgid "Makes grants"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:93
+msgid "UK registered office"
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:5
+#: ngo_explorer/templates/about.html.j2:136
+msgid "Other resources"
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:7
+msgid "We are not responsible for the content of external websites."
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:14
+msgid "NGO Aid Map"
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:18
+msgid ""
+"NGO Aid Map is an InterAction initiative that provides detailed\n"
+"                information on InterAction's members’ work around the "
+"world through a\n"
+"                web-based mapping platform."
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:27
+msgid "on NGO Aid Map"
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:37
+msgid "DfID Dev Tracker"
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:41
+msgid ""
+"Dev Tracker shows the international development projects led by the "
+"Department for International Development\n"
+"                (DFID), other UK government departments and partners."
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:49
+msgid "on devtracker"
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:59
+msgid "WANGO"
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:64
+msgid "Worldwide NGO Directory"
+msgstr ""
+
+#: ngo_explorer/templates/_data_other_resources.html.j2:76
+msgid "Local resources"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:12
+#: ngo_explorer/templates/index.html.j2:64
+msgid "Search"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:16
+#, python-format
+msgid "between £%(min)d and £%(max)d"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:21
+#, python-format
+msgid "up to £%(max)d"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:25
+#, python-format
+msgid "over £%(min)d"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:31
+msgid "Does not make grants to organisations"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:35
+msgid "Is not a religious organisation"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:41
+#: ngo_explorer/templates/_data_sidebar.html.j2:44
+msgid "UK Region"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:49
+#: ngo_explorer/utils/download.py:70
+msgid "Country"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:5
+msgid "Search name or activities"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:10
+msgid "Between"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:45
+msgid " Based on the UK head office"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:49
+msgid "England"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:63
+msgid "Countries"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:77
+msgid "Exclude any charities that say they work in more than"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:85
+msgid "countries (out of 248)."
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:97
+msgid "Exclude charities that make grants"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:107
+msgid "Exclude religious organisations"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:110
+msgid "Reset filters"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:113
+msgid "Update filters"
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:114
+msgid "Loading"
+msgstr ""
+
+#: ngo_explorer/templates/_data_word_cloud.html.j2:3
+msgid "Most common words from the description of the first 30 NGOs."
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:12
+msgid "An explorer for data on development charities based in the UK."
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:13
+msgid "Uses data from the"
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:17
+msgid "Powered by"
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:30
+msgid "Part of"
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:38
+msgid "Funded by"
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:41
+msgid "Built by"
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:44
+msgid "Design by"
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:47
+msgid "Data from"
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:47
+msgid "&"
+msgstr ""
+
+#: ngo_explorer/templates/_footer.html.j2:52
+msgid "Code"
+msgstr ""
+
+#: ngo_explorer/templates/_header.html.j2:8
+msgid "Building networks across development NGOs"
+msgstr ""
+
+#: ngo_explorer/templates/_header.html.j2:14
+msgid "Home"
+msgstr ""
+
+#: ngo_explorer/templates/_header.html.j2:15
+msgid "About"
+msgstr ""
+
+#: ngo_explorer/templates/_header.html.j2:16
+msgid "Upload"
+msgstr ""
+
+#: ngo_explorer/templates/_upload_data_header.html.j2:7
+#: ngo_explorer/templates/_upload_data_header.html.j2:15
+#, python-format
+msgid ""
+"\n"
+"        Data on %(ccount)s charity\n"
+"        "
+msgid_plural ""
+"\n"
+"        Data on %(ccount)s charities\n"
+"        "
+msgstr[0] ""
+msgstr[1] ""
+
+#: ngo_explorer/templates/_upload_data_header.html.j2:23
+msgid ""
+"Figures refer to charities registered with the Charity Commission for "
+"England and Wales,\n"
+"            based on a selection of charities uploaded by a user."
+msgstr ""
+
+#: ngo_explorer/templates/_upload_data_header.html.j2:28
+msgid "Upload more data"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:10
+#: ngo_explorer/templates/index.html.j2:10
+msgid "Explore UK charities working across the world"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:12
+msgid "What's the purpose of the site?"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:14
+msgid "This site is an offshoot of a research project which"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:15
+msgid "explores the development NGO sector in the UK"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:18
+msgid ""
+"\n"
+"                During that project we (Nicola and Dan) learned how "
+"difficult it can be to access data from Charity\n"
+"                Commission records. We also learned how useful it can be "
+"to analyse these data, and that they could\n"
+"                be a useful networking tool if they were more easily "
+"accessible. So we decided to build this site in\n"
+"                order to make these records, which are in the public "
+"domain already, more readily available.\n"
+"                "
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:25
+msgid "Who's behind the site?"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:27
+msgid ""
+"This site is a collaboration between the <a "
+"href=\"http://siid.group.shef.ac.uk/\" target=\"_blank\" class=\"link "
+"blue\">Sheffield Institute for International Development</a> and\n"
+"                the <a href=\"https://www.gdi.manchester.ac.uk/\" "
+"target=\"_blank\" class=\"link blue\">Global Development Institute</a> "
+"(University of Manchester).\n"
+"                It was developed by <a href=\"https://dkane.net/\" "
+"target=\"_blank\" class=\"link blue\">David Kane</a> and uses data from\n"
+"                <a href=\"https://charitybase.uk\" target=\"_blank\" "
+"class=\"link blue\">CharityBase</a> developed by \n"
+"                <a href=\"https://twitter.com/dan_kwiat\" "
+"target=\"_blank\" class=\"link blue\">Dan Kwiatkowski</a>."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:37
+msgid ""
+"Director of <abbr title=\"Sheffield Institute for International "
+"Development\">SIID</abbr>"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:42
+msgid ""
+"Lecturer in Urban Development, <abbr title=\"Global Development "
+"Institute\">GDI</abbr>"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:47
+msgid "Freelance data scientist"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:52
+msgid "Creator of CharityBase"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:74
+msgid ""
+"We would particularly like to thank the many staff and volunteers from\n"
+"                NGOs and others who provided feedback and advice in the "
+"development of\n"
+"                the site."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:78
+msgid "Who has funded this project?"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:80
+msgid ""
+"This site has been funded from \n"
+"                <a href=\"https://www.ukri.org/research/global-"
+"challenges-research-fund/\" class=\"link blue external-link\" "
+"target=\"_blank\">GCRF Global Impact Accelerator funds</a>\n"
+"                 awarded by \n"
+"                <a href=\"https://www.ukri.org/\" class=\"link blue "
+"external-link\" target=\"_blank\">UK Research and Innovation</a>\n"
+"                to the Universities of Sheffield and Manchester."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:111
+msgid "Data sources"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:113
+msgid ""
+"Data on the site comes from the <a href=\"https://charitybase.uk/api-"
+"portal\" target=\"_blank\" class=\"link blue\">CharityBase API</a>.\n"
+"                CharityBase uses data from the \n"
+"                <a href=\"http://data.charitycommission.gov.uk/\" "
+"target=\"_blank\" class=\"link blue\">Charity Commission for England and "
+"Wales</a> \n"
+"                register of charities. Data is used under the \n"
+"                <a href=\"https://www.nationalarchives.gov.uk/doc/open-"
+"government-licence/version/3/\" target=\"_blank\" class=\"link "
+"blue\">Open Government Licence</a>"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:120
+msgid "Contains OS data © Crown copyright and database right 2018."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:121
+msgid "Contains Royal Mail data © Royal Mail copyright and database right 2018."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:122
+msgid ""
+"Contains National Statistics data © Crown copyright and database right "
+"2018."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:125
+msgid ""
+"NGO Explorer and CharityBase are not responsible for the content of the "
+"data on the register of charities.\n"
+"                If you have any questions or concerns about the charity "
+"data, you will need to \n"
+"                contact the Charity Commission."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:129
+msgid "IATI"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:131
+msgid ""
+"The site also uses data from the <a href=\"\" target=\"_blank\" "
+"class=\"link blue\">International Aid Transparency Initative</a>\n"
+"                (IATI). IATI data is published by a large number of aid "
+"funders throughout the world. The data used here is\n"
+"                sourced from <a href=\"https://www.oipa.nl/home\" "
+"target=\"_blank\" class=\"link blue\">OIPA</a>, a rich API\n"
+"                for IATI data."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:138
+msgid ""
+"Where available, the site signposts to other resources, such as national "
+"registers of organisations.\n"
+"                NGO Explorer is not responsible for the content of "
+"external sites."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:141
+msgid "Your privacy and cookies"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:143
+msgid ""
+"This site uses Google analytics to see how it has been used. Google "
+"Analytics\n"
+"                uses cookies to help analyse your use of the site."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:147
+#, python-format
+msgid ""
+"If you use the <a href=\"%(upload_link)s\" class=\"link blue\">data "
+"upload tool</a>,\n"
+"                any charity numbers included in the data will be\n"
+"                sent to the server in order to create a data dashboard."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:151
+msgid "Get in touch"
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:153
+msgid "We'd love to hear your feedback on the site. Email us at"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:22
+msgid "Find out more:"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:43
+msgid "Finances"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:46
+msgid "Latest income:"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:51
+msgid "Income and spending over time:"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:72
+#, python-format
+msgid ""
+"Financial data is adjusted to %(cy)s prices using the\n"
+"        <a "
+"href=\"https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23\""
+" target=\"_blank\" class=\"link blue external-link\">consumer price "
+"inflation (CPIH)</a>\n"
+"        measure published by the Office for National Statistics."
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:79
+msgid "Where this organisation works"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:82
+#: ngo_explorer/templates/charity.html.j2:84
+#: ngo_explorer/templates/charity.html.j2:93
+msgid "works in"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:82
+msgid "countries"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:91
+#, python-format
+msgid "In the UK, %(charname)s works in %(areas)s areas.</p>"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:93
+msgid "In the UK,"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:97
+msgid "Registered office:"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:105
+msgid "IATI activity data"
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:110
+msgid "activity recorded in IATI"
+msgid_plural "activities recorded in IATI"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ngo_explorer/templates/charity.html.j2:115
+msgid ""
+"\n"
+"            <abbr title=\"International Aid Transparency "
+"Iniative\">IATI</abbr> is a global initiative to improve the transparency"
+" of \n"
+"            development and humanitarian resources and their results to "
+"address poverty and crises. The data presented here is\n"
+"            sourced from <a href=\"https://www.oipa.nl/home\" "
+"class=\"link blue external-link\" target=\"_blank\">OIPA</a>, and shows\n"
+"            the total number of activities published to IATI that this "
+"charity is listed as a participant in.\n"
+"            "
+msgstr ""
+
+#: ngo_explorer/templates/charity.html.j2:135
+msgid ""
+"'Map tiles <a href=\"http://stamen.com\">Stamen Design</a> ' + \n"
+"    '[<a href=\"http://creativecommons.org/licenses/by/3.0\" class=\"link"
+" blue\">CC BY 3.0</a>] | ' + \n"
+"    'Data <a href=\"http://openstreetmap.org\" class=\"link "
+"blue\">OpenStreetMap</a> ' + \n"
+"    '[<a href=\"http://www.openstreetmap.org/copyright\" class=\"link "
+"blue\">ODbL</a>]'"
+msgstr ""
+
+#: ngo_explorer/templates/data-download.html.j2:24
+#: ngo_explorer/templates/upload-data-download.html.j2:24
+msgid "Fields to include in download"
+msgstr ""
+
+#: ngo_explorer/templates/data-download.html.j2:25
+#: ngo_explorer/templates/upload-data-download.html.j2:25
+msgid "Charities will be included based on the criteria you have selected."
+msgstr ""
+
+#: ngo_explorer/templates/data-download.html.j2:27
+#: ngo_explorer/templates/upload-data-download.html.j2:27
+msgid "Select all fields"
+msgstr ""
+
+#: ngo_explorer/templates/data-download.html.j2:28
+#: ngo_explorer/templates/upload-data-download.html.j2:28
+msgid "Clear all fields"
+msgstr ""
+
+#: ngo_explorer/templates/data-download.html.j2:30
+#: ngo_explorer/templates/upload-data-download.html.j2:30
+#, python-format
+msgid "Downloads are limited to %(limit)s records"
+msgstr ""
+
+#: ngo_explorer/templates/data-download.html.j2:39
+#: ngo_explorer/templates/data-download.html.j2:56
+#: ngo_explorer/templates/upload-data-download.html.j2:39
+#: ngo_explorer/templates/upload-data-download.html.j2:56
+msgid "Select all"
+msgstr ""
+
+#: ngo_explorer/templates/data-download.html.j2:40
+#: ngo_explorer/templates/data-download.html.j2:57
+#: ngo_explorer/templates/upload-data-download.html.j2:40
+#: ngo_explorer/templates/upload-data-download.html.j2:57
+msgid "Clear"
+msgstr ""
+
+#: ngo_explorer/templates/data.html.j2:28
+#: ngo_explorer/templates/upload-data.html.j2:19
+msgid "Number of charities by size"
+msgstr ""
+
+#: ngo_explorer/templates/data.html.j2:29
+#: ngo_explorer/templates/upload-data.html.j2:20
+msgid "Amount of income by size (£)"
+msgstr ""
+
+#: ngo_explorer/templates/data.html.j2:31
+#: ngo_explorer/templates/upload-data.html.j2:22
+msgid "How NGOs describe themselves"
+msgstr ""
+
+#: ngo_explorer/templates/data.html.j2:36
+#: ngo_explorer/templates/upload-data.html.j2:27
+msgid "Where else do these charities work?"
+msgstr ""
+
+#: ngo_explorer/templates/data.html.j2:37
+#: ngo_explorer/templates/index.html.j2:46
+#: ngo_explorer/templates/upload-data.html.j2:28
+msgid "What the charity does"
+msgstr ""
+
+#: ngo_explorer/templates/data.html.j2:37
+#: ngo_explorer/templates/index.html.j2:46
+#: ngo_explorer/templates/upload-data.html.j2:28
+msgid "Who the charity works with"
+msgstr ""
+
+#: ngo_explorer/templates/data.html.j2:37
+#: ngo_explorer/templates/index.html.j2:46
+#: ngo_explorer/templates/upload-data.html.j2:28
+msgid "How the charity works"
+msgstr ""
+
+#: ngo_explorer/templates/index.html.j2:15
+msgid "Type to search (try a country)"
+msgstr ""
+
+#: ngo_explorer/templates/index.html.j2:70
+msgid "in charity name and description"
+msgstr ""
+
+#: ngo_explorer/templates/index.html.j2:80
+#: ngo_explorer/templates/upload.html.j2:10
+msgid "Upload your own data"
+msgstr ""
+
+#: ngo_explorer/templates/index.html.j2:83
+#: ngo_explorer/templates/upload.html.j2:12
+msgid ""
+"If you have a list of UK charity numbers, you can \n"
+"                upload your data to explore your group of\n"
+"                charities."
+msgstr ""
+
+#: ngo_explorer/templates/index.html.j2:88
+#: ngo_explorer/templates/upload.html.j2:3
+msgid "Upload your data"
+msgstr ""
+
+#: ngo_explorer/templates/upload-data.html.j2:3
+msgid "Data Upload"
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:17
+msgid ""
+"Don't know the charity numbers? Why not try \n"
+"                <a href=\"https://findthatcharity.uk/adddata\" "
+"class=\"link blue external-link\" target=\"_blank\">\n"
+"                    enhancing your data on findthatcharity.uk\n"
+"                </a>\n"
+"                ."
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:24
+msgid "Give this dataset a name"
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:26
+msgid "Paste a list of charity numbers"
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:30
+msgid "Fetch data on these charities"
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:34
+msgid "or"
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:36
+msgid "Upload a CSV file and select the column to use"
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:40
+msgid "Fetch data from CSV"
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:43
+msgid "Data protection"
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:45
+msgid ""
+"our data file won't leave your computer, although the charity numbers in "
+"your\n"
+"                file will be sent as web requests to this site and <a "
+"href=\"https://charitybase.uk/\" class=\"external-link white\" "
+"target=\"_blank\">CharityBase</a>.\n"
+"                These web requests may be stored in logs on both servers."
+msgstr ""
+
+#: ngo_explorer/templates/upload.html.j2:50
+msgid ""
+"The results about the charities you have selected will be available to \n"
+"                anyone with the link. If your list of charities is "
+"confidential then \n"
+"                please think carefully before uploading."
+msgstr ""
+
+#: ngo_explorer/utils/charts.py:92
+#, python-format
+msgid "%(num)d charity"
+msgid_plural "%(num)d charities"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ngo_explorer/utils/countries.py:26
+msgid "all countries"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:41
+msgid "all UNDP countries"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:41
+msgid "all DAC countries"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:58
+msgid "<abbr title=\"United Nations Development Programme\">UNDP</abbr> regions"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:59
+msgid "all UNDP regions"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:63
+msgid "<abbr title=\"OECD Development Assistance Committee\">DAC</abbr> groups"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:64
+msgid "all DAC groups"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:104
+msgid "Platform of European NGOs in Senegal"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:106
+msgid "Map of projects"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:116
+msgid "Directory search"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:121
+msgid "Members directory"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:18
+msgid "Charity name"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:19
+msgid "Governing document"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:20
+msgid "Description of activities"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:22
+msgid "Charitable objects"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:23
+msgid "Causes served"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:24
+msgid "Beneficiaries"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:27
+msgid "Charity information"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:32
+msgid "Latest income date"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:33
+msgid "Income history"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:34
+msgid "Spending history"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:35
+msgid "Inflation adjust income/spending history"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:38
+msgid "Number of trustees"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:40
+msgid "Number of employees"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:42
+msgid "Number of volunteers"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:45
+msgid ""
+"Financial data can be adjusted to consistent prices using the\n"
+"        <a "
+"href=\"https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23\""
+" target=\"_blank\" class=\"link blue external-link\">consumer price "
+"inflation (CPIH)</a>\n"
+"        measure published by the Office for National Statistics."
+msgstr ""
+
+#: ngo_explorer/utils/download.py:52
+msgid "Email"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:53
+msgid "Website"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:54
+msgid "Address"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:55
+msgid "Postcode"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:56
+msgid "Phone number"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:58
+msgid "Contact details"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:63
+msgid "Description of area of benefit"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:64
+msgid "Area of operation"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:66
+msgid "Countries where this charity operates"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:72
+msgid "County"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:73
+msgid "County [code]"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:75
+msgid "Local Authority"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:77
+msgid "Local Authority [code]"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:79
+msgid "Ward"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:80
+msgid "Ward [code]"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:82
+msgid "Parish"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:83
+msgid "Parish [code]"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:85
+msgid "LSOA"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:86
+msgid "MSOA"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:87
+msgid "Parliamentary Constituency"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:89
+msgid "Parliamentary Constituency [code]"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:93
+msgid ""
+"The following fields are based on the postcode of the charities' UK "
+"registered office"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:94
+msgid "Geography fields"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:5
+msgid "General charitable purposes"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:6
+msgid "Education/training"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:7
+msgid "The advancement of health or saving of lives"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:8
+msgid "Disability"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:9
+msgid "The prevention or relief of poverty"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:10
+msgid "Overseas aid/famine relief"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:11
+msgid "Accommodation/housing"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:12
+msgid "Religious activities"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:13
+msgid "Arts/culture/heritage/science"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:14
+msgid "Amateur sport"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:15
+msgid "Animals"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:16
+msgid "Environment/conservation/heritage"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:17
+msgid "Economic/community development/employment"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:18
+msgid "Armed forces/emergency service efficiency"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:19
+msgid "Human rights/religious or racial harmony/equality or diversity"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:20
+msgid "Recreation"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:21
+msgid "Other charitable purposes"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:24
+msgid "Children/young people"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:25
+msgid "Elderly/old people"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:26
+msgid "People with disabilities"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:27
+msgid "People of a particular ethnic or racial origin"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:28
+msgid "Other charities or voluntary bodies"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:29
+msgid "Other defined groups"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:30
+msgid "The general public/mankind"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:33
+msgid "Makes grants to individuals"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:34
+msgid "Makes grants to organisations"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:35
+msgid "Provides other finance"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:36
+msgid "Provides human resources"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:37
+msgid "Provides buildings/facilities/open space"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:38
+msgid "Provides services"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:39
+msgid "Provides advocacy/advice/information"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:40
+msgid "Sponsors or undertakes research"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:41
+msgid "Acts as an umbrella or resource body"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:42
+msgid "Other charitable activities"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:53
+msgid "Wales"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:54
+msgid "North East"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:55
+msgid "North West"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:56
+msgid "Yorkshire and The Humber"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:57
+msgid "East Midlands"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:58
+msgid "West Midlands"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:59
+msgid "East of England"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:60
+msgid "London"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:61
+msgid "South East"
+msgstr ""
+
+#: ngo_explorer/utils/filters.py:62
+msgid "South West"
+msgstr ""
+
