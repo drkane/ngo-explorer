@@ -2,6 +2,8 @@
 
 Data tool to help international development NGOs to navigate charity commission data.
 
+[![CircleCI](https://circleci.com/gh/drkane/ngo-explorer.svg?style=svg)](https://circleci.com/gh/drkane/ngo-explorer)
+
 ## Project partners:
 
 - [Global Development Institute (GDI, University of Manchester)](http://siid.group.shef.ac.uk/)
