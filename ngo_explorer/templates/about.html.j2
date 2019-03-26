@@ -7,47 +7,49 @@
     <div class="cf lh-copy">
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
-            <h2 class="korolev ma0 mv2-l">Explore UK charities working across the world</h2>
+            <h2 class="korolev ma0 mv2-l">{% trans %}Explore UK charities working across the world{% endtrans %}</h2>
 
-            <h3 class="korolev ma0 mv2-l">What's the purpose of the site?</h3>
+            <h3 class="korolev ma0 mv2-l">{% trans %}What's the purpose of the site?{% endtrans %}</h3>
             <p>
-                This site is an offshoot of a research project which 
-                <a href="https://mappingdevelopmentngos.wordpress.com/" class="link blue" target="_blank">explores the development NGO sector in the UK</a>.
+                {% trans %}This site is an offshoot of a research project which{% endtrans %} 
+                <a href="https://mappingdevelopmentngos.wordpress.com/" class="link blue" target="_blank">{% trans %}explores the development NGO sector in the UK{% endtrans %}</a>.
             </p>
             <p>
+                {% trans %}
                 During that project we (Nicola and Dan) learned how difficult it can be to access data from Charity
                 Commission records. We also learned how useful it can be to analyse these data, and that they could
                 be a useful networking tool if they were more easily accessible. So we decided to build this site in
-                order to make these records, which are in the public domain already, more readily available. 
+                order to make these records, which are in the public domain already, more readily available.
+                {% endtrans %}
             </p>
-            <h3 class="korolev ma0 mv2-l">Who's behind the site?</h3>
+            <h3 class="korolev ma0 mv2-l">{% trans %}Who's behind the site?{% endtrans %}</h3>
             <p>
-                This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/" target="_blank" class="link blue">Sheffield Institute for International Development</a> and
+                {% trans %}This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/" target="_blank" class="link blue">Sheffield Institute for International Development</a> and
                 the <a href="https://www.gdi.manchester.ac.uk/" target="_blank" class="link blue">Global Development Institute</a> (University of Manchester).
                 It was developed by <a href="https://dkane.net/" target="_blank" class="link blue">David Kane</a> and uses data from
                 <a href="https://charitybase.uk" target="_blank" class="link blue">CharityBase</a> developed by 
-                <a href="https://twitter.com/dan_kwiat" target="_blank" class="link blue">Dan Kwiatkowski</a>. 
+                <a href="https://twitter.com/dan_kwiat" target="_blank" class="link blue">Dan Kwiatkowski</a>.{% endtrans %}
             </p>
             <ul class="list cf db pa0">
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
                     <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/dan_b.png') }}" /><br>
                     <strong>Prof. Dan Brockington</strong><br>
-                    Director of <abbr title="Sheffield Institute for International Development">SIID</abbr>
+                    {% trans %}Director of <abbr title="Sheffield Institute for International Development">SIID</abbr>{% endtrans %}
                 </li>
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
                     <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/niki.png') }}" /><br>
                     <strong>Dr Nicola Banks</strong><br>
-                    Lecturer in Urban Development, <abbr title="Global Development Institute">GDI</abbr>
+                    {% trans %}Lecturer in Urban Development, <abbr title="Global Development Institute">GDI</abbr>{% endtrans %}
                 </li>
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
                     <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/david.png') }}" /><br>
                     <strong>David Kane</strong><br>
-                    Freelance data scientist
+                    {% trans %}Freelance data scientist{% endtrans %}
                 </li>
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
                     <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/dan_k.png') }}" /><br>
                     <strong>Dan Kwiatkowski</strong><br>
-                    Creator of CharityBase
+                    {% trans %}Creator of CharityBase{% endtrans %}
                 </li>
             </ul>
             <div class="mt2 w-100">
@@ -69,17 +71,17 @@
                 </ul>
             </div>
             <p>
-                We would particularly like to thank the many staff and volunteers from
+                {% trans %}We would particularly like to thank the many staff and volunteers from
                 NGOs and others who provided feedback and advice in the development of
-                the site.
+                the site.{% endtrans %}
             </p>
-            <h3 class="korolev ma0 mv2-l">Who has funded this project?</h3>
+            <h3 class="korolev ma0 mv2-l">{% trans %}Who has funded this project?{% endtrans %}</h3>
             <p>
-                This site has been funded from 
+                {% trans %}This site has been funded from 
                 <a href="https://www.ukri.org/research/global-challenges-research-fund/" class="link blue external-link" target="_blank">GCRF Global Impact Accelerator funds</a>
                  awarded by 
                 <a href="https://www.ukri.org/" class="link blue external-link" target="_blank">UK Research and Innovation</a>
-                to the Universities of Sheffield and Manchester.
+                to the Universities of Sheffield and Manchester.{% endtrans %}
             </p>
             <div class="mt2 w-100">
                 <ul class="list ma0 pa0 tc">
@@ -106,49 +108,49 @@
                     </li>
                 </ul>
             </div>
-            <h3 class="korolev ma0 mv2-l">Data sources</h3>
+            <h3 class="korolev ma0 mv2-l">{% trans %}Data sources{% endtrans %}</h3>
             <p>
-                Data on the site comes from the <a href="https://charitybase.uk/api-portal" target="_blank" class="link blue">CharityBase API</a>.
+                {% trans %}Data on the site comes from the <a href="https://charitybase.uk/api-portal" target="_blank" class="link blue">CharityBase API</a>.
                 CharityBase uses data from the 
                 <a href="http://data.charitycommission.gov.uk/" target="_blank" class="link blue">Charity Commission for England and Wales</a> 
                 register of charities. Data is used under the 
-                <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank" class="link blue">Open Government Licence</a>
+                <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank" class="link blue">Open Government Licence</a>{% endtrans %}
             </p>
             <ul>
-                <li>Contains OS data © Crown copyright and database right 2018.</li>
-                <li>Contains Royal Mail data © Royal Mail copyright and database right 2018.</li>
-                <li>Contains National Statistics data © Crown copyright and database right 2018.</li>
+                <li>{% trans %}Contains OS data © Crown copyright and database right 2018.{% endtrans %}</li>
+                <li>{% trans %}Contains Royal Mail data © Royal Mail copyright and database right 2018.{% endtrans %}</li>
+                <li>{% trans %}Contains National Statistics data © Crown copyright and database right 2018.{% endtrans %}</li>
             </ul>
             <p>
-                NGO Explorer and CharityBase are not responsible for the content of the data on the register of charities.
+                {% trans %}NGO Explorer and CharityBase are not responsible for the content of the data on the register of charities.
                 If you have any questions or concerns about the charity data, you will need to 
-                contact the Charity Commission.
+                contact the Charity Commission.{% endtrans %}
             </p>
-            <h4 class="korolev ma0 mv2-l">IATI</h4>
+            <h4 class="korolev ma0 mv2-l">{% trans %}IATI{% endtrans %}</h4>
             <p>
-                The site also uses data from the <a href="" target="_blank" class="link blue">International Aid Transparency Initative</a>
+                {% trans %}The site also uses data from the <a href="" target="_blank" class="link blue">International Aid Transparency Initative</a>
                 (IATI). IATI data is published by a large number of aid funders throughout the world. The data used here is
                 sourced from <a href="https://www.oipa.nl/home" target="_blank" class="link blue">OIPA</a>, a rich API
-                for IATI data.
+                for IATI data.{% endtrans %}
             </p>
-            <h4 class="korolev ma0 mv2-l">Other resources</h4>
+            <h4 class="korolev ma0 mv2-l">{% trans %}Other resources{% endtrans %}</h4>
             <p>
-                Where available, the site signposts to other resources, such as national registers of organisations.
-                NGO Explorer is not responsible for the content of external sites.
+                {% trans %}Where available, the site signposts to other resources, such as national registers of organisations.
+                NGO Explorer is not responsible for the content of external sites.{% endtrans %}
             </p>
-            <h3 class="korolev ma0 mv2-l">Your privacy and cookies</h3>
+            <h3 class="korolev ma0 mv2-l">{% trans %}Your privacy and cookies{% endtrans %}</h3>
             <p>
-                This site uses Google analytics to see how it has been used. Google Analytics
-                uses cookies to help analyse your use of the site.
+                {% trans %}This site uses Google analytics to see how it has been used. Google Analytics
+                uses cookies to help analyse your use of the site.{% endtrans %}
             </p>
             <p>
-                If you use the <a href="{{ url_for('upload.data') }}" class="link blue">data upload tool</a>,
+                {% trans upload_link=url_for('upload.data') %}If you use the <a href="{{ upload_link }}" class="link blue">data upload tool</a>,
                 any charity numbers included in the data will be
-                sent to the server in order to create a data dashboard.
+                sent to the server in order to create a data dashboard.{% endtrans %}
             </p>
-            <h3 class="korolev ma0 mv2-l">Get in touch</h3>
+            <h3 class="korolev ma0 mv2-l">{% trans %}Get in touch{% endtrans %}</h3>
             <p>
-                We'd love to hear your feedback on the site. Email us at <a href="mailto:info@ngoexplorer.org" class="link blue">info@ngoexplorer.org</a>
+                {% trans %}We'd love to hear your feedback on the site. Email us at{% endtrans %} <a href="mailto:info@ngoexplorer.org" class="link blue">info@ngoexplorer.org</a>
             </p>
         </div>
     </div>

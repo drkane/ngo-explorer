@@ -2,6 +2,7 @@ import json
 import os
 
 from flask import url_for
+from flask_babel import _
 from slugify import slugify
 
 with open(os.path.join(os.path.dirname(__file__), 'countries.json'), encoding='utf8') as a:
@@ -22,7 +23,7 @@ def get_country_groups(as_dict=False):
     if as_dict:
         areas = {}
         areas["all"] = {
-            "name": "all countries",
+            "name": _("all countries"),
             "countries": COUNTRIES
         }
         for c in COUNTRIES:
@@ -37,7 +38,7 @@ def get_country_groups(as_dict=False):
                 "countries": [c for c in COUNTRIES if c["continent"] == con]
             }
 
-        for i in [("undp", "undp", "all UNDP countries", undp), ("dac", "dac_status", "all DAC countries", dac)]:
+        for i in [("undp", "undp", _("all UNDP countries"), undp), ("dac", "dac_status", _("all DAC countries"), dac)]:
             areas[(i[0], "all")] = {
                 "name": i[2],
                 "countries": [c for c in COUNTRIES if c[i[1]]]
@@ -54,13 +55,13 @@ def get_country_groups(as_dict=False):
         ("Continents", [
             {"id": url_for("data.region", regiontype="continent", regionid= slugify(c)), "name": c} for c in continents
         ], True),
-        ('<abbr title="United Nations Development Programme">UNDP</abbr> regions', [
-            {"id": url_for("data.region", regiontype="undp", regionid="all"), "name": "all UNDP regions"}
+        (_('<abbr title="United Nations Development Programme">UNDP</abbr> regions'), [
+            {"id": url_for("data.region", regiontype="undp", regionid="all"), "name": _("all UNDP regions")}
         ] + [
             {"id": url_for("data.region", regiontype="undp", regionid=slugify(c)), "name": c} for c in undp if c
         ], True),
-        ('<abbr title="OECD Development Assistance Committee">DAC</abbr> groups', [
-            {"id": url_for("data.region", regiontype="dac", regionid="all"), "name": "all DAC groups"}
+        (_('<abbr title="OECD Development Assistance Committee">DAC</abbr> groups'), [
+            {"id": url_for("data.region", regiontype="dac", regionid="all"), "name": _("all DAC groups")}
         ] + [
             {"id": url_for("data.region", regiontype="dac", regionid=slugify(c)), "name": c} for c in dac if c
         ], True),
@@ -100,9 +101,9 @@ def get_country_by_id(id):
 SIMILAR_INITIATIVE = {
     "sen": [{
         "homepage": "https://pfongue.org/",
-        "title": "Platform of European NGOs in Senegal",
+        "title": _("Platform of European NGOs in Senegal"),
         "directlink": "https://pfongue.org/-Cartographie-.html",
-        "directlinktext": "Map of projects",
+        "directlinktext": _("Map of projects"),
     }, {'title': 'CONGAD - Conseil des ONG d’Appui au Développement',
         'homepage': 'http://www.congad.org/',
         'source': 'Forus',
@@ -112,12 +113,12 @@ SIMILAR_INITIATIVE = {
         "homepage": "https://ugandanetworks.org/",
         "title": "Uganda Networks",
         "directlink": "https://ugandanetworks.org/groups/250421/directory_search.aspx",
-        "directlinktext": "Directory search",
+        "directlinktext": _("Directory search"),
     }, {
         "homepage": "http://www.uwasnet.org/Elgg/",
         "title": "Uganda Water and Sanitation NGO Network",
         "directlink": "http://www.uwasnet.org/Elgg/network/",
-        "directlinktext": "Members directory",
+        "directlinktext": _("Members directory"),
     },{
         'title': 'UNNGOF - Uganda National NGO Forum',
         'homepage': 'http://ngoforum.or.ug/',

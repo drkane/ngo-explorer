@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, url_for, Response
+from flask_babel import _
 
 from ..utils.countries import get_country_groups, get_multiple_countries
 from ..utils.fetchdata import fetch_charitybase, fetch_iati, fetch_iati_by_charity
@@ -15,13 +16,12 @@ bp = Blueprint('data', __name__, url_prefix='/')
 @bp.route('/region/<regiontype>/<regionid>')
 def region(regionid, regiontype="continent", filetype="html", subpage="dashboard"):
     area = get_country_groups(as_dict=True).get((regiontype, regionid))
-    print(area)
-    print((regiontype, regionid))
 
     if not area:
         return render_template(
             '404.html.j2',
-            lookingfor='{} "{}" could not be found'.format(regiontype, regionid),
+            lookingfor=_('%(regiontype)s "%(regionid)s" could not be found',
+                         regiontype=regiontype, regionid=regionid),
         ), 404
 
     return data_page(
@@ -42,8 +42,8 @@ def country(countryid, filetype="html", subpage='dashboard'):
     if not area:
         return render_template(
             '404.html.j2',
-            lookingfor='Country "{}" could not be found'.format(
-                countryid),
+            lookingfor=_('Country "%(countryid)s" could not be found',
+                         countryid=countryid),
         ), 404
 
     return data_page(
@@ -68,19 +68,19 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
     
     pages = {
         "dashboard": {
-            "name": "Dashboard",
+            "name": _("Dashboard"),
             "template": 'data.html.j2',
             "url": url_for(url_base[0], **{**url_base[1], **filters_url}),
             "api_url": url_for(url_base[0], **{**url_base[1], **filters_url, "filetype": "json"}),
         },
         "show-charities": {
-            "name": "Show NGOs",
+            "name": _("Show NGOs"),
             "template": 'data-show-charities.html.j2',
             "url": url_for(url_base[0], **{**url_base[1], **filters_url, "subpage": "show-charities"}),
             "api_url": url_for(url_base[0], **{**url_base[1], **filters_url, "subpage": "show-charities", "filetype": "json"}),
         },
         "download": {
-            "name": "Download",
+            "name": _("Download"),
             "template": 'data-download.html.j2',
             "url": url_for(url_base[0], **{**url_base[1], **filters_url, "subpage": "download"}),
             "api_url": url_for(url_base[0], **{**url_base[1], **filters_url, "subpage": "download", "filetype": "json"}),
@@ -165,8 +165,8 @@ def charity(charityid):
     if charity_data.count == 0:
         return render_template(
             '404.html.j2',
-            lookingfor='Charity "{}" could not be found'.format(
-                charityid),
+            lookingfor=_('Charity "%(charityid)s" could not be found',
+                         charityid=charityid),
         ), 404
 
     char = charity_data.get_charity()

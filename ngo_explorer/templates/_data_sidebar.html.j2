@@ -2,12 +2,12 @@
     <div class="pa3 bg-light-gray br3 w-100 mb3">
         <div class="mb3 bb bw2 b--mid-gray w-100 flex items-center">
             <i class="material-icons">search</i>
-            <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Search name or activities" value="{{ filters.get('filter-search', '') }}" autocomplete="off" />
+            <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="{{ _('Search name or activities') }}" value="{{ filters.get('filter-search', '') }}" autocomplete="off" />
         </div>
         <div class="mv3 w-100">
-            <h3 class="f6 b mv0">Latest income</h3>
+            <h3 class="f6 b mv0">{% trans %}Latest income{% endtrans %}</h3>
             <p class="f6">
-                Between 
+                {% trans %}Between{% endtrans %} 
                 <span class="bb bw2 b--mid-gray dib w-33">
                     <input name="filter-min-income"
                             type="number"
@@ -17,7 +17,7 @@
                             value="{{ filters.get('filter-min-income', '') }}"
                             autocomplete="off">
                 </span>
-                and 
+                {% trans %}and{% endtrans %}  
                 <span class="bb bw2 b--mid-gray dib w-33">
                     <input name="filter-max-income"
                             type="number"
@@ -41,12 +41,12 @@
         {% endfor %}
         <div class="mv3 w-100">
             <h3 class="f6 b mb2">
-                UK Region
-                <p class="ma0 f6 gray normal i">Based on the UK head office</p>
+                {% trans %}UK Region{% endtrans %} 
+                <p class="ma0 f6 gray normal i">{% trans %} Based on the UK head office{% endtrans %} </p>
             </h3>
             <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-regions">
                 <option value=""></option>
-                <optgroup label="England">
+                <optgroup label="{{ _('England') }}">
                     {% for k, v in regions.items() if k.startswith("E12") %}
                     <option value="{{ k }}" {% if k in filters.getlist('filter-regions') %}selected="selected"{% endif %}>{{ v }}</option>
                     {% endfor %}
@@ -60,7 +60,7 @@
         </div>
         {% if area.countries|length > 1 %}
         <div class="mv3 w-100">
-            <h3 class="f6 b mb2">Countries</h3>
+            <h3 class="f6 b mb2">{% trans %}Countries{% endtrans %}</h3>
             <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-countries" multiple="true">
                 {% for group in area.countries|groupby('continent') %}
                 <optgroup label="{{ group.grouper }}">
@@ -74,7 +74,7 @@
         {% endif %}
         <div class="mv3 w-100">
             <p class="gray i f6">
-                Exclude any charities that say they work in more than 
+                {% trans %}Exclude any charities that say they work in more than{% endtrans %} 
                 <span class="bb bw2 b--light-gray dib">
                     <input name="filter-max-countries"
                             value="{{ filters.get('filter-max-countries', '50') }}"
@@ -82,7 +82,7 @@
                             class="input-reset pa1 bn w3 mid-gray"
                             autocomplete="off" />
                 </span>
-                countries (out of 248).
+                {% trans %}countries (out of 248).{% endtrans %}
             </p>
         </div>
         <div class="mv3 w-100">
@@ -94,7 +94,7 @@
                 <span class="checkmark mr2">
                     <i class="material-icons">check</i>
                 </span>
-                Exclude charities that make grants
+                {% trans %}Exclude charities that make grants{% endtrans %}
             </label>
             <label class="gray i f6 custom-checkbox flex items-center">
                 <input name="filter-exclude-religious"
@@ -104,14 +104,14 @@
                 <span class="checkmark mr2">
                     <i class="material-icons">check</i>
                 </span>
-                Exclude religious organisations
+                {% trans %}Exclude religious organisations{% endtrans %}
             </label>
         </div>
-        <a href="#" class="link blue f7 js-only" id="reset_filters">Reset filters</a>
+        <a href="#" class="link blue f7 js-only" id="reset_filters">{% trans %}Reset filters{% endtrans %}</a>
         <input type="hidden" class="dn" value="" name="filter-skip" />
         <div class="mv3 w-100">
-            <input class="bn bg-light-green pa2 white dim pointer" type="submit" value="Update filters" id="filter-update" />
-            <div class="dn" id="loading_state">Loading <div class="lds-ellipsis v-mid"><div></div><div></div><div></div><div></div></div></div>
+            <input class="bn bg-light-green pa2 white dim pointer" type="submit" value="{{ _('Update filters') }}" id="filter-update" />
+            <div class="dn" id="loading_state">{% trans %}Loading{% endtrans %} <div class="lds-ellipsis v-mid"><div></div><div></div><div></div><div></div></div></div>
         </div>
     </div>
 </div>

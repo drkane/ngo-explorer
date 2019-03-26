@@ -1,64 +1,65 @@
+from flask_babel import _
 
 CLASSIFICATION = {
     "causes": {
-        "101": "General charitable purposes",
-        "102": "Education/training",
-        "103": "The advancement of health or saving of lives",
-        "104": "Disability",
-        "105": "The prevention or relief of poverty",
-        "106": "Overseas aid/famine relief",
-        "107": "Accommodation/housing",
-        "108": "Religious activities",
-        "109": "Arts/culture/heritage/science",
-        "110": "Amateur sport",
-        "111": "Animals",
-        "112": "Environment/conservation/heritage",
-        "113": "Economic/community development/employment",
-        "114": "Armed forces/emergency service efficiency",
-        "115": "Human rights/religious or racial harmony/equality or diversity",
-        "116": "Recreation",
-        "117": "Other charitable purposes"
+        "101": _("General charitable purposes"),
+        "102": _("Education/training"),
+        "103": _("The advancement of health or saving of lives"),
+        "104": _("Disability"),
+        "105": _("The prevention or relief of poverty"),
+        "106": _("Overseas aid/famine relief"),
+        "107": _("Accommodation/housing"),
+        "108": _("Religious activities"),
+        "109": _("Arts/culture/heritage/science"),
+        "110": _("Amateur sport"),
+        "111": _("Animals"),
+        "112": _("Environment/conservation/heritage"),
+        "113": _("Economic/community development/employment"),
+        "114": _("Armed forces/emergency service efficiency"),
+        "115": _("Human rights/religious or racial harmony/equality or diversity"),
+        "116": _("Recreation"),
+        "117": _("Other charitable purposes"),
     },
     "beneficiaries": {
-        "201": "Children/young people",
-        "202": "Elderly/old people",
-        "203": "People with disabilities",
-        "204": "People of a particular ethnic or racial origin",
-        "205": "Other charities or voluntary bodies",
-        "206": "Other defined groups",
-        "207": "The general public/mankind"
+        "201": _("Children/young people"),
+        "202": _("Elderly/old people"),
+        "203": _("People with disabilities"),
+        "204": _("People of a particular ethnic or racial origin"),
+        "205": _("Other charities or voluntary bodies"),
+        "206": _("Other defined groups"),
+        "207": _("The general public/mankind"),
     },
     "operations": {
-        "301": "Makes grants to individuals",
-        "302": "Makes grants to organisations",
-        "303": "Provides other finance",
-        "304": "Provides human resources",
-        "305": "Provides buildings/facilities/open space",
-        "306": "Provides services",
-        "307": "Provides advocacy/advice/information",
-        "308": "Sponsors or undertakes research",
-        "309": "Acts as an umbrella or resource body",
-        "310": "Other charitable activities"
+        "301": _("Makes grants to individuals"),
+        "302": _("Makes grants to organisations"),
+        "303": _("Provides other finance"),
+        "304": _("Provides human resources"),
+        "305": _("Provides buildings/facilities/open space"),
+        "306": _("Provides services"),
+        "307": _("Provides advocacy/advice/information"),
+        "308": _("Sponsors or undertakes research"),
+        "309": _("Acts as an umbrella or resource body"),
+        "310": _("Other charitable activities"),
     }
 }
 
 REGIONS = {
-    # "E92000001": "England",  # Lloegr
-    # "K02000001": "United Kingdom",  # Y Deyrnas Gyfunol
-    # "K03000001": "Great Britain",  # Prydain Fawr
-    # "K04000001": "England and Wales",  # Cymru a Lloegr
-    # "N92000002": "Northern Ireland",  # Gogledd Iwerddon
-    # "S92000003": "Scotland",  # Yr Alban
-    "W92000004": "Wales",  # Cymru
-    "E12000001": "North East",  # Gogledd Ddwyrain
-    "E12000002": "North West",  # Gogledd Orllewin
-    "E12000003": "Yorkshire and The Humber",  # Swydd Efrog a Humber
-    "E12000004": "East Midlands",  # Dwyrain y Canolbarth
-    "E12000005": "West Midlands",  # Gorllewin y Canolbarth
-    "E12000006": "East of England",  # Dwyrain Lloegr
-    "E12000007": "London",  # Llundain
-    "E12000008": "South East",  # De Ddwyrain
-    "E12000009": "South West",  # De Orllewin
+    # "E92000001": _("England"),  # Lloegr
+    # "K02000001": _("United Kingdom"),  # Y Deyrnas Gyfunol
+    # "K03000001": _("Great Britain"),  # Prydain Fawr
+    # "K04000001": _("England and Wales"),  # Cymru a Lloegr
+    # "N92000002": _("Northern Ireland"),  # Gogledd Iwerddon
+    # "S92000003": _("Scotland"),  # Yr Alban
+    "W92000004": _("Wales"),  # Cymru
+    "E12000001": _("North East"),  # Gogledd Ddwyrain
+    "E12000002": _("North West"),  # Gogledd Orllewin
+    "E12000003": _("Yorkshire and The Humber"),  # Swydd Efrog a Humber
+    "E12000004": _("East Midlands"),  # Dwyrain y Canolbarth
+    "E12000005": _("West Midlands"),  # Gorllewin y Canolbarth
+    "E12000006": _("East of England"),  # Dwyrain Lloegr
+    "E12000007": _("London"),  # Llundain
+    "E12000008": _("South East"),  # De Ddwyrain
+    "E12000009": _("South West"),  # De Orllewin
 }
 
 

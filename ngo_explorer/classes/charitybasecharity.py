@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from flask_babel import _
+
 from ..utils.countries import get_country_by_id
 from ..utils.charts import line_chart
 from ..utils.inflation import fetch_inflation
@@ -124,11 +126,13 @@ class CharityBaseCharity(object):
                                     income_real,
                                     spending_real
                                 ], "name": [
-                                    "Income ({} prices)".format(self._current_year),
-                                    "Spending ({} prices)".format(self._current_year),
+                                    _("Income (%(year)s prices)",
+                                      year=str(self._current_year)),
+                                    _("Spending (%(year)s prices)",
+                                      year=str(self._current_year)),
                                 ]}
                             ],
-                            label='{} prices'.format(self._current_year),
+                            label=_('%(year)s prices', year=str(self._current_year)),
                             method='restyle'
                         ),
                         dict(
@@ -137,11 +141,11 @@ class CharityBaseCharity(object):
                                     income_cash,
                                     spending_cash
                                 ], "name": [
-                                    "Income (cash terms)",
-                                    "Spending (cash terms)",
+                                    _("Income (cash terms)"),
+                                    _("Spending (cash terms)"),
                                 ]}
                             ],
-                            label='Cash terms',
+                            label=_('Cash terms'),
                             method='restyle'
                         )
                     ]),
@@ -160,7 +164,8 @@ class CharityBaseCharity(object):
                 dict(
                     x=[f["financialYear"]["end"] for f in self.finances],
                     y=income_real,
-                    name="Income ({} prices)".format(self._current_year),
+                    name=_("Income (%(year)s prices)",
+                           year=str(self._current_year)),
                     mode="lines",
                     line=dict(
                         color="#0ca777",
@@ -171,7 +176,8 @@ class CharityBaseCharity(object):
                 dict(
                     x=[f["financialYear"]["end"] for f in self.finances],
                     y=spending_real,
-                    name="Spending ({} prices)".format(self._current_year),
+                    name=_("Spending (%(year)s prices)",
+                           year=str(self._current_year)),
                     mode="lines",
                     line=dict(
                         color="#F9AF42",

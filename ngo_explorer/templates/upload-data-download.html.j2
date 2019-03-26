@@ -13,7 +13,7 @@
                 <li class="dib fl mr2">
                     <button class="link white dim pa2 w4 bg-yellow pointer bn tl h-100" value={{i}} type="submit" name="download_type">
                         <i class="material-icons">save_alt</i>
-                        Download<br>{{ i }}
+                        {% trans %}Download{% endtrans %}<br>{{ i }}
                     </button>
                 </li>
                 {% endfor %}
@@ -21,13 +21,13 @@
         </div>
 
     
-        <h3 class="korolev mv2 pa0">Fields to include in download</h3>
-        <p class="f6 gray i mt1">Charities will be included based on the criteria you have selected.</p>
+        <h3 class="korolev mv2 pa0">{% trans %}Fields to include in download{% endtrans %}</h3>
+        <p class="f6 gray i mt1">{% trans %}Charities will be included based on the criteria you have selected.{% endtrans %}</p>
         <p class="f6 js-only">
-            <a id="results-download-select-all" class="link blue js-select-all" href="#">Select all fields</a> | 
-            <a id="results-download-clear-all" class="link blue js-clear-all" href="#">Clear all fields</a>
+            <a id="results-download-select-all" class="link blue js-select-all" href="#">{% trans %}Select all fields{% endtrans %}</a> | 
+            <a id="results-download-clear-all" class="link blue js-clear-all" href="#">{% trans %}Clear all fields{% endtrans %}</a>
         </p>
-        <p class="b">Downloads are limited to {{ "{:,.0f}".format(config['DOWNLOAD_LIMIT']) }} records</p>
+        <p class="b">{% trans limit=config['DOWNLOAD_LIMIT']|_n %}Downloads are limited to {{ limit }} records{% endtrans %}</p>
         <div class="cf mv3 flex flex-wrap f6">
             {% for slug, options in download_options.items() %}
             <div class="w-100 w-50-m w-25-l pr3">
@@ -36,8 +36,8 @@
                     {% for subslug, suboptions in options.options.items() %}
                     {% if loop.last %}<p class="f6 gray i mt1">{{ options.description }}</p>{% endif %}
                     <p class="f6 js-only">
-                        <a id="results-download-fields-{{ slug }}-{{subslug}}-select-all" class="link blue js-select-all" href="#">Select all</a> | 
-                        <a id="results-download-fields-{{ slug }}-{{subslug}}-clear-all" class="link blue js-clear-all" href="#">Clear</a>
+                        <a id="results-download-fields-{{ slug }}-{{subslug}}-select-all" class="link blue js-select-all" href="#">{% trans %}Select all{% endtrans %}</a> | 
+                        <a id="results-download-fields-{{ slug }}-{{subslug}}-clear-all" class="link blue js-clear-all" href="#">{% trans %}Clear{% endtrans %}</a>
                     </p>
                     <div id="results-download-fields-{{ slug }}-{{subslug}}" class="mt3 ">
                         {% for o in suboptions %}
@@ -53,8 +53,8 @@
                     {% endfor %}
                 {% else %}
                 <p class="f6 js-only">
-                    <a id="results-download-fields-{{ slug }}-select-all" class="link blue js-select-all" href="#">Select all</a> | 
-                    <a id="results-download-fields-{{ slug }}-clear-all" class="link blue js-clear-all" href="#">Clear</a>
+                    <a id="results-download-fields-{{ slug }}-select-all" class="link blue js-select-all" href="#">{% trans %}Select all{% endtrans %}</a> | 
+                    <a id="results-download-fields-{{ slug }}-clear-all" class="link blue js-clear-all" href="#">{% trans %}Clear{% endtrans %}</a>
                 </p>
                 <div id="results-download-fields-{{ slug }}" class="mt3">
                     {% for o in options.options %}

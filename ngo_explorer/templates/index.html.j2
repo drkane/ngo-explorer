@@ -7,12 +7,12 @@
     <div class="cf lh-copy">
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
-            <h2 class="korolev ma0 mv2-l">Explore UK charities working across the world</h2>
+            <h2 class="korolev ma0 mv2-l">{% trans %}Explore UK charities working across the world{% endtrans %}</h2>
             {% block message %}{% endblock %}
             <form action="{{ url_for('data.country', **{'countryid': 'all'}) }}">
             <div class="mb1 bb bw2 b--mid-gray w-100 flex items-center">
                 <i class="material-icons">search</i>
-                <input id="filter-country-list" name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="Type to search (try a country)" value="" autocomplete="off" />
+                <input id="filter-country-list" name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="{{ _('Type to search (try a country)') }}" value="" autocomplete="off" />
             </div>
             </form>
         </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
         {% endfor %}
-        {% for group in [("causes", "What the charity does"), ("beneficiaries", "Who the charity works with"), ("operations", "How the charity works")] %}
+        {% for group in [("causes", _("What the charity does")), ("beneficiaries", _("Who the charity works with")), ("operations", _("How the charity works"))] %}
         <div class="cf country-group lh-copy dn" data-initialclass="dn">
             <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
                 <div class="country-group-name">{{ group[1] }}</div>
@@ -61,13 +61,13 @@
         {% endfor %}
         <div class="cf country-group lh-copy dn" data-initialclass="dn">
             <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
-                <div class="country-group-name">Search</div>
+                <div class="country-group-name">{% trans %}Search{% endtrans %}</div>
             </div>
             <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
                 <ul class="list pa0 ma0">
                     <li class="dib mr2 pb0">
                         <a href="#" data-baseurl="{{ url_for('data.country', **{'countryid': 'all'}) }}" class="link blue" id="search-link">
-                             "<span id='search-term'></span>" in charity name and description
+                             "<span id='search-term'></span>" {% trans %}in charity name and description{% endtrans %}
                         </a>
                     </li>
                 </ul>
@@ -77,15 +77,15 @@
 </div>
 <div class="fl w-30-l w-100">
     <div class="ml3-l ml0 br2 bg-light-gray pa3">
-        <h3 class="korolev ma0">Upload your own data</h3>
+        <h3 class="korolev ma0">{% trans %}Upload your own data{% endtrans %}</h3>
         <div class="cf">
             <p> 
-                If you have a list of UK charity numbers, you can 
+                {% trans %}If you have a list of UK charity numbers, you can 
                 upload your data to explore your group of
-                charities.
+                charities.{% endtrans %}
             </p>
             <a href="{{ url_for('upload.data') }}"
-               class="korolev pa2 bg-yellow dark-gray no-underline dib f5 br2 fr">Upload your data <i class="material-icons v-mid">publish</i></a>
+               class="korolev pa2 bg-yellow dark-gray no-underline dib f5 br2 fr">{% trans %}Upload your data{% endtrans %} <i class="material-icons v-mid">publish</i></a>
         </div>
     </div>
 </div>

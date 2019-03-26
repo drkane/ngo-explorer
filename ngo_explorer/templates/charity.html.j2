@@ -19,7 +19,7 @@
         {% endif %}
         <ul class="list mv3 pa0 db">
             <li class="fl mr2">
-                <strong>Find out more:</strong>
+                <strong>{% trans %}Find out more:{% endtrans %}</strong>
             </li>
             <li class="fl mr2">
                 <a href="https://charitybase.uk/charities/{{ data.id }}" target="_blank" class="link blue external-link">
@@ -40,22 +40,22 @@
     </div>
 </div>
 <div class="w-100 w-third-l pr2 fl">
-    <h3 class="korolev lh-title ma0">Finances</h3>
+    <h3 class="korolev lh-title ma0">{% trans %}Finances{% endtrans %}</h3>
     {% if data.finances[0].income %}
     <p>
-        <strong>Latest income:</strong> {{ "£{:,.0f}".format(data.finances[0].income) }}
+        <strong>{% trans %}Latest income:{% endtrans %}</strong> {{ "£{:,.0f}".format(data.finances[0].income) }}
         <span class="f6 gray">({{ "{:%B %Y}".format(data.finances[0].financialYear.end) }})</span>
     </p>
     {% endif %}
     {% if data.finances %}
-    <h4 class="b korolev">Income and spending over time:</h4>
+    <h4 class="b korolev">{% trans %}Income and spending over time:{% endtrans %}</h4>
     <div id="chart_finances" class="h5 h6-ns"></div>
     {# <table>
         <thead>
             <tr>
-                <th class="tl">Date</th>
-                <th class="tr">Income</th>
-                <th class="tr">Spending</th>
+                <th class="tl">{% trans %}Date{% endtrans %}</th>
+                <th class="tr">{% trans %}Income{% endtrans %}</th>
+                <th class="tr">{% trans %}Spending{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -69,32 +69,32 @@
         </tbody>
     </table> #}
     <p class="gray lh-copy f6">
-        Financial data is adjusted to {{ data._current_year }} prices using the
+        {% trans cy=data._current_year %}Financial data is adjusted to {{ cy }} prices using the
         <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23" target="_blank" class="link blue external-link">consumer price inflation (CPIH)</a>
-        measure published by the Office for National Statistics.
+        measure published by the Office for National Statistics.{% endtrans %}
     </p>
     {% endif %}
 </div>
 <div class="w-100 w-third-l ph2 fl">
-    <h3 class="korolev lh-title ma0">Where this organisation works</h3>
+    <h3 class="korolev lh-title ma0">{% trans %}Where this organisation works{% endtrans %}</h3>
     {% if data.countries|length > 0 %}
         {% if data.countries|length > 5 %}
-        <p>{{ data.name|correct_titlecase }} works in {{ "{:,.0f}".format(data.countries|length) }} countries</p>
+        <p>{{ data.name|correct_titlecase }} {% trans %}works in{% endtrans %} {{ data.countries|length|_n }} {% trans %}countries{% endtrans %}</p>
         {% else %}
-        <p>{{ data.name|correct_titlecase }} works in {% for c in data.countries %}
+        <p>{{ data.name|correct_titlecase }} {% trans %}works in{% endtrans %} {% for c in data.countries %}
             <a href="{{ url_for('data.country', countryid=c.iso) }}" class="link blue">
-            {{ c.name }}</a>{% if loop.revindex0 == 1 %} and{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
+            {{ c.name }}</a>{% if loop.revindex0 == 1 %} {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
         {% endif %}
     {% endif %}
     {% if data.areas %}
         {% if data.areas|length > 5 %}
-        <p>In the UK, {{ data.name|correct_titlecase(first_upper=False) }} works in {{ "{:,.0f}".format(data.areas|length) }} areas.</p>
+        <p>{% trans charname=data.name|correct_titlecase(first_upper=False), areas=data.areas|length|_n  %}In the UK, {{ charname }} works in {{ areas }} areas.</p>{% endtrans %}
         {% else %}
-        <p>In the UK, {{ data.name|correct_titlecase(first_upper=False) }} works in {% for c in data.areas %}
-            {{ c.name|replace("Throughout ", "") }}{% if loop.revindex0 == 1 %} and{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
+        <p>{% trans %}In the UK,{% endtrans %} {{ data.name|correct_titlecase(first_upper=False) }} {% trans %}works in{% endtrans %} {% for c in data.areas %}
+            {{ c.name|replace("Throughout ", "") }}{% if loop.revindex0 == 1 %} {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
         {% endif %}
     {% endif %}
-    <p><strong><i class="material-icons md-18 v-mid">place</i>Registered office:</strong> {{ data.geo.region }}</p>
+    <p><strong><i class="material-icons md-18 v-mid">place</i>{% trans %}Registered office:{% endtrans %}</strong> {{ data.geo.region }}</p>
     {% if data.geo.latitude and data.geo.longitude %}
     <div id="location-map" class="h5 w5"></div>
     {% endif %}
@@ -102,20 +102,22 @@
 <div class="w-100 w-third-l pl2 fl">
     {% if data.iati %}
     <div class="pa2 bg-light-gray">
-        <h2 class="korolev ma0 pa0">IATI activity data</h2>
+        <h2 class="korolev ma0 pa0">{% trans %}IATI activity data{% endtrans %}</h2>
         <ul class="list pa0">
             {% for i in data.iati[0:10]|sort(attribute='count', reverse=true) %}
             <li>
                 <a href="http://d-portal.org/ctrack.html?country={{ i.country.iso2 }}&publisher={{ i.ref }}#view=main" class="link blue" target="_blank">{{ i.country.name }}</a>
-                - <span>{{ "{:,.0f}".format(i.count) }}{% if loop.first %} activities recorded in IATI{% endif %}</span>
+                - <span>{{ "{:,.0f}".format(i.count) }}{% if loop.first %} {% trans n=i.count %}activity recorded in IATI{% pluralize %}activities recorded in IATI{% endtrans %}{% endif %}</span>
             </tr>
             {% endfor %}
         </ul>
         <p class="gray i f6">
+            {% trans %}
             <abbr title="International Aid Transparency Iniative">IATI</abbr> is a global initiative to improve the transparency of 
             development and humanitarian resources and their results to address poverty and crises. The data presented here is
             sourced from <a href="https://www.oipa.nl/home" class="link blue external-link" target="_blank">OIPA</a>, and shows
             the total number of activities published to IATI that this charity is listed as a participant in.
+            {% endtrans %}
         </p>
     </div>
     {% endif %}
@@ -130,10 +132,10 @@
 {% if data.geo.latitude and data.geo.longitude %}
 <script src="{{ url_for('static', filename='vendor/leaflet/leaflet.js') }}"></script>
 <script type="text/javascript">
-const stamen_attribution = 'Map tiles <a href="http://stamen.com">Stamen Design</a> ' + 
+const stamen_attribution = {% trans %}'Map tiles <a href="http://stamen.com">Stamen Design</a> ' + 
     '[<a href="http://creativecommons.org/licenses/by/3.0" class="link blue">CC BY 3.0</a>] | ' + 
     'Data <a href="http://openstreetmap.org" class="link blue">OpenStreetMap</a> ' + 
-    '[<a href="http://www.openstreetmap.org/copyright" class="link blue">ODbL</a>]';
+    '[<a href="http://www.openstreetmap.org/copyright" class="link blue">ODbL</a>]'{% endtrans %};
 var layer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {attribution: stamen_attribution});
 var map = new L.Map("location-map", {
     center: new L.LatLng({{ data.geo.latitude }}, {{ data.geo.longitude }}),

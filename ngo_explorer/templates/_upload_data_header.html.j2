@@ -3,17 +3,29 @@
     <div class="w-100 w-50-l fl">
         {% if title %}
         <h2 class="korolev lh-title ma0 dark-green">{{ title }}</h2>
-        <h3 class="korolev lh-title ma0 gray">Data on {{ "{:,.0f}".format(charitynumbers|length) }} charities</h2>
+        <h3 class="korolev lh-title ma0 gray">
+        {% trans count=charitynumbers|length, ccount=charitynumbers|length|_n %}
+        Data on {{ ccount }} charity
+        {% pluralize %}
+        Data on {{ ccount }} charities
+        {% endtrans %}
+        </h2>
         {% else %}
-        <h2 class="korolev lh-title ma0 dark-green">Data on {{ "{:,.0f}".format(charitynumbers|length) }} charities</h2>
+        <h2 class="korolev lh-title ma0 dark-green">
+        {% trans count=charitynumbers|length, ccount=charitynumbers|length|_n %}
+        Data on {{ ccount }} charity
+        {% pluralize %}
+        Data on {{ ccount }} charities
+        {% endtrans %}
+        </h2>
         {% endif %}
         <p class="lh-copy mv2 pa0 f6 gray mw6">
-            Figures refer to charities registered with the Charity Commission for England and Wales,
-            based on a selection of charities uploaded by a user.
+            {% trans %}Figures refer to charities registered with the Charity Commission for England and Wales,
+            based on a selection of charities uploaded by a user.{% endtrans %}
         <p>
     </div>
     <div class="mb3 w-100 w-25-l fr">
-        <a href="{{ url_for('upload.data') }}" class="f4 link blue fr">Upload more data</a>
+        <a href="{{ url_for('upload.data') }}" class="f4 link blue fr">{% trans %}Upload more data{% endtrans %}</a>
     </div>
 </div>
 <div>

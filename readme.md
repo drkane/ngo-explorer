@@ -52,3 +52,27 @@ Colours used include:
  - dark-green: `#043942` ![](https://dummyimage.com/50x20/043942/000&text=+) 
  - green: `#237756` ![](https://dummyimage.com/50x20/237756/000&text=+) 
  - light-green: `#0ca777` ![](https://dummyimage.com/50x20/0ca777/000&text=+) 
+
+ ## Translations
+
+Update translations if base text changes 
+
+```
+pybabel extract -F babel.cfg --copyright-holder="NGO Explorer" --project="NGO Explorer" --msgid-bugs-address="email@example.net" -o messages.pot .
+pybabel update -i messages.pot -d translations
+```
+
+Create a file for translations
+
+```
+pybabel init -i messages.pot -d translations -l de
+```
+
+Compile the new transations
+
+```
+pybabel compile -d translations
+```
+
+
+

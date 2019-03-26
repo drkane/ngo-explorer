@@ -1,5 +1,7 @@
 import copy
 
+from flask_babel import _
+
 from ..utils.countries import get_country_by_id
 from ..utils.utils import get_scaling_factor
 from ..utils.charts import line_chart, horizontal_bar, word_cloud
@@ -47,25 +49,25 @@ class CharityBaseResult(object):
             return
 
         new_bucket_labels = {
-            "Min. £1": "Under £10k",
-            "Min. £3": "Under £10k",
-            "Min. £10": "Under £10k",
-            "Min. £32": "Under £10k",
-            "Min. £100": "Under £10k",
-            "Min. £316": "Under £10k",
-            "Min. £1000": "Under £10k",
-            "Min. £3162": "Under £10k",
-            "Min. £10000": "£10k-£100k",
-            "Min. £31623": "£10k-£100k",
-            "Min. £100000": "£100k-£1m",
-            "Min. £316228": "£100k-£1m",
-            "Min. £1000000": "£1m-£10m",
-            "Min. £3162278": "£1m-£10m",
-            "Min. £10000000": "Over £10m",
-            "Min. £31622777": "Over £10m",
-            "Min. £100000000": "Over £10m",
-            "Min. £316227766": "Over £10m",
-            "Min. £1000000000": "Over £10m",
+            "Min. £1": _("Under £10k"),
+            "Min. £3": _("Under £10k"),
+            "Min. £10": _("Under £10k"),
+            "Min. £32": _("Under £10k"),
+            "Min. £100": _("Under £10k"),
+            "Min. £316": _("Under £10k"),
+            "Min. £1000": _("Under £10k"),
+            "Min. £3162": _("Under £10k"),
+            "Min. £10000": _("£10k-£100k"),
+            "Min. £31623": _("£10k-£100k"),
+            "Min. £100000": _("£100k-£1m"),
+            "Min. £316228": _("£100k-£1m"),
+            "Min. £1000000": _("£1m-£10m"),
+            "Min. £3162278": _("£1m-£10m"),
+            "Min. £10000000": _("Over £10m"),
+            "Min. £31622777": _("Over £10m"),
+            "Min. £100000000": _("Over £10m"),
+            "Min. £316227766": _("Over £10m"),
+            "Min. £1000000000": _("Over £10m"),
         }
 
         # merge all the buckets into one

@@ -1,21 +1,32 @@
 <div class="w-100 cf mt2" id="iati">
     <div class="cf">
         <div class="db fl w-30-l w-100 mh0 mv2 pr3">            
-            <h3 class="korolev b lh-title pa0 ma0 tr-l">IATI Activity data</h3>
+            <h3 class="korolev b lh-title pa0 ma0 tr-l">{% trans %}IATI Activity data{% endtrans %}</h3>
             <p class="lh-copy gray f6 tr-l mw5-l fr-l">
+                {% trans %}
                 <abbr title="International Aid Transparency Iniative">IATI</abbr> is a global initiative to improve the transparency of 
                 development and humanitarian resources and their results to address poverty and crises. The data presented here is
                 sourced from <a href="https://www.oipa.nl/home" class="link blue external-link" target="_blank">OIPA</a>.
+                {% endtrans %}
             </p>
         </div>
         <div class="db fl w-50-l w-100 mh0 mv2">
             <p class="lh-copy pa0 ma0">
                 {% if area.countries|length > 5 %}
+                {% trans %}
                 Select a country below to see a list of UK-registered organisations operating in 
                 these countries, sourced from data published by IATI publishers.
-                {% else %}
-                List of UK-registered organisations operating in {% if area.countries|length > 1 %}these countries{% else %}{{ area.countries|map(attribute="name")|first }}{% endif %},
+                {% endtrans %}
+                {% elif area.countries|length > 1 %}
+                {% trans %}
+                List of UK-registered organisations operating in these countries,
                 sourced from data published by IATI publishers.
+                {% endtrans %}
+                {% else %}
+                {% trans countryname=area.countries|map(attribute="name")|first %}
+                List of UK-registered organisations operating in {{ countryname }},
+                sourced from data published by IATI publishers.
+                {% endtrans %}
                 {% endif %}
             </p>
         {% if area.countries|length > 5 %}
@@ -27,7 +38,7 @@
                         {{ c.name }}
                     </a>
                     <span class="dib mw5 nowrap dib overflow-hidden truncate f7 gray v-mid">
-                        [{{ iati_data.get(c["iso2"], [])|length }}{% if loop.first %} organisations{% endif %}]
+                        [{{ iati_data.get(c["iso2"], [])|length }}{% if loop.first %} {{ ngettext("organisation", "organisations", iati_data.get(c["iso2"], [])|length)}}{% endif %}]
                     </span>
                 </li>
                 {% endfor %}
@@ -56,7 +67,8 @@
             <h3 class="korolev mh0 mt3 mb0 pa0">
                 <a href="https://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
                     target="_blank" class="normal link b dark-gray external-link">
-                    Data on {{ area.countries|map(attribute="name")|first }} from IATI d-portal
+                    {% trans countryname=area.countries|map(attribute="name")|first %}
+                    Data on {{ countryname }} from IATI d-portal{% endtrans %}
                 </a>
             </h3>
             <iframe scrolling="no"
@@ -68,14 +80,14 @@
             <h3 class="korolev mh0 mt3 mb0 pa0">
                 <a href="https://d-portal.org/ctrack.html?country={{ area.countries|map(attribute='iso2')|join(",") }}#view=main"
                     target="_blank" class="link blue f5 normal external-link">
-                    Find more data on IATI d-portal
+                    {% trans %}Find more data on IATI d-portal{% endtrans %}
                 </a>
             </h3>
             {% else %}
             <h3 class="korolev mh0 mt3 mb0 pa0">
                 <a href="https://d-portal.org/"
                     target="_blank" class="link blue f5 normal external-link">
-                    Find more data on IATI d-portal
+                    {% trans %}Find more data on IATI d-portal{% endtrans %}
                 </a>
             </h3>
             {% endif %}

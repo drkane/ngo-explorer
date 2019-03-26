@@ -2,7 +2,9 @@ from datetime import datetime
 import os
 import random
 
-from flask import Flask
+from flask import Flask, request
+from flask_babel import Babel
+from babel.numbers import format_number
 from slugify import slugify
 import requests_cache
 
@@ -28,6 +30,8 @@ def create_app(test_config=None):
             os.path.join(os.getcwd(), "uploads")
         ),
         DOWNLOAD_LIMIT=500,
+        LANGUAGES=['en'],
+        BABEL_TRANSLATION_DIRECTORIES='../translations',
     )
 
     if test_config is None:
@@ -36,6 +40,14 @@ def create_app(test_config=None):
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
+
+    # add translation
+    babel = Babel(app)
+
+    @babel.localeselector
+    def get_locale():
+        print(request.accept_languages.best_match(app.config['LANGUAGES']))
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
 
     # set up url caching
     # @TODO set to a redis instance for live version
@@ -85,6 +97,10 @@ def add_template_filters(app):
     @app.template_filter('number_format')
     def template_number_format(v: (int, float)):
         return scale_value(v, True)
+
+    @app.template_filter('_n')
+    def template_babel_number_format(v: (int, float)):
+        return format_number(v)
 
     @app.template_filter('randomn')
     def template_randomn(seq, n=1):

@@ -4,6 +4,7 @@ from collections import Counter
 import re
 
 from flask import current_app
+from flask_babel import ngettext
 import plotly.graph_objs as go
 import plotly
 from requests.compat import json as _json
@@ -86,10 +87,9 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
                 locationmode='ISO-3',
                 locations=[c['iso'] for c in countries],
                 z=[1 for c in countries],
-                text=["{} ({:,.0f} charit{})".format(
+                text=["{} ({})".format(
                     c['name'],
-                    c.get("charity_count", 0),
-                    "y" if c.get("charity_count", 0) == 1 else "ies"
+                    ngettext("%(num)d charity", "%(num)d charities", num=c.get("charity_count", 0)),
                 ) for c in countries],
                 colorscale=[[0, '#237756'], [1, '#237756']],
                 autocolorscale=False,

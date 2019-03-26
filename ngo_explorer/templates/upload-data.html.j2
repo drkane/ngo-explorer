@@ -1,6 +1,6 @@
 {% extends "data.html.j2" %}
 
-{% block title %}Data Upload | NGO Explorer{% endblock %}
+{% block title %}{% trans %}Data Upload{% endtrans %} | NGO Explorer{% endblock %}
 
 {% block content %}
 {% set active_page = "dashboard" %}
@@ -16,17 +16,17 @@
             </div>
         </figure>
 
-        {{ figure("count", "Number of charities by size")}}
-        {{ figure("amount", "Amount of income by size (£)")}}
+        {{ figure("count", _("Number of charities by size")) }}
+        {{ figure("amount", _("Amount of income by size (£)")) }}
         <figure class="fl w-100 w-50-l pr3-l mh0 mv2">
-            <figcaption class="f4 b mv1 lh-title">How NGOs describe themselves</figcaption>
+            <figcaption class="f4 b mv1 lh-title">{% trans %}How NGOs describe themselves{% endtrans %}</figcaption>
             <div id="word-cloud">
             {% include '_data_word_cloud.html.j2' %}
             </div>
         </figure>
-        {{ figure("countries", "Where else do these charities work?")}}
-        {% for k in ["causes", "beneficiaries", "operations"] %}
-        {{ figure(k, k|title )}}
+        {{ figure("countries", _("Where else do these charities work?")) }}
+        {% for k, k_title in [("causes", _("What the charity does")), ("beneficiaries", _("Who the charity works with")), ("operations", _("How the charity works"))] %}
+        {{ figure(k, k_title )}}
         {% endfor %}
     </div>
 </div>

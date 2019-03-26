@@ -44,15 +44,15 @@ def process_data():
 def upload_pages(fileid):
     return {
         "dashboard": {
-            "name": "Dashboard",
+            "name": _("Dashboard"),
             "url": url_for('.fetch_uploaded_data', fileid=fileid),
         },
         "show-charities": {
-            "name": "Show NGOs",
+            "name": _("Show NGOs"),
             "url": url_for('.list_uploaded_data', fileid=fileid),
         },
         "download": {
-            "name": "Download",
+            "name": _("Download"),
             "url": url_for('.download_uploaded_data', fileid=fileid),
         },
     }

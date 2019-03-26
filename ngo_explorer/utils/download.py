@@ -3,6 +3,7 @@ import csv
 import json
 
 from flask import current_app, Response
+from flask_babel import _
 import xlsxwriter
 from slugify import slugify
 
@@ -13,84 +14,84 @@ from .fetchdata import fetch_charitybase
 DOWNLOAD_OPTIONS = {
     "main": {
         "options": [
-            {'label': 'Charity number', 'value': 'id', 'checked': True},
-            {'label': 'Charity name', 'value': 'name', 'checked': True},
-            {'label': 'Governing document', 'value': 'governingDoc'},
-            {'label': 'Description of activities',
+            {'label': _('Charity number'), 'value': 'id', 'checked': True},
+            {'label': _('Charity name'), 'value': 'name', 'checked': True},
+            {'label': _('Governing document'), 'value': 'governingDoc'},
+            {'label': _('Description of activities'),
              'value': 'activities'},
-            {'label': 'Charitable objects', 'value': 'objectives'},
-            {'label': 'Causes served', 'value': 'causes'},
-            {'label': 'Beneficiaries', 'value': 'beneficiaries'},
-            {'label': 'Activities', 'value': 'operations'},
+            {'label': _('Charitable objects'), 'value': 'objectives'},
+            {'label': _('Causes served'), 'value': 'causes'},
+            {'label': _('Beneficiaries'), 'value': 'beneficiaries'},
+            {'label': _('Activities'), 'value': 'operations'},
         ],
-        "name": "Charity information"
+        "name": _("Charity information")
     },
     "financial": {
         "options": [
-            {'label': 'Latest income', 'value': 'income.latest.total', 'checked': True},
-            {'label': 'Latest income date', 'value': 'income.latest.date', 'checked': True},
-            {'label': 'Income history', 'value': 'income.history', 'checked': False},
-            {'label': 'Spending history', 'value': 'spending.history', 'checked': False},
-            {'label': 'Inflation adjust income/spending history', 'value': 'inflation_adjusted', 'checked': False},
-            # {'label': 'Company number', 'value': 'companiesHouseNumber'},
-            # {'label': 'Financial year end', 'value': 'fyend'},
-            {'label': 'Number of trustees',
+            {'label': _('Latest income'), 'value': 'income.latest.total', 'checked': True},
+            {'label': _('Latest income date'), 'value': 'income.latest.date', 'checked': True},
+            {'label': _('Income history'), 'value': 'income.history', 'checked': False},
+            {'label': _('Spending history'), 'value': 'spending.history', 'checked': False},
+            {'label': _('Inflation adjust income/spending history'), 'value': 'inflation_adjusted', 'checked': False},
+            # {'label': _('Company number'), 'value': 'companiesHouseNumber'},
+            # {'label': _('Financial year end'), 'value': 'fyend'},
+            {'label': _('Number of trustees'),
              'value': 'numPeople.trustees'},
-            {'label': 'Number of employees',
+            {'label': _('Number of employees'),
              'value': 'numPeople.employees'},
-            {'label': 'Number of volunteers',
+            {'label': _('Number of volunteers'),
              'value': 'numPeople.volunteers'},
         ],
-        "description": """Financial data can be adjusted to consistent prices using the
+        "description": _("""Financial data can be adjusted to consistent prices using the
         <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23" target="_blank" class="link blue external-link">consumer price inflation (CPIH)</a>
-        measure published by the Office for National Statistics.""",
+        measure published by the Office for National Statistics."""),
         "name": "Financial"
     },
     "contact": {
         "options": [
-            {'label': 'Email', 'value': 'contact.email'},
-            {'label': 'Website', 'value': 'website'},
-            {'label': 'Address', 'value': 'contact.address'},
-            {'label': 'Postcode', 'value': 'contact.postcode'},
-            {'label': 'Phone number', 'value': 'contact.phone'},
+            {'label': _('Email'), 'value': 'contact.email'},
+            {'label': _('Website'), 'value': 'website'},
+            {'label': _('Address'), 'value': 'contact.address'},
+            {'label': _('Postcode'), 'value': 'contact.postcode'},
+            {'label': _('Phone number'), 'value': 'contact.phone'},
         ],
-        "name": "Contact details"
+        "name": _("Contact details")
     },
     "geo": {
         "options": {
             "aoo": [
-                {'label': 'Description of area of benefit', 'value': 'areaOfBenefit'},
-                {'label': 'Area of operation',
+                {'label': _('Description of area of benefit'), 'value': 'areaOfBenefit'},
+                {'label': _('Area of operation'),
                  'value': 'areas'},
-                {'label': 'Countries where this charity operates',
+                {'label': _('Countries where this charity operates'),
                  'value': 'countries'},
             ],
             "geo": [
-                {'label': 'Country', 'value': 'geo.country'},
-                {'label': 'Region', 'value': 'geo.region'},
-                {'label': 'County', 'value': 'geo.admin_county'},
-                {'label': 'County [code]',
+                {'label': _('Country'), 'value': 'geo.country'},
+                {'label': _('Region'), 'value': 'geo.region'},
+                {'label': _('County'), 'value': 'geo.admin_county'},
+                {'label': _('County [code]'),
                  'value': "geo.codes.admin_county"},
-                {'label': 'Local Authority',
+                {'label': _('Local Authority'),
                  'value': 'geo.admin_district'},
-                {'label': 'Local Authority [code]',
+                {'label': _('Local Authority [code]'),
                  'value': "geo.codes.admin_district"},
-                {'label': 'Ward', 'value': 'geo.admin_ward'},
-                {'label': 'Ward [code]',
+                {'label': _('Ward'), 'value': 'geo.admin_ward'},
+                {'label': _('Ward [code]'),
                  'value': 'geo.codes.admin_ward'},
-                {'label': 'Parish', 'value': 'geo.parish'},
-                {'label': 'Parish [code]',
+                {'label': _('Parish'), 'value': 'geo.parish'},
+                {'label': _('Parish [code]'),
                  'value': 'geo.codes.parish'},
-                {'label': 'LSOA', 'value': 'geo.lsoa'},
-                {'label': 'MSOA', 'value': 'geo.msoa'},
-                {'label': 'Parliamentary Constituency',
+                {'label': _('LSOA'), 'value': 'geo.lsoa'},
+                {'label': _('MSOA'), 'value': 'geo.msoa'},
+                {'label': _('Parliamentary Constituency'),
                  'value': 'geo.parliamentary_constituency'},
-                {'label': 'Parliamentary Constituency [code]',
+                {'label': _('Parliamentary Constituency [code]'),
                  'value': 'geo.codes.parliamentary_constituency'},
             ],
         },
-        "description": "The following fields are based on the postcode of the charities' UK registered office",
-        "name": "Geography fields"
+        "description": _("The following fields are based on the postcode of the charities' UK registered office"),
+        "name": _("Geography fields")
     },
 }
 
