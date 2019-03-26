@@ -32,10 +32,10 @@ def create_app(test_config=None):
         DOWNLOAD_LIMIT=500,
         LANGUAGES=['en'],
         BABEL_TRANSLATION_DIRECTORIES='../translations',
+        REQUEST_CACHE_BACKEND='sqlite',
     )
     app.config["REQUEST_CACHE_LOCATION"] = os.path.join(
         app.config["DATA_CONTAINER"], 'demo_cache')
-    app.config["REQUEST_CACHE_BACKEND"] = 'sqlite'
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
