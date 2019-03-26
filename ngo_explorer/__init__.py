@@ -33,6 +33,9 @@ def create_app(test_config=None):
         LANGUAGES=['en'],
         BABEL_TRANSLATION_DIRECTORIES='../translations',
     )
+    app.config["REQUEST_CACHE_LOCATION"] = os.path.join(
+        app.config["DATA_CONTAINER"], 'demo_cache')
+    app.config["REQUEST_CACHE_BACKEND"] = 'sqlite'
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -46,14 +49,14 @@ def create_app(test_config=None):
 
     @babel.localeselector
     def get_locale():
-        print(request.accept_languages.best_match(app.config['LANGUAGES']))
         return request.accept_languages.best_match(app.config['LANGUAGES'])
 
     # set up url caching
     # @TODO set to a redis instance for live version
     one_week = 60 * 60 * 24 * 7 # in seconds
     requests_cache.install_cache(
-        os.path.join(app.config["DATA_CONTAINER"], 'demo_cache'),
+        app.config["REQUEST_CACHE_LOCATION"],
+        backend=app.config["REQUEST_CACHE_BACKEND"],
         expire_after=one_week,
         allowable_methods=('GET', 'POST')
     )

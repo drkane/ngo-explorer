@@ -20,7 +20,7 @@ class GraphQLClientRequests(GraphQLClient):
 
         r = requests.post(self.endpoint, json=data, headers=headers)
         current_app.logger.info("CHARITYBASE {}{}: {}".format(
-            "[from cache] " if r.from_cache else "",
+            "[from cache] " if getattr(r, "from_cache", False) else "",
             self.endpoint,
             json.dumps(variables)
         ))

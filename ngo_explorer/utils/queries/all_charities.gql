@@ -1,4 +1,4 @@
-query getCharityAggregation {
+query getAllCharities {
   CHC {
     getCharities(filters: {}) {
       aggregate {

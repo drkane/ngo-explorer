@@ -1,5 +1,5 @@
 
-query getCharityAggregation(
+query getCharityDownload(
   $filters: FilterCHCInput!
   $limit: PageLimit = 30
   $skip: Int = 0

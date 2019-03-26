@@ -99,11 +99,12 @@ def fetch_charitybase(
         query_str = GQL_QUERIES[query] % dict_to_gql(query_fields, 8)
     else:
         query_str = GQL_QUERIES[query]
-
-    result = client.execute(query_str, variables)
     
-    if result.get("errors") and not result.get("data", {}).get("CHC", {}).get("getCharities"):
-        raise Exception(result.get("errors"))
+    result = client.execute(query_str, variables)
+
+    if result.get("errors"):
+        for e in result.get("errors", []):
+            current_app.logger.warn(e)
     return CharityBaseResult(result)
 
 

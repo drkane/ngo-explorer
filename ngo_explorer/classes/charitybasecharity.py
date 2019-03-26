@@ -234,5 +234,4 @@ class CharityBaseCharity(object):
             else:
                 data[k] = v
 
-        print(data)
         return data

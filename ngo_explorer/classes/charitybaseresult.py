@@ -11,7 +11,9 @@ from .charitybasecharity import CharityBaseCharity
 class CharityBaseResult(object):
 
     def __init__(self, result):
-        result = result.get("data", {}).get("CHC", {}).get("getCharities")
+
+        result = result.get("data", {}).get("CHC", {}) or {}
+        result = result.get("getCharities", {}) or {}
         self.aggregate = result.get("aggregate")
         self.count = result.get("count")
         self.list = [CharityBaseCharity(c) for c in result.get("list", [])]

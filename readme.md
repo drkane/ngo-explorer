@@ -74,5 +74,8 @@ Compile the new transations
 pybabel compile -d translations
 ```
 
+## Run tests
 
-
+```
+python -m pytest -p no:warnings
+```
