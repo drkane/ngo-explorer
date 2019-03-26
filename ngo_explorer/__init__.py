@@ -105,9 +105,9 @@ def add_template_filters(app):
         return scale_value(v, True)
 
     @app.template_filter('_n')
-    def template_babel_number_format(v: (int, float)):
+    def template_babel_number_format(v: (int, float), format='#,##0'):
         if v:
-            return format_decimal(v)
+            return format_decimal(v, format=format)
         return v
 
     @app.template_filter('randomn')

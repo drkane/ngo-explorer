@@ -4,7 +4,6 @@ def test_region(client, m):
     rv = client.get('/region/continent/antarctica')
     assert rv.status_code == 200
     assert b'Antarctica' in rv.data
-    print(rv.data)
     assert b'4,810' in rv.data
     assert b'10.8bn' in rv.data
     assert b'Dashboard' in rv.data
