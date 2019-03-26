@@ -9,11 +9,12 @@ from ngo_explorer.utils.fetchdata import GQL_QUERIES
 thisdir = os.path.dirname(os.path.realpath(__file__))
 
 @pytest.fixture
-def client():
+def client(tmpdir):
     app = create_app({
         'CHARITYBASE_API_KEY': 'test-api-key',
         'TESTING': True,
         'REQUEST_CACHE_BACKEND': 'memory',
+        'DATA_CONTAINER': tmpdir.mkdir("upload"),
     })
     client = app.test_client()
 
