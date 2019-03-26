@@ -4,6 +4,7 @@ import pickle
 import os
 
 from flask import Blueprint, render_template, request, jsonify, url_for, redirect, current_app
+from flask_babel import _
 
 from ..utils.fetchdata import fetch_charitybase
 from ..utils.download import DOWNLOAD_OPTIONS, download_file
