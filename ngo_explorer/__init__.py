@@ -33,6 +33,7 @@ def create_app(test_config=None):
         DOWNLOAD_LIMIT=500,
         LANGUAGES=['en'],
         BABEL_TRANSLATION_DIRECTORIES='../translations',
+        BABEL_DEFAULT_LOCALE='en',
         REQUEST_CACHE_BACKEND='sqlite',
     )
     app.config["REQUEST_CACHE_LOCATION"] = os.path.join(
