@@ -27,7 +27,7 @@ def fetch_charitybase(
     all_finances: bool = False,
     sort: str = "default",
     ):
-    client = GraphQLClientRequests('https://charitybase.uk/api/graphql')
+    client = GraphQLClientRequests(current_app.config["CHARITYBASE_URL"])
     client.inject_token('Apikey {}'.format(current_app.config["CHARITYBASE_API_KEY"]))
 
     variables = {

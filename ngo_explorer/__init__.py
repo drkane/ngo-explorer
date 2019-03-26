@@ -25,6 +25,7 @@ def create_app(test_config=None):
         PLOTLY_GEO_SCOPES=['europe', 'asia',
                            'africa', 'north america', 'south america'],
         CHARITYBASE_API_KEY=os.environ.get("CHARITYBASE_API_KEY"),
+        CHARITYBASE_URL='https://charitybase.uk/api/graphql',
         DATA_CONTAINER=os.environ.get(
             "DATA_CONTAINER",
             os.path.join(os.getcwd(), "uploads")
