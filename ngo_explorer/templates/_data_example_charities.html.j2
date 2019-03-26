@@ -1,6 +1,6 @@
 <div class="cf flex flex-wrap">
     <div class="f5 fl mr4">
-        <span class="f1 korolev big-numbers">{{ "{:,.0f}".format(data.count) }}</span><br>
+        <span class="f1 korolev big-numbers">{{ data.count|_n }}</span><br>
         {% trans count=data.count %}NGO found{% pluralize %}NGOs found{% endtrans %}
     </div>
     {% if data.total_income %}

@@ -4,7 +4,7 @@ import random
 
 from flask import Flask, request
 from flask_babel import Babel
-from babel.numbers import format_number
+from babel.numbers import format_decimal
 from slugify import slugify
 import requests_cache
 
@@ -59,7 +59,8 @@ def create_app(test_config=None):
         app.config["REQUEST_CACHE_LOCATION"],
         backend=app.config["REQUEST_CACHE_BACKEND"],
         expire_after=one_week,
-        allowable_methods=('GET', 'POST')
+        allowable_methods=('GET', 'POST'),
+        include_get_headers=True,
     )
 
     # ensure the instance folder exists
@@ -104,7 +105,9 @@ def add_template_filters(app):
 
     @app.template_filter('_n')
     def template_babel_number_format(v: (int, float)):
-        return format_number(v)
+        if v:
+            return format_decimal(v)
+        return v
 
     @app.template_filter('randomn')
     def template_randomn(seq, n=1):

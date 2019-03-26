@@ -150,7 +150,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, **kwarg
         **kwargs
     )
     for k, x in enumerate(categories):
-        hb_plot.append_trace(dict(
+        hb_plot.add_trace(dict(
             type='scatter',
             mode='lines+markers',
             y=[x["name"], x["name"]],
