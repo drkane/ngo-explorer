@@ -10,6 +10,7 @@ decorator==4.3.2
 Flask==1.0.2
 Flask-Babel==0.12.2
 graphqlclient==0.2.4
+gunicorn==19.9.0
 idna==2.8
 ipython-genutils==0.2.0
 itsdangerous==1.1.0
