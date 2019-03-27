@@ -1,6 +1,6 @@
 // better multi-select boxes
 if (document.getElementsByClassName('js-choice').length>0) {
-    new Choices('.js-choice', {
+    var choices = new Choices('.js-choice', {
         removeItemButton: true,
         itemSelectText: "",
         placeholderValue: "Choose from options",
@@ -13,69 +13,94 @@ if (document.getElementsByClassName('js-choice').length>0) {
     });
 }
 
+const update_filters = function (formData){
+
+    // fetch the filters
+    if (document.activeElement.name == "download_type") {
+        return true;
+    }
+
+    let loadingState = document.getElementById("loading_state");
+    loadingState.classList.remove("dn");
+    loadingState.classList.add("dib");
+
+    // construct the API query
+    fetch(api_url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .catch(error => console.error('Error:', error))
+    .then((response) => {
+        // update the charts
+        if (response["charts"]) {
+            Object.keys(response["charts"]).forEach(function (key) {
+                if (document.getElementById(`chart_${key}`)) {
+                    Plotly.react(
+                        `chart_${key}`,
+                        response["charts"][key].data,
+                        response["charts"][key].layout,
+                        { displayModeBar: false }
+                    );
+                }
+            });
+        }
+
+        // update the charity count & example charities
+        // update list of charities
+        // add list of what the filters are
+        Object.keys(response["inserts"]).forEach((key) => {
+            if (document.getElementById(key)) {
+                document.getElementById(key).innerHTML = DOMPurify.sanitize(response["inserts"][key]);
+            }
+        });
+
+        // update the show_charities and download urls
+        navtabs = document.getElementById('tabs');
+        for (const tab of navtabs.getElementsByClassName('tab-url')) {
+            var tab_id = tab.id.replace(/^tab\-/, "");
+            tab.href = response["pages"][tab_id]["url"];
+        }
+
+        // set loading state back to default
+        loadingState.classList.remove("dib");
+        loadingState.classList.add("dn");
+
+        // update the window history
+        const url = [
+            window.location.protocol, '//', window.location.host,
+            window.location.pathname,
+            '?',
+            new URLSearchParams(formData).toString()
+        ].join('');
+        window.history.pushState(formData, 'NGO Explorer', url);
+    });
+}
+
 // when form is submitted, get the filters and fetch new data from the API
 const filter_form = document.getElementById('filter-form');
 if(filter_form){
     filter_form.addEventListener('submit', (event) => {
-        // fetch the filters
-        var formData = new FormData(filter_form);
-        if (document.activeElement.name=="download_type"){
-            return true;
-        }
-
-        console.log(document.activeElement);
-        let loadingState = document.getElementById("loading_state");
-        loadingState.classList.remove("dn");
-        loadingState.classList.add("dib");
-
         event.preventDefault();
-
-
-        // construct the API query
-        fetch(api_url, {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .catch(error => console.error('Error:', error))
-            .then((response) => {
-                // update the charts
-                Object.keys(response["charts"]).forEach(function (key) {
-                    if (document.getElementById(`chart_${key}`)) {
-                        Plotly.react(
-                            `chart_${key}`,
-                            response["charts"][key].data,
-                            response["charts"][key].layout,
-                            { displayModeBar: false }
-                        );
-                    }
-                });
-
-                // update the charity count & example charities
-                // update list of charities
-                // add list of what the filters are
-                Object.keys(response["inserts"]).forEach((key)=> {
-                    if (document.getElementById(key)){
-                        document.getElementById(key).innerHTML = DOMPurify.sanitize(response["inserts"][key]);
-                    }
-                });
-
-                // update the show_charities and download urls
-                navtabs = document.getElementById('tabs');
-                for (const tab of navtabs.getElementsByClassName('tab-url')) {
-                    var tab_id = tab.id.replace(/^tab\-/, "");
-                    tab.href = response["pages"][tab_id]["url"];
-                }
-
-                // set loading state back to default
-                loadingState.classList.remove("dib");
-                loadingState.classList.add("dn");
-            });
+        var formData = new FormData(filter_form);
+        for (var k of formData.keys()) {
+            if (formData.get(k) == "") {
+                formData.delete(k);
+            }
+        }
+        update_filters(formData);
     });
 
     document.getElementById("reset_filters").addEventListener('click', (event) => {
         event.preventDefault();
+        for(var c of choices){
+            if (c.passedElement && c.passedElement.element.form == filter_form){
+                c.removeActiveItems();
+            }
+        }
         filter_form.reset();
+        var formData = new FormData();
+        update_filters(formData);
     })
 }
 

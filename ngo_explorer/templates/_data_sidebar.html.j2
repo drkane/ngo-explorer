@@ -107,8 +107,11 @@
                 {% trans %}Exclude religious organisations{% endtrans %}
             </label>
         </div>
-        <a href="#" class="link blue f7 js-only" id="reset_filters">{% trans %}Reset filters{% endtrans %}</a>
         <input type="hidden" class="dn" value="" name="filter-skip" />
+        <div id="selected-filters">
+        {% include '_data_selected_filters.html.j2' %}
+        </div>
+        <button type="reset" class="link blue f7 js-only pa0 ma0 ba0 bg-transparent button-reset b--none pointer" id="reset_filters">{% trans %}Reset filters{% endtrans %}</button>
         <div class="mv3 w-100">
             <input class="bn bg-light-green pa2 white dim pointer" type="submit" value="{{ _('Update filters') }}" id="filter-update" />
             <div class="dn" id="loading_state">{% trans %}Loading{% endtrans %} <div class="lds-ellipsis v-mid"><div></div><div></div><div></div><div></div></div></div>
