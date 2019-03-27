@@ -62,6 +62,11 @@ const update_filters = function (formData){
             tab.href = response["pages"][tab_id]["url"];
         }
 
+        // add click events to word cloud words
+        for (const word of document.getElementsByClassName('word-cloud-word')) {
+            word.addEventListener('click', word_cloud_click);
+        }
+
         // set loading state back to default
         loadingState.classList.remove("dib");
         loadingState.classList.add("dn");
@@ -75,6 +80,20 @@ const update_filters = function (formData){
         ].join('');
         window.history.pushState(formData, 'NGO Explorer', url);
     });
+}
+
+// what happens when you click on a word cloud word
+const word_cloud_click = function (event) {
+    event.preventDefault();
+    var word = '"' + event.target.innerText + '"';
+    var search_input = filter_form.querySelector("input[name=filter-search]");
+    if (search_input.value == "") {
+        search_input.value = word;
+    } else {
+        search_input.value = search_input.value + ' ' + word;
+    }
+    var formData = new FormData(filter_form);
+    update_filters(formData);
 }
 
 // when form is submitted, get the filters and fetch new data from the API
@@ -104,6 +123,11 @@ if(filter_form){
     })
 }
 
+
+// search when a word cloud word is clicked
+for (const word of document.getElementsByClassName('word-cloud-word')) {
+    word.addEventListener('click', word_cloud_click);
+}
 
 // Select all download options
 for (const select_all of document.getElementsByClassName('js-select-all')) {

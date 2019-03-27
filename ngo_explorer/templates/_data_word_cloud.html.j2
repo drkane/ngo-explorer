@@ -7,7 +7,7 @@
         {% set scaling = 50 if max_count > min_count else 20 %}
         {% for word, count in data.charts.word_cloud.items() %}
         <li class="dib ma0 pa0">
-            <a class="{{ loop.cycle('green b', 'dark-green') }} link dim"
+            <a class="{{ loop.cycle('green b', 'dark-green') }} link dim word-cloud-word"
                style="font-size: {{ ((count / max_count) * scaling) + 10 }}px;"
                href="#">
                 {{ word }}
