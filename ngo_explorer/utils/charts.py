@@ -127,7 +127,7 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
     ))
 
 
-def horizontal_bar(categories, value="count", text=None, log_axis=False, **kwargs):
+def horizontal_bar(categories, value="count", text=None, log_axis=False, colour='#237756', **kwargs):
 
     # categories = {
     #   "name": "category name"
@@ -158,14 +158,14 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, **kwarg
             text=[x.get(text, "{:,.0f}".format(x[value])), ""],
             hoverinfo='text',
             hoverlabel=dict(
-                bgcolor='#237756',
-                bordercolor='#237756',
+                bgcolor=colour,
+                bordercolor=colour,
                 font=dict(
                     color='#fff',
                 ),
             ),
             line=dict(
-                color='#237756',
+                color=colour,
                 width=6,
             ),
             marker=dict(
@@ -174,7 +174,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, **kwarg
                 size=16,
                 line=dict(
                     width=6,
-                    color='#237756',
+                    color=colour,
                 ),
                 maxdisplayed=1,
             ),
