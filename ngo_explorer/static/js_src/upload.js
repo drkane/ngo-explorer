@@ -1,6 +1,6 @@
 
 
-charity_number_regex = /\b(SC[0-9]{5}|[1-9][0-9]{5,6})\b/g
+const charity_number_regex = /\b(SC[0-9]{5}|[1-9][0-9]{5,6})\b/g
 
 // handles a file being uploaded
 const fileUpload = document.getElementById("file-upload");
@@ -21,9 +21,9 @@ fileUpload.addEventListener('change', (event) => {
 
             document.getElementById("file-upload-columns").addEventListener('change', (e)=>{
                 e.preventDefault();
-                charity_numbers = [];
-                values = 0;
-                for(r of results.data){
+                var charity_numbers = [];
+                var values = 0;
+                for(const r of results.data){
                     if(r[e.target.value] && (r[e.target.value] != "")){
                         var c_match = r[e.target.value].match(charity_number_regex);
                         if (c_match){
@@ -37,7 +37,7 @@ fileUpload.addEventListener('change', (event) => {
                 document.getElementById("charity-numbers-parsed").innerText = charity_numbers.join(",\r\n");
             });
 
-            for (f of results.meta.fields) {
+            for (const f of results.meta.fields) {
                 var option = document.createElement("option");
                 var selected_option = null;
                 option.setAttribute("value", f);
