@@ -75,6 +75,22 @@
                 </ul>
             </div>
         </div>
+        <div class="cf country-group lh-copy">
+            <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
+                <div class="country-group-name">{% trans %}Search{% endtrans %}</div>
+            </div>
+            <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
+                <ul class="list pa0 ma0">
+                    {% for q in ["agriculture", '"children" and "youth"', "poverty", "education", "conservation", "entrepreneurship", "sanitation"] %}
+                    <li class="dib mr2 pb0">
+                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-search': q}) }}" class="link blue" id="search-link">
+                             {{ q }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
         <div class="cf country-group lh-copy dn" data-initialclass="dn">
             <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
                 <div class="country-group-name">{% trans %}Search{% endtrans %}</div>
