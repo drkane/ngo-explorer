@@ -1,0 +1,35 @@
+{
+  "name": "ngo-explorer",
+  "version": "1.0.0",
+  "description": "Data tool to help international development NGOs to navigate charity commission data.",
+  "main": "static/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "dev": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drkane/development-synergy.git"
+  },
+  "author": "David Kane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drkane/development-synergy/issues"
+  },
+  "homepage": "https://github.com/drkane/development-synergy#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.0",
+    "core-js": "^2.6.5"
+  }
+}

@@ -78,6 +78,17 @@ Compile the new transations
 pybabel compile -d translations
 ```
 
+## Compile javascript
+
+We use webpack and [babel](https://babeljs.io/setup#installation) to compile javascript - this
+minimises the size of the javascript files, and makes sure that we can target older
+browsers.
+
+```
+npm run build
+```
+
+
 ## Run tests
 
 ```
