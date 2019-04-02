@@ -115,6 +115,9 @@ footer {
     filter: brightness(80%);
     text-decoration: underline;
 }
+.darken:hover {
+    filter: brightness(80%);
+}
 
 /* styling of plotly chart buttons */
 .plot-container.plotly svg text {

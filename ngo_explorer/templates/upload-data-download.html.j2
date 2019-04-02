@@ -3,17 +3,16 @@
 {% block content %}
 {% set active_page = "download" %}
 {% include '_upload_data_header.html.j2' %}
-{% include '_upload_data_sidebar.html.j2' %}
 
-<div class="fl w-100 w-70-l">
+<div class="fl w-100">
     <form action="{{ pages[active_page].url }}">
         <div id="results-download-link" class="mv3 pv3 cf">
-            <ul class="list pa0 flex items-strech">
+            <ul class="list pa0 ma0 flex items-strech">
                 {% for i in ["Excel", "CSV", "JSON"] %}
                 <li class="dib fl mr2">
-                    <button class="link white dim pa2 w4 bg-yellow pointer bn tl h-100" value={{i}} type="submit" name="download_type">
-                        <i class="material-icons">save_alt</i>
-                        {% trans %}Download{% endtrans %}<br>{{ i }}
+                    <button class="link dark-gray darken ph4 pv3 bg-yellow pointer bn tl h-100 korolev br2" value={{i}} type="submit" name="download_type">
+                        {% trans %}Download{% endtrans %} {{ i }}
+                        <i class="material-icons w2 v-mid">save_alt</i>
                     </button>
                 </li>
                 {% endfor %}

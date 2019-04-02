@@ -11,7 +11,7 @@
             <ul class="list pa0 ma0 flex items-strech">
                 {% for i in ["Excel", "CSV", "JSON"] %}
                 <li class="dib fl mr2">
-                    <button class="link white dim pa2 pl3 bg-yellow pointer bn tl h-100 korolev br2" value={{i}} type="submit" formaction="{{ pages[active_page].url }}" name="download_type">
+                    <button class="link dark-gray darken ph4 pv3 bg-yellow pointer bn tl h-100 korolev br2" value={{i}} type="submit" formaction="{{ pages[active_page].url }}" name="download_type">
                         {% trans %}Download{% endtrans %} {{ i }}
                         <i class="material-icons w2 v-mid">save_alt</i>
                     </button>

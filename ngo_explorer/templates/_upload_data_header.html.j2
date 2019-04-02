@@ -1,17 +1,17 @@
 {% import "_tabs.html.j2" as tabs %}
 <div class="page-header mb4 w-100 cf">
-    <div class="w-100 w-50-l fl">
+    <div class="flex flex-column items-center tc">
         {% if title %}
-        <h2 class="korolev lh-title ma0 dark-green">{{ title }}</h2>
-        <h3 class="korolev lh-title ma0 gray">
+        <h2 class="korolev lh-title mb0 mt3">{{ title }}</h2>
+        <p class="korolev f4 gray lh-copy mv0">
         {% trans count=charitynumbers|length, ccount=charitynumbers|length|_n %}
         Data on {{ ccount }} charity
         {% pluralize %}
         Data on {{ ccount }} charities
         {% endtrans %}
-        </h2>
+        </p>
         {% else %}
-        <h2 class="korolev lh-title ma0 dark-green">
+        <h2 class="korolev lh-title mb0 mt3">
         {% trans count=charitynumbers|length, ccount=charitynumbers|length|_n %}
         Data on {{ ccount }} charity
         {% pluralize %}
@@ -23,11 +23,6 @@
             {% trans %}Figures refer to charities registered with the Charity Commission for England and Wales,
             based on a selection of charities uploaded by a user.{% endtrans %}
         <p>
+        {{ tabs.tabs(active_page, pages) }}
     </div>
-    <div class="mb3 w-100 w-25-l fr">
-        <a href="{{ url_for('upload.data') }}" class="f4 link blue fr">{% trans %}Upload more data{% endtrans %}</a>
-    </div>
-</div>
-<div>
-    {{ tabs.tabs(active_page, pages) }}
 </div>

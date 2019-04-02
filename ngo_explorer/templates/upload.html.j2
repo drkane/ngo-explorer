@@ -27,7 +27,7 @@
             <textarea class="w-100 pa2 ngo-input js-only" id="charity-numbers" autocomplete="off"></textarea>
             <textarea class="w-100 pa2 ngo-input js-hide" id="charity-numbers-parsed" name="charitynumbers" autocomplete="off"></textarea>
             <div id="charity-number-output"></div>
-            <input type="submit" class="pa3 korolev f4 bg-light-green white bn mt3 br2 pointer" value="{{ _('Fetch data on these charities') }}" />
+            <input type="submit" class="ph4 pv3 darken korolev f4 bg-light-green white bn mt3 br2 pointer" value="{{ _('Fetch data on these charities') }}" />
         </form>
         <div class="js-only">
             <p class="tc h1 bb b--light-silver mv4">
@@ -37,13 +37,13 @@
             <input class="w-100 pv2" type="file" id="file-upload" accept=".csv" autocomplete="off" />
             <select class="mv2 pa1 w-100 ngo-input" id="file-upload-columns" autocomplete="off"></select>
             <div id="file-upload-output"></div>
-            <input type="submit" class="pa3 korolev f4 bg-light-green white bn mt3 br2 pointer" form="upload-form" value="{{ _('Fetch data from CSV') }}" />
+            <input type="submit" class="ph4 pv3 darken korolev f4 bg-light-green white bn mt3 br2 pointer" form="upload-form" value="{{ _('Fetch data from CSV') }}" />
         </div>
         <div class="mt5 bg-yellow pa3">
             <h4 class="korolev mv0">{% trans %}Data protection{% endtrans %}</h4>
             <p class="mv1">
                 {% trans %}our data file won't leave your computer, although the charity numbers in your
-                file will be sent as web requests to this site and <a href="https://charitybase.uk/" class="external-link white" target="_blank">CharityBase</a>.
+                file will be sent as web requests to this site and <a href="https://charitybase.uk/" class="external-link link blue" target="_blank">CharityBase</a>.
                 These web requests may be stored in logs on both servers.{% endtrans %}
             </p>
             <p class="mv1">
