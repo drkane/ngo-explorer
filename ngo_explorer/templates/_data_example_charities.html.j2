@@ -56,8 +56,10 @@
 <p class="pa0 ma0 f7 gray">
     * {% trans %}Total income includes all activities of the matched organisations, and is not
     just limited to the activities in the selected country/countries.{% endtrans %}
+    {% if data.total_income_years %}
     {% trans latest_year=data.total_income_years|dictsort(false, 'value', true)|first|first %}
     Total income is based on the latest available income for these organisations. The latest
     available data is from {{ latest_year }}, though for some organisations it may be earlier.
     {% endtrans %}
+    {% endif %}
 </p>
