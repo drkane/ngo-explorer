@@ -59,6 +59,23 @@
             </div>
         </div>
         {% endfor %}
+        <div class="cf country-group lh-copy" >
+            <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
+                <div class="country-group-name">
+                    {% trans %}UK region{% endtrans %}
+                    <p class="pa0 f7 normal gray ma0">{% trans %}Based on charity headquarters{% endtrans %}</p>
+                </div>
+            </div>
+            <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
+                <ul class="list pa0 ma0">
+                    {% for code, name in regions.items() %}
+                    <li class="dib mr2 pb0">
+                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-regions': code}) }}" class="link blue">{{ name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
         <div class="cf country-group lh-copy dn" data-initialclass="dn">
             <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
                 <div class="country-group-name">{% trans %}Search{% endtrans %}</div>
