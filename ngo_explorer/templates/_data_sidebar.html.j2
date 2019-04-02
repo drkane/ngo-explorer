@@ -74,7 +74,7 @@
         {% endif %}
         <div class="mv3 w-100">
             <p class="gray i f6">
-                {% trans %}Exclude any charities that say they work in more than{% endtrans %} 
+                {% trans %}Exclude any organisations that say they work in more than{% endtrans %} 
                 <span class="bb bw2 b--light-gray dib">
                     <input name="filter-max-countries"
                             value="{{ filters.get('filter-max-countries', '50') }}"
@@ -94,7 +94,7 @@
                 <span class="checkmark mr2">
                     <i class="material-icons">check</i>
                 </span>
-                {% trans %}Exclude charities that make grants{% endtrans %}
+                {% trans %}Exclude organisations that make grants{% endtrans %}
             </label>
             <label class="gray i f6 custom-checkbox flex items-center">
                 <input name="filter-exclude-religious"
@@ -116,5 +116,20 @@
             <input class="bn bg-light-green pa2 white dim pointer" type="submit" value="{{ _('Update filters') }}" id="filter-update" />
             <div class="dn" id="loading_state">{% trans %}Loading{% endtrans %} <div class="lds-ellipsis v-mid"><div></div><div></div><div></div><div></div></div></div>
         </div>
+    </div>
+    <div class="pa3 bg-light-gray br3 w-100 mb3">
+        <h3 class="f5 korolev b mv0">{% trans %}Data notes{% endtrans %}</h3>
+        <p class="f6">
+            {% trans max_countries=filters.get('filter-max-countries', '50') %}
+            NGOs are only included if they say they work in fewer than {{ max_countries }}.
+            This is due to the number of organisations who say they work in every country.
+            {% endtrans %}
+        </p>
+        <p class="f6">
+            {% trans %}
+            The figures for income include the total income of the organisations in all the countries
+            they work in. 
+            {% endtrans %}
+        </p>
     </div>
 </div>

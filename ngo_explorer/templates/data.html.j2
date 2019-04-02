@@ -31,10 +31,13 @@
             </div>
         </figure>
 
-        {{ figure("count", _("Number of charities by size"))}}
+        {{ figure("count", _("Number of NGOs by size"))}}
         {{ figure("amount", _("Amount of income by size (£)"))}}
-        {{ figure("countries", _("Where else do these charities work?"))}}
-        {% for k, k_title in [("causes", _("What do these NGOs do?")), ("beneficiaries", _("Who do these NGOs work with?")), ("operations", _("How do these NGOs work?"))] %}
+        {{ figure("countries", _("Where do these NGOs work?"))}}
+        {% for k, k_title in [
+            ("causes", _("What do these NGOs do?")),
+            ("beneficiaries", _("Who do these NGOs work with?")),
+            ("operations", _("How do these NGOs work?"))] %}
         {{ figure(k, k_title )}}
         {% endfor %}
     </div>

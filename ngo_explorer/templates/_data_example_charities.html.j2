@@ -6,7 +6,7 @@
     {% if data.total_income %}
     <div class="f5 fl mr4">
         <span class="f1 korolev big-numbers">£{{ data.total_income|number_format }}</span><br>
-        {% trans %}Total income{% endtrans %}
+        {% trans %}Total income*{% endtrans %}
     </div>
         {% if all_charity_data.total_income %}
         {% set proportion = (data.total_income / all_charity_data.total_income) %}
@@ -24,7 +24,7 @@
         {% endif %}
     {% endif %}
 </div>
-<h3 class="f5">{% trans %}Example charities{% endtrans %}</h3>
+<h3 class="f5">{% trans %}Example NGOs{% endtrans %}</h3>
 <dl>
 {% for c in data.list|randomn(3) %}
     <dt class="b">
@@ -53,3 +53,11 @@
     </dd>
 {% endfor %}
 </dl>
+<p class="pa0 ma0 f7 gray">
+    * {% trans %}Total income includes all activities of the matched organisations, and is not
+    just limited to the activities in the selected country/countries.{% endtrans %}
+    {% trans latest_year=data.total_income_years|dictsort(false, 'value', true)|first|first %}
+    Total income is based on the latest available income for these organisations. The latest
+    available data is from {{ latest_year }}, though for some organisations it may be earlier.
+    {% endtrans %}
+</p>

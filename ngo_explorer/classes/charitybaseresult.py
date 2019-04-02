@@ -41,6 +41,14 @@ class CharityBaseResult(object):
             scale = get_scaling_factor(self.total_income)
             self.total_income_text = "£" + \
                 scale[2].format(self.total_income / scale[0])
+            self.total_income_years = {}
+            if self.list:
+                for c in self.list:
+                    if c.finances:
+                        year = c.finances[0]["financialYear"]["end"].year
+                        if year not in self.total_income_years:
+                            self.total_income_years[year] = 0
+                        self.total_income_years[year] += 1
 
     def _parse_income_buckets(self):
 
@@ -119,13 +127,16 @@ class CharityBaseResult(object):
             selected_country = selected_countries[0]['id']
             countries = [c for c in countries if c['id'] != selected_country]
 
+        colours = ['#237756', '#F9AF42', '#043942', '#0CA777']
+
         return {
-            "count": horizontal_bar(self.aggregate["finances"]["latestIncome"], "count"),
-            "amount": horizontal_bar(self.aggregate["finances"]["latestIncome"], "sum", "sumIncomeText", log_axis=True),
-            "countries": horizontal_bar(countries[0:12], "count"),
+            "count": horizontal_bar(self.aggregate["finances"]["latestIncome"], "count", colour=colours[0]),
+            "amount": horizontal_bar(self.aggregate["finances"]["latestIncome"], "sum", "sumIncomeText", log_axis=True, colour=colours[1]),
+            "countries": horizontal_bar(countries[0:12], "count", colour=colours[2]),
             **{
-                k: horizontal_bar(self.aggregate[k], "count")
-                for k in CLASSIFICATION.keys()
+                k: horizontal_bar(
+                    self.aggregate[k], "count", colour=colours[i])
+                for i, k in enumerate(CLASSIFICATION.keys())
             },
             "word_cloud": word_cloud(self.list),
         }

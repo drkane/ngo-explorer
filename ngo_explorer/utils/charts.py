@@ -31,7 +31,7 @@ LAYOUT = {
         'showgrid': False,
         'showline': False,
         'rangemode': 'tozero',
-        'fixedrange': True,
+        'autorange': True,
         'linewidth': 0,
         'tickfont': {
             # 'size': 20
@@ -151,11 +151,11 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, colour=
     )
     for k, x in enumerate(categories):
         hb_plot.add_trace(dict(
-            type='scatter',
-            mode='lines+markers',
-            y=[x["name"], x["name"]],
-            x=[x[value], 0],
-            text=[x.get(text, "{:,.0f}".format(x[value])), ""],
+            type='bar',
+            orientation='h',
+            y=[x["name"]],
+            x=[x[value]],
+            text=[x.get(text, "{:,.0f}".format(x[value]))],
             hoverinfo='text',
             hoverlabel=dict(
                 bgcolor=colour,
@@ -164,19 +164,9 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, colour=
                     color='#fff',
                 ),
             ),
-            line=dict(
-                color=colour,
-                width=6,
-            ),
+            textposition='auto',
             marker=dict(
-                color='#fff',
-                symbol='circle',
-                size=16,
-                line=dict(
-                    width=6,
-                    color=colour,
-                ),
-                maxdisplayed=1,
+                color=colour,
             ),
 
         ), k+1, 1)
@@ -191,8 +181,9 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, colour=
     for x in hb_plot["layout"]['annotations']:
         x['x'] = 0
         x['xanchor'] = 'left'
+        x['align'] = 'left'
         x['font'] = dict(
-            size=12,
+            size=10,
         )
 
     for x in hb_plot['layout']:
