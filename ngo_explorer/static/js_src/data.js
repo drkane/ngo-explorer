@@ -56,7 +56,7 @@ const update_filters = function (formData){
         });
 
         // update the show_charities and download urls
-        navtabs = document.getElementById('tabs');
+        const navtabs = document.getElementById('tabs');
         for (const tab of navtabs.getElementsByClassName('tab-url')) {
             var tab_id = tab.id.replace(/^tab\-/, "");
             tab.href = response["pages"][tab_id]["url"];
