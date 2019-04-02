@@ -12,7 +12,7 @@
             <h3 class="korolev ma0 mv2-l">{% trans %}What's the purpose of the site?{% endtrans %}</h3>
             <p>
                 {% trans %}This site is an offshoot of a research project which{% endtrans %} 
-                <a href="https://mappingdevelopmentngos.wordpress.com/" class="link blue" target="_blank">{% trans %}explores the development NGO sector in the UK{% endtrans %}</a>.
+                <a href="https://mappingdevelopmentngos.wordpress.com/reports/" class="link blue" target="_blank">{% trans %}explores the development NGO sector in the UK{% endtrans %}</a>.
             </p>
             <p>
                 {% trans %}
@@ -24,7 +24,8 @@
             </p>
             <h3 class="korolev ma0 mv2-l">{% trans %}Who's behind the site?{% endtrans %}</h3>
             <p>
-                {% trans %}This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/" target="_blank" class="link blue">Sheffield Institute for International Development</a> and
+                {% trans %}This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/" target="_blank" class="link blue">Sheffield Institute for International Development</a> 
+                (University of Sheffield) and
                 the <a href="https://www.gdi.manchester.ac.uk/" target="_blank" class="link blue">Global Development Institute</a> (University of Manchester).
                 It was developed by <a href="https://dkane.net/" target="_blank" class="link blue">David Kane</a> and uses data from
                 <a href="https://charitybase.uk" target="_blank" class="link blue">CharityBase</a> developed by 
@@ -53,18 +54,18 @@
                 </li>
             </ul>
             <div class="mt2 w-100">
-                <ul class="list ma0 pa0">
-                    <li class="dib mv0 mr2-l mb2 mb0-l pa0 bg-gray v-top">
-                        <a class="pa2" href="https://siid.group.shef.ac.uk/">
-                            <img class="cf"
-                                src="{{ url_for('static', filename='images/siid-logo.svg') }}"
+                <ul class="list ma0 pa0 tc">
+                    <li class="dib ma0 pa0 mt2 mt0-l v-top pr3-l">
+                        <a class="mw3" href="https://siid.group.shef.ac.uk/">
+                            <img class="cf mw5"
+                                src="{{ url_for('static', filename='images/siid-logo.png') }}"
                                 title="Sheffield Institute for International Development (SIID, University of Sheffield)" />
                         </a>
                     </li>
                     <li class="dib ma0 pa0 mt2 mt0-l v-top">
-                        <a class="mw3" href="https://www.gdi.manchester.ac.uk/">
-                            <img class="cf"
-                                src="{{ url_for('static', filename='images/gdi_logo.png') }}"
+                        <a class="" href="https://www.gdi.manchester.ac.uk/">
+                            <img class="cf mw5"
+                                src="{{ url_for('static', filename='images/gdi_logo_hi.png') }}"
                                 title="Global Development Institute (GDI, University of Manchester)" />
                         </a>
                     </li>
