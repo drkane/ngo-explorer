@@ -15,9 +15,11 @@
                 <a href="https://mappingdevelopmentngos.wordpress.com/reports/" class="link blue" target="_blank">{% trans %}explores the development NGO sector in the UK{% endtrans %}</a>.
             </p>
             <p>
-                {% trans %}
+                {% trans fileurl=url_for('static', filename='ngo_map_briefing.pdf') %}
                 During that project we (Nicola and Dan) learned how difficult it can be to access data from Charity
-                Commission records. We also learned how useful it can be to analyse these data, and that they could
+                Commission records. We also 
+                <a href="{{ fileurl }}" class="link blue" target="_blank">learned how useful it can be to analyse these data</a>,
+                and that they could
                 be a useful networking tool if they were more easily accessible. So we decided to build this site in
                 order to make these records, which are in the public domain already, more readily available.
                 {% endtrans %}
