@@ -24,6 +24,7 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         PLOTLY_GEO_SCOPES=['europe', 'asia',
                            'africa', 'north america', 'south america'],
+        GA_TRACKING_ID=os.environ.get("GA_TRACKING_ID"),
         CHARITYBASE_API_KEY=os.environ.get("CHARITYBASE_API_KEY"),
         CHARITYBASE_URL='https://charitybase.uk/api/graphql',
         DATA_CONTAINER=os.environ.get(
