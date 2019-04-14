@@ -33,6 +33,14 @@ class CharityBaseResult(object):
                     if "buckets" in self.aggregate[k][j]:
                         self.aggregate[k][j] = self.aggregate[k][j]["buckets"]
 
+        if self.aggregate.get("areas", {}):
+            self.countries = [
+                {"count": i["count"], **
+                    get_country_by_id(i['key']), "id": i["key"]}
+                for i in self.aggregate["areas"]
+                if get_country_by_id(i['key'])
+            ]
+
         if self.aggregate.get("finances", {}).get("latestIncome", {}):
             self.total_income = sum([
                 f["sum"]
@@ -117,15 +125,12 @@ class CharityBaseResult(object):
             for x in self.aggregate[i]:
                 x['name'] = CLASSIFICATION.get(i, {}).get(x["key"], x["key"])
 
-        countries = [
-            {"count": i["count"], **
-                get_country_by_id(i['key']), "id": i["key"]}
-            for i in self.aggregate["areas"]
-            if get_country_by_id(i['key'])
-        ]
         if selected_countries and len(selected_countries) == 1:
             selected_country = selected_countries[0]['id']
-            countries = [c for c in countries if c['id'] != selected_country]
+            countries = [c for c in self.countries if c['id']
+                         != selected_country]
+        else:
+            countries = self.countries
 
         colours = ['#237756', '#F9AF42', '#043942', '#0CA777']
 

@@ -3,6 +3,13 @@
         <span class="f1 korolev big-numbers">{{ data.count|_n }}</span><br>
         {% trans count=data.count %}NGO found{% pluralize %}NGOs found{% endtrans %}
     </div>
+    {% if data.countries %}
+    <div class="f5 fl mr4">
+        {% trans %}Work in{% endtrans %}<br>
+        <span class="f1 korolev big-numbers">{{ data.countries|length|_n }}</span><br>
+        {% trans count=data.countries|length %}country{% pluralize %}countries{% endtrans %}
+    </div>
+    {% endif %}
     {% if data.total_income %}
     <div class="f5 fl mr4">
         <span class="f1 korolev big-numbers">£{{ data.total_income|number_format }}</span><br>
