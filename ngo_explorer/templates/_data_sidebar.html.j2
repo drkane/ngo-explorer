@@ -1,6 +1,7 @@
 <div class="fl w-100 w-30-l pr4-l">
     <div class="pa3 bg-light-gray br3 w-100 mb3">
-        <div class="mb3 bb bw2 b--mid-gray w-100 flex items-center">
+        <h3 class="f6 b mv0">{% trans %}Search{% endtrans %}</h3>
+        <div class="mb3 mt2 ba bw1 pl2 br2 b--mid-gray w-100 flex items-center bg-white">
             <i class="material-icons">search</i>
             <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="{{ _('Search name or activities') }}" value="{{ filters.get('filter-search', '') }}" autocomplete="off" />
         </div>
@@ -79,7 +80,7 @@
                     <input name="filter-max-countries"
                             value="{{ filters.get('filter-max-countries', '50') }}"
                             type="number"
-                            class="input-reset pa1 bn w3 mid-gray"
+                            class="input-reset pa1 bn w3 dark-gray"
                             autocomplete="off" />
                 </span>
                 {% trans %}countries (out of 248).{% endtrans %}
@@ -121,14 +122,22 @@
         <h3 class="f5 korolev b mv0">{% trans %}Data notes{% endtrans %}</h3>
         <p class="f6">
             {% trans max_countries=filters.get('filter-max-countries', '50') %}
-            NGOs are only included if they say they work in fewer than {{ max_countries }}.
-            This is due to the number of organisations who say they work in every country.
+            NGOs are only included if they say they work in fewer than {{ max_countries }} countries.
+            This is because some organisations claim they are working in every single country in the
+            world, or very large numbers of countries. This is unlikely. So we can exclude them by
+            restricting the number of countries organisations work in.
             {% endtrans %}
         </p>
         <p class="f6">
             {% trans %}
-            The figures for income include the total income of the organisations in all the countries
-            they work in. 
+            The figures for income and spending include the total income and spending of the
+            organisations in all the countries they work in. 
+            {% endtrans %}
+        </p>
+        <p class="f6">
+            {% trans %}
+            Religious organisations refers to those organisations which self-describe
+            themselves as undertaking "religious activities" in their causes.
             {% endtrans %}
         </p>
     </div>

@@ -1,6 +1,6 @@
 {% if data.charts.word_cloud %}
 <div>
-    <p>{% trans %}Most common words from the description of the first 30 NGOs.{% endtrans %}</p>
+    <p>{% trans %}Most common words from the description of a random set of 30 NGOs matching your search.{% endtrans %}</p>
     <ul class="list ma0 pa0">
         {% set max_count = data.charts.word_cloud.values()|list|first %}
         {% set min_count = data.charts.word_cloud.values()|list|last %}
