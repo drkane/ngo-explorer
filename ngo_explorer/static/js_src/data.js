@@ -16,9 +16,6 @@ if (document.getElementsByClassName('js-choice').length>0) {
 const update_filters = function (formData){
 
     // fetch the filters
-    if (document.activeElement.name == "download_type") {
-        return true;
-    }
 
     let loadingState = document.getElementById("loading_state");
     loadingState.classList.remove("dn");
@@ -100,6 +97,11 @@ const word_cloud_click = function (event) {
 const filter_form = document.getElementById('filter-form');
 if(filter_form){
     filter_form.addEventListener('submit', (event) => {
+
+        if (document.activeElement.name == "download_type") {
+            return true;
+        }
+
         event.preventDefault();
         var formData = new FormData(filter_form);
         for (var k of formData.keys()) {
