@@ -149,6 +149,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, colour=
         vertical_spacing=(0.45 / len(categories)),
         **kwargs
     )
+    max_value = max([x[value] for x in categories])
     for k, x in enumerate(categories):
         hb_plot.add_trace(dict(
             type='bar',
@@ -164,7 +165,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, colour=
                     color='#fff',
                 ),
             ),
-            textposition='auto',
+            textposition='auto' if not log_axis or (x[value] / max_value > 0.05) else 'outside',
             marker=dict(
                 color=colour,
             ),
