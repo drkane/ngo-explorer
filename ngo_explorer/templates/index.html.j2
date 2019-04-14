@@ -83,7 +83,7 @@
                 <ul class="list pa0 ma0">
                     {% for q in ["agriculture", '"children" and "youth"', "poverty", "education", "conservation", "entrepreneurship", "sanitation"] %}
                     <li class="dib mr2 pb0">
-                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-search': q}) }}" class="link blue" id="search-link">
+                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-search': q}) }}" class="link blue">
                              {{ q }}
                         </a>
                     </li>
