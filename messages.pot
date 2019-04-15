@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NGO Explorer VERSION\n"
-"Report-Msgid-Bugs-To: email@example.net\n"
-"POT-Creation-Date: 2019-04-02 11:30+0100\n"
+"Report-Msgid-Bugs-To: david@dkane.net\n"
+"POT-Creation-Date: 2019-04-15 13:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr ""
 
 #: ngo_explorer/blueprints/data.py:83 ngo_explorer/blueprints/upload.py:56
 #: ngo_explorer/templates/data-download.html.j2:15
-#: ngo_explorer/templates/upload-data-download.html.j2:16
+#: ngo_explorer/templates/upload-data-download.html.j2:14
 msgid "Download"
 msgstr ""
 
@@ -76,37 +76,37 @@ msgstr ""
 msgid "Cash terms"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:62
-#: ngo_explorer/classes/charitybaseresult.py:63
-#: ngo_explorer/classes/charitybaseresult.py:64
-#: ngo_explorer/classes/charitybaseresult.py:65
-#: ngo_explorer/classes/charitybaseresult.py:66
-#: ngo_explorer/classes/charitybaseresult.py:67
-#: ngo_explorer/classes/charitybaseresult.py:68
-#: ngo_explorer/classes/charitybaseresult.py:69
+#: ngo_explorer/classes/charitybaseresult.py:70
+#: ngo_explorer/classes/charitybaseresult.py:71
+#: ngo_explorer/classes/charitybaseresult.py:72
+#: ngo_explorer/classes/charitybaseresult.py:73
+#: ngo_explorer/classes/charitybaseresult.py:74
+#: ngo_explorer/classes/charitybaseresult.py:75
+#: ngo_explorer/classes/charitybaseresult.py:76
+#: ngo_explorer/classes/charitybaseresult.py:77
 msgid "Under £10k"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:70
-#: ngo_explorer/classes/charitybaseresult.py:71
+#: ngo_explorer/classes/charitybaseresult.py:78
+#: ngo_explorer/classes/charitybaseresult.py:79
 msgid "£10k-£100k"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:72
-#: ngo_explorer/classes/charitybaseresult.py:73
+#: ngo_explorer/classes/charitybaseresult.py:80
+#: ngo_explorer/classes/charitybaseresult.py:81
 msgid "£100k-£1m"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:74
-#: ngo_explorer/classes/charitybaseresult.py:75
+#: ngo_explorer/classes/charitybaseresult.py:82
+#: ngo_explorer/classes/charitybaseresult.py:83
 msgid "£1m-£10m"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:76
-#: ngo_explorer/classes/charitybaseresult.py:77
-#: ngo_explorer/classes/charitybaseresult.py:78
-#: ngo_explorer/classes/charitybaseresult.py:79
-#: ngo_explorer/classes/charitybaseresult.py:80
+#: ngo_explorer/classes/charitybaseresult.py:84
+#: ngo_explorer/classes/charitybaseresult.py:85
+#: ngo_explorer/classes/charitybaseresult.py:86
+#: ngo_explorer/classes/charitybaseresult.py:87
+#: ngo_explorer/classes/charitybaseresult.py:88
 msgid "Over £10m"
 msgstr ""
 
@@ -120,51 +120,51 @@ msgid_plural "NGOs found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:9
-msgid "Total income*"
+#: ngo_explorer/templates/_data_example_charities.html.j2:8
+#, python-format
+msgid "NGOs working in %(areaname)s also work in a further"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:22
-msgid "of all charity income"
+#: ngo_explorer/templates/_data_example_charities.html.j2:10
+msgid "country"
+msgid_plural "countries"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:19
+msgid "Altogether, these NGOs spend"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:21
+msgid "in all these countries*"
 msgstr ""
 
 #: ngo_explorer/templates/_data_example_charities.html.j2:27
+msgid "This is equivalent to "
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:35
+msgid "of total UK charity spending of"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:41
 msgid "Example NGOs"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:38
-#: ngo_explorer/templates/_data_selected_filters.html.j2:16
-#: ngo_explorer/templates/_data_selected_filters.html.j2:21
-#: ngo_explorer/templates/_data_selected_filters.html.j2:25
-msgid "Income"
-msgstr ""
-
-#: ngo_explorer/templates/_data_example_charities.html.j2:45
-#: ngo_explorer/templates/_data_list_table.html.j2:85
-msgid "Work in"
-msgstr ""
-
-#: ngo_explorer/templates/_data_example_charities.html.j2:47
-#: ngo_explorer/templates/_data_list_table.html.j2:87
-#: ngo_explorer/templates/_data_sidebar.html.j2:20
-#: ngo_explorer/templates/_footer.html.j2:54
-#: ngo_explorer/templates/charity.html.j2:86
-#: ngo_explorer/templates/charity.html.j2:94
-msgid "and"
-msgstr ""
-
-#: ngo_explorer/templates/_data_example_charities.html.j2:57
+#: ngo_explorer/templates/_data_example_charities.html.j2:59
+#, python-format
 msgid ""
-"Total income includes all activities of the matched organisations, and is"
-" not\n"
-"    just limited to the activities in the selected country/countries."
+"It is not possible to \n"
+"        isolate income and spending only on %(areaname)s, we can only "
+"report income and spending by  \n"
+"        organisations in all the countries they work in."
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:60
+#: ngo_explorer/templates/_data_example_charities.html.j2:65
 #, python-format
 msgid ""
 "\n"
-"    Total income is based on the latest available income for these "
+"    Financial data is based on the latest available for these "
 "organisations. The latest\n"
 "    available data is from %(latest_year)s, though for some organisations"
 " it may be earlier.\n"
@@ -305,7 +305,7 @@ msgid "<abbr title=\"Registration\">Reg</abbr>. date"
 msgstr ""
 
 #: ngo_explorer/templates/_data_list_table.html.j2:51
-#: ngo_explorer/templates/_data_sidebar.html.j2:8
+#: ngo_explorer/templates/_data_sidebar.html.j2:9
 #: ngo_explorer/utils/download.py:31
 msgid "Latest income"
 msgstr ""
@@ -333,12 +333,24 @@ msgstr ""
 msgid "Makes grants"
 msgstr ""
 
+#: ngo_explorer/templates/_data_list_table.html.j2:85
+msgid "Work in"
+msgstr ""
+
+#: ngo_explorer/templates/_data_list_table.html.j2:87
+#: ngo_explorer/templates/_data_sidebar.html.j2:21
+#: ngo_explorer/templates/_footer.html.j2:54
+#: ngo_explorer/templates/charity.html.j2:86
+#: ngo_explorer/templates/charity.html.j2:94
+msgid "and"
+msgstr ""
+
 #: ngo_explorer/templates/_data_list_table.html.j2:93
 msgid "UK registered office"
 msgstr ""
 
 #: ngo_explorer/templates/_data_other_resources.html.j2:5
-#: ngo_explorer/templates/about.html.j2:139
+#: ngo_explorer/templates/about.html.j2:147
 msgid "Other resources"
 msgstr ""
 
@@ -390,8 +402,15 @@ msgid "Local resources"
 msgstr ""
 
 #: ngo_explorer/templates/_data_selected_filters.html.j2:12
-#: ngo_explorer/templates/index.html.j2:80
+#: ngo_explorer/templates/_data_sidebar.html.j2:3
+#: ngo_explorer/templates/index.html.j2:96
 msgid "Search"
+msgstr ""
+
+#: ngo_explorer/templates/_data_selected_filters.html.j2:16
+#: ngo_explorer/templates/_data_selected_filters.html.j2:21
+#: ngo_explorer/templates/_data_selected_filters.html.j2:25
+msgid "Income"
 msgstr ""
 
 #: ngo_explorer/templates/_data_selected_filters.html.j2:16
@@ -418,7 +437,7 @@ msgid "Is not a religious organisation"
 msgstr ""
 
 #: ngo_explorer/templates/_data_selected_filters.html.j2:41
-#: ngo_explorer/templates/_data_sidebar.html.j2:44
+#: ngo_explorer/templates/_data_sidebar.html.j2:45
 msgid "UK Region"
 msgstr ""
 
@@ -427,80 +446,95 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:5
+#: ngo_explorer/templates/_data_sidebar.html.j2:6
 msgid "Search name or activities"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:10
+#: ngo_explorer/templates/_data_sidebar.html.j2:11
 msgid "Between"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:45
+#: ngo_explorer/templates/_data_sidebar.html.j2:46
 msgid " Based on the UK head office"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:49
+#: ngo_explorer/templates/_data_sidebar.html.j2:50
 msgid "England"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:63
+#: ngo_explorer/templates/_data_sidebar.html.j2:64
 msgid "Countries"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:77
+#: ngo_explorer/templates/_data_sidebar.html.j2:78
 msgid "Exclude any organisations that say they work in more than"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:85
+#: ngo_explorer/templates/_data_sidebar.html.j2:86
 msgid "countries (out of 248)."
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:97
+#: ngo_explorer/templates/_data_sidebar.html.j2:98
 msgid "Exclude organisations that make grants"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:107
+#: ngo_explorer/templates/_data_sidebar.html.j2:108
 msgid "Exclude religious organisations"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:114
+#: ngo_explorer/templates/_data_sidebar.html.j2:115
 msgid "Reset filters"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:116
+#: ngo_explorer/templates/_data_sidebar.html.j2:117
 msgid "Update filters"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:117
+#: ngo_explorer/templates/_data_sidebar.html.j2:118
 msgid "Loading"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:121
+#: ngo_explorer/templates/_data_sidebar.html.j2:122
 msgid "Data notes"
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:123
+#: ngo_explorer/templates/_data_sidebar.html.j2:124
 #, python-format
 msgid ""
 "\n"
 "            NGOs are only included if they say they work in fewer than "
-"%(max_countries)s.\n"
-"            This is due to the number of organisations who say they work "
-"in every country.\n"
+"%(max_countries)s countries.\n"
+"            This is because some organisations claim they are working in "
+"every single country in the\n"
+"            world, or very large numbers of countries. This is unlikely. "
+"So we can exclude them by\n"
+"            restricting the number of countries organisations work in.\n"
 "            "
 msgstr ""
 
-#: ngo_explorer/templates/_data_sidebar.html.j2:129
+#: ngo_explorer/templates/_data_sidebar.html.j2:132
 msgid ""
 "\n"
-"            The figures for income include the total income of the "
-"organisations in all the countries\n"
-"            they work in. \n"
+"            The figures for income and spending include the total income "
+"and spending of the\n"
+"            organisations in all the countries they work in. \n"
+"            "
+msgstr ""
+
+#: ngo_explorer/templates/_data_sidebar.html.j2:138
+msgid ""
+"\n"
+"            Religious organisations refers to those organisations which "
+"self-describe\n"
+"            themselves as undertaking \"religious activities\" in their "
+"causes.\n"
 "            "
 msgstr ""
 
 #: ngo_explorer/templates/_data_word_cloud.html.j2:3
-msgid "Most common words from the description of the first 30 NGOs."
+msgid ""
+"Most common words from the description of a random set of 30 NGOs "
+"matching your search."
 msgstr ""
 
 #: ngo_explorer/templates/_footer.html.j2:4
@@ -581,10 +615,6 @@ msgid ""
 "            based on a selection of charities uploaded by a user."
 msgstr ""
 
-#: ngo_explorer/templates/_upload_data_header.html.j2:28
-msgid "Upload more data"
-msgstr ""
-
 #: ngo_explorer/templates/about.html.j2:10
 #: ngo_explorer/templates/index.html.j2:10
 msgid "Explore UK charities working across the world"
@@ -641,27 +671,27 @@ msgid ""
 "target=\"_blank\" class=\"link blue\">Dan Kwiatkowski</a>."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:40
+#: ngo_explorer/templates/about.html.j2:42
 msgid ""
 "Lecturer in Urban Development, <abbr title=\"Global Development "
 "Institute\">GDI</abbr>"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:45
+#: ngo_explorer/templates/about.html.j2:49
 msgid ""
 "Director of <abbr title=\"Sheffield Institute for International "
 "Development\">SIID</abbr>"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:50
+#: ngo_explorer/templates/about.html.j2:56
 msgid "Freelance data scientist"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:55
+#: ngo_explorer/templates/about.html.j2:63
 msgid "Creator of CharityBase"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:77
+#: ngo_explorer/templates/about.html.j2:85
 msgid ""
 "We would particularly like to thank the many staff and volunteers from\n"
 "                NGOs and others who provided feedback and advice in the "
@@ -669,11 +699,11 @@ msgid ""
 "                the site."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:81
+#: ngo_explorer/templates/about.html.j2:89
 msgid "Who has funded this project?"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:83
+#: ngo_explorer/templates/about.html.j2:91
 msgid ""
 "This site has been funded from \n"
 "                <a href=\"https://www.ukri.org/research/global-"
@@ -685,11 +715,11 @@ msgid ""
 "                to the Universities of Sheffield and Manchester."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:114
+#: ngo_explorer/templates/about.html.j2:122
 msgid "Data sources"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:116
+#: ngo_explorer/templates/about.html.j2:124
 msgid ""
 "Data on the site comes from the <a href=\"https://charitybase.uk/api-"
 "portal\" target=\"_blank\" class=\"link blue\">CharityBase API</a>.\n"
@@ -703,21 +733,21 @@ msgid ""
 "blue\">Open Government Licence</a>"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:123
+#: ngo_explorer/templates/about.html.j2:131
 msgid "Contains OS data © Crown copyright and database right 2018."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:124
+#: ngo_explorer/templates/about.html.j2:132
 msgid "Contains Royal Mail data © Royal Mail copyright and database right 2018."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:125
+#: ngo_explorer/templates/about.html.j2:133
 msgid ""
 "Contains National Statistics data © Crown copyright and database right "
 "2018."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:128
+#: ngo_explorer/templates/about.html.j2:136
 msgid ""
 "NGO Explorer and CharityBase are not responsible for the content of the "
 "data on the register of charities.\n"
@@ -726,11 +756,11 @@ msgid ""
 "                contact the Charity Commission."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:132
+#: ngo_explorer/templates/about.html.j2:140
 msgid "IATI"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:134
+#: ngo_explorer/templates/about.html.j2:142
 msgid ""
 "The site also uses data from the <a href=\"\" target=\"_blank\" "
 "class=\"link blue\">International Aid Transparency Initative</a>\n"
@@ -741,7 +771,7 @@ msgid ""
 "                for IATI data."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:141
+#: ngo_explorer/templates/about.html.j2:149
 msgid ""
 "Where available, the site signposts to other resources, such as national "
 "registers of organisations.\n"
@@ -749,18 +779,18 @@ msgid ""
 "external sites."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:144
+#: ngo_explorer/templates/about.html.j2:152
 msgid "Your privacy and cookies"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:146
+#: ngo_explorer/templates/about.html.j2:154
 msgid ""
 "This site uses Google analytics to see how it has been used. Google "
 "Analytics\n"
 "                uses cookies to help analyse your use of the site."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:150
+#: ngo_explorer/templates/about.html.j2:158
 #, python-format
 msgid ""
 "If you use the <a href=\"%(upload_link)s\" class=\"link blue\">data "
@@ -769,11 +799,11 @@ msgid ""
 "                sent to the server in order to create a data dashboard."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:154
+#: ngo_explorer/templates/about.html.j2:162
 msgid "Tell us how you used the website"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:156
+#: ngo_explorer/templates/about.html.j2:164
 msgid "We'd love to hear your feedback on the site. Email us at"
 msgstr ""
 
@@ -868,47 +898,47 @@ msgid ""
 msgstr ""
 
 #: ngo_explorer/templates/data-download.html.j2:24
-#: ngo_explorer/templates/upload-data-download.html.j2:24
+#: ngo_explorer/templates/upload-data-download.html.j2:23
 msgid "Fields to include in download"
 msgstr ""
 
 #: ngo_explorer/templates/data-download.html.j2:25
-#: ngo_explorer/templates/upload-data-download.html.j2:25
+#: ngo_explorer/templates/upload-data-download.html.j2:24
 msgid "Charities will be included based on the criteria you have selected."
 msgstr ""
 
 #: ngo_explorer/templates/data-download.html.j2:27
-#: ngo_explorer/templates/upload-data-download.html.j2:27
+#: ngo_explorer/templates/upload-data-download.html.j2:26
 msgid "Select all fields"
 msgstr ""
 
 #: ngo_explorer/templates/data-download.html.j2:28
-#: ngo_explorer/templates/upload-data-download.html.j2:28
+#: ngo_explorer/templates/upload-data-download.html.j2:27
 msgid "Clear all fields"
 msgstr ""
 
 #: ngo_explorer/templates/data-download.html.j2:30
-#: ngo_explorer/templates/upload-data-download.html.j2:30
+#: ngo_explorer/templates/upload-data-download.html.j2:29
 #, python-format
 msgid "Downloads are limited to %(limit)s records"
 msgstr ""
 
 #: ngo_explorer/templates/data-download.html.j2:39
 #: ngo_explorer/templates/data-download.html.j2:56
-#: ngo_explorer/templates/upload-data-download.html.j2:39
-#: ngo_explorer/templates/upload-data-download.html.j2:56
+#: ngo_explorer/templates/upload-data-download.html.j2:38
+#: ngo_explorer/templates/upload-data-download.html.j2:55
 msgid "Select all"
 msgstr ""
 
 #: ngo_explorer/templates/data-download.html.j2:40
 #: ngo_explorer/templates/data-download.html.j2:57
-#: ngo_explorer/templates/upload-data-download.html.j2:40
-#: ngo_explorer/templates/upload-data-download.html.j2:57
+#: ngo_explorer/templates/upload-data-download.html.j2:39
+#: ngo_explorer/templates/upload-data-download.html.j2:56
 msgid "Clear"
 msgstr ""
 
 #: ngo_explorer/templates/data.html.j2:28
-#: ngo_explorer/templates/upload-data.html.j2:22
+#: ngo_explorer/templates/upload-data.html.j2:21
 msgid "How NGOs describe themselves"
 msgstr ""
 
@@ -917,7 +947,7 @@ msgid "Number of NGOs by size"
 msgstr ""
 
 #: ngo_explorer/templates/data.html.j2:35
-#: ngo_explorer/templates/upload-data.html.j2:20
+#: ngo_explorer/templates/upload-data.html.j2:19
 msgid "Amount of income by size (£)"
 msgstr ""
 
@@ -942,17 +972,17 @@ msgid "Type to search (try a country)"
 msgstr ""
 
 #: ngo_explorer/templates/index.html.j2:46
-#: ngo_explorer/templates/upload-data.html.j2:28
+#: ngo_explorer/templates/upload-data.html.j2:27
 msgid "What the charity does"
 msgstr ""
 
 #: ngo_explorer/templates/index.html.j2:46
-#: ngo_explorer/templates/upload-data.html.j2:28
+#: ngo_explorer/templates/upload-data.html.j2:27
 msgid "Who the charity works with"
 msgstr ""
 
 #: ngo_explorer/templates/index.html.j2:46
-#: ngo_explorer/templates/upload-data.html.j2:28
+#: ngo_explorer/templates/upload-data.html.j2:27
 msgid "How the charity works"
 msgstr ""
 
@@ -960,16 +990,20 @@ msgstr ""
 msgid "UK headquarters"
 msgstr ""
 
-#: ngo_explorer/templates/index.html.j2:86
+#: ngo_explorer/templates/index.html.j2:80
+msgid "Example searches"
+msgstr ""
+
+#: ngo_explorer/templates/index.html.j2:102
 msgid "in charity name and description"
 msgstr ""
 
-#: ngo_explorer/templates/index.html.j2:96
+#: ngo_explorer/templates/index.html.j2:112
 #: ngo_explorer/templates/upload.html.j2:10
 msgid "Upload your own data"
 msgstr ""
 
-#: ngo_explorer/templates/index.html.j2:99
+#: ngo_explorer/templates/index.html.j2:115
 #: ngo_explorer/templates/upload.html.j2:12
 msgid ""
 "If you have a list of UK charity numbers, you can \n"
@@ -977,7 +1011,7 @@ msgid ""
 "                charities."
 msgstr ""
 
-#: ngo_explorer/templates/index.html.j2:104
+#: ngo_explorer/templates/index.html.j2:120
 #: ngo_explorer/templates/upload.html.j2:3
 msgid "Upload your data"
 msgstr ""
@@ -986,11 +1020,11 @@ msgstr ""
 msgid "Data Upload"
 msgstr ""
 
-#: ngo_explorer/templates/upload-data.html.j2:19
+#: ngo_explorer/templates/upload-data.html.j2:18
 msgid "Number of charities by size"
 msgstr ""
 
-#: ngo_explorer/templates/upload-data.html.j2:27
+#: ngo_explorer/templates/upload-data.html.j2:26
 msgid "Where else do these charities work?"
 msgstr ""
 
@@ -1034,10 +1068,10 @@ msgstr ""
 
 #: ngo_explorer/templates/upload.html.j2:45
 msgid ""
-"our data file won't leave your computer, although the charity numbers in "
-"your\n"
+"Your data file won't leave your computer, although the charity numbers in"
+" your\n"
 "                file will be sent as web requests to this site and <a "
-"href=\"https://charitybase.uk/\" class=\"external-link white\" "
+"href=\"https://charitybase.uk/\" class=\"external-link link blue\" "
 "target=\"_blank\">CharityBase</a>.\n"
 "                These web requests may be stored in logs on both servers."
 msgstr ""
