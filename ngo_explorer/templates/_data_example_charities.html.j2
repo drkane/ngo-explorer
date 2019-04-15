@@ -1,32 +1,39 @@
-<div class="cf flex flex-wrap">
-    <div class="f5 fl mr4">
-        <span class="f1 korolev big-numbers">{{ data.count|_n }}</span><br>
+<div class="cf">
+    <div class="f5 mr4 mb3">
+        <span class="f1 korolev big-numbers v-mid">{{ data.count|_n }}</span><br>
         {% trans count=data.count %}NGO found{% pluralize %}NGOs found{% endtrans %}
     </div>
     {% if data.countries %}
-    <div class="f5 fl mr4">
-        {% trans %}Work in{% endtrans %}<br>
-        <span class="f1 korolev big-numbers">{{ data.countries|length|_n }}</span><br>
+    <div class="f5 mr4 mb3">
+        {% trans areaname=area.name %}NGOs working in {{ areaname }} also work in a further{% endtrans %}
+        <span class="f3 korolev big-numbers v-mid">{{ data.countries|length|_n }}</span>
         {% trans count=data.countries|length %}country{% pluralize %}countries{% endtrans %}
     </div>
     {% endif %}
     {% if data.total_income %}
-    <div class="f5 fl mr4">
-        <span class="f1 korolev big-numbers">£{{ data.total_income|number_format }}</span><br>
-        {% trans %}Total income*{% endtrans %}
+    <div class="f5 mr4 mb3">
+        {# Altogether these NGOs spend £XYZ in all these countries. (It is not possible to 
+        isolate expenditure only on [country x], we can only report expenditure by all 
+        organisations in all countries.) This is equivalent to XYZ% of charitable spending. 
+        By comparison expenditure by organisations which only work in the UK was £XYZ #}
+        {% trans %}Altogether, these NGOs spend{% endtrans %}
+        <span class="f2 korolev big-numbers v-mid">£{{ data.total_income|number_format }}</span><br>
+        {% trans %}in all these countries*{% endtrans %}
     </div>
         {% if all_charity_data.total_income %}
         {% set proportion = (data.total_income / all_charity_data.total_income) %}
         {% set precision = 1 if proportion < 0.0095 else 0 %}
-        <div class="f5 fl mr4">
-            <span class="f1 korolev big-numbers">
+        <div class="f5 fl mr4 mb3">
+            {% trans %}This is equivalent to {% endtrans %}
+            <span class="f3 korolev big-numbers v-mid">
             {% if proportion < 0.001 %}
             &lt;0.1%
             {% else %}
             {{ "{:.{prec}%}".format(proportion, prec=precision) }}
             {% endif %}
-            </span><br>
-            {% trans %}of all charity income{% endtrans %}
+            </span>
+            {% trans %}of total UK charity spending of{% endtrans %}
+            <span class="f3 korolev big-numbers v-mid">£{{ all_charity_data.total_income|number_format }}</span>
         </div>
         {% endif %}
     {% endif %}
@@ -40,33 +47,24 @@
         </a>
     </dt>
     <dd class="mw6-l ml0 mb2">
-        <p class="f6 pa0 ma0 lh-copy">
-            {% if c.finances and c.finances[0].income %}
-            {% trans %}Income{% endtrans %} <strong>£{{ c.finances[0].income|number_format }}</strong>
-            <span class="f7 i gray">({{ c.finances[0].financialYear.end.year }})</span>
-            {% endif %}
-        </p>
-        {% if area %}
+        {% if c.activities %}
         <p class="f7 dark-gray pa0 ma0">
-            {% set cids = area.countries|map(attribute="id")|list %}
-            {% trans %}Work in{% endtrans %} 
-            {% for a in c.countries if a.id in cids %}
-                {%- if loop.last and not loop.first %} {{ _("and") }} {% endif %}
-                {%- if not loop.last and not loop.first -%}, {% endif %}
-                {{- a.name -}}
-            {% endfor %}
+            {{ c.activities|truncate(100) }}
         </p>
         {% endif %}
     </dd>
 {% endfor %}
 </dl>
 <p class="pa0 ma0 f7 gray">
-    * {% trans %}Total income includes all activities of the matched organisations, and is not
-    just limited to the activities in the selected country/countries.{% endtrans %}
-    {% if data.total_income_years %}
+    * {% trans areaname = area.name %}It is not possible to 
+        isolate income and spending only on {{ areaname }}, we can only report income and spending by  
+        organisations in all the countries they work in.{% endtrans %}
+</p>
+{% if data.total_income_years %}
+<p class="pa0 mh0 mb0 mt1 f7 gray">
     {% trans latest_year=data.total_income_years|dictsort(false, 'value', true)|first|first %}
-    Total income is based on the latest available income for these organisations. The latest
+    Financial data is based on the latest available for these organisations. The latest
     available data is from {{ latest_year }}, though for some organisations it may be earlier.
     {% endtrans %}
-    {% endif %}
 </p>
+{% endif %}
