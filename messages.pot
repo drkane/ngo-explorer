@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NGO Explorer VERSION\n"
 "Report-Msgid-Bugs-To: david@dkane.net\n"
-"POT-Creation-Date: 2019-04-15 13:36+0100\n"
+"POT-Creation-Date: 2019-04-15 13:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,12 +120,16 @@ msgid_plural "NGOs found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:8
+#: ngo_explorer/templates/_data_example_charities.html.j2:9
 #, python-format
 msgid "NGOs working in %(areaname)s also work in a further"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:10
+#: ngo_explorer/templates/_data_example_charities.html.j2:11
+msgid "These NGOs work in "
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:14
 msgid "country"
 msgid_plural "countries"
 msgstr[0] ""
@@ -135,23 +139,27 @@ msgstr[1] ""
 msgid "Altogether, these NGOs spend"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:21
-msgid "in all these countries*"
+#: ngo_explorer/templates/_data_example_charities.html.j2:22
+msgid "in all these countries"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:27
+#: ngo_explorer/templates/_data_example_charities.html.j2:24
+msgid "in the areas they work"
+msgstr ""
+
+#: ngo_explorer/templates/_data_example_charities.html.j2:31
 msgid "This is equivalent to "
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:35
+#: ngo_explorer/templates/_data_example_charities.html.j2:39
 msgid "of total UK charity spending of"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:41
+#: ngo_explorer/templates/_data_example_charities.html.j2:45
 msgid "Example NGOs"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:59
+#: ngo_explorer/templates/_data_example_charities.html.j2:64
 #, python-format
 msgid ""
 "It is not possible to \n"
@@ -160,7 +168,7 @@ msgid ""
 "        organisations in all the countries they work in."
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:65
+#: ngo_explorer/templates/_data_example_charities.html.j2:71
 #, python-format
 msgid ""
 "\n"

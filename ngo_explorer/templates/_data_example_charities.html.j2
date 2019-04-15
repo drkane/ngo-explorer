@@ -5,20 +5,24 @@
     </div>
     {% if data.countries %}
     <div class="f5 mr4 mb3">
+        {% if area %}
         {% trans areaname=area.name %}NGOs working in {{ areaname }} also work in a further{% endtrans %}
+        {% else %}
+        {% trans %}These NGOs work in {% endtrans %}
+        {% endif %}
         <span class="f3 korolev big-numbers v-mid">{{ data.countries|length|_n }}</span>
         {% trans count=data.countries|length %}country{% pluralize %}countries{% endtrans %}
     </div>
     {% endif %}
     {% if data.total_income %}
     <div class="f5 mr4 mb3">
-        {# Altogether these NGOs spend £XYZ in all these countries. (It is not possible to 
-        isolate expenditure only on [country x], we can only report expenditure by all 
-        organisations in all countries.) This is equivalent to XYZ% of charitable spending. 
-        By comparison expenditure by organisations which only work in the UK was £XYZ #}
         {% trans %}Altogether, these NGOs spend{% endtrans %}
         <span class="f2 korolev big-numbers v-mid">£{{ data.total_income|number_format }}</span><br>
-        {% trans %}in all these countries*{% endtrans %}
+        {% if area %}
+        {% trans %}in all these countries{% endtrans %}{% if area %}*{% endif %}
+        {% else %}
+        {% trans %}in the areas they work{% endtrans %}
+        {% endif %}
     </div>
         {% if all_charity_data.total_income %}
         {% set proportion = (data.total_income / all_charity_data.total_income) %}
@@ -55,11 +59,13 @@
     </dd>
 {% endfor %}
 </dl>
+{% if area %}
 <p class="pa0 ma0 f7 gray">
     * {% trans areaname = area.name %}It is not possible to 
         isolate income and spending only on {{ areaname }}, we can only report income and spending by  
         organisations in all the countries they work in.{% endtrans %}
 </p>
+{% endif %}
 {% if data.total_income_years %}
 <p class="pa0 mh0 mb0 mt1 f7 gray">
     {% trans latest_year=data.total_income_years|dictsort(false, 'value', true)|first|first %}
