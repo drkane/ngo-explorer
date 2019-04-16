@@ -3,3 +3,4 @@ ngo_explorer/utils/iati/oipa-country-participant.json
 uploads/
 !*.pot
 node_modules/
+env/

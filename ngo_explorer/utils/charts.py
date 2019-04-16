@@ -65,6 +65,14 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
     if len(continents) == 1 and continents[0].lower() in current_app.config["PLOTLY_GEO_SCOPES"]:
         scope = continents[0].lower()
 
+    filtered = False
+    for c in countries:
+        if c.get("filtered"):
+            filtered = True
+            break
+    if filtered:
+        countries = [c for c in countries if c.get("filtered")]
+
     return plotly.offline.plot({
         "data": [
             go.Scattergeo(
@@ -72,13 +80,15 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
                 lat=[c['latitude'] for c in countries],
                 text=["{} ({:,.0f} charit{})".format(
                     c['name'],
-                    c.get("charity_count", 0),
-                    "y" if c.get("charity_count", 0) ==1 else "ies"
+                    c.get("count", 0),
+                    "y" if c.get("count", 0) ==1 else "ies"
                  ) for c in countries],
                 hoverinfo="text",
                 marker=dict(
                     size=6,
-                    color='#237756',
+                    color=[c.get("count", 1) for c in countries],
+                    colorscale=[[0, '#0ca777'], [1, '#237756']],
+                    autocolorscale=False,
                     symbol='circle',
                     opacity=1,
                 ),
@@ -86,18 +96,18 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
             go.Choropleth(
                 locationmode='ISO-3',
                 locations=[c['iso'] for c in countries],
-                z=[1 for c in countries],
+                z=[c.get("count", 1) for c in countries],
                 text=["{} ({})".format(
                     c['name'],
-                    ngettext("%(num)d charity", "%(num)d charities", num=c.get("charity_count", 0)),
+                    ngettext("%(num)d charity", "%(num)d charities", num=c.get("count", 0)),
                 ) for c in countries],
-                colorscale=[[0, '#237756'], [1, '#237756']],
+                colorscale=[[0, '#0ca777'], [1, '#237756']],
                 autocolorscale=False,
                 showscale=False,
                 hoverinfo="text",
                 marker=dict(
                     line=dict(
-                        width=1,
+                        width=0,
                         color='#1e6c4d',
                     ),
                 ),
@@ -165,7 +175,7 @@ def horizontal_bar(categories, value="count", text=None, log_axis=False, colour=
                     color='#fff',
                 ),
             ),
-            textposition='auto' if not log_axis or (x[value] / max_value > 0.05) else 'outside',
+            textposition='auto' if not log_axis or not max_value or ((x[value] / max_value) > 0.05) else 'outside',
             marker=dict(
                 color=colour,
             ),

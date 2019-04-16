@@ -16,7 +16,7 @@ class CharityBaseResult(object):
         result = result.get("getCharities", {}) or {}
         self.aggregate = result.get("aggregate")
         self.count = result.get("count")
-        self.list = [CharityBaseCharity(c) for c in result.get("list", [])]
+        self.list = [CharityBaseCharity(c) for c in result.get("list", [])] if result.get("list") else []
 
         self._parse_aggregates()
         self._parse_income_buckets()
@@ -40,6 +40,8 @@ class CharityBaseResult(object):
                 for i in self.aggregate["areas"]
                 if get_country_by_id(i['key'])
             ]
+        else:
+            self.countries = []
 
         if self.aggregate.get("finances", {}).get("latestIncome", {}):
             self.total_income = sum([

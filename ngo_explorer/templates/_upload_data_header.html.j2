@@ -1,10 +1,11 @@
 {% import "_tabs.html.j2" as tabs %}
 <div class="page-header mb4 w-100 cf">
     <div class="flex flex-column items-center tc">
-        {% if title %}
-        <h2 class="korolev lh-title mb0 mt3">{{ title }}</h2>
+        {{ data.countries|location_map() }}
+        {% if area.name %}
+        <h2 class="korolev lh-title mb0 mt3">{{ area.name }}</h2>
         <p class="korolev f4 gray lh-copy mv0">
-        {% trans count=charitynumbers|length, ccount=charitynumbers|length|_n %}
+        {% trans count=data.count, ccount=data.count|_n %}
         Data on {{ ccount }} charity
         {% pluralize %}
         Data on {{ ccount }} charities
@@ -12,7 +13,7 @@
         </p>
         {% else %}
         <h2 class="korolev lh-title mb0 mt3">
-        {% trans count=charitynumbers|length, ccount=charitynumbers|length|_n %}
+        {% trans count=data.count, ccount=data.count|_n %}
         Data on {{ ccount }} charity
         {% pluralize %}
         Data on {{ ccount }} charities

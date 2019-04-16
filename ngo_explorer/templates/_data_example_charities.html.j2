@@ -5,13 +5,13 @@
     </div>
     {% if data.countries %}
     <div class="f5 mr4 mb3">
-        {% if area %}
+        {% if not area.type=="upload" %}
         {% trans areaname=area.name %}NGOs working in {{ areaname }} also work in a further{% endtrans %}
         {% else %}
         {% trans %}These NGOs work in {% endtrans %}
         {% endif %}
         <span class="f3 korolev big-numbers v-mid">{{ data.countries|length|_n }}</span>
-        {% trans count=data.countries|length %}country{% pluralize %}countries{% endtrans %}
+        {% trans count=data.countries|length %}country, including the UK{% pluralize %}countries, including the UK{% endtrans %}
     </div>
     {% endif %}
     {% if data.total_income %}
@@ -42,7 +42,7 @@
         {% endif %}
     {% endif %}
 </div>
-{% if area %}
+{% if not area.type=="upload" %}
 <p class="pa0 ma0 f7 gray">
     * {% trans areaname = area.name %}It is not possible to 
         isolate income and spending only on {{ areaname }}, we can only report income and spending by  

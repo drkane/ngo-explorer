@@ -26,8 +26,8 @@ def region(regionid, regiontype="continent", filetype="html", subpage="dashboard
 
     return data_page(
         area,
-        filetype,
-        subpage,
+        filetype=filetype,
+        page=subpage,
         url_base=[".region", {"regiontype": regiontype, "regionid": regionid}]
     )
 
@@ -48,12 +48,12 @@ def country(countryid, filetype="html", subpage='dashboard'):
 
     return data_page(
         area,
-        filetype,
-        subpage,
+        filetype=filetype,
+        page=subpage,
         url_base=[".country", {"countryid": countryid}]
     )
 
-def data_page(area, filetype="html", page='dashboard', url_base=[]):
+def data_page(area=None, charity_ids=None, filetype="html", page='dashboard', url_base=[]):
 
     if request.method=="POST":
         filters_raw = request.form
@@ -99,23 +99,32 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
         )
 
     all_charity_data = fetch_charitybase(query="all_charities")
-    charity_data = fetch_charitybase(
-        countries=area["countries"],
+    fetch_params = dict(
         filters=filters,
         limit=30,
         skip=filters.get("skip", 0),
         query=qgl_query,
         sort="random" if page=="dashboard" else "default"
     )
+    if area and area.get("countries"):
+        fetch_params['countries'] = area["countries"]
+    if charity_ids:
+        fetch_params['ids'] = charity_ids
+    
+    charity_data = fetch_charitybase(**fetch_params)
     charity_data.set_charts()
 
-    for c in area["countries"]:
-        # whether the country has been filtered to the 
-        c["filtered"] = c["id"] in filters.get("countries", []) if filters.get("countries") else True
-        # number of charities in the selection that work in the country
-        if getattr(charity_data, "aggregate", None):
-            c["charity_count"] = sum(
-                [i["count"] for i in charity_data.aggregate["areas"] if i["key"] == c["id"]])
+    iati_data = None
+    if area and area.get("countries"):
+        for c in area["countries"]:
+            # whether the country has been filtered to the 
+            c["filtered"] = c["id"] in filters.get("countries", []) if filters.get("countries") else True
+            # number of charities in the selection that work in the country
+            if getattr(charity_data, "aggregate", None):
+                c["count"] = sum(
+                    [i["count"] for i in charity_data.aggregate["areas"] if i["key"] == c["id"]])
+
+        iati_data = fetch_iati(area["countries"])
 
     if filetype=="json":
 
@@ -144,8 +153,6 @@ def data_page(area, filetype="html", page='dashboard', url_base=[]):
             filters=filters_raw,
             pages=pages,
         ))
-
-    iati_data = fetch_iati(area["countries"])
 
     return render_template(pages[page]["template"],
                            area=area,

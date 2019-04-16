@@ -11,7 +11,11 @@
 
 {% block content %}
 {% set active_page =  "dashboard" %}
+{% if area.type=="upload" %}
+{% include '_upload_data_header.html.j2' %}
+{% else %}
 {% include '_data_header.html.j2' %}
+{% endif %}
 <div class="w-100 cf mt2">
     <form action="{{request.path}}" id="filter-form">
         {% include '_data_sidebar.html.j2' %}
@@ -43,8 +47,10 @@
     </div>
 </div>
 
+{% if not area.type=="upload" %}
 {% include '_data_iati.html.j2' %}
 {% include '_data_other_resources.html.j2' %}
+{% endif %}
 {% endblock %}
 
 {% block scripts %}
