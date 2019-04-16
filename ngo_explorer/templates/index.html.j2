@@ -3,7 +3,7 @@
 {% block title %}NGO Explorer{% endblock %}
 
 {% block content %}
-<div class="fl w-70-l w-100 h6">
+<div class="fl w-70-l w-100">
     <div class="cf lh-copy">
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
@@ -106,18 +106,36 @@
             </div>
         </div>
     </div>
+    <div>
+        <div class="db fl w-30-l w-100">&nbsp;</div>
+        <div class="db fl w-70-l w-100">
+            <div class="cf br2 bg-light-gray pa3">
+                <h3 class="korolev ma0">{% trans %}Upload your own data{% endtrans %}</h3>
+                <div class="cf mt2">
+                    <a href="{{ url_for('upload.data') }}"
+                    class="korolev ph4 pv3 bg-yellow dark-gray no-underline dib f5 br2 fr darken ml2">{% trans %}Upload your data{% endtrans %} <i class="material-icons v-mid">publish</i></a>
+                    <p class="ma0 pa0"> 
+                        {% trans %}If you have a list of UK charity numbers, you can 
+                        upload your data to explore your group of
+                        charities.{% endtrans %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="fl w-30-l w-100">
+
     <div class="ml3-l ml0 br2 bg-light-gray pa3">
-        <h3 class="korolev ma0">{% trans %}Upload your own data{% endtrans %}</h3>
+        <h3 class="korolev ma0">{% trans %}About this site{% endtrans %}</h3>
         <div class="cf">
             <p> 
-                {% trans %}If you have a list of UK charity numbers, you can 
-                upload your data to explore your group of
-                charities.{% endtrans %}
+                {% trans %}This tool uses data from 
+                <a href="https://charitybase.uk/" class="link blue" target="_blank">CharityBase</a> 
+                to explore the work of UK charities in other countries.{% endtrans %}
+                {% trans %}If you're looking for information on charities operating in
+                the UK you can explore and search using CharityBase.{% endtrans %}
             </p>
-            <a href="{{ url_for('upload.data') }}"
-               class="korolev ph4 pv3 bg-yellow dark-gray no-underline dib f5 br2 fr darken">{% trans %}Upload your data{% endtrans %} <i class="material-icons v-mid">publish</i></a>
         </div>
     </div>
 </div>
