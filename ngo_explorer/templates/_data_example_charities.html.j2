@@ -42,23 +42,6 @@
         {% endif %}
     {% endif %}
 </div>
-<h3 class="f5">{% trans %}Example NGOs{% endtrans %}</h3>
-<dl>
-{% for c in data.list|randomn(3) %}
-    <dt class="b">
-        <a class="link blue b" href="{{ url_for('data.charity', charityid=c.id) }}">
-            {{ c.name|correct_titlecase }}
-        </a>
-    </dt>
-    <dd class="mw6-l ml0 mb2">
-        {% if c.activities %}
-        <p class="f7 dark-gray pa0 ma0">
-            {{ c.activities|truncate(100) }}
-        </p>
-        {% endif %}
-    </dd>
-{% endfor %}
-</dl>
 {% if area %}
 <p class="pa0 ma0 f7 gray">
     * {% trans areaname = area.name %}It is not possible to 
