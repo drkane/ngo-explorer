@@ -153,7 +153,7 @@ def parse_download_fields(original_fields):
     return fields
 
 
-def download_file(area, filters, fields, filetype='csv', max_results=500):
+def download_file(area, ids, filters, fields, filetype='csv', max_results=500):
     limit = 30
     cb_variables = dict(
         filters=filters,
@@ -163,9 +163,9 @@ def download_file(area, filters, fields, filetype='csv', max_results=500):
         query_fields=parse_download_fields(fields)
     )
 
-    if "ids" in area:
+    if ids:
         # assume it's a list of ids
-        cb_variables["ids"] = area["ids"]
+        cb_variables["ids"] = ids
     elif "countries" in area:
         # assume it's an "Area" object with countries in
         cb_variables["countries"] = area["countries"]

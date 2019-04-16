@@ -2,7 +2,11 @@
 
 {% block content %}
 {% set active_page = "download" %}
+{% if area.type=="upload" %}
+{% include '_upload_data_header.html.j2' %}
+{% else %}
 {% include '_data_header.html.j2' %}
+{% endif %}
 <form action="{{request.path}}" id="filter-form">
     {% include '_data_sidebar.html.j2' %}
 

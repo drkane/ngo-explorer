@@ -67,6 +67,9 @@ def upload_pages(fileid):
 @bp.route('/<fileid>')
 def fetch_uploaded_data(fileid, filetype="html", subpage='dashboard'):
 
+    if subpage not in ['dashboard', 'show-charities', 'download']:
+        return render_template('404.html.j2'), 404
+
     filepath = os.path.join(
         current_app.config["DATA_CONTAINER"], "{}.pkl".format(fileid))
 
@@ -95,32 +98,3 @@ def fetch_uploaded_data(fileid, filetype="html", subpage='dashboard'):
     data["data"].set_charts()
     data["all_charity_data"] = fetch_charitybase(query="all_charities")
     return render_template('data.html.j2', pages=upload_pages(fileid), **data)
-
-# @bp.route('/<fileid>/show')
-# def list_uploaded_data(fileid):
-
-#     with open(os.path.join(current_app.config["DATA_CONTAINER"], "{}.pkl".format(fileid)), "rb") as a:
-#         data = pickle.load(a)
-
-#     filters = parse_filters(request.values)
-#     if filters.get("skip", 0) > 0:
-#         data["data"] = fetch_charitybase(
-#             ids=data["charitynumbers"], filters={}, limit=30, skip=filters.get("skip", 0), query="charity_list")
-
-#     return render_template('data-show-charities.html.j2', pages=upload_pages(fileid), filters=request.values, charts={}, **data)
-
-# @bp.route('/<fileid>/download', methods=['GET', 'POST'])
-# def download_uploaded_data(fileid):
-
-#     with open(os.path.join(current_app.config["DATA_CONTAINER"], "{}.pkl".format(fileid)), "rb") as a:
-#         data = pickle.load(a)
-
-#     if "download_type" in request.values:
-#         return download_file(
-#             area={"name": data["title"], "ids": data["charitynumbers"]},
-#             filters={},
-#             fields=request.values.getlist("fields"),
-#             filetype=request.values.get("download_type").lower(),
-#         )
-
-#     return render_template('data-download.html.j2', pages=upload_pages(fileid), charts={}, **data)

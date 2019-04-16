@@ -15,6 +15,10 @@ bp = Blueprint('data', __name__, url_prefix='/')
 @bp.route('/region/<regiontype>/<regionid>/<subpage>')
 @bp.route('/region/<regiontype>/<regionid>')
 def region(regionid, regiontype="continent", filetype="html", subpage="dashboard"):
+
+    if subpage not in ['dashboard', 'show-charities', 'download']:
+        return render_template('404.html.j2'), 404
+
     area = get_country_groups(as_dict=True).get((regiontype, regionid))
 
     if not area:
@@ -37,6 +41,10 @@ def region(regionid, regiontype="continent", filetype="html", subpage="dashboard
 @bp.route('/country/<countryid>/<subpage>')
 @bp.route('/country/<countryid>')
 def country(countryid, filetype="html", subpage='dashboard'):
+
+    if subpage not in ['dashboard', 'show-charities', 'download']:
+        return render_template('404.html.j2'), 404
+
     area = get_multiple_countries(countryid)
 
     if not area:
@@ -93,6 +101,7 @@ def data_page(area=None, charity_ids=None, filetype="html", page='dashboard', ur
     if "download_type" in request.values:
         return download_file(
             area=area,
+            ids=charity_ids,
             filters=filters,
             fields=request.values.getlist("fields"),
             filetype=request.values.get("download_type").lower(),
