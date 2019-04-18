@@ -7,9 +7,9 @@
     <div class="cf lh-copy">
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
-            <h2 class="korolev ma0 mv2-l">{% trans %}Explore UK charities working across the world{% endtrans %}</h2>
+            <h2 class="korolev ma0 mv2-l" id="">{% trans %}Explore UK charities working across the world{% endtrans %}</h2>
 
-            <h3 class="korolev ma0 mv2-l">{% trans %}What's the purpose of the site?{% endtrans %}</h3>
+            <h3 class="korolev ma0 mv2-l" id="purpose">{% trans %}What's the purpose of the site?{% endtrans %}</h3>
             <p>
                 {% trans %}This site is an offshoot of a research project which{% endtrans %} 
                 <a href="https://mappingdevelopmentngos.wordpress.com/reports/" class="link blue" target="_blank">{% trans %}explores the development NGO sector in the UK{% endtrans %}</a>.
@@ -24,7 +24,7 @@
                 order to make these records, which are in the public domain already, more readily available.
                 {% endtrans %}
             </p>
-            <h3 class="korolev ma0 mv2-l">{% trans %}Who's behind the site?{% endtrans %}</h3>
+            <h3 class="korolev ma0 mv2-l" id="who">{% trans %}Who's behind the site?{% endtrans %}</h3>
             <p>
                 {% trans %}This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/" target="_blank" class="link blue">Sheffield Institute for International Development</a> 
                 (University of Sheffield) and
@@ -86,7 +86,7 @@
                 NGOs and others who provided feedback and advice in the development of
                 the site.{% endtrans %}
             </p>
-            <h3 class="korolev ma0 mv2-l">{% trans %}Who has funded this project?{% endtrans %}</h3>
+            <h3 class="korolev ma0 mv2-l" id="funding">{% trans %}Who has funded this project?{% endtrans %}</h3>
             <p>
                 {% trans %}This site has been funded from 
                 <a href="https://www.ukri.org/research/global-challenges-research-fund/" class="link blue external-link" target="_blank">GCRF Global Impact Accelerator funds</a>
@@ -119,7 +119,7 @@
                     </li>
                 </ul>
             </div>
-            <h3 class="korolev ma0 mv2-l">{% trans %}Data sources{% endtrans %}</h3>
+            <h3 class="korolev ma0 mv2-l" id="data">{% trans %}Data sources{% endtrans %}</h3>
             <p>
                 {% trans %}Data on the site comes from the <a href="https://charitybase.uk/api-portal" target="_blank" class="link blue">CharityBase API</a>.
                 CharityBase uses data from the 
@@ -137,19 +137,52 @@
                 If you have any questions or concerns about the charity data, you will need to 
                 contact the Charity Commission.{% endtrans %}
             </p>
-            <h4 class="korolev ma0 mv2-l">{% trans %}IATI{% endtrans %}</h4>
+            <h4 class="korolev ma0 mv2-l" id="iati">{% trans %}IATI{% endtrans %}</h4>
             <p>
                 {% trans %}The site also uses data from the <a href="" target="_blank" class="link blue">International Aid Transparency Initative</a>
                 (IATI). IATI data is published by a large number of aid funders throughout the world. The data used here is
                 sourced from <a href="https://www.oipa.nl/home" target="_blank" class="link blue">OIPA</a>, a rich API
                 for IATI data.{% endtrans %}
             </p>
-            <h4 class="korolev ma0 mv2-l">{% trans %}Other resources{% endtrans %}</h4>
+            <h4 class="korolev ma0 mv2-l" id="other-resources">{% trans %}Other resources{% endtrans %}</h4>
             <p>
                 {% trans %}Where available, the site signposts to other resources, such as national registers of organisations.
                 NGO Explorer is not responsible for the content of external sites.{% endtrans %}
             </p>
-            <h3 class="korolev ma0 mv2-l">{% trans %}Your privacy and cookies{% endtrans %}</h3>
+            <h3 class="korolev ma0 mv2-l" id="resources">{% trans %}Where else can I find data?{% endtrans %}</h3>
+            <p>
+                {% trans %}This site is just one of a ecosystem of resources allowing exploration of the
+                UK charity sector. Other resources include:{% endtrans %} 
+            </p>
+            <ul>
+                <li>
+                    <a href="https://beta.charitycommission.gov.uk/" class="link blue" target="_blank">Charity Commission for England and Wales</a>
+                     - the official register of charities in England and Wales
+                </li>
+                <li>
+                    <a href="https://www.oscr.org.uk/about-charities/search-the-register/register-search/" class="link blue" target="_blank">Scottish Charity Regulator</a>
+                    - the official register of charities in Scotland
+                </li>
+                <li>
+                    <a href="https://www.charitycommissionni.org.uk/charity-search/" class="link blue" target="_blank">Charity Commission for Northern Ireland</a>
+                    - the official register of charities in Northern Ireland
+                </li>
+                <li>
+                    <a href="https://charitybase.uk/" class="link blue" target="_blank">CharityBase UK</a>
+                    - a powerful database and API of charities that powers this site
+                </li>
+                <li>
+                    <a href="https://findthatcharity.uk/" class="link blue" target="_blank">Find that Charity</a>
+                    - a charity search engine combining resources on charities from all 3 UK regulators
+                </li>
+                <li>
+                    <a href="https://olib.uk/charity/html/" class="link blue" target="_blank">CharityData</a>
+                </li>
+                <li>
+                    <a href="https://www.charitychoice.co.uk/charities" class="link blue" target="_blank">Charity Choice</a>
+                </li>
+            </ul>
+            <h3 class="korolev ma0 mv2-l" id="privacy">{% trans %}Your privacy and cookies{% endtrans %}</h3>
             <p>
                 {% trans %}This site uses Google analytics to see how it has been used. Google Analytics
                 uses cookies to help analyse your use of the site.{% endtrans %}
@@ -159,7 +192,7 @@
                 any charity numbers included in the data will be
                 sent to the server in order to create a data dashboard.{% endtrans %}
             </p>
-            <h3 class="korolev ma0 mv2-l">{% trans %}Tell us how you used the website{% endtrans %}</h3>
+            <h3 class="korolev ma0 mv2-l" id="feedback">{% trans %}Tell us how you used the website{% endtrans %}</h3>
             <p>
                 {% trans %}We'd love to hear your feedback on the site. Email us at{% endtrans %} <a href="mailto:info@ngoexplorer.org" class="link blue">info@ngoexplorer.org</a>
             </p>

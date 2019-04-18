@@ -133,8 +133,11 @@
                 {% trans %}This tool uses data from 
                 <a href="https://charitybase.uk/" class="link blue" target="_blank">CharityBase</a> 
                 to explore the work of UK charities in other countries.{% endtrans %}
-                {% trans %}If you're looking for information on charities operating in
-                the UK you can explore and search using CharityBase.{% endtrans %}
+            </p>
+            <p>
+                {% trans about_page=url_for('home.about') %}It does not cover charities which work only in the UK.
+                A number of good sites already exist for charities which work only
+                in the UK and these are listed on <a href="{{ about_page }}#resources" class="link blue">the network page</a>.{% endtrans %}
             </p>
         </div>
     </div>
