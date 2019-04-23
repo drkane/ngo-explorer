@@ -31,7 +31,7 @@ def create_app(test_config=None):
             "DATA_CONTAINER",
             os.path.join(os.getcwd(), "uploads")
         ),
-        DOWNLOAD_LIMIT=500,
+        DOWNLOAD_LIMIT=int(os.environ.get("DOWNLOAD_LIMIT", 500)),
         LANGUAGES=['en'],
         BABEL_TRANSLATION_DIRECTORIES='../translations',
         BABEL_DEFAULT_LOCALE='en',
