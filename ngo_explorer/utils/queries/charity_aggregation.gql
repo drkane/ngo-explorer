@@ -18,7 +18,7 @@ query getCharityAggregation(
     getCharities(filters: $filters) {
       aggregate {
         finances {
-          latestIncome {
+          latestSpending {
             ...allBucket
           }
         }

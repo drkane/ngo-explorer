@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NGO Explorer VERSION\n"
-"Report-Msgid-Bugs-To: david@dkane.net\n"
-"POT-Creation-Date: 2019-04-18 10:01+0100\n"
+"Report-Msgid-Bugs-To: info@ngoexplorer.org\n"
+"POT-Creation-Date: 2019-04-23 09:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,8 +163,8 @@ msgstr ""
 #, python-format
 msgid ""
 "It is not possible to \n"
-"        isolate income and spending only on %(areaname)s, we can only "
-"report income and spending by  \n"
+"        isolate spending only on %(areaname)s, we can only report "
+"spending by  \n"
 "        organisations in all the countries they work in."
 msgstr ""
 
@@ -209,8 +209,8 @@ msgid ""
 "England and Wales, based on areas of operation supplied to the Charity "
 "Commission by the charities themselves. Charities that say they work in "
 "more than <span id=\"max-countries-header\">%(countries)s</span> "
-"countries are not included. Total income of these organisations includes "
-"work they carry out outside of %(areaname)s."
+"countries are not included. Total spending of these organisations "
+"includes work they carry out outside of %(areaname)s."
 msgstr ""
 
 #: ngo_explorer/templates/_data_header.html.j2:28
@@ -956,7 +956,7 @@ msgid "Number of NGOs by size"
 msgstr ""
 
 #: ngo_explorer/templates/data.html.j2:39
-msgid "Amount of income by size (£)"
+msgid "Amount of spending by size (£)"
 msgstr ""
 
 #: ngo_explorer/templates/data.html.j2:40

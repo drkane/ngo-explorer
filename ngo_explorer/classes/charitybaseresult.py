@@ -43,10 +43,10 @@ class CharityBaseResult(object):
         else:
             self.countries = []
 
-        if self.aggregate.get("finances", {}).get("latestIncome", {}):
+        if self.aggregate.get("finances", {}).get("latestSpending", {}):
             self.total_income = sum([
                 f["sum"]
-                for f in self.aggregate.get("finances", {}).get("latestIncome", {})
+                for f in self.aggregate.get("finances", {}).get("latestSpending", {})
             ])
             scale = get_scaling_factor(self.total_income)
             self.total_income_text = "£" + \
@@ -64,7 +64,7 @@ class CharityBaseResult(object):
 
         if not self.aggregate:
             return
-        income_buckets = self.aggregate.get("finances", {}).get("latestIncome", {})
+        income_buckets = self.aggregate.get("finances", {}).get("latestSpending", {})
         if not income_buckets:
             return
 
@@ -109,7 +109,7 @@ class CharityBaseResult(object):
                 scale[2].format(i["sum"] / scale[0])
             income_buckets.append(i)
 
-        self.aggregate["finances"]["latestIncome"] = income_buckets
+        self.aggregate["finances"]["latestSpending"] = income_buckets
 
     def get_charity(self):
         if len(self.list):
@@ -137,8 +137,8 @@ class CharityBaseResult(object):
         colours = ['#237756', '#F9AF42', '#043942', '#0CA777']
 
         return {
-            "count": horizontal_bar(self.aggregate["finances"]["latestIncome"], "count", colour=colours[0]),
-            "amount": horizontal_bar(self.aggregate["finances"]["latestIncome"], "sum", "sumIncomeText", log_axis=True, colour=colours[1]),
+            "count": horizontal_bar(self.aggregate["finances"]["latestSpending"], "count", colour=colours[0]),
+            "amount": horizontal_bar(self.aggregate["finances"]["latestSpending"], "sum", "sumIncomeText", log_axis=True, colour=colours[1]),
             "countries": horizontal_bar(countries[0:12], "count", colour=colours[2]),
             **{
                 k: horizontal_bar(

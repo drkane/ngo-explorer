@@ -4,7 +4,7 @@
             "getCharities": {
                 "aggregate": {
                     "finances": {
-                        "latestIncome": {
+                        "latestSpending": {
                             "buckets": [
                                 {
                                     "key": "0",

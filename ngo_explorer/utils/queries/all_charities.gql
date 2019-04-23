@@ -3,7 +3,7 @@ query getAllCharities {
     getCharities(filters: {}) {
       aggregate {
         finances {
-          latestIncome {
+          latestSpending {
             buckets {
               key
               name

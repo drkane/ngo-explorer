@@ -64,12 +64,12 @@ def fetch_charitybase(
 
         if "max_income" in filters or "min_income" in filters:
             variables["filters"]["finances"] = {
-                "latestIncome": {}
+                "latestSpending": {}
             }
             if "max_income" in filters:
-                variables["filters"]["finances"]["latestIncome"]["lte"] = filters["max_income"]
+                variables["filters"]["finances"]["latestSpending"]["lte"] = filters["max_income"]
             if "min_income" in filters:
-                variables["filters"]["finances"]["latestIncome"]["gte"] = filters["min_income"]
+                variables["filters"]["finances"]["latestSpending"]["gte"] = filters["min_income"]
 
         if "countries" in filters:
             countries = [c for c in variables["filters"]["areas"]["some"] if c in filters["countries"]]
