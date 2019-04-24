@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}NGO Explorer{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}">
@@ -35,6 +35,13 @@
         </script>
         {% endif %}
         {% endblock %}
+        {% block social %}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:creator" content="@kanedr" />
+        <meta property="og:url" content="{{ request.url }}" />
+        <meta property="og:title" content="{{ self.title() }}" />
+        <meta property="og:image" content="{{ url_for('static', filename='images/ngo_explorer_logo.png') }}" />
+        {% endblock social %}
     </head>
     <body class="source-sans tabular-nums dark-gray {% if 'debug' in request.values %}debug debug-grid{% endif %}">
         <div class="container">
