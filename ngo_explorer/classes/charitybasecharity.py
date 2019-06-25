@@ -32,6 +32,8 @@ class CharityBaseCharity(object):
                 max([int(i) for i in self._inflation.keys()]))
 
         for f in self.finances:
+            if f.get("financialYear", {}).get("end") is None:
+                continue
             year = f["financialYear"]["end"].year
             inflator = self._inflation.get(
                 self._current_year) / self._inflation.get(str(year))
