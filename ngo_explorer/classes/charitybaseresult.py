@@ -54,7 +54,7 @@ class CharityBaseResult(object):
             self.total_income_years = {}
             if self.list:
                 for c in self.list:
-                    if c.finances:
+                    if c.finances and c.finances[0].get("financialYear", {}).get("end"):
                         year = c.finances[0]["financialYear"]["end"].year
                         if year not in self.total_income_years:
                             self.total_income_years[year] = 0
