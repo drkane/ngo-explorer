@@ -103,7 +103,7 @@ def test_country(client, m):
     assert b'Other resources' in rv.data
     assert b'How NGOs describe themselves' in rv.data
     assert b'id="min-income"' in rv.data
-    assert b'https://ngoaidmap.org/location/gn_2395170' in rv.data
+    # assert b'https://ngoaidmap.org/location/gn_2395170' in rv.data
     assert b'https://devtracker.dfid.gov.uk/countries/BJ/' in rv.data
     assert b'http://www.cfrong.org/' in rv.data
     assert b'<span id="charity-count">4,810 UK NGOs</span>' in rv.data
