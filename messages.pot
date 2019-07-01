@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NGO Explorer VERSION\n"
 "Report-Msgid-Bugs-To: info@ngoexplorer.org\n"
-"POT-Creation-Date: 2019-04-23 09:57+0100\n"
+"POT-Creation-Date: 2019-07-01 12:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,32 +51,32 @@ msgstr ""
 msgid "File \"%(fileid)s\" could not be found"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:130
-#: ngo_explorer/classes/charitybasecharity.py:168
+#: ngo_explorer/classes/charitybasecharity.py:140
+#: ngo_explorer/classes/charitybasecharity.py:178
 #, python-format
 msgid "Income (%(year)s prices)"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:132
-#: ngo_explorer/classes/charitybasecharity.py:180
+#: ngo_explorer/classes/charitybasecharity.py:142
+#: ngo_explorer/classes/charitybasecharity.py:190
 #, python-format
 msgid "Spending (%(year)s prices)"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:135
+#: ngo_explorer/classes/charitybasecharity.py:145
 #, python-format
 msgid "%(year)s prices"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:144
+#: ngo_explorer/classes/charitybasecharity.py:154
 msgid "Income (cash terms)"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:145
+#: ngo_explorer/classes/charitybasecharity.py:155
 msgid "Spending (cash terms)"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:148
+#: ngo_explorer/classes/charitybasecharity.py:158
 msgid "Cash terms"
 msgstr ""
 
@@ -455,7 +455,7 @@ msgid "Country"
 msgstr ""
 
 #: ngo_explorer/templates/_data_sidebar.html.j2:6
-msgid "Search name or activities"
+msgid "Search charity activities"
 msgstr ""
 
 #: ngo_explorer/templates/_data_sidebar.html.j2:11
@@ -551,7 +551,7 @@ msgid "Funded by"
 msgstr ""
 
 #: ngo_explorer/templates/_footer.html.j2:33
-msgid "An explorer for data on development charities based in the UK."
+msgid "An explorer for data on development charities based in England and Wales."
 msgstr ""
 
 #: ngo_explorer/templates/_footer.html.j2:34
@@ -1000,7 +1000,7 @@ msgid "Example searches"
 msgstr ""
 
 #: ngo_explorer/templates/index.html.j2:102
-msgid "in charity name and description"
+msgid "in charity description"
 msgstr ""
 
 #: ngo_explorer/templates/index.html.j2:113
@@ -1015,7 +1015,7 @@ msgstr ""
 
 #: ngo_explorer/templates/index.html.j2:118
 msgid ""
-"If you have a list of UK charity numbers, you can \n"
+"If you have a list of England and Wales charity numbers, you can \n"
 "                        upload your data to explore your group of\n"
 "                        charities."
 msgstr ""
@@ -1029,13 +1029,14 @@ msgid ""
 "This tool uses data from \n"
 "                <a href=\"https://charitybase.uk/\" class=\"link blue\" "
 "target=\"_blank\">CharityBase</a> \n"
-"                to explore the work of UK charities in other countries."
+"                to explore the work of English and Welsh charities in "
+"other countries."
 msgstr ""
 
 #: ngo_explorer/templates/index.html.j2:138
 #, python-format
 msgid ""
-"It does not cover charities which work only in the UK.\n"
+"Charities working only in the UK are excluded.\n"
 "                A number of good sites already exist for charities which "
 "work only\n"
 "                in the UK and these are listed on <a "
@@ -1045,7 +1046,7 @@ msgstr ""
 
 #: ngo_explorer/templates/upload.html.j2:12
 msgid ""
-"If you have a list of UK charity numbers, you can \n"
+"If you have a list of England and Wales charity numbers, you can \n"
 "                upload your data to explore your group of\n"
 "                charities."
 msgstr ""
