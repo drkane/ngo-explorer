@@ -35,11 +35,15 @@ class CharityBaseCharity(object):
             if f.get("financialYear", {}).get("end") is None:
                 continue
             year = f["financialYear"]["end"].year
-            inflator = self._inflation.get(
-                self._current_year) / self._inflation.get(str(year), 100)
-            if "income" in f:
+            if self._inflation.get(str(year)):
+                inflator = self._inflation.get(
+                    self._current_year) / self._inflation.get(str(year))
+            else:
+                inflator = 1
+
+            if f.get("income"):
                 f["income_inflated"] = f["income"] * inflator
-            if "spending" in f:
+            if f.get("spending"):
                 f["spending_inflated"] = f["spending"] * inflator
 
     def _set_name(self):
