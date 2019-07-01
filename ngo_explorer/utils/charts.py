@@ -3,7 +3,7 @@ import uuid
 from collections import Counter
 import re
 
-from flask import current_app
+from flask import current_app, url_for
 from flask_babel import ngettext
 import plotly.graph_objs as go
 import plotly
@@ -134,6 +134,7 @@ def location_map(countries, continents=None, height=200, landcolor="rgb(229, 229
         displayModeBar=False,
         staticPlot=static,
         scrollZoom=False,
+        topojsonURL=url_for('static', filename='maps/'),
     ))
 
 
