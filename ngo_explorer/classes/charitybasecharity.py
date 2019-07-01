@@ -35,11 +35,15 @@ class CharityBaseCharity(object):
             if f.get("financialYear", {}).get("end") is None:
                 continue
             year = f["financialYear"]["end"].year
-            inflator = self._inflation.get(
-                self._current_year) / self._inflation.get(str(year))
-            if "income" in f:
+            if self._inflation.get(str(year)):
+                inflator = self._inflation.get(
+                    self._current_year) / self._inflation.get(str(year))
+            else:
+                inflator = 1
+
+            if f.get("income"):
                 f["income_inflated"] = f["income"] * inflator
-            if "spending" in f:
+            if f.get("spending"):
                 f["spending_inflated"] = f["spending"] * inflator
 
     def _set_name(self):
@@ -77,6 +81,10 @@ class CharityBaseCharity(object):
 
     def _parse_dates(self):
         if getattr(self, "finances", None):
+            # remove any none attributes
+            self.finances = [f for f in self.finances if (
+                f.get("income") and f.get("spending") and f.get("financialYear", {}).get("end"))]
+
             # convert text strings to datetime
             for f in self.finances:
                 if f.get("financialYear", {}).get("end"):
