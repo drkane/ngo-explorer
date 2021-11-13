@@ -1,8 +1,8 @@
 import copy
+import math
 import re
 import uuid
 from collections import Counter
-import math
 
 import plotly
 import plotly.graph_objs as go
@@ -222,11 +222,11 @@ def horizontal_bar(
     for x in hb_plot["layout"]:
         if x.startswith("yaxis") or x.startswith("xaxis"):
             hb_plot["layout"][x]["visible"] = False
-        
+
         if x.startswith("xaxis"):
             if log_axis:
                 hb_plot["layout"][x]["type"] = "log"
-                hb_plot["layout"][x]["range"] = [1, int(math.log10(max_value))+1]
+                hb_plot["layout"][x]["range"] = [1, int(math.log10(max_value)) + 1]
             else:
                 hb_plot["layout"][x]["range"] = [0, max_value * 1.1]
 
