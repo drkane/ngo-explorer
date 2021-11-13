@@ -1,0 +1,10 @@
+flask
+requests
+requests-cache
+Flask-Babel
+python-slugify
+plotly
+XlsxWriter
+graphqlclient
+gunicorn
+python-dotenv

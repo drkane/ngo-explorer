@@ -2,21 +2,25 @@ import copy
 
 from flask_babel import _
 
+from ..utils.charts import horizontal_bar, line_chart, word_cloud
 from ..utils.countries import get_country_by_id
-from ..utils.utils import get_scaling_factor
-from ..utils.charts import line_chart, horizontal_bar, word_cloud
 from ..utils.filters import CLASSIFICATION
+from ..utils.utils import get_scaling_factor
 from .charitybasecharity import CharityBaseCharity
 
-class CharityBaseResult(object):
 
+class CharityBaseResult(object):
     def __init__(self, result):
 
         result = result.get("data", {}).get("CHC", {}) or {}
         result = result.get("getCharities", {}) or {}
         self.aggregate = result.get("aggregate")
         self.count = result.get("count")
-        self.list = [CharityBaseCharity(c) for c in result.get("list", [])] if result.get("list") else []
+        self.list = (
+            [CharityBaseCharity(c) for c in result.get("list", [])]
+            if result.get("list")
+            else []
+        )
 
         self._parse_aggregates()
         self._parse_income_buckets()
@@ -35,22 +39,24 @@ class CharityBaseResult(object):
 
         if self.aggregate.get("areas", {}):
             self.countries = [
-                {"count": i["count"], **
-                    get_country_by_id(i['key']), "id": i["key"]}
+                {"count": i["count"], **get_country_by_id(i["key"]), "id": i["key"]}
                 for i in self.aggregate["areas"]
-                if get_country_by_id(i['key'])
+                if get_country_by_id(i["key"])
             ]
         else:
             self.countries = []
 
         if self.aggregate.get("finances", {}).get("latestSpending", {}):
-            self.total_income = sum([
-                f["sum"]
-                for f in self.aggregate.get("finances", {}).get("latestSpending", {})
-            ])
+            self.total_income = sum(
+                [
+                    f["sum"]
+                    for f in self.aggregate.get("finances", {}).get(
+                        "latestSpending", {}
+                    )
+                ]
+            )
             scale = get_scaling_factor(self.total_income)
-            self.total_income_text = "£" + \
-                scale[2].format(self.total_income / scale[0])
+            self.total_income_text = "£" + scale[2].format(self.total_income / scale[0])
             self.total_income_years = {}
             if self.list:
                 for c in self.list:
@@ -105,8 +111,7 @@ class CharityBaseResult(object):
         income_buckets = []
         for i in new_buckets.values():
             scale = get_scaling_factor(i["sum"])
-            i["sumIncomeText"] = "£" + \
-                scale[2].format(i["sum"] / scale[0])
+            i["sumIncomeText"] = "£" + scale[2].format(i["sum"] / scale[0])
             income_buckets.append(i)
 
         self.aggregate["finances"]["latestSpending"] = income_buckets
@@ -125,24 +130,30 @@ class CharityBaseResult(object):
 
         for i in CLASSIFICATION.keys():
             for x in self.aggregate[i]:
-                x['name'] = CLASSIFICATION.get(i, {}).get(x["key"], x["key"])
+                x["name"] = CLASSIFICATION.get(i, {}).get(x["key"], x["key"])
 
         if selected_countries and len(selected_countries) == 1:
-            selected_country = selected_countries[0]['id']
-            countries = [c for c in self.countries if c['id']
-                         != selected_country]
+            selected_country = selected_countries[0]["id"]
+            countries = [c for c in self.countries if c["id"] != selected_country]
         else:
             countries = self.countries
 
-        colours = ['#237756', '#F9AF42', '#043942', '#0CA777']
+        colours = ["#237756", "#F9AF42", "#043942", "#0CA777"]
 
         return {
-            "count": horizontal_bar(self.aggregate["finances"]["latestSpending"], "count", colour=colours[0]),
-            "amount": horizontal_bar(self.aggregate["finances"]["latestSpending"], "sum", "sumIncomeText", log_axis=True, colour=colours[1]),
+            "count": horizontal_bar(
+                self.aggregate["finances"]["latestSpending"], "count", colour=colours[0]
+            ),
+            "amount": horizontal_bar(
+                self.aggregate["finances"]["latestSpending"],
+                "sum",
+                "sumIncomeText",
+                log_axis=True,
+                colour=colours[1],
+            ),
             "countries": horizontal_bar(countries[0:12], "count", colour=colours[2]),
             **{
-                k: horizontal_bar(
-                    self.aggregate[k], "count", colour=colours[i])
+                k: horizontal_bar(self.aggregate[k], "count", colour=colours[i])
                 for i, k in enumerate(CLASSIFICATION.keys())
             },
             "word_cloud": word_cloud(self.list),

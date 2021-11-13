@@ -40,7 +40,7 @@ CLASSIFICATION = {
         "308": _("Sponsors or undertakes research"),
         "309": _("Acts as an umbrella or resource body"),
         "310": _("Other charitable activities"),
-    }
+    },
 }
 
 REGIONS = {
@@ -65,11 +65,14 @@ REGIONS = {
 
 def parse_filters(filters):
     return_filters = {}
-    
+
     # search
     if filters.get("filter-search"):
         return_filters["search"] = filters.get("filter-search")
-        if '"' not in return_filters["search"] and " OR " not in return_filters["search"]:
+        if (
+            '"' not in return_filters["search"]
+            and " OR " not in return_filters["search"]
+        ):
             return_filters["search"] = '"{}"'.format(return_filters["search"])
 
     # cause, beneficiaries, operations
@@ -90,25 +93,25 @@ def parse_filters(filters):
 
     # further country filter (refines the main url country selection)
     if filters.get("filter-countries"):
-        return_filters['countries'] = filters.getlist('filter-countries')
+        return_filters["countries"] = filters.getlist("filter-countries")
 
     # region filter
     if filters.get("filter-regions"):
-        return_filters['regions'] = filters.get('filter-regions')
+        return_filters["regions"] = filters.get("filter-regions")
 
     # exclude grantmakers
     if "filter-exclude-grantmakers" in filters:
-        return_filters['exclude_grantmakers'] = True
+        return_filters["exclude_grantmakers"] = True
 
     # exclude grantmakers
     if "filter-exclude-religious" in filters:
-        return_filters['exclude_religious'] = True
+        return_filters["exclude_religious"] = True
 
     # max_countries
     return_filters["max_countries"] = int(filters.get("filter-max-countries", 50))
 
     # page for lists
     if filters.get("filter-skip"):
-        return_filters['skip'] = int(filters.get("filter-skip"))
+        return_filters["skip"] = int(filters.get("filter-skip"))
 
     return return_filters

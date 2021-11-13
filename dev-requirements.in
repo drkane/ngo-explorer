@@ -1,0 +1,5 @@
+-r requirements.in
+pytest
+requests-mock
+black
+isort

@@ -1,3 +1,3 @@
-from .graphqlclientrequests import GraphQLClientRequests
-from .charitybaseresult import CharityBaseResult
 from .charitybasecharity import CharityBaseCharity
+from .charitybaseresult import CharityBaseResult
+from .graphqlclientrequests import GraphQLClientRequests

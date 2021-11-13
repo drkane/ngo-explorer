@@ -3,7 +3,10 @@ import os
 
 # @TODO: turn in flask command line script
 
-with open(os.path.join(os.path.dirname(__file__), "oipa-country-participant.json"), encoding='utf8') as a:
+with open(
+    os.path.join(os.path.dirname(__file__), "oipa-country-participant.json"),
+    encoding="utf8",
+) as a:
     data = json.load(a)
     countries = {}
     print(data["count"])
@@ -23,11 +26,15 @@ with open(os.path.join(os.path.dirname(__file__), "oipa-country-participant.json
                 }
 
             countries[country_code][orgid]["count"] += r.get("count", 0)
-        
+
     for country_code in countries.keys():
         countries[country_code] = list(countries[country_code].values())
 
-    with open(os.path.join(os.path.dirname(__file__), "oipa-country-participant-gb.json"), "w", encoding='utf8') as b:
+    with open(
+        os.path.join(os.path.dirname(__file__), "oipa-country-participant-gb.json"),
+        "w",
+        encoding="utf8",
+    ) as b:
         json.dump(countries, b, indent=4)
     for c, orgs in countries.items():
         print(c, len(orgs))
