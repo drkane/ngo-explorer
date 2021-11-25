@@ -2,7 +2,8 @@
 
 Data tool to help international development NGOs to navigate charity commission data.
 
-[![CircleCI](https://img.shields.io/circleci/project/github/drkane/ngo-explorer.svg?logo=circleci&style=popout)](https://circleci.com/gh/drkane/ngo-explorer)
+[![Python linting](https://github.com/drkane/ngo-explorer/actions/workflows/pythonlint.yml/badge.svg)](https://github.com/drkane/ngo-explorer/actions/workflows/pythonlint.yml)
+[![Pytest](https://github.com/drkane/ngo-explorer/actions/workflows/pythontest.yml/badge.svg)](https://github.com/drkane/ngo-explorer/actions/workflows/pythontest.yml)
 [![Github Issues](https://img.shields.io/github/issues/drkane/ngo-explorer.svg?style=popout&logo=github)](https://github.com/drkane/ngo-explorer/issues)
 [![Licence](https://img.shields.io/github/last-commit/drkane/ngo-explorer.svg?style=popout&logo=github)](https://github.com/drkane/ngo-explorer)
 
