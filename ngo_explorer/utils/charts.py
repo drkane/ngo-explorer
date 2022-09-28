@@ -5,6 +5,7 @@ import uuid
 from collections import Counter
 
 import plotly
+from plotly.subplots import make_subplots
 import plotly.graph_objs as go
 from flask import current_app, url_for
 from flask_babel import ngettext
@@ -165,7 +166,7 @@ def horizontal_bar(
             layout={},
         )
 
-    hb_plot = plotly.subplots.make_subplots(
+    hb_plot = make_subplots(
         rows=len(categories),
         cols=1,
         subplot_titles=[x["name"] for x in categories],
