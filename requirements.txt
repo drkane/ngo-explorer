@@ -20,8 +20,6 @@ charset-normalizer==2.1.1
     # via requests
 click==8.1.3
     # via flask
-colorama==0.4.5
-    # via click
 exceptiongroup==1.0.0rc9
     # via cattrs
 flask==2.2.2
@@ -76,7 +74,7 @@ urllib3==1.26.12
     # via
     #   requests
     #   requests-cache
-werkzeug==2.2.2
+werkzeug==2.2.3
     # via flask
 xlsxwriter==3.0.3
     # via -r requirements.in
