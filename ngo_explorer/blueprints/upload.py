@@ -81,7 +81,6 @@ def upload_pages(fileid):
 @bp.route("/<fileid>/<subpage>")
 @bp.route("/<fileid>")
 def fetch_uploaded_data(fileid, filetype="html", subpage="dashboard"):
-
     if subpage not in ["dashboard", "show-charities", "download"]:
         return render_template("404.html.j2"), 404
 

@@ -119,7 +119,6 @@ DOWNLOAD_OPTIONS = {
 
 
 def parse_download_fields(original_fields):
-
     fields = record_to_nested(original_fields)
 
     # get income fields

@@ -9,7 +9,6 @@ from ..utils.utils import nested_to_record
 
 
 class CharityBaseCharity(object):
-
     date_format = "%Y-%m-%d"
 
     def __init__(self, chardata):
@@ -236,7 +235,6 @@ class CharityBaseCharity(object):
         r = nested_to_record(self.as_dict())
         data = {}
         for k, v in r.items():
-
             if k == "finances":
                 years_seen = []
                 for f in v:

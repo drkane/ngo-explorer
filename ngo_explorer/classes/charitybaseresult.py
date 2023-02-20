@@ -11,7 +11,6 @@ from .charitybasecharity import CharityBaseCharity
 
 class CharityBaseResult(object):
     def __init__(self, result):
-
         result = result.get("data", {}).get("CHC", {}) or {}
         result = result.get("getCharities", {}) or {}
         self.aggregate = result.get("aggregate")
@@ -67,7 +66,6 @@ class CharityBaseResult(object):
                         self.total_income_years[year] += 1
 
     def _parse_income_buckets(self):
-
         if not self.aggregate:
             return
         income_buckets = self.aggregate.get("finances", {}).get("latestSpending", {})
@@ -124,7 +122,6 @@ class CharityBaseResult(object):
         self.charts = self.get_charts(selected_countries)
 
     def get_charts(self, selected_countries=None):
-
         if not self.aggregate:
             return None
 

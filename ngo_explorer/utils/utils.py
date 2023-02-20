@@ -91,7 +91,6 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
 
     new_ds = []
     for d in ds:
-
         new_d = copy.deepcopy(d)
         for k, v in d.items():
             # each key gets renamed with prefix
@@ -121,7 +120,6 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
 
 
 def correct_titlecase(s, first_upper=True):
-
     if not s:
         return s
 

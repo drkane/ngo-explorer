@@ -154,7 +154,6 @@ def location_map(
 def horizontal_bar(
     categories, value="count", text=None, log_axis=False, colour="#237756", **kwargs
 ):
-
     # categories = {
     #   "name": "category name"
     #   ...various values
@@ -400,7 +399,6 @@ def word_cloud(charity_data):
 
 
 def line_chart(data):
-
     chart_data = []
     for d in data:
         chart_data.append(go.Scatter(**d))

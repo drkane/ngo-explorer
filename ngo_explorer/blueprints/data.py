@@ -17,7 +17,6 @@ bp = Blueprint("data", __name__, url_prefix="/")
 @bp.route("/region/<regiontype>/<regionid>/<subpage>")
 @bp.route("/region/<regiontype>/<regionid>")
 def region(regionid, regiontype="continent", filetype="html", subpage="dashboard"):
-
     if subpage not in ["dashboard", "show-charities", "download"]:
         return render_template("404.html.j2"), 404
 
@@ -49,7 +48,6 @@ def region(regionid, regiontype="continent", filetype="html", subpage="dashboard
 @bp.route("/country/<countryid>/<subpage>")
 @bp.route("/country/<countryid>")
 def country(countryid, filetype="html", subpage="dashboard"):
-
     if subpage not in ["dashboard", "show-charities", "download"]:
         return render_template("404.html.j2"), 404
 
@@ -77,7 +75,6 @@ def country(countryid, filetype="html", subpage="dashboard"):
 def data_page(
     area=None, charity_ids=None, filetype="html", page="dashboard", url_base=[]
 ):
-
     if request.method == "POST":
         filters_raw = request.form
     else:
@@ -182,7 +179,6 @@ def data_page(
         iati_data = fetch_iati(area["countries"])
 
     if filetype == "json":
-
         inserts = {
             "selected-filters": render_template(
                 "_data_selected_filters.html.j2", filters=filters_raw, area=area

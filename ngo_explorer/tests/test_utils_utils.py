@@ -144,7 +144,6 @@ def test_nested_to_record():
 
 
 def test_correct_titlecase():
-
     names = [
         "The St. Endellion Festivals Trust",
         "Friends of North Heath CP School",

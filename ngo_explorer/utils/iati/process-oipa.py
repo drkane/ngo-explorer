@@ -17,7 +17,6 @@ with open(
             countries[country_code] = {}
 
         if orgid.startswith("GB-C"):
-
             if orgid not in countries[country_code]:
                 countries[country_code][orgid] = {
                     "ref": orgid,
