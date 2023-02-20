@@ -24,16 +24,6 @@
         <script src="{{ url_for('static', filename='vendor/plotly/plotly-latest.min.js') }}"></script>
         {% endblock %}
         {% block analytics %}
-        {% if config.GA_TRACKING_ID %}
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.GA_TRACKING_ID }}"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '{{ config.GA_TRACKING_ID }}');
-        </script>
-        {% endif %}
         {% endblock %}
         {% block social %}
         <meta name="twitter:card" content="summary" />
