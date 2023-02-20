@@ -54,12 +54,11 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
-    # add translation
-    babel = Babel(app)
-
-    @babel.localeselector
     def get_locale():
         return request.accept_languages.best_match(app.config["LANGUAGES"])
+
+    # add translation
+    babel = Babel(app, locale_selector=get_locale)
 
     # set up url caching
     # @TODO set to a redis instance for live version

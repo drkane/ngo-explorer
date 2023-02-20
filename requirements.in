@@ -8,3 +8,7 @@ XlsxWriter
 graphqlclient
 gunicorn
 python-dotenv
+pytest
+requests-mock
+black
+isort
