@@ -5,10 +5,10 @@ import uuid
 from collections import Counter
 
 import plotly
-from plotly.subplots import make_subplots
 import plotly.graph_objs as go
 from flask import current_app, url_for
 from flask_babel import ngettext
+from plotly.subplots import make_subplots
 from requests.compat import json as _json
 
 from .countries import get_country_by_id
