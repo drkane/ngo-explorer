@@ -51,66 +51,66 @@ msgstr ""
 msgid "File \"%(fileid)s\" could not be found"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:153
-#: ngo_explorer/classes/charitybasecharity.py:200
+#: ngo_explorer/classes/charitylookupcharity.py:153
+#: ngo_explorer/classes/charitylookupcharity.py:200
 #, python-format
 msgid "Income (%(year)s prices)"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:157
-#: ngo_explorer/classes/charitybasecharity.py:213
+#: ngo_explorer/classes/charitylookupcharity.py:157
+#: ngo_explorer/classes/charitylookupcharity.py:213
 #, python-format
 msgid "Spending (%(year)s prices)"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:163
+#: ngo_explorer/classes/charitylookupcharity.py:163
 #, python-format
 msgid "%(year)s prices"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:172
+#: ngo_explorer/classes/charitylookupcharity.py:172
 msgid "Income (cash terms)"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:173
+#: ngo_explorer/classes/charitylookupcharity.py:173
 msgid "Spending (cash terms)"
 msgstr ""
 
-#: ngo_explorer/classes/charitybasecharity.py:177
+#: ngo_explorer/classes/charitylookupcharity.py:177
 msgid "Cash terms"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:78
-#: ngo_explorer/classes/charitybaseresult.py:79
-#: ngo_explorer/classes/charitybaseresult.py:80
-#: ngo_explorer/classes/charitybaseresult.py:81
-#: ngo_explorer/classes/charitybaseresult.py:82
-#: ngo_explorer/classes/charitybaseresult.py:83
-#: ngo_explorer/classes/charitybaseresult.py:84
-#: ngo_explorer/classes/charitybaseresult.py:85
+#: ngo_explorer/classes/charitylookupresult.py:78
+#: ngo_explorer/classes/charitylookupresult.py:79
+#: ngo_explorer/classes/charitylookupresult.py:80
+#: ngo_explorer/classes/charitylookupresult.py:81
+#: ngo_explorer/classes/charitylookupresult.py:82
+#: ngo_explorer/classes/charitylookupresult.py:83
+#: ngo_explorer/classes/charitylookupresult.py:84
+#: ngo_explorer/classes/charitylookupresult.py:85
 msgid "Under £10k"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:86
-#: ngo_explorer/classes/charitybaseresult.py:87
+#: ngo_explorer/classes/charitylookupresult.py:86
+#: ngo_explorer/classes/charitylookupresult.py:87
 msgid "£10k-£100k"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:88
-#: ngo_explorer/classes/charitybaseresult.py:89
+#: ngo_explorer/classes/charitylookupresult.py:88
+#: ngo_explorer/classes/charitylookupresult.py:89
 msgid "£100k-£1m"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:90
-#: ngo_explorer/classes/charitybaseresult.py:91
+#: ngo_explorer/classes/charitylookupresult.py:90
+#: ngo_explorer/classes/charitylookupresult.py:91
 msgid "£1m-£10m"
 msgstr ""
 
-#: ngo_explorer/classes/charitybaseresult.py:92
-#: ngo_explorer/classes/charitybaseresult.py:93
-#: ngo_explorer/classes/charitybaseresult.py:94
-#: ngo_explorer/classes/charitybaseresult.py:95
-#: ngo_explorer/classes/charitybaseresult.py:96
+#: ngo_explorer/classes/charitylookupresult.py:92
+#: ngo_explorer/classes/charitylookupresult.py:93
+#: ngo_explorer/classes/charitylookupresult.py:94
+#: ngo_explorer/classes/charitylookupresult.py:95
+#: ngo_explorer/classes/charitylookupresult.py:96
 msgid "Over £10m"
 msgstr ""
 

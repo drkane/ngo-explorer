@@ -9,13 +9,13 @@ from flask import Flask, request
 from flask_babel import Babel
 from slugify import slugify
 
-from .blueprints import add_blueprints
-from .commands import add_custom_commands
-from .utils.charts import location_map, plotly_json
-from .utils.countries import SIMILAR_INITIATIVE, get_country_groups
-from .utils.download import DOWNLOAD_OPTIONS
-from .utils.filters import CLASSIFICATION, REGIONS
-from .utils.utils import correct_titlecase, scale_value, update_url_values
+from ngo_explorer.blueprints import add_blueprints
+from ngo_explorer.commands import add_custom_commands
+from ngo_explorer.utils.charts import location_map, plotly_json
+from ngo_explorer.utils.countries import SIMILAR_INITIATIVE, get_country_groups
+from ngo_explorer.utils.download import DOWNLOAD_OPTIONS
+from ngo_explorer.utils.filters import CLASSIFICATION, REGIONS
+from ngo_explorer.utils.utils import correct_titlecase, scale_value, update_url_values
 
 
 def create_app(test_config=None):
@@ -33,6 +33,8 @@ def create_app(test_config=None):
         GA_TRACKING_ID=os.environ.get("GA_TRACKING_ID"),
         CHARITYBASE_API_KEY=os.environ.get("CHARITYBASE_API_KEY"),
         CHARITYBASE_URL="https://charitybase.uk/api/graphql",
+        FTC_DB_URL=os.environ.get("FTC_DB_URL"),
+        DB_LOCATION=os.environ.get("DB_LOCATION", "charitydata.db"),
         DATA_CONTAINER=os.environ.get(
             "DATA_CONTAINER", os.path.join(os.getcwd(), "uploads")
         ),
@@ -57,7 +59,7 @@ def create_app(test_config=None):
         return request.accept_languages.best_match(app.config["LANGUAGES"])
 
     # add translation
-    babel = Babel(app, locale_selector=get_locale)
+    Babel(app, locale_selector=get_locale)
 
     # set up url caching
     # @TODO set to a redis instance for live version
@@ -121,7 +123,7 @@ def add_template_filters(app):
         return random.sample(seq, min((n, len(seq))))
 
     @app.template_filter("first_upper")
-    def template_randomn(s: str):
+    def template_first_upper(s: str):
         return s[0].upper() + s[1:]
 
 

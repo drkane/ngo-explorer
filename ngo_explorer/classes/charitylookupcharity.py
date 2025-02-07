@@ -2,13 +2,13 @@ from datetime import datetime
 
 from flask_babel import _
 
-from ..utils.charts import line_chart
-from ..utils.countries import get_country_by_id
-from ..utils.inflation import fetch_inflation
-from ..utils.utils import nested_to_record
+from ngo_explorer.utils.charts import line_chart
+from ngo_explorer.utils.countries import get_country_by_id
+from ngo_explorer.utils.inflation import fetch_inflation
+from ngo_explorer.utils.utils import nested_to_record
 
 
-class CharityBaseCharity(object):
+class CharityLookupCharity(object):
     date_format = "%Y-%m-%d"
 
     def __init__(self, chardata):

@@ -7,9 +7,9 @@ from flask import Response, current_app
 from flask_babel import _
 from slugify import slugify
 
-from .fetchdata import fetch_charitybase
-from .filters import CLASSIFICATION
-from .utils import record_to_nested
+from ngo_explorer.utils.fetchdata import fetch_charitybase
+from ngo_explorer.utils.filters import CLASSIFICATION
+from ngo_explorer.utils.utils import record_to_nested
 
 DOWNLOAD_OPTIONS = {
     "main": {

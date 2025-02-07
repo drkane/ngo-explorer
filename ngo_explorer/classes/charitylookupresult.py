@@ -2,21 +2,21 @@ import copy
 
 from flask_babel import _
 
-from ..utils.charts import horizontal_bar, line_chart, word_cloud
-from ..utils.countries import get_country_by_id
-from ..utils.filters import CLASSIFICATION
-from ..utils.utils import get_scaling_factor
-from .charitybasecharity import CharityBaseCharity
+from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
+from ngo_explorer.utils.charts import horizontal_bar, word_cloud
+from ngo_explorer.utils.countries import get_country_by_id
+from ngo_explorer.utils.filters import CLASSIFICATION
+from ngo_explorer.utils.utils import get_scaling_factor
 
 
-class CharityBaseResult(object):
+class CharityLookupResult(object):
     def __init__(self, result):
         result = result.get("data", {}).get("CHC", {}) or {}
         result = result.get("getCharities", {}) or {}
         self.aggregate = result.get("aggregate")
         self.count = result.get("count")
         self.list = (
-            [CharityBaseCharity(c) for c in result.get("list", [])]
+            [CharityLookupCharity(c) for c in result.get("list", [])]
             if result.get("list")
             else []
         )

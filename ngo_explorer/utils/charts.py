@@ -11,9 +11,6 @@ from flask_babel import ngettext
 from plotly.subplots import make_subplots
 from requests.compat import json as _json
 
-from .countries import get_country_by_id
-from .filters import CLASSIFICATION
-from .utils import get_scaling_factor
 
 LAYOUT = {
     "yaxis": {
@@ -172,7 +169,7 @@ def horizontal_bar(
         shared_xaxes=True,
         print_grid=False,
         vertical_spacing=(0.45 / len(categories)),
-        **kwargs
+        **kwargs,
     )
     max_value = max([x[value] for x in categories])
     for k, x in enumerate(categories):
@@ -208,7 +205,7 @@ def horizontal_bar(
             k: copy.deepcopy(v)
             for k, v in LAYOUT.items()
             if k not in ["xaxis", "yaxis"]
-        }
+        },
     )
 
     for x in hb_plot["layout"]["annotations"]:

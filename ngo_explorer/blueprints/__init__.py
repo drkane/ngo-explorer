@@ -1,6 +1,6 @@
-from .data import bp as data
-from .home import bp as home
-from .upload import bp as upload
+from ngo_explorer.blueprints.data import bp as data
+from ngo_explorer.blueprints.home import bp as home
+from ngo_explorer.blueprints.upload import bp as upload
 
 
 def add_blueprints(app):

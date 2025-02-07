@@ -1,7 +1,5 @@
 from flask import Blueprint, render_template
 
-from ..utils.countries import get_country_groups
-from ..utils.filters import CLASSIFICATION
 
 bp = Blueprint("home", __name__, url_prefix="/")
 

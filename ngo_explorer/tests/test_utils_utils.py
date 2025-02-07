@@ -130,7 +130,7 @@ def test_nested_to_record():
 
     assert "multiple.joined.up.fields" in result
     assert result["combine.field2"] == "cd"
-    assert result["anothersinglefield"] == None
+    assert result["anothersinglefield"] is None
 
     fields_with_list = {
         "listfield": [

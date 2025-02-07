@@ -152,7 +152,7 @@ def correct_titlecase(s, first_upper=True):
     for pattern, replacement in substitutions:
         try:
             s = re.sub(pattern, replacement, s, flags=re.IGNORECASE)
-        except:
+        except re.PatternError:
             continue
 
     if first_upper:

@@ -1,2 +1,2 @@
-pip-compile -U requirements.in
-pip-sync requirements.txt
+uv pip compile requirements.in > requirements.txt
+uv pip sync requirements.txt

@@ -1,5 +1,3 @@
-import pytest
-
 from ngo_explorer.utils.filters import parse_filters
 
 
@@ -24,17 +22,10 @@ def test_parse_filters():
     assert parse_filters({"filter-search": 'test "test2"'})["search"] == 'test "test2"'
 
     # flags
-    assert (
-        parse_filters({"filter-exclude-grantmakers": "test"})["exclude_grantmakers"]
-        == True
-    )
-    assert (
-        parse_filters({"filter-exclude-religious": "test"})["exclude_religious"] == True
-    )
-    assert (
-        parse_filters({"filter-exclude-grantmakers": ""})["exclude_grantmakers"] == True
-    )
-    assert parse_filters({"filter-exclude-religious": ""})["exclude_religious"] == True
+    assert parse_filters({"filter-exclude-grantmakers": "test"})["exclude_grantmakers"]
+    assert parse_filters({"filter-exclude-religious": "test"})["exclude_religious"]
+    assert parse_filters({"filter-exclude-grantmakers": ""})["exclude_grantmakers"]
+    assert parse_filters({"filter-exclude-religious": ""})["exclude_religious"]
 
     # @TODO: test classification and country lists
     # need to import multidict

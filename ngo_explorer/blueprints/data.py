@@ -1,11 +1,15 @@
-from flask import Blueprint, Response, jsonify, render_template, request, url_for
+from flask import Blueprint, jsonify, render_template, request, url_for
 from flask_babel import _
 
-from ..utils.countries import get_country_groups, get_multiple_countries
-from ..utils.download import download_file
-from ..utils.fetchdata import fetch_charitybase, fetch_iati, fetch_iati_by_charity
-from ..utils.filters import parse_filters
-from ..utils.utils import nested_to_record
+from ngo_explorer.utils.countries import get_country_groups, get_multiple_countries
+from ngo_explorer.utils.download import download_file
+from ngo_explorer.utils.fetchdata import (
+    fetch_charitybase,
+    fetch_findthatcharity,
+    fetch_iati,
+    fetch_iati_by_charity,
+)
+from ngo_explorer.utils.filters import parse_filters
 
 bp = Blueprint("data", __name__, url_prefix="/")
 
@@ -99,7 +103,7 @@ def data_page(
             "template": "data-show-charities.html.j2",
             "url": url_for(
                 url_base[0],
-                **{**url_base[1], **filters_url, "subpage": "show-charities"}
+                **{**url_base[1], **filters_url, "subpage": "show-charities"},
             ),
             "api_url": url_for(
                 url_base[0],
@@ -108,7 +112,7 @@ def data_page(
                     **filters_url,
                     "subpage": "show-charities",
                     "filetype": "json",
-                }
+                },
             ),
         },
         "download": {
@@ -124,7 +128,7 @@ def data_page(
                     **filters_url,
                     "subpage": "download",
                     "filetype": "json",
-                }
+                },
             ),
         },
     }
@@ -141,7 +145,7 @@ def data_page(
             filetype=request.values.get("download_type").lower(),
         )
 
-    all_charity_data = fetch_charitybase(query="all_charities")
+    all_charity_data = fetch_findthatcharity(query="all_charities")
     fetch_params = dict(
         filters=filters,
         limit=30,

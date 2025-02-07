@@ -1,7 +1,7 @@
 import requests
 
 
-def fetch_inflation():
+def fetch_inflation() -> dict[str, float]:
     url = "https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23/data"
     r = requests.get(url)
     data = r.json()

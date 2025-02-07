@@ -6,7 +6,6 @@ import uuid
 from flask import (
     Blueprint,
     current_app,
-    jsonify,
     redirect,
     render_template,
     request,
@@ -14,10 +13,7 @@ from flask import (
 )
 from flask_babel import _
 
-from ..utils.download import DOWNLOAD_OPTIONS, download_file
-from ..utils.fetchdata import fetch_charitybase
-from ..utils.filters import parse_filters
-from .data import data_page
+from ngo_explorer.blueprints.data import data_page
 
 bp = Blueprint("upload", __name__, url_prefix="/upload")
 
@@ -110,7 +106,3 @@ def fetch_uploaded_data(fileid, filetype="html", subpage="dashboard"):
         page=subpage,
         url_base=["upload.fetch_uploaded_data", {"fileid": fileid}],
     )
-
-    data["data"].set_charts()
-    data["all_charity_data"] = fetch_charitybase(query="all_charities")
-    return render_template("data.html.j2", pages=upload_pages(fileid), **data)

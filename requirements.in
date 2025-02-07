@@ -10,5 +10,7 @@ gunicorn
 python-dotenv
 pytest
 requests-mock
-black
-isort
+ruff
+psycopg[binary]
+sqlite_utils
+tqdm
