@@ -96,8 +96,8 @@ DOWNLOAD_OPTIONS = {
                 },
                 {"label": _("Ward"), "value": "geo.admin_ward"},
                 {"label": _("Ward [code]"), "value": "geo.codes.admin_ward"},
-                {"label": _("Parish"), "value": "geo.parish"},
-                {"label": _("Parish [code]"), "value": "geo.codes.parish"},
+                # {"label": _("Parish"), "value": "geo.parish"},
+                # {"label": _("Parish [code]"), "value": "geo.codes.parish"},
                 {"label": _("LSOA"), "value": "geo.lsoa"},
                 {"label": _("MSOA"), "value": "geo.msoa"},
                 {

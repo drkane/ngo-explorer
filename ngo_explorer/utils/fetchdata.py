@@ -215,12 +215,12 @@ def fetch_findthatcharity(
 
     if countries:
         for i, c in enumerate(countries):
-            country_arg = "country{}".format(i)
+            country_arg = f"country{i}"
             or_conditions = []
             or_conditions.append(
                 f"EXISTS (SELECT 1 FROM json_each(countries) WHERE value = :{country_arg})"
             )
-            where_args[country_arg] = c["id"]
+            where_args[country_arg] = c["iso2"]
         where_conditions.append("(" + " OR ".join(or_conditions) + ")")
 
         where_conditions.append("json_array_length(countries) <= :max_countries")
@@ -229,6 +229,63 @@ def fetch_findthatcharity(
     if ids:
         where_conditions.append("id IN :ids")
         where_args["ids"] = tuple(ids)
+
+    if filters:
+        if "search" in filters:
+            where_conditions.append("name MATCH :search")
+            where_args["search"] = filters["search"]
+
+        for c in CLASSIFICATION.keys():
+            if c in filters:
+                for i, value in enumerate(filters[c]):
+                    value_arg = f"{c}{i}"
+                    or_conditions = []
+                    or_conditions.append(
+                        f"EXISTS (SELECT 1 FROM json_each({c}) WHERE value = :{value_arg})"
+                    )
+                    where_args[value_arg] = value
+                where_conditions.append("(" + " OR ".join(or_conditions) + ")")
+
+        if "max_income" in filters:
+            where_conditions.append(
+                "json_extract(finances, '$[0].income') <= :max_income"
+            )
+            where_args["max_income"] = filters["max_income"]
+        if "min_income" in filters:
+            where_conditions.append(
+                "json_extract(finances, '$[0].income') >= :min_income"
+            )
+            where_args["max_income"] = filters["min_income"]
+
+        if "countries" in filters:
+            for i, c in enumerate(filters["countries"]):
+                country_arg = "country{}".format(i)
+                or_conditions = []
+                or_conditions.append(
+                    f"EXISTS (SELECT 1 FROM json_each(countries) WHERE value = :{country_arg})"
+                )
+                where_args[country_arg] = c["iso2"]
+            where_conditions.append("(" + " OR ".join(or_conditions) + ")")
+
+        if filters.get("regions"):
+            region = filters.get("regions")
+            if region.startswith("E"):
+                where_conditions.append("json_extract(geo, '$.region_code') = :region")
+            else:
+                where_conditions.append("json_extract(geo, '$.country_code') = :region")
+            where_args["region"] = region
+
+        if filters.get("exclude_grantmakers"):
+            where_conditions.append(
+                "NOT EXISTS (SELECT 1 FROM json_each(operations) WHERE json_extract(value, '$.id') = :exclude_grantmakers)"
+            )
+            where_args["exclude_grantmakers"] = "302"
+
+        if filters.get("exclude_religious"):
+            where_conditions.append(
+                "NOT EXISTS (SELECT 1 FROM json_each(causes) WHERE json_extract(value, '$.id') = :exclude_religious)"
+            )
+            where_args["exclude_religious"] = "108"
 
     where_str = " AND ".join(where_conditions)
 

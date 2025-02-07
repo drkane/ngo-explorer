@@ -34,7 +34,7 @@ def create_app(test_config=None):
         CHARITYBASE_API_KEY=os.environ.get("CHARITYBASE_API_KEY"),
         CHARITYBASE_URL="https://charitybase.uk/api/graphql",
         FTC_DB_URL=os.environ.get("FTC_DB_URL"),
-        DB_LOCATION=os.environ.get("DB_LOCATION", "charitydata.db"),
+        DB_LOCATION=os.environ.get("DB_LOCATION", "charitydata.sqlite"),
         DATA_CONTAINER=os.environ.get(
             "DATA_CONTAINER", os.path.join(os.getcwd(), "uploads")
         ),

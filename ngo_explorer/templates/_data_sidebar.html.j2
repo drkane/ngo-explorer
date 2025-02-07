@@ -3,30 +3,22 @@
         <h3 class="f6 b mv0">{% trans %}Search{% endtrans %}</h3>
         <div class="mb3 mt2 ba bw1 pl2 br2 b--mid-gray w-100 flex items-center bg-white">
             <i class="material-icons">search</i>
-            <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="{{ _('Search charity activities') }}" value="{{ filters.get('filter-search', '') }}" autocomplete="off" />
+            <input name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box"
+                placeholder="{{ _('Search charity activities') }}" value="{{ filters.get('filter-search', '') }}"
+                autocomplete="off" />
         </div>
         <div class="mv3 w-100">
             <h3 class="f6 b mv0">{% trans %}Latest income{% endtrans %}</h3>
             <p class="f6">
-                {% trans %}Between{% endtrans %} 
+                {% trans %}Between{% endtrans %}
                 <span class="bb bw2 b--mid-gray dib w-33">
-                    <input name="filter-min-income"
-                            type="number"
-                            id="min-income"
-                            class="input-reset pa1 bn w-100 f7"
-                            placeholder="£ min"
-                            value="{{ filters.get('filter-min-income', '') }}"
-                            autocomplete="off">
+                    <input name="filter-min-income" type="number" id="min-income" class="input-reset pa1 bn w-100 f7"
+                        placeholder="£ min" value="{{ filters.get('filter-min-income', '') }}" autocomplete="off">
                 </span>
-                {% trans %}and{% endtrans %}  
+                {% trans %}and{% endtrans %}
                 <span class="bb bw2 b--mid-gray dib w-33">
-                    <input name="filter-max-income"
-                            type="number"
-                            id="max-income"
-                            class="input-reset pa1 bn w-100 f7"
-                            placeholder="£ max"
-                            value="{{ filters.get('filter-max-income', '') }}"
-                            autocomplete="off">
+                    <input name="filter-max-income" type="number" id="max-income" class="input-reset pa1 bn w-100 f7"
+                        placeholder="£ max" value="{{ filters.get('filter-max-income', '') }}" autocomplete="off">
                 </span>
             </p>
         </div>
@@ -35,26 +27,29 @@
             <h3 class="f6 b mb2">{{ group|title }}</h3>
             <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-classification" multiple="true">
                 {% for value, label in options.items() %}
-                <option value="{{value}}" {% if value in filters.getlist('filter-classification') %}selected="selected"{% endif %}>{{label}}</option>
+                <option value="{{value}}" {% if value in filters.getlist('filter-classification') %}selected="selected"
+                    {% endif %}>{{label}}</option>
                 {% endfor %}
             </select>
         </div>
         {% endfor %}
         <div class="mv3 w-100">
             <h3 class="f6 b mb2">
-                {% trans %}UK Region{% endtrans %} 
+                {% trans %}UK Region{% endtrans %}
                 <p class="ma0 f6 gray normal i">{% trans %} Based on the UK head office{% endtrans %} </p>
             </h3>
             <select class="w-100 ba b--light-gray f7 pa1 h3 js-choice" name="filter-regions">
                 <option value=""></option>
                 <optgroup label="{{ _('England') }}">
                     {% for k, v in regions.items() if k.startswith("E12") %}
-                    <option value="{{ k }}" {% if k in filters.getlist('filter-regions') %}selected="selected"{% endif %}>{{ v }}</option>
+                    <option value="{{ k }}" {% if k in filters.getlist('filter-regions') %}selected="selected"
+                        {% endif %}>{{ v }}</option>
                     {% endfor %}
                 </optgroup>
                 <optgroup label="">
                     {% for k, v in regions.items() if not k.startswith("E12") %}
-                    <option value="{{ k }}" {% if k in filters.getlist('filter-regions') %}selected="selected"{% endif %}>{{ v }}</option>
+                    <option value="{{ k }}" {% if k in filters.getlist('filter-regions') %}selected="selected"
+                        {% endif %}>{{ v }}</option>
                     {% endfor %}
                 </optgroup>
             </select>
@@ -66,7 +61,9 @@
                 {% for group in area.countries|groupby('continent') %}
                 <optgroup label="{{ group.grouper }}">
                     {% for c in group.list %}
-                    <option value="{{ c['id'] }}" {% if c['id'] in filters.getlist('filter-countries') %}selected="selected"{% endif %}>{{ c['name'] }}</option>
+                    <option value="{{ c['id'] }}"
+                        {% if c['iso2'] in filters.getlist('filter-countries') %}selected="selected" {% endif %}>
+                        {{ c['name'] }}</option>
                     {% endfor %}
                 </optgroup>
                 {% endfor %}
@@ -75,33 +72,28 @@
         {% endif %}
         <div class="mv3 w-100">
             <p class="gray i f6">
-                {% trans %}Exclude any organisations that say they work in more than{% endtrans %} 
+                {% trans %}Exclude any organisations that say they work in more than{% endtrans %}
                 <span class="bb bw2 b--light-gray dib">
-                    <input name="filter-max-countries"
-                            value="{{ filters.get('filter-max-countries', '50') }}"
-                            type="number"
-                            class="input-reset pa1 bn w3 dark-gray"
-                            autocomplete="off" />
+                    <input name="filter-max-countries" value="{{ filters.get('filter-max-countries', '50') }}"
+                        type="number" class="input-reset pa1 bn w3 dark-gray" autocomplete="off" />
                 </span>
                 {% trans %}countries (out of 248).{% endtrans %}
             </p>
         </div>
         <div class="mv3 w-100">
             <label class="gray i f6 custom-checkbox flex items-center mb1">
-                <input name="filter-exclude-grantmakers"
-                        type="checkbox"
-                        {% if filters.get('filter-exclude-grantmakers') %}checked=checked{% endif %}
-                        value="exclude-grantmakers" />
+                <input name="filter-exclude-grantmakers" type="checkbox"
+                    {% if filters.get('filter-exclude-grantmakers') %}checked=checked{% endif %}
+                    value="exclude-grantmakers" />
                 <span class="checkmark mr2">
                     <i class="material-icons">check</i>
                 </span>
                 {% trans %}Exclude organisations that make grants{% endtrans %}
             </label>
             <label class="gray i f6 custom-checkbox flex items-center">
-                <input name="filter-exclude-religious"
-                        type="checkbox"
-                        {% if filters.get('filter-exclude-grantmakers') %}checked=checked{% endif %}
-                        value="exclude-religious" />
+                <input name="filter-exclude-religious" type="checkbox"
+                    {% if filters.get('filter-exclude-grantmakers') %}checked=checked{% endif %}
+                    value="exclude-religious" />
                 <span class="checkmark mr2">
                     <i class="material-icons">check</i>
                 </span>
@@ -110,12 +102,20 @@
         </div>
         <input type="hidden" class="dn" value="" name="filter-skip" />
         <div id="selected-filters">
-        {% include '_data_selected_filters.html.j2' %}
+            {% include '_data_selected_filters.html.j2' %}
         </div>
-        <button type="reset" class="link blue f7 js-only pa0 ma0 ba0 bg-transparent button-reset b--none pointer" id="reset_filters">{% trans %}Reset filters{% endtrans %}</button>
+        <button type="reset" class="link blue f7 js-only pa0 ma0 ba0 bg-transparent button-reset b--none pointer"
+            id="reset_filters">{% trans %}Reset filters{% endtrans %}</button>
         <div class="mv3 w-100">
-            <input class="bn bg-light-green ph4 pv3 br2 white pointer darken" type="submit" value="{{ _('Update filters') }}" id="filter-update" />
-            <div class="dn" id="loading_state">{% trans %}Loading{% endtrans %} <div class="lds-ellipsis v-mid"><div></div><div></div><div></div><div></div></div></div>
+            <input class="bn bg-light-green ph4 pv3 br2 white pointer darken" type="submit"
+                value="{{ _('Update filters') }}" id="filter-update" />
+            <div class="dn" id="loading_state">{% trans %}Loading{% endtrans %} <div class="lds-ellipsis v-mid">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="pa3 bg-light-gray br3 w-100 mb3">
@@ -131,7 +131,7 @@
         <p class="f6">
             {% trans %}
             The figures for income and spending include the total income and spending of the
-            organisations in all the countries they work in. 
+            organisations in all the countries they work in.
             {% endtrans %}
         </p>
         <p class="f6">

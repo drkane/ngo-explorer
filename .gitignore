@@ -4,3 +4,4 @@ uploads/
 !*.pot
 node_modules/
 env/
+!ngo_explorer/utils/queries/*.sql
