@@ -34,32 +34,39 @@ WITH classification AS (
             l.geo_long,
             'region',
             rgn."name",
-            'region_code',
-            l.geo_rgn,
             'country',
             ctry."name",
-            'country_code',
-            l.geo_ctry,
-            'county',
+            'admin_county',
             cty."name",
-            'county_code',
-            l.geo_cty,
-            'laua',
+            'admin_district',
             laua."name",
-            'laua_code',
-            l.geo_laua,
-            'ward',
+            'admin_ward',
             ward."name",
-            'ward_code',
-            l.geo_ward,
             'lsoa',
-            l.geo_lsoa21,
+            lsoa."name",
             'msoa',
-            l.geo_msoa21,
-            'pcon',
+            msoa."name",
+            'parliamentary_constituency',
             pcon."name",
-            'pcon_code',
-            l.geo_pcon
+            'codes',
+            jsonb_build_object(
+                'region',
+                l.geo_rgn,
+                'country',
+                l.geo_ctry,
+                'admin_county',
+                l.geo_cty,
+                'admin_district',
+                l.geo_laua,
+                'admin_ward',
+                l.geo_ward,
+                'parliamentary_constituency',
+                l.geo_pcon,
+                'lsoa',
+                l.geo_lsoa21,
+                'msoa',
+                l.geo_msoa21
+            )
         ) AS geo
     FROM
         ftc_organisationlocation l
@@ -69,6 +76,8 @@ WITH classification AS (
         LEFT OUTER JOIN geo_geolookup laua ON l.geo_laua = laua."geoCode"
         LEFT OUTER JOIN geo_geolookup ward ON l.geo_ward = ward."geoCode"
         LEFT OUTER JOIN geo_geolookup pcon ON l.geo_pcon = pcon."geoCode"
+        LEFT OUTER JOIN geo_geolookup lsoa ON l.geo_lsoa21 = ward."geoCode"
+        LEFT OUTER JOIN geo_geolookup msoa ON l.geo_msoa21 = pcon."geoCode"
     WHERE
         l."locationType" = 'HQ'
 ),
@@ -191,14 +200,26 @@ SELECT
         )
     ) AS registrations,
     c.web AS website,
-    c.email AS email,
-    c.address AS "address",
-    c.phone AS phone,
-    c.postcode AS postcode,
-    c.trustees AS trustees,
-    c.volunteers AS volunteers,
-    c.employees AS employees,
-    c.geographical_spread AS geographical_spread,
+    jsonb_build_object(
+        'email',
+        c.email,
+        'address',
+        c.address,
+        'phone',
+        c.phone,
+        'postcode',
+        c.postcode
+    ) AS contacts,
+    jsonb_build_object(
+        'trustees',
+        c.trustees,
+        'volunteers',
+        c.volunteers,
+        'employees',
+        c.employees
+    ) AS "numPeople",
+    c.constitution AS "governingDoc",
+    c.geographical_spread AS "areaOfBenefit",
     "countries"."countries" AS "countries"
 FROM
     charity_charity c

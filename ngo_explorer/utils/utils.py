@@ -1,9 +1,10 @@
 import copy
 import re
 import urllib.parse
+from typing import Any, overload
 
 
-def get_scaling_factor(value):
+def get_scaling_factor(value: int | float) -> tuple[int, str, str]:
     # @TODO: translation...
     if value > 2000000000:
         return (1000000000, "{:,.1f} billion", "{:,.1f}bn")
@@ -13,7 +14,7 @@ def get_scaling_factor(value):
         return (1, "{:,.0f}", "{:,.0f}")
 
 
-def scale_value(value, abbreviate=False):
+def scale_value(value: int | float, abbreviate: bool = False) -> str:
     scale = get_scaling_factor(value)
     if abbreviate:
         return scale[2].format(value / scale[0])
@@ -21,7 +22,7 @@ def scale_value(value, abbreviate=False):
         return scale[1].format(value / scale[0])
 
 
-def update_url_values(url, values: dict):
+def update_url_values(url: str, values: dict) -> str:
     # update an url to include additional query parameters
     # changes the values if they're already present
     o = urllib.parse.urlparse(url)
@@ -41,10 +42,10 @@ def update_url_values(url, values: dict):
     )
 
 
-def record_to_nested(fields: list):
-    fields = [f.split(".") for f in fields]
+def record_to_nested(fields: list[str]) -> dict[str, dict]:
+    fields_split = [f.split(".") for f in fields]
     new_fields = {}
-    for f in fields:
+    for f in fields_split:
         this_field = new_fields
         for i in f:
             if i not in this_field:
@@ -55,7 +56,17 @@ def record_to_nested(fields: list):
 
 # from https://github.com/pandas-dev/pandas/blob/v0.24.0/pandas/io/json/normalize.py#L28-L96
 # used under BSD licence
-def nested_to_record(ds, prefix="", sep=".", level=0):
+@overload
+def nested_to_record(
+    ds: dict, prefix: str = "", sep: str = ".", level: int = 0
+) -> dict[str, Any]: ...
+@overload
+def nested_to_record(
+    ds: list[dict], prefix: str = "", sep: str = ".", level: int = 0
+) -> list[dict[str, Any]]: ...
+def nested_to_record(
+    ds: dict | list[dict], prefix: str = "", sep: str = ".", level: int = 0
+) -> dict[str, Any] | list[dict[str, Any]]:
     """
     A simplified json_normalize.
     Converts a nested dict into a flat dict ("record"), unlike json_normalize,
@@ -119,7 +130,7 @@ def nested_to_record(ds, prefix="", sep=".", level=0):
     return new_ds
 
 
-def correct_titlecase(s, first_upper=True):
+def correct_titlecase(s: str, first_upper=True) -> str:
     if not s:
         return s
 
@@ -152,7 +163,7 @@ def correct_titlecase(s, first_upper=True):
     for pattern, replacement in substitutions:
         try:
             s = re.sub(pattern, replacement, s, flags=re.IGNORECASE)
-        except re.PatternError:
+        except re.error:
             continue
 
     if first_upper:

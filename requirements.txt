@@ -26,6 +26,8 @@ colorama==0.4.6
     #   click
     #   pytest
     #   tqdm
+dataclasses-json==0.6.7
+    # via -r requirements.in
 exceptiongroup==1.2.2
     # via
     #   cattrs
@@ -54,11 +56,16 @@ markupsafe==3.0.2
     # via
     #   jinja2
     #   werkzeug
-narwhals==1.25.2
+marshmallow==3.26.1
+    # via dataclasses-json
+mypy-extensions==1.0.0
+    # via typing-inspect
+narwhals==1.26.0
     # via plotly
 packaging==24.2
     # via
     #   gunicorn
+    #   marshmallow
     #   plotly
     #   pytest
 platformdirs==4.3.6
@@ -92,7 +99,7 @@ requests-cache==1.2.1
     # via -r requirements.in
 requests-mock==1.12.1
     # via -r requirements.in
-ruff==0.9.5
+ruff==0.9.6
     # via -r requirements.in
 six==1.17.0
     # via
@@ -115,6 +122,9 @@ typing-extensions==4.12.2
     # via
     #   cattrs
     #   psycopg
+    #   typing-inspect
+typing-inspect==0.9.0
+    # via dataclasses-json
 tzdata==2025.1
     # via psycopg
 url-normalize==1.4.3

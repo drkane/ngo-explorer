@@ -12,12 +12,12 @@ Data tool to help international development NGOs to navigate charity commission 
 - [Global Development Institute (GDI, University of Manchester)](http://siid.group.shef.ac.uk/)
 - [Sheffield Institute for International Development (SIID, University of Sheffield)](https://www.gdi.manchester.ac.uk/)
 - [David Kane](https://dkane.net/)
-- [CharityBase](https://charitybase.uk/)
+- [Find that Charity](https://findthatcharity.uk/)
 
 ## About this app
 
-This app uses [Flask](http://flask.pocoo.org/) to fetch and display data from the
-[CharityBase API](https://charity-base.github.io/charity-base-docs).
+This app uses [Flask](http://flask.pocoo.org/) to fetch and display data from
+[Find that Charity](https://findthatcharity.uk/).
 
 ## Installing app using dokku
 
@@ -36,9 +36,6 @@ dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 dokku config:set --no-restart ngo-explorer DOKKU_LETSENCRYPT_EMAIL=your@email.tld
 dokku letsencrypt ngo-explorer
 
-# add charitybase api key
-dokku config:set ngo-explorer CHARITYBASE_API_KEY=123456789
-
 # setup volume storage
 mkdir -p /var/lib/dokku/data/storage/ngo-explorer
 chown -R dokku:dokku /var/lib/dokku/data/storage/ngo-explorer
@@ -53,14 +50,14 @@ A custom build of tachyons is maintained in <https://github.com/drkane/ngo-explo
 
 Colours used include:
 
- - yellow: `#f9af42` ![](https://dummyimage.com/50x20/f9b042/000&text=+)    
- - dark-green: `#043942` ![](https://dummyimage.com/50x20/043942/000&text=+) 
- - green: `#237756` ![](https://dummyimage.com/50x20/237756/000&text=+) 
- - light-green: `#0ca777` ![](https://dummyimage.com/50x20/0ca777/000&text=+) 
+- yellow: `#f9af42` ![](https://dummyimage.com/50x20/f9b042/000&text=+)
+- dark-green: `#043942` ![](https://dummyimage.com/50x20/043942/000&text=+)
+- green: `#237756` ![](https://dummyimage.com/50x20/237756/000&text=+)
+- light-green: `#0ca777` ![](https://dummyimage.com/50x20/0ca777/000&text=+)
 
- ## Translations
+## Translations
 
-Update translations if base text changes 
+Update translations if base text changes
 
 ```
 pybabel extract -F babel.cfg --copyright-holder="NGO Explorer" --project="NGO Explorer" --msgid-bugs-address="email@example.net" -o messages.pot .
@@ -88,7 +85,6 @@ browsers.
 ```
 npm run build
 ```
-
 
 ## Run tests
 

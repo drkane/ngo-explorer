@@ -3,6 +3,7 @@ import math
 import re
 import uuid
 from collections import Counter
+from typing import Any
 
 import plotly
 import plotly.graph_objs as go
@@ -11,6 +12,7 @@ from flask_babel import ngettext
 from plotly.subplots import make_subplots
 from requests.compat import json as _json
 
+from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
 
 LAYOUT = {
     "yaxis": {
@@ -199,7 +201,7 @@ def horizontal_bar(
             1,
         )
 
-    hb_plot["layout"].update(
+    hb_plot.layout.update(
         showlegend=False,
         **{
             k: copy.deepcopy(v)
@@ -208,7 +210,7 @@ def horizontal_bar(
         },
     )
 
-    for x in hb_plot["layout"]["annotations"]:
+    for x in hb_plot.layout["annotations"]:
         x["x"] = 0
         x["xanchor"] = "left"
         x["align"] = "left"
@@ -243,7 +245,7 @@ def plotly_json(data):
     return _json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
 
 
-def word_cloud(charity_data):
+def word_cloud(charity_data: list[CharityLookupCharity]) -> dict[str, int]:
     stop_words = [
         # from https://gist.github.com/sebleier/554280
         "i",
@@ -381,12 +383,12 @@ def word_cloud(charity_data):
     ]
     alpha_regex = r"[^a-zA-Z]+"
 
-    words = Counter()
-    for c in charity_data:
-        if not getattr(c, "activities", ""):
+    words: Counter[str] = Counter()
+    for charity in charity_data:
+        if not charity.activities:
             continue
-        a = getattr(c, "activities", "").split()
-        for word in a:
+        activities = charity.activities.split()
+        for word in activities:
             word = re.sub(alpha_regex, "", word.lower())
             if word in stop_words or len(word) <= 3:
                 continue
@@ -395,7 +397,7 @@ def word_cloud(charity_data):
     return dict(words.most_common(50))
 
 
-def line_chart(data):
+def line_chart(data: list[dict[str, Any]]):
     chart_data = []
     for d in data:
         chart_data.append(go.Scatter(**d))

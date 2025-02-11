@@ -10,7 +10,7 @@
         <p class="lh-copy mv2 pa0 f5 gray mw6">
             {{ data.activities }}
         <p>
-        {% if data.website %}
+            {% if data.website %}
         <p>
             <a href="{{ data.website }}" target="_blank" class="link blue external-link">
                 {{ data.website|replace("https://", "")|replace("http://", "")|replace("//", "") }}
@@ -22,12 +22,14 @@
                 <strong>{% trans %}Find out more:{% endtrans %}</strong>
             </li>
             <li class="fl mr2">
-                <a href="https://charitybase.uk/charities/{{ data.id }}" target="_blank" class="link blue external-link">
-                    CharityBase
+                <a href="https://findthatcharity.uk/charities/{{ data.id }}" target="_blank"
+                    class="link blue external-link">
+                    Find that Charity
                 </a>
             </li>
             <li class="fl mr2">
-                <a href="http://beta.charitycommission.gov.uk/charity-details/?regid={{ data.id }}&subid=0" target="_blank" class="link blue external-link">
+                <a href="http://beta.charitycommission.gov.uk/charity-details/?regid={{ data.id }}&subid=0"
+                    target="_blank" class="link blue external-link">
                     Charity Commission
                 </a>
             </li>
@@ -35,7 +37,7 @@
     </div>
     <div class="mb3 w-100 w-25-l fr">
         {% if data.countries|length > 0 %}
-            {{ data.countries|location_map() }}
+        {{ data.countries|location_map() }}
         {% endif %}
     </div>
 </div>
@@ -70,7 +72,8 @@
     </table> #}
     <p class="gray lh-copy f6">
         {% trans cy=data._current_year %}Financial data is adjusted to {{ cy }} prices using the
-        <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23" target="_blank" class="link blue external-link">consumer price inflation (CPIH)</a>
+        <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23" target="_blank"
+            class="link blue external-link">consumer price inflation (CPIH)</a>
         measure published by the Office for National Statistics.{% endtrans %}
     </p>
 </div>
@@ -78,23 +81,30 @@
 <div class="w-100 w-third-l ph2 fl">
     <h3 class="korolev lh-title ma0">{% trans %}Where this organisation works{% endtrans %}</h3>
     {% if data.countries|length > 0 %}
-        {% if data.countries|length > 5 %}
-        <p>{{ data.name|correct_titlecase }} {% trans %}works in{% endtrans %} {{ data.countries|length|_n }} {% trans %}countries{% endtrans %}</p>
-        {% else %}
-        <p>{{ data.name|correct_titlecase }} {% trans %}works in{% endtrans %} {% for c in data.countries %}
-            <a href="{{ url_for('data.country', countryid=c.iso) }}" class="link blue">
-            {{ c.name }}</a>{% if loop.revindex0 == 1 %} {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
-        {% endif %}
+    {% if data.countries|length > 5 %}
+    <p>{{ data.name|correct_titlecase }} {% trans %}works in{% endtrans %} {{ data.countries|length|_n }}
+        {% trans %}countries{% endtrans %}</p>
+    {% else %}
+    <p>{{ data.name|correct_titlecase }} {% trans %}works in{% endtrans %} {% for c in data.countries %}
+        <a href="{{ url_for('data.country', countryid=c.iso) }}" class="link blue">
+            {{ c.name }}</a>{% if loop.revindex0 == 1 %}
+        {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.
+    </p>
+    {% endif %}
     {% endif %}
     {% if data.areas %}
-        {% if data.areas|length > 5 %}
-        <p>{% trans charname=data.name|correct_titlecase(first_upper=False), areas=data.areas|length|_n  %}In the UK, {{ charname }} works in {{ areas }} areas.</p>{% endtrans %}
-        {% else %}
-        <p>{% trans %}In the UK,{% endtrans %} {{ data.name|correct_titlecase(first_upper=False) }} {% trans %}works in{% endtrans %} {% for c in data.areas %}
-            {{ c.name|replace("Throughout ", "") }}{% if loop.revindex0 == 1 %} {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
-        {% endif %}
+    {% if data.areas|length > 5 %}
+    <p>{% trans charname=data.name|correct_titlecase(first_upper=False), areas=data.areas|length|_n  %}In the UK,
+        {{ charname }} works in {{ areas }} areas.</p>{% endtrans %}
+    {% else %}
+    <p>{% trans %}In the UK,{% endtrans %} {{ data.name|correct_titlecase(first_upper=False) }} {% trans %}works
+        in{% endtrans %} {% for c in data.areas %}
+        {{ c.name|replace("Throughout ", "") }}{% if loop.revindex0 == 1 %}
+        {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
     {% endif %}
-    <p><strong><i class="material-icons md-18 v-mid">place</i>{% trans %}Registered office:{% endtrans %}</strong> {{ data.geo.region }}</p>
+    {% endif %}
+    <p><strong><i class="material-icons md-18 v-mid">place</i>{% trans %}Registered office:{% endtrans %}</strong>
+        {{ data.geo.region }}</p>
     {% if data.geo.latitude and data.geo.longitude %}
     <div id="location-map" class="h5 w5"></div>
     {% endif %}
@@ -106,16 +116,21 @@
         <ul class="list pa0">
             {% for i in data.iati[0:10]|sort(attribute='count', reverse=true) %}
             <li>
-                <a href="http://d-portal.org/ctrack.html?country={{ i.country.iso2 }}&publisher={{ i.ref }}#view=main" class="link blue" target="_blank">{{ i.country.name }}</a>
-                - <span>{{ "{:,.0f}".format(i.count) }}{% if loop.first %} {% trans n=i.count %}activity recorded in IATI{% pluralize %}activities recorded in IATI{% endtrans %}{% endif %}</span>
-            </tr>
-            {% endfor %}
+                <a href="http://d-portal.org/ctrack.html?country={{ i.country.iso2 }}&publisher={{ i.ref }}#view=main"
+                    class="link blue" target="_blank">{{ i.country.name }}</a>
+                - <span>{{ "{:,.0f}".format(i.count) }}{% if loop.first %} {% trans n=i.count %}activity recorded in
+                    IATI{% pluralize %}activities recorded in IATI{% endtrans %}{% endif %}</span>
+                </tr>
+                {% endfor %}
         </ul>
         <p class="gray i f6">
             {% trans %}
-            <abbr title="International Aid Transparency Iniative">IATI</abbr> is a global initiative to improve the transparency of 
-            development and humanitarian resources and their results to address poverty and crises. The data presented here is
-            sourced from <a href="https://www.oipa.nl/home" class="link blue external-link" target="_blank">OIPA</a>, and shows
+            <abbr title="International Aid Transparency Iniative">IATI</abbr> is a global initiative to improve the
+            transparency of
+            development and humanitarian resources and their results to address poverty and crises. The data presented
+            here is
+            sourced from <a href="https://www.oipa.nl/home" class="link blue external-link" target="_blank">OIPA</a>,
+            and shows
             the total number of activities published to IATI that this charity is listed as a participant in.
             {% endtrans %}
         </p>
@@ -126,26 +141,26 @@
 
 {% block scripts %}
 <script type="text/javascript">
-    const charts = {{ {"finances": data.finance_chart()}|to_plotlyjson }};
+    const charts = {{ { "finances": data.finance_chart()}| to_plotlyjson }};
 </script>
 {{super()}}
 {% if data.geo.latitude and data.geo.longitude %}
 <script src="{{ url_for('static', filename='vendor/leaflet/leaflet.js') }}"></script>
 <script type="text/javascript">
-const stamen_attribution = {% trans %}'Map tiles <a href="http://stamen.com">Stamen Design</a> ' + 
-    '[<a href="http://creativecommons.org/licenses/by/3.0" class="link blue">CC BY 3.0</a>] | ' + 
-    'Data <a href="http://openstreetmap.org" class="link blue">OpenStreetMap</a> ' + 
-    '[<a href="http://www.openstreetmap.org/copyright" class="link blue">ODbL</a>]'{% endtrans %};
-var layer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {attribution: stamen_attribution});
-var map = new L.Map("location-map", {
-    center: new L.LatLng({{ data.geo.latitude }}, {{ data.geo.longitude }}),
+    const stamen_attribution = {% trans %}'Map tiles <a href="http://stamen.com">Stamen Design</a> ' +
+        '[<a href="http://creativecommons.org/licenses/by/3.0" class="link blue">CC BY 3.0</a>] | ' +
+        'Data <a href="http://openstreetmap.org" class="link blue">OpenStreetMap</a> ' +
+        '[<a href="http://www.openstreetmap.org/copyright" class="link blue">ODbL</a>]'{% endtrans %};
+    var layer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', { attribution: stamen_attribution });
+    var map = new L.Map("location-map", {
+        center: new L.LatLng({{ data.geo.latitude }}, {{ data.geo.longitude }}),
     zoom: 6,
-    scrollWheelZoom: false
+        scrollWheelZoom: false
 });
-map.addLayer(layer);
-map.on('focus', function() { map.scrollWheelZoom.enable(); });
-map.on('blur', function() { map.scrollWheelZoom.disable(); });
-var marker = L.circleMarker([{{ data.geo.latitude }}, {{ data.geo.longitude }}], {fill: false, weight: 10, color: '#237756'}).addTo(map);
+    map.addLayer(layer);
+    map.on('focus', function () { map.scrollWheelZoom.enable(); });
+    map.on('blur', function () { map.scrollWheelZoom.disable(); });
+    var marker = L.circleMarker([{{ data.geo.latitude }}, { { data.geo.longitude } }], { fill: false, weight: 10, color: '#237756' }).addTo(map);
 </script>
 {% endif %}
 {% endblock %}

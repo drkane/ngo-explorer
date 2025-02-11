@@ -5,15 +5,13 @@
         </li>
         <li class="dib v-mid">
             <a class="mw3" href="https://www.ukri.org/research/global-challenges-research-fund/">
-                <img class="cf mw4 mr4 ml2"
-                    src="{{ url_for('static', filename='images/gcrf.png') }}"
+                <img class="cf mw4 mr4 ml2" src="{{ url_for('static', filename='images/gcrf.png') }}"
                     title="Global Challenges Research Fund" />
             </a>
         </li>
         <li class="dib v-mid">
             <a class="mw4" href="https://www.ukri.org/">
-                <img class="cf mw6 mr3"
-                    src="{{ url_for('static', filename='images/ukri.png') }}"
+                <img class="cf mw6 mr3" src="{{ url_for('static', filename='images/ukri.png') }}"
                     title="UK Research and Innovation" />
             </a>
         </li>
@@ -23,19 +21,21 @@
     <div class="mw9 center mt4-l mv2 cf">
         <div class="fl w-100">
             <a class="link dark-gray b ttl mv0-l mv3 fl mr4 w-100 w-auto-ns" href="{{ url_for('home.index') }}">
-                <img src="{{ url_for('static', filename='images/ngo_explorer_logo_white.svg') }}"
-                    class=""
-                    style="width: 180px;"
-                    alt="NGO Explorer" />
+                <img src="{{ url_for('static', filename='images/ngo_explorer_logo_white.svg') }}" class=""
+                    style="width: 180px;" alt="NGO Explorer" />
             </a>
             <div class="f5 f6-ns lh-copy">
                 <p class="mt0">
-                    {% trans %}An explorer for data on development charities based in England and Wales.{% endtrans %}<br>
-                    {% trans %}Uses data from the{% endtrans %} <a class="link white b underline-hover" href="http://beta.charitycommission.gov.uk/" target="_blank" title="Charity Commission for England and Wales">Charity Commission</a>.
-                    
+                    {% trans %}An explorer for data on development charities based in England and
+                    Wales.{% endtrans %}<br>
+                    {% trans %}Uses data from the{% endtrans %} <a class="link white b underline-hover"
+                        href="http://beta.charitycommission.gov.uk/" target="_blank"
+                        title="Charity Commission for England and Wales">Charity Commission</a>.
+
                 </p>
                 <p class="mt1">
-                    {% trans %}Powered by{% endtrans %} <a class="link white b underline-hover" href="https://charitybase.uk/about" target="_blank">CharityBase</a>
+                    {% trans %}Powered by{% endtrans %} <a class="link white b underline-hover"
+                        href="https://findthatcharity.uk/" target="_blank">Find that Charity</a>
                 </p>
             </div>
         </div>
@@ -45,31 +45,43 @@
             <nav class="mb1">
                 <ul class="list ma0 pa0 lh-copy">
                     <li class="db dib-ns mr1 pr2 bn br-ns bw1 b--gray">
-                        &copy; NGO Explorer {{ now.year }}
+                        &copy; NGO Explorer 2019 - {{ now.year }}
                     </li>
                     <li class="db dib-ns mr1 pr2 bn br-ns bw1 b--gray">
-                        {% trans %}Part of{% endtrans %} <a href="http://siid.group.shef.ac.uk/" class="link white b underline-hover" target="_blank">
-                            <abbr title="Sheffield Institute for International Development (SIID, University of Sheffield)">SIID</abbr>
+                        {% trans %}Part of{% endtrans %} <a href="http://siid.group.shef.ac.uk/"
+                            class="link white b underline-hover" target="_blank">
+                            <abbr
+                                title="Sheffield Institute for International Development (SIID, University of Sheffield)">SIID</abbr>
                         </a>
-                        {% trans %}and{% endtrans %} <a href="https://www.gdi.manchester.ac.uk/" class="link white b underline-hover" target="_blank">
+                        {% trans %}and{% endtrans %} <a href="https://www.gdi.manchester.ac.uk/"
+                            class="link white b underline-hover" target="_blank">
                             <abbr title="University of Manchester Global Development Institute">GDI</abbr></a>
-                        <a href="https://mappingdevelopmentngos.wordpress.com/" class="link white b underline-hover" target="_blank">Mapping Development NGOs</a> project
+                        <a href="https://mappingdevelopmentngos.wordpress.com/" class="link white b underline-hover"
+                            target="_blank">Mapping Development NGOs</a> project
                     </li>
                     <li class="db dib-ns mr1 pr2 bn br-ns bw1 b--gray">
-                        {% trans %}Funded by{% endtrans %} <a href="https://www.ukri.org/research/global-challenges-research-fund/gcrf-global-impact-accelerator-accounts/" class="link white b underline-hover" target="_blank">GCRF Global Impact Accelerator</a>
+                        {% trans %}Funded by{% endtrans %} <a
+                            href="https://www.ukri.org/research/global-challenges-research-fund/gcrf-global-impact-accelerator-accounts/"
+                            class="link white b underline-hover" target="_blank">GCRF Global Impact Accelerator</a>
                     </li>
                     <li class="db dib-ns mr1 pr2 bn br-ns bw1 b--gray">
-                        {% trans %}Built by{% endtrans %} <a href="https://dkane.net/" class="link white b underline-hover" target="_blank">David Kane</a>
+                        {% trans %}Built by{% endtrans %} <a href="https://dkane.net/"
+                            class="link white b underline-hover" target="_blank">David Kane</a>
                     </li>
                     <li class="db dib-ns mr1 pr2 bn br-ns bw1 b--gray">
-                        {% trans %}Design by{% endtrans %} <a href="https://inkandwater.co.uk/" class="link white b underline-hover" target="_blank">Ink and Water</a>
+                        {% trans %}Design by{% endtrans %} <a href="https://inkandwater.co.uk/"
+                            class="link white b underline-hover" target="_blank">Ink and Water</a>
                     </li>
                     <li class="db dib-ns mr1 pr2 bn br-ns bw1 b--gray">
-                        {% trans %}Data from{% endtrans %} <a href="https://charitybase.uk/" class="link white b underline-hover" target="_blank">CharityBase</a> {% trans %}&{% endtrans %} 
-                        <a href="http://d-portal.org/ctrack.html#view=search" class="link white b underline-hover" target="_blank">IATI</a>
+                        {% trans %}Data from{% endtrans %} <a href="https://findthatcharity.uk/"
+                            class="link white b underline-hover" target="_blank">Find that Charity</a>
+                        {% trans %}&{% endtrans %}
+                        <a href="http://d-portal.org/ctrack.html#view=search" class="link white b underline-hover"
+                            target="_blank">IATI</a>
                     </li>
                     <li class="db dib-ns">
-                        <a href="https://github.com/drkane/ngo-explorer/" class="link white b underline-hover" target="_blank">
+                        <a href="https://github.com/drkane/ngo-explorer/" class="link white b underline-hover"
+                            target="_blank">
                             {% trans %}Code{% endtrans %}</a>
                     </li>
                 </ul>

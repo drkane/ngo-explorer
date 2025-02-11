@@ -1,12 +1,19 @@
 import os
 
 import psycopg
+import requests
+import sqlite_utils
 from flask import current_app
 from psycopg.rows import dict_row
 from sqlite_utils import Database
 from tqdm import tqdm
 
-from ngo_explorer.utils.inflation import fetch_inflation
+
+def fetch_inflation() -> dict[str, float]:
+    url = "https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23/data"
+    r = requests.get(url)
+    data = r.json()
+    return {i["year"]: float(i["value"]) for i in data["years"]}
 
 
 def fetch_ftc():
@@ -15,21 +22,28 @@ def fetch_ftc():
     ) as sql_query_file:
         sql_query = sql_query_file.read()
         db = Database(current_app.config["DB_LOCATION"], recreate=True)
-        db["inflation"].insert_all(
+        inflation_table = db.table("inflation", pk="year")
+        if not isinstance(inflation_table, sqlite_utils.db.Table):
+            raise ValueError("Error creating inflation table")
+        inflation_table.insert_all(
             [
                 {"year": year, "value": value}
                 for year, value in fetch_inflation().items()
             ],
-            pk="year",
         )
 
         with psycopg.connect(
-            current_app.config["FTC_DB_URL"], row_factory=dict_row
+            current_app.config["FTC_DB_URL"],
+            row_factory=dict_row,  # type: ignore
         ) as conn:
             with conn.cursor() as cur:
-                cur.execute(sql_query)
-                db["charity"].insert_all(tqdm(cur), pk="id")
-                db["charity"].enable_fts(["name"])
+                cur.execute(sql_query)  # type: ignore
+
+                charity_table = db.table("charity", pk="id")
+                if not isinstance(charity_table, sqlite_utils.db.Table):
+                    raise ValueError("Error creating charity table")
+                charity_table.insert_all(tqdm(cur))
+                charity_table.enable_fts(["id", "name"])
 
                 cur.execute("""
                 SELECT SUM(income) AS total_income,
@@ -41,4 +55,7 @@ def fetch_ftc():
                     c."source" = 'ccew'
                     AND c."active"
                 """)
-                db["stats"].insert_all(tqdm(cur))
+                stats_table = db.table("stats", pk="id")
+                if not isinstance(stats_table, sqlite_utils.db.Table):
+                    raise ValueError("Error creating stats table")
+                stats_table.insert_all(tqdm(cur))

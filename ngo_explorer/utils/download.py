@@ -1,124 +1,157 @@
 import csv
 import io
 import json
+from dataclasses import dataclass
+from typing import Optional
 
 import xlsxwriter
-from flask import Response, current_app
+from flask import Response
 from flask_babel import _
 from slugify import slugify
 
-from ngo_explorer.utils.fetchdata import fetch_charitybase
-from ngo_explorer.utils.filters import CLASSIFICATION
+from ngo_explorer.utils.countries import (
+    CountryGroupItem,
+    CountryGroupItemList,
+    CountryGroupItemUpload,
+)
+from ngo_explorer.utils.fetchdata import fetch_charity_details
+from ngo_explorer.utils.filters import CLASSIFICATION, Filters
 from ngo_explorer.utils.utils import record_to_nested
 
-DOWNLOAD_OPTIONS = {
-    "main": {
-        "options": [
-            {"label": _("Charity number"), "value": "id", "checked": True},
-            {"label": _("Charity name"), "value": "name", "checked": True},
-            {"label": _("Governing document"), "value": "governingDoc"},
-            {"label": _("Description of activities"), "value": "activities"},
-            {"label": _("Charitable objects"), "value": "objectives"},
-            {"label": _("Causes served"), "value": "causes"},
-            {"label": _("Beneficiaries"), "value": "beneficiaries"},
-            {"label": _("Activities"), "value": "operations"},
+
+@dataclass
+class DownloadOption:
+    label: str
+    value: str
+    checked: bool = False
+
+
+@dataclass
+class DownloadOptionGroup:
+    options: list[DownloadOption] | dict[str, list[DownloadOption]]
+    name: str
+    description: Optional[str] = None
+
+
+DOWNLOAD_OPTIONS: dict[str, DownloadOptionGroup] = {
+    "main": DownloadOptionGroup(
+        options=[
+            DownloadOption(label=_("Charity number"), value="id", checked=True),
+            DownloadOption(label=_("Charity name"), value="name", checked=True),
+            DownloadOption(
+                label=_("Registration date"),
+                value="registrationDate",
+                checked=True,
+            ),
+            DownloadOption(label=_("Governing document"), value="governingDoc"),
+            DownloadOption(label=_("Description of activities"), value="activities"),
+            DownloadOption(label=_("Charitable objects"), value="objectives"),
+            DownloadOption(label=_("Causes served"), value="causes"),
+            DownloadOption(label=_("Beneficiaries"), value="beneficiaries"),
+            DownloadOption(label=_("Activities"), value="operations"),
         ],
-        "name": _("Charity information"),
-    },
-    "financial": {
-        "options": [
-            {
-                "label": _("Latest income"),
-                "value": "income.latest.total",
-                "checked": True,
-            },
-            {
-                "label": _("Latest income date"),
-                "value": "income.latest.date",
-                "checked": True,
-            },
-            {"label": _("Income history"), "value": "income.history", "checked": False},
-            {
-                "label": _("Spending history"),
-                "value": "spending.history",
-                "checked": False,
-            },
-            {
-                "label": _("Inflation adjust income/spending history"),
-                "value": "inflation_adjusted",
-                "checked": False,
-            },
-            # {'label': _('Company number'), 'value': 'companiesHouseNumber'},
-            # {'label': _('Financial year end'), 'value': 'fyend'},
-            {"label": _("Number of trustees"), "value": "numPeople.trustees"},
-            {"label": _("Number of employees"), "value": "numPeople.employees"},
-            {"label": _("Number of volunteers"), "value": "numPeople.volunteers"},
+        name=_("Charity information"),
+    ),
+    "financial": DownloadOptionGroup(
+        options=[
+            DownloadOption(
+                label=_("Latest income"),
+                value="income.latest.total",
+                checked=True,
+            ),
+            DownloadOption(
+                label=_("Latest income date"),
+                value="income.latest.date",
+                checked=True,
+            ),
+            DownloadOption(
+                label=_("Income history"), value="income.history", checked=False
+            ),
+            DownloadOption(
+                label=_("Spending history"),
+                value="spending.history",
+                checked=False,
+            ),
+            DownloadOption(
+                label=_("Inflation adjust income/spending history"),
+                value="inflation_adjusted",
+                checked=False,
+            ),
+            # DownloadOption(label=_('Company number'), value='companiesHouseNumber'),
+            # DownloadOption(label=_('Financial year end'), value='fyend'),
+            DownloadOption(label=_("Number of trustees"), value="numPeople.trustees"),
+            DownloadOption(label=_("Number of employees"), value="numPeople.employees"),
+            DownloadOption(
+                label=_("Number of volunteers"), value="numPeople.volunteers"
+            ),
         ],
-        "description": _(
+        description=_(
             """Financial data can be adjusted to consistent prices using the
         <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23" target="_blank" class="link blue external-link">consumer price inflation (CPIH)</a>
         measure published by the Office for National Statistics."""
         ),
-        "name": "Financial",
-    },
-    "contact": {
-        "options": [
-            {"label": _("Email"), "value": "contact.email"},
-            {"label": _("Website"), "value": "website"},
-            {"label": _("Address"), "value": "contact.address"},
-            {"label": _("Postcode"), "value": "contact.postcode"},
-            {"label": _("Phone number"), "value": "contact.phone"},
+        name="Financial",
+    ),
+    "contact": DownloadOptionGroup(
+        options=[
+            DownloadOption(label=_("Email"), value="contact.email"),
+            DownloadOption(label=_("Website"), value="website"),
+            DownloadOption(label=_("Address"), value="contact.address"),
+            DownloadOption(label=_("Postcode"), value="contact.postcode"),
+            DownloadOption(label=_("Phone number"), value="contact.phone"),
         ],
-        "name": _("Contact details"),
-    },
-    "geo": {
-        "options": {
+        name=_("Contact details"),
+    ),
+    "geo": DownloadOptionGroup(
+        options={
             "aoo": [
-                {
-                    "label": _("Description of area of benefit"),
-                    "value": "areaOfBenefit",
-                },
-                {"label": _("Area of operation"), "value": "areas"},
-                {
-                    "label": _("Countries where this charity operates"),
-                    "value": "countries",
-                },
+                DownloadOption(
+                    label=_("Description of area of benefit"),
+                    value="areaOfBenefit",
+                ),
+                DownloadOption(label=_("Area of operation"), value="areas"),
+                DownloadOption(
+                    label=_("Countries where this charity operates"),
+                    value="countries",
+                ),
             ],
             "geo": [
-                {"label": _("Country"), "value": "geo.country"},
-                {"label": _("Region"), "value": "geo.region"},
-                {"label": _("County"), "value": "geo.admin_county"},
-                {"label": _("County [code]"), "value": "geo.codes.admin_county"},
-                {"label": _("Local Authority"), "value": "geo.admin_district"},
-                {
-                    "label": _("Local Authority [code]"),
-                    "value": "geo.codes.admin_district",
-                },
-                {"label": _("Ward"), "value": "geo.admin_ward"},
-                {"label": _("Ward [code]"), "value": "geo.codes.admin_ward"},
-                # {"label": _("Parish"), "value": "geo.parish"},
-                # {"label": _("Parish [code]"), "value": "geo.codes.parish"},
-                {"label": _("LSOA"), "value": "geo.lsoa"},
-                {"label": _("MSOA"), "value": "geo.msoa"},
-                {
-                    "label": _("Parliamentary Constituency"),
-                    "value": "geo.parliamentary_constituency",
-                },
-                {
-                    "label": _("Parliamentary Constituency [code]"),
-                    "value": "geo.codes.parliamentary_constituency",
-                },
+                DownloadOption(label=_("Country"), value="geo.country"),
+                DownloadOption(label=_("Region"), value="geo.region"),
+                DownloadOption(label=_("County"), value="geo.admin_county"),
+                DownloadOption(
+                    label=_("County [code]"), value="geo.codes.admin_county"
+                ),
+                DownloadOption(label=_("Local Authority"), value="geo.admin_district"),
+                DownloadOption(
+                    label=_("Local Authority [code]"),
+                    value="geo.codes.admin_district",
+                ),
+                DownloadOption(label=_("Ward"), value="geo.admin_ward"),
+                DownloadOption(label=_("Ward [code]"), value="geo.codes.admin_ward"),
+                # DownloadOption(label=_("Parish"), value="geo.parish"),
+                # DownloadOption(label=_("Parish [code]"), value="geo.codes.parish"),
+                DownloadOption(label=_("LSOA"), value="geo.lsoa"),
+                DownloadOption(label=_("MSOA"), value="geo.msoa"),
+                DownloadOption(
+                    label=_("Parliamentary Constituency"),
+                    value="geo.parliamentary_constituency",
+                ),
+                DownloadOption(
+                    label=_("Parliamentary Constituency [code]"),
+                    value="geo.codes.parliamentary_constituency",
+                ),
             ],
         },
-        "description": _(
+        description=_(
             "The following fields are based on the postcode of the charities' UK registered office"
         ),
-        "name": _("Geography fields"),
-    },
+        name=_("Geography fields"),
+    ),
 }
 
 
-def parse_download_fields(original_fields):
+def parse_download_fields(original_fields: list[str]):
     fields = record_to_nested(original_fields)
 
     # get income fields
@@ -168,34 +201,35 @@ def parse_download_fields(original_fields):
     return fields
 
 
-def download_file(area, ids, filters, fields, filetype="csv", max_results=500):
-    limit = 30
-    cb_variables = dict(
+def download_file(
+    area: Optional[CountryGroupItem | CountryGroupItemList | CountryGroupItemUpload],
+    filters: Filters,
+    fields: list[str],
+    ids: Optional[list[str]] = None,
+    filetype: str = "csv",
+    max_results: int = 500,
+):
+    fetch_ids = None
+    fetch_countries = None
+    if ids:
+        # assume it's a list of ids
+        fetch_ids = ids
+    elif isinstance(area, (CountryGroupItemList, CountryGroupItem)):
+        # assume it's an "Area" object with countries in
+        fetch_countries = area.countries
+
+    raw_results = fetch_charity_details(
         filters=filters,
-        limit=limit,
+        limit=max_results,
         skip=0,
         query="charity_download",
         query_fields=parse_download_fields(fields),
+        countries=fetch_countries,
+        ids=fetch_ids,
     )
-
-    if ids:
-        # assume it's a list of ids
-        cb_variables["ids"] = ids
-    elif "countries" in area:
-        # assume it's an "Area" object with countries in
-        cb_variables["countries"] = area["countries"]
-
-    raw_results = fetch_charitybase(**cb_variables)
     # check here if query has failed
 
-    charity_list = raw_results.list
-
-    stop_searching = min([raw_results.count, current_app.config["DOWNLOAD_LIMIT"]])
-    cb_variables["skip"] += limit
-    while cb_variables["skip"] < stop_searching:
-        raw_results = fetch_charitybase(**cb_variables)
-        charity_list.extend(raw_results.list)
-        cb_variables["skip"] += limit
+    charity_list = raw_results.list_
 
     if filetype.lower() in ["excel", "xlsx", "xls"]:
         filetype = "xlsx"
@@ -204,13 +238,14 @@ def download_file(area, ids, filters, fields, filetype="csv", max_results=500):
 
     results = []
     fieldnames_ = set()
-    for r in charity_list:
-        if filetype in ["xlsx", "csv"]:
-            result = r.as_flat_dict()
-        else:
-            result = r.as_dict()
-        results.append(result)
-        fieldnames_.update(result.keys())
+    if charity_list:
+        for r in charity_list:
+            if filetype in ["xlsx", "csv"]:
+                result = r.as_flat_dict()
+            else:
+                result = r.as_dict()
+            results.append(result)
+            fieldnames_.update(result.keys())
 
     fieldnames = (
         ["id", "name"]
@@ -272,7 +307,10 @@ def download_file(area, ids, filters, fields, filetype="csv", max_results=500):
         mimetype = "text/csv"
         extension = "csv"
 
-    filename = "ngoexplorer-{}".format(slugify(area["name"]))
+    if area:
+        filename = "ngoexplorer-{}".format(slugify(area.name))
+    else:
+        filename = "ngoexplorer"
 
     return Response(
         output.getvalue(),

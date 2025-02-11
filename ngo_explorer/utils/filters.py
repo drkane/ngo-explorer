@@ -1,4 +1,8 @@
+from dataclasses import dataclass
+from typing import Optional
+
 from flask_babel import _
+from werkzeug.datastructures import ImmutableMultiDict, MultiDict
 
 CLASSIFICATION = {
     "causes": {
@@ -63,17 +67,36 @@ REGIONS = {
 }
 
 
-def parse_filters(filters):
-    return_filters = {}
+@dataclass
+class Filters:
+    search: Optional[str] = None
+    causes: list[str] = []
+    beneficiaries: list[str] = []
+    operations: list[str] = []
+    max_income: Optional[int] = None
+    min_income: Optional[int] = None
+    countries: list[str] = []
+    regions: Optional[str] = None
+    exclude_grantmakers: Optional[bool] = None
+    exclude_religious: Optional[bool] = None
+    max_countries: Optional[int] = 50
+    skip: Optional[int] = None
+
+
+def parse_filters(
+    filters: MultiDict[str, str] | ImmutableMultiDict[str, str],
+) -> Filters:
+    return_filters = Filters()
 
     # search
     if filters.get("filter-search"):
-        return_filters["search"] = filters.get("filter-search")
+        return_filters.search = filters.get("filter-search")
         if (
-            '"' not in return_filters["search"]
-            and " OR " not in return_filters["search"]
+            isinstance(return_filters.search, str)
+            and '"' not in return_filters.search
+            and " OR " not in return_filters.search
         ):
-            return_filters["search"] = '"{}"'.format(return_filters["search"])
+            return_filters.search = '"{}"'.format(return_filters.search)
 
     # cause, beneficiaries, operations
     if filters.get("filter-classification"):
@@ -81,37 +104,47 @@ def parse_filters(filters):
         for i in CLASSIFICATION.keys():
             for j in CLASSIFICATION[i].keys():
                 if j in categories:
-                    if i not in return_filters:
-                        return_filters[i] = []
-                    return_filters[i].append(j)
+                    getattr(return_filters, i).append(j)
 
     # max and min income
-    if filters.get("filter-max-income"):
-        return_filters["max_income"] = int(filters.get("filter-max-income"))
-    if filters.get("filter-min-income"):
-        return_filters["min_income"] = int(filters.get("filter-min-income"))
+    filter_max_income = filters.get("filter-max-income")
+    if isinstance(filter_max_income, str):
+        try:
+            return_filters.max_income = int(filter_max_income)
+        except ValueError:
+            pass
+    filter_min_income = filters.get("filter-min-income")
+    if isinstance(filter_min_income, str):
+        try:
+            return_filters.min_income = int(filter_min_income)
+        except ValueError:
+            pass
 
     # further country filter (refines the main url country selection)
     if filters.get("filter-countries"):
-        return_filters["countries"] = filters.getlist("filter-countries")
+        return_filters.countries = filters.getlist("filter-countries")
 
     # region filter
     if filters.get("filter-regions"):
-        return_filters["regions"] = filters.get("filter-regions")
+        return_filters.regions = filters.get("filter-regions")
 
     # exclude grantmakers
     if "filter-exclude-grantmakers" in filters:
-        return_filters["exclude_grantmakers"] = True
+        return_filters.exclude_grantmakers = True
 
     # exclude grantmakers
     if "filter-exclude-religious" in filters:
-        return_filters["exclude_religious"] = True
+        return_filters.exclude_religious = True
 
     # max_countries
-    return_filters["max_countries"] = int(filters.get("filter-max-countries", 50))
+    return_filters.max_countries = int(filters.get("filter-max-countries", 50))
 
     # page for lists
-    if filters.get("filter-skip"):
-        return_filters["skip"] = int(filters.get("filter-skip"))
+    filter_skip = filters.get("filter-skip")
+    if isinstance(filter_skip, str):
+        try:
+            return_filters.skip = int(filter_skip)
+        except ValueError:
+            pass
 
     return return_filters

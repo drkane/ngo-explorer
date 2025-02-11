@@ -14,3 +14,4 @@ ruff
 psycopg[binary]
 sqlite_utils
 tqdm
+dataclasses-json

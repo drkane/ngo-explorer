@@ -2,9 +2,11 @@ import os
 import pickle
 import re
 import uuid
+from typing import Optional
 
 from flask import (
     Blueprint,
+    abort,
     current_app,
     redirect,
     render_template,
@@ -14,6 +16,7 @@ from flask import (
 from flask_babel import _
 
 from ngo_explorer.blueprints.data import data_page
+from ngo_explorer.utils.countries import CountryGroupItemUpload
 
 bp = Blueprint("upload", __name__, url_prefix="/upload")
 
@@ -25,15 +28,15 @@ def data():
 
 @bp.route("/", methods=["POST"])
 def process_data():
-    charitynumbers = request.values.get("charitynumbers")
-    if not charitynumbers:
-        return None
+    charitynumbers_raw: Optional[str] = request.values.get("charitynumbers")
+    if not charitynumbers_raw:
+        abort(400)
 
-    charitynumbers = re.split(r"\W+", charitynumbers)
+    charitynumbers = re.split(r"\W+", charitynumbers_raw)
     charitynumbers = set(charitynumbers)
-    charitynumbers = sorted([c.strip() for c in charitynumbers])
+    charitynumbers = sorted([c.strip() for c in charitynumbers if isinstance(c, str)])
 
-    # charity_data = fetch_charitybase(ids=charitynumbers)
+    # charity_data = fetch_charity_details(ids=charitynumbers)
 
     list_id = str(uuid.uuid4())
 
@@ -97,10 +100,10 @@ def fetch_uploaded_data(fileid, filetype="html", subpage="dashboard"):
         data = pickle.load(a)
 
     return data_page(
-        area={
-            "name": data["title"] if data["title"] else "Data upload",
-            "type": "upload",
-        },
+        area=CountryGroupItemUpload(
+            name=data["title"] if data["title"] else "Data upload",
+            type_="upload",
+        ),
         charity_ids=data["charitynumbers"],
         filetype=filetype,
         page=subpage,

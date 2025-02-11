@@ -1,141 +1,246 @@
-from datetime import datetime
+import json
+from dataclasses import InitVar, dataclass, field
+from datetime import date, datetime
+from typing import Optional
 
+from dataclasses_json import dataclass_json
 from flask_babel import _
 
 from ngo_explorer.utils.charts import line_chart
-from ngo_explorer.utils.countries import get_country_by_id
-from ngo_explorer.utils.inflation import fetch_inflation
+from ngo_explorer.utils.countries import Country, get_country_by_id
+from ngo_explorer.utils.fetchdata import OipaItemOrg
 from ngo_explorer.utils.utils import nested_to_record
 
 
-class CharityLookupCharity(object):
-    date_format = "%Y-%m-%d"
+@dataclass
+class CharityName:
+    value: str
+    primary: bool = False
 
-    def __init__(self, chardata):
-        for k, v in chardata.items():
-            setattr(self, k, v)
 
-        self._set_name()
-        self._get_countries()
-        self._parse_website()
-        self._parse_dates()
-        self._parse_orgids()
-        self._parse_classifications()
-        self._get_inflation()
+@dataclass
+class CharityItem:
+    id: str
+    name: Optional[str] = None
 
-    def _get_inflation(self):
-        self._inflation = fetch_inflation()
 
-        self._current_year = str(datetime.now().year)
-        if self._current_year not in self._inflation.keys():
-            self._current_year = str(max([int(i) for i in self._inflation.keys()]))
+@dataclass
+class CharityFinancialYear:
+    end: date
+    start: Optional[date] = None
 
-        for f in self.finances:
-            if f.get("financialYear", {}).get("end") is None:
-                continue
-            year = f["financialYear"]["end"].year
-            if self._inflation.get(str(year)):
-                inflator = self._inflation.get(
-                    self._current_year
-                ) / self._inflation.get(str(year))
-            else:
-                inflator = 1
+    def __post_init__(self):
+        if isinstance(self.end, str):
+            self.end = datetime.strptime(self.end, "%Y-%m-%d")
+        if isinstance(self.start, str):
+            self.start = datetime.strptime(self.start, "%Y-%m-%d")
 
-            if f.get("income"):
-                f["income_inflated"] = f["income"] * inflator
-            if f.get("spending"):
-                f["spending_inflated"] = f["spending"] * inflator
 
-    def _set_name(self):
-        for n in self.names:
-            if n["primary"]:
-                self.name = n["value"]
+@dataclass
+class CharityFinance:
+    financialYear: CharityFinancialYear
+    income: Optional[float] = None
+    spending: Optional[float] = None
+    inflator: Optional[float] = None
 
-    def _parse_orgids(self):
-        if hasattr(self, "orgIds"):
-            self.orgIds = [o["id"] for o in self.orgIds]
+    @property
+    def income_inflated(self):
+        if isinstance(self.income, float) and isinstance(self.inflator, float):
+            return self.income * self.inflator
 
-    def _parse_classifications(self):
-        for i in ["operations", "beneficiaries", "causes"]:
-            if hasattr(self, i):
-                setattr(self, i, [o["id"] for o in getattr(self, i)])
+    @property
+    def spending_inflated(self):
+        if isinstance(self.spending, float) and isinstance(self.inflator, float):
+            return self.spending * self.inflator
 
-    def _get_countries(self):
-        areas = []
+    @classmethod
+    def from_db(cls, data: str):
+        return cls(**json.loads(data))
+
+
+@dataclass
+class CharityGeoCodes:
+    region: Optional[str] = None
+    country: Optional[str] = None
+    admin_county: Optional[str] = None
+    admin_district: Optional[str] = None
+    admin_ward: Optional[str] = None
+    parliamentary_constituency: Optional[str] = None
+    lsoa: Optional[str] = None
+    msoa: Optional[str] = None
+
+
+@dataclass
+class CharityGeo:
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    region: Optional[str] = None
+    country: Optional[str] = None
+    admin_county: Optional[str] = None
+    admin_district: Optional[str] = None
+    admin_ward: Optional[str] = None
+    lsoa: Optional[str] = None
+    msoa: Optional[str] = None
+    parliamentary_constituency: Optional[str] = None
+    codes: Optional[CharityGeoCodes] = None
+
+    @classmethod
+    def from_db(cls, data: str):
+        data_dict = json.loads(data)
+        if data_dict.get("codes"):
+            data_dict["codes"] = CharityGeoCodes(**data_dict["codes"])
+        return cls(**data_dict)
+
+
+@dataclass
+class CharityRegistration:
+    registrationDate: Optional[date] = None
+    removalDate: Optional[date] = None
+
+    def __post_init__(self):
+        if isinstance(self.registrationDate, str):
+            self.registrationDate = datetime.strptime(self.registrationDate, "%Y-%m-%d")
+        if isinstance(self.removalDate, str):
+            self.removalDate = datetime.strptime(self.removalDate, "%Y-%m-%d")
+
+
+@dataclass
+class CharityContacts:
+    email: Optional[str] = None
+    address: Optional[str] = None
+    phone: Optional[str] = None
+    postcode: Optional[str] = None
+
+
+@dataclass
+class CharityNumPeople:
+    trustees: int
+    volunteers: int
+    employees: int
+
+
+@dataclass
+class CharityLookupCharity:
+    id: Optional[str] = None
+    name: Optional[str] = None
+    names: Optional[list[CharityName]] = None
+    activities: Optional[str] = None
+    areas: Optional[list[CharityItem]] = None
+    finances: Optional[list[CharityFinance]] = None
+    orgIds: Optional[list[str]] = None
+    operations: Optional[list[str]] = None
+    causes: Optional[list[str]] = None
+    beneficiaries: Optional[list[str]] = None
+    geo: Optional[CharityGeo] = None
+    registrations: Optional[list[CharityRegistration]] = None
+    website: Optional[str] = None
+    contacts: Optional[CharityContacts] = None
+    numPeople: Optional[CharityNumPeople] = None
+    governingDoc: Optional[str] = None
+    areaOfBenefit: Optional[str] = None
+    countries: Optional[list[Country]] = None
+    iati: Optional[list[OipaItemOrg]] = None
+
+    current_year: str = field(init=False)
+    inflation: InitVar[Optional[dict[str, float]]] = None
+
+    @classmethod
+    def from_db(
+        cls,
+        data: dict[str, str],
+        all_finances: bool = False,
+        inflation: Optional[dict[str, float]] = None,
+    ):
+        if all_finances:
+            charity_finances = data.get("all_finances", "[]")
+        else:
+            charity_finances = data.get("finances", "[]")
+
+        countries_list: list[str] = json.loads(data.get("countries", "[]"))
         countries = []
-        if hasattr(self, "areas"):
-            for a in self.areas:
-                c = get_country_by_id(a["id"])
-                if c:
-                    countries.append(c)
-                else:
-                    areas.append(a)
-        self.areas = areas
-        self.countries = countries
+        for country in countries_list:
+            country_obj = get_country_by_id(country)
+            if country_obj:
+                countries.append(country_obj)
 
-    def _parse_website(self):
-        if getattr(self, "website", None):
-            self.website = self.website.strip()
-            if not self.website.startswith("http"):
-                self.website = "//" + self.website
+        return cls(
+            id=data.get("id"),
+            name=data.get("name"),
+            names=[CharityName(**n) for n in json.loads(data.get("all_names", "[]"))],
+            activities=data.get("activities"),
+            areas=[CharityItem(**a) for a in json.loads(data.get("areas", "[]"))],
+            finances=[CharityFinance(**f) for f in json.loads(charity_finances)],
+            orgIds=[o["id"] for o in json.loads(data.get("orgids", "[]"))],
+            operations=[o["id"] for o in json.loads(data.get("operations", "[]"))],
+            causes=[o["id"] for o in json.loads(data.get("causes", "[]"))],
+            beneficiaries=[
+                o["id"] for o in json.loads(data.get("beneficiaries", "[]"))
+            ],
+            geo=CharityGeo.from_db(data.get("geo", "{}")),
+            registrations=[
+                CharityRegistration(**r)
+                for r in json.loads(data.get("registrations", "[]"))
+            ],
+            website=data.get("website"),
+            contacts=CharityContacts(**json.loads(data.get("contacts", "{}"))),
+            numPeople=CharityNumPeople(**json.loads(data.get("numPeople", "{}"))),
+            governingDoc=data.get("governingDoc"),
+            areaOfBenefit=data.get("areaOfBenefit"),
+            countries=countries,
+        )
 
-    def _parse_dates(self):
-        if getattr(self, "finances", None):
-            # remove any none attributes
-            self.finances = [
-                f
-                for f in self.finances
-                if (
-                    f.get("income")
-                    and f.get("spending")
-                    and f.get("financialYear", {}).get("end")
-                )
-            ]
-
-            # convert text strings to datetime
-            for f in self.finances:
-                if f.get("financialYear", {}).get("end"):
-                    f["financialYear"]["end"] = datetime.strptime(
-                        f["financialYear"]["end"][0:10], self.date_format
-                    )
-                if f.get("financialYear", {}).get("start"):
-                    f["financialYear"]["start"] = datetime.strptime(
-                        f["financialYear"]["start"][0:10], self.date_format
-                    )
-
-            # sort by financial year end
+    def __post_init__(self, inflation: Optional[dict[str, float]] = None):
+        # sort by financial year end
+        if self.finances:
             self.finances = sorted(
                 self.finances,
-                key=lambda k: k["financialYear"]["end"],
+                key=lambda k: k.financialYear.end,
                 reverse=True,
             )
 
-        if getattr(self, "registrations", None):
-            # convert text strings to datetime
-            for f in self.registrations:
-                if f.get("registrationDate"):
-                    f["registrationDate"] = datetime.strptime(
-                        f["registrationDate"][0:10], self.date_format
-                    )
-                if f.get("removalDate"):
-                    f["removalDate"] = datetime.strptime(
-                        f["removalDate"][0:10], self.date_format
-                    )
+        self.current_year = str(datetime.now().year)
 
-            # sort by date
-            self.registrations = sorted(
-                self.registrations, key=lambda k: k["registrationDate"]
-            )
+        self._parse_website()
+        self._get_inflation(inflation)
 
-            self.registrationDate = self.registrations[0]["registrationDate"]
-            self.removalDate = self.registrations[-1]["removalDate"]
+    def _get_inflation(self, inflation):
+        if self.current_year not in inflation.keys():
+            self.current_year = str(max([int(i) for i in inflation.keys()]))
+
+        if self.finances:
+            for f in self.finances:
+                if f.financialYear.end is None:
+                    continue
+                year = f.financialYear.end.year
+                if inflation.get(str(year)):
+                    f.inflator = inflation.get(self.current_year) / inflation.get(
+                        str(year)
+                    )
+                else:
+                    f.inflator = 1
+
+    def _parse_website(self):
+        if self.website:
+            self.website = self.website.strip()
+            if not self.website.startswith("http"):
+                self.website = "https://" + self.website
+
+    @property
+    def registrationDate(self):
+        if self.registrations:
+            return self.registrations[0].registrationDate
+
+    @property
+    def removalDate(self):
+        if self.registrations:
+            return self.registrations[0].removalDate
 
     def finance_chart(self):
-        if getattr(self, "finances", None):
-            income_cash = [f.get("income") for f in self.finances]
-            spending_cash = [f.get("spending") for f in self.finances]
-            income_real = [f.get("income_inflated") for f in self.finances]
-            spending_real = [f.get("spending_inflated") for f in self.finances]
+        if self.finances:
+            income_cash = [getattr(f, "income") for f in self.finances]
+            spending_cash = [getattr(f, "spending") for f in self.finances]
+            income_real = [getattr(f, "income_inflated") for f in self.finances]
+            spending_real = [getattr(f, "spending_inflated") for f in self.finances]
 
             updatemenus = list(
                 [
@@ -149,17 +254,17 @@ class CharityLookupCharity(object):
                                             "name": [
                                                 _(
                                                     "Income (%(year)s prices)",
-                                                    year=str(self._current_year),
+                                                    year=str(self.current_year),
                                                 ),
                                                 _(
                                                     "Spending (%(year)s prices)",
-                                                    year=str(self._current_year),
+                                                    year=str(self.current_year),
                                                 ),
                                             ],
                                         }
                                     ],
                                     label=_(
-                                        "%(year)s prices", year=str(self._current_year)
+                                        "%(year)s prices", year=str(self.current_year)
                                     ),
                                     method="restyle",
                                 ),
@@ -193,11 +298,9 @@ class CharityLookupCharity(object):
             chart = line_chart(
                 [
                     dict(
-                        x=[f["financialYear"]["end"] for f in self.finances],
+                        x=[f.financialYear.end for f in self.finances],
                         y=income_real,
-                        name=_(
-                            "Income (%(year)s prices)", year=str(self._current_year)
-                        ),
+                        name=_("Income (%(year)s prices)", year=str(self.current_year)),
                         mode="lines",
                         line=dict(
                             color="#0ca777",
@@ -206,10 +309,10 @@ class CharityLookupCharity(object):
                         hoverinfo="x+y",
                     ),
                     dict(
-                        x=[f["financialYear"]["end"] for f in self.finances],
+                        x=[f.financialYear.end for f in self.finances],
                         y=spending_real,
                         name=_(
-                            "Spending (%(year)s prices)", year=str(self._current_year)
+                            "Spending (%(year)s prices)", year=str(self.current_year)
                         ),
                         mode="lines",
                         line=dict(
@@ -220,8 +323,8 @@ class CharityLookupCharity(object):
                     ),
                 ]
             )
-            chart["layout"]["updatemenus"] = updatemenus
-            chart["layout"]["legend"] = dict(
+            chart["layout"].updatemenus = updatemenus
+            chart["layout"].legend = dict(
                 # x=0.5,
                 # y=1,
                 orientation="h"
@@ -238,18 +341,18 @@ class CharityLookupCharity(object):
             if k == "finances":
                 years_seen = []
                 for f in v:
-                    year = f["financialYear"]["end"].strftime("%Y")
+                    year = f.financialYear.end.strftime("%Y")
                     if year in years_seen:
-                        year = f["financialYear"]["end"].strftime("%Y%m%d")
+                        year = f.financialYear.end.strftime("%Y%m%d")
 
                     if inflation_adjusted:
                         if "income" in f:
                             data[
-                                "income_{}_{}prices".format(year, self._current_year)
+                                "income_{}_{}prices".format(year, self.current_year)
                             ] = f.get("income_inflated")
                         if "spending" in f:
                             data[
-                                "spending_{}_{}prices".format(year, self._current_year)
+                                "spending_{}_{}prices".format(year, self.current_year)
                             ] = f.get("spending_inflated")
                     else:
                         if "income" in f:
@@ -262,7 +365,7 @@ class CharityLookupCharity(object):
             elif isinstance(v, list):
                 if v and isinstance(v[0], dict):
                     v = [i.get("name", list(i.values())[0]) for i in v]
-                data[k] = ";".join(v)
+                data[k] = ";".join([str(item) for item in v])
 
             else:
                 data[k] = v

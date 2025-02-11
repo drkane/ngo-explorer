@@ -10,23 +10,26 @@
             <h2 class="korolev ma0 mv2-l">{% trans %}Explore UK charities working across the world{% endtrans %}</h2>
             {% block message %}{% endblock %}
             <form action="{{ url_for('data.country', **{'countryid': 'all'}) }}">
-            <div class="mb1 bb bw2 b--mid-gray w-100 flex items-center">
-                <i class="material-icons">search</i>
-                <input id="filter-country-list" name="filter-search" class="w-100 lh-copy bn bg-inherit pa2 border-box" placeholder="{{ _('Type to search (try a country)') }}" value="" autocomplete="off" />
-            </div>
+                <div class="mb1 bb bw2 b--mid-gray w-100 flex items-center">
+                    <i class="material-icons">search</i>
+                    <input id="filter-country-list" name="filter-search"
+                        class="w-100 lh-copy bn bg-inherit pa2 border-box"
+                        placeholder="{{ _('Type to search (try a country)') }}" value="" autocomplete="off" />
+                </div>
             </form>
         </div>
     </div>
     <div class="" id="country-list">
         {% for group, country_list, show_initial in countries %}
-        <div class="cf country-group lh-copy {% if show_initial %}db{% else %}dn{% endif %}" data-initialclass="{% if show_initial %}db{% else %}dn{% endif %}">
+        <div class="cf country-group lh-copy {% if show_initial %}db{% else %}dn{% endif %}"
+            data-initialclass="{% if show_initial %}db{% else %}dn{% endif %}">
             <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
                 {% if group and group.lower() in config.PLOTLY_GEO_SCOPES %}
                 <div class="w-100 fr country-group-name">
-                {{ group or "&nbsp;" }}
+                    {{ group or "&nbsp;" }}
                 </div>
                 <div class="w-50 fr dn db-l">
-                {{ []|location_map(continents=[group.lower()], height=120, landcolor='#666', static=True) }}
+                    {{ []|location_map(continents=[group.lower()], height=120, landcolor='#666', static=True) }}
                 </div>
                 {% else %}
                 <div class="country-group-name">{{ group or "&nbsp;" }}</div>
@@ -52,14 +55,15 @@
                 <ul class="list pa0 ma0">
                     {% for code, name in classification[group[0]].items() %}
                     <li class="dib mr2 pb0">
-                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-classification': code}) }}" class="link blue">{{ name }}</a>
+                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-classification': code}) }}"
+                            class="link blue">{{ name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
         {% endfor %}
-        <div class="cf country-group lh-copy" >
+        <div class="cf country-group lh-copy">
             <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
                 <div class="country-group-name">
                     {% trans %}UK headquarters{% endtrans %}
@@ -69,7 +73,8 @@
                 <ul class="list pa0 ma0">
                     {% for code, name in regions.items() %}
                     <li class="dib mr2 pb0">
-                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-regions': code}) }}" class="link blue">{{ name }}</a>
+                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-regions': code}) }}"
+                            class="link blue">{{ name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -83,8 +88,9 @@
                 <ul class="list pa0 ma0">
                     {% for q in ["agriculture", '"children" and "youth"', "poverty", "education", "conservation", "entrepreneurship", "sanitation"] %}
                     <li class="dib mr2 pb0">
-                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-search': q}) }}" class="link blue">
-                             {{ q }}
+                        <a href="{{ url_for('data.country', **{'countryid': 'all', 'filter-search': q}) }}"
+                            class="link blue">
+                            {{ q }}
                         </a>
                     </li>
                     {% endfor %}
@@ -98,8 +104,9 @@
             <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
                 <ul class="list pa0 ma0">
                     <li class="dib mr2 pb0">
-                        <a href="#" data-baseurl="{{ url_for('data.country', **{'countryid': 'all'}) }}" class="link blue" id="search-link">
-                             "<span id='search-term'></span>" {% trans %}in charity description{% endtrans %}
+                        <a href="#" data-baseurl="{{ url_for('data.country', **{'countryid': 'all'}) }}"
+                            class="link blue" id="search-link">
+                            "<span id='search-term'></span>" {% trans %}in charity description{% endtrans %}
                         </a>
                     </li>
                 </ul>
@@ -113,9 +120,10 @@
                 <h3 class="korolev ma0">{% trans %}Upload your own data{% endtrans %}</h3>
                 <div class="cf mt2">
                     <a href="{{ url_for('upload.data') }}"
-                    class="korolev ph4 pv3 bg-yellow dark-gray no-underline dib f5 br2 fr darken ml2">{% trans %}Upload your data{% endtrans %} <i class="material-icons v-mid">publish</i></a>
-                    <p class="ma0 pa0"> 
-                        {% trans %}If you have a list of England and Wales charity numbers, you can 
+                        class="korolev ph4 pv3 bg-yellow dark-gray no-underline dib f5 br2 fr darken ml2">{% trans %}Upload
+                        your data{% endtrans %} <i class="material-icons v-mid">publish</i></a>
+                    <p class="ma0 pa0">
+                        {% trans %}If you have a list of England and Wales charity numbers, you can
                         upload your data to explore your group of
                         charities.{% endtrans %}
                     </p>
@@ -129,15 +137,16 @@
     <div class="ml3-l ml0 br2 bg-light-gray pa3">
         <h3 class="korolev ma0">{% trans %}About this site{% endtrans %}</h3>
         <div class="cf">
-            <p> 
-                {% trans %}This tool uses data from 
-                <a href="https://charitybase.uk/" class="link blue" target="_blank">CharityBase</a> 
+            <p>
+                {% trans %}This tool uses data from
+                <a href="https://findthatcharity.uk/" class="link blue" target="_blank">Find that Charity</a>
                 to explore the work of English and Welsh charities in other countries.{% endtrans %}
             </p>
             <p>
                 {% trans about_page=url_for('home.about') %}Charities working only in the UK are excluded.
                 A number of good sites already exist for charities which work only
-                in the UK and these are listed on <a href="{{ about_page }}#resources" class="link blue">the network page</a>.{% endtrans %}
+                in the UK and these are listed on <a href="{{ about_page }}#resources" class="link blue">the network
+                    page</a>.{% endtrans %}
             </p>
         </div>
     </div>

@@ -1,7 +1,7 @@
 import os
 import random
 from datetime import datetime
-from typing import Union
+from typing import Optional, Union
 
 import requests_cache
 from babel.numbers import format_decimal
@@ -31,8 +31,6 @@ def create_app(test_config=None):
             "south america",
         ],
         GA_TRACKING_ID=os.environ.get("GA_TRACKING_ID"),
-        CHARITYBASE_API_KEY=os.environ.get("CHARITYBASE_API_KEY"),
-        CHARITYBASE_URL="https://charitybase.uk/api/graphql",
         FTC_DB_URL=os.environ.get("FTC_DB_URL"),
         DB_LOCATION=os.environ.get("DB_LOCATION", "charitydata.sqlite"),
         DATA_CONTAINER=os.environ.get(
@@ -86,10 +84,10 @@ def create_app(test_config=None):
     return app
 
 
-def add_template_filters(app):
+def add_template_filters(app: Flask):
     # register template filters
     @app.template_filter("slugify")
-    def template_slugify(s):
+    def template_slugify(s: str) -> str:
         return slugify(s)
 
     @app.template_filter("location_map")
@@ -101,11 +99,11 @@ def add_template_filters(app):
         return plotly_json(data)
 
     @app.template_filter("update_url")
-    def template_update_url_values(url: str, values: dict):
+    def template_update_url_values(url: str, values: dict) -> str:
         return update_url_values(url, values)
 
     @app.template_filter("correct_titlecase")
-    def template_correct_titlecase(s: str, **kwargs):
+    def template_correct_titlecase(s: str, **kwargs) -> str:
         return correct_titlecase(s, **kwargs)
 
     @app.template_filter("number_format")
@@ -113,7 +111,7 @@ def add_template_filters(app):
         return scale_value(v, True)
 
     @app.template_filter("_n")
-    def template_babel_number_format(v: Union[int, float], format="#,##0"):
+    def template_babel_number_format(v: Optional[int | float], format: str = "#,##0"):
         if v:
             return format_decimal(v, format=format)
         return v
@@ -123,11 +121,11 @@ def add_template_filters(app):
         return random.sample(seq, min((n, len(seq))))
 
     @app.template_filter("first_upper")
-    def template_first_upper(s: str):
+    def template_first_upper(s: str) -> str:
         return s[0].upper() + s[1:]
 
 
-def add_context_processors(app):
+def add_context_processors(app: Flask):
     # add custom context to templates
     @app.context_processor
     def inject_context_vars():

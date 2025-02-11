@@ -1,8 +1,10 @@
+from flask import Flask
+
 from ngo_explorer.commands.countries import update_countries
 from ngo_explorer.commands.fetchftc import fetch_ftc
 
 
-def add_custom_commands(app):
+def add_custom_commands(app: Flask):
     # add custom commands
     @app.cli.command("update-countries")
     def cli_update_countries():

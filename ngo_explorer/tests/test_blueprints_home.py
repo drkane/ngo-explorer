@@ -5,7 +5,7 @@ def test_index_page(client):
     assert b"Europe and Central Asia" in rv.data
     assert b"Upper middle income" in rv.data
     assert b"Upload your data" in rv.data
-    assert b"CharityBase" in rv.data
+    assert b"Find that Charity" in rv.data
     assert b"GCRF Global Impact Accelerator" in rv.data
 
 
@@ -14,6 +14,6 @@ def test_about_page(client):
     assert b"Sheffield Institute for International Development" in rv.data
     assert b"Global Development Institute" in rv.data
     assert b"David Kane" in rv.data
-    assert b"CharityBase" in rv.data
+    assert b"Find that Charity" in rv.data
     assert b"UK Research and Innovation" in rv.data
     assert b"GCRF Global Impact Accelerator" in rv.data

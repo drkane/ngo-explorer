@@ -8,26 +8,29 @@
     <div class="db fl w-60-l w-100 ma0">
         <form method='post' id="upload-form">
             <h2 class="korolev ma0 mv2-l">{% trans %}Upload your own data{% endtrans %}</h2>
-            <p> 
-                {% trans %}If you have a list of England and Wales charity numbers, you can 
+            <p>
+                {% trans %}If you have a list of England and Wales charity numbers, you can
                 upload your data to explore your group of
                 charities.{% endtrans %}
             </p>
-            <p> 
-                {% trans %}Don't know the charity numbers? Why not try 
+            <p>
+                {% trans %}Don't know the charity numbers? Why not try
                 <a href="https://findthatcharity.uk/adddata" class="link blue external-link" target="_blank">
                     enhancing your data on findthatcharity.uk
                 </a>
                 .{% endtrans %}
             </p>
             <p class="db mt2">
-                <input type="text" class="pa2 w-100 ngo-input" name="upload-name" id="upload-name" autocomplete="off" placeholder="{{ _('Give this dataset a name') }}" />
+                <input type="text" class="pa2 w-100 ngo-input" name="upload-name" id="upload-name" autocomplete="off"
+                    placeholder="{{ _('Give this dataset a name') }}" />
             </p>
             <h3 class="korolev">{% trans %}Paste a list of charity numbers{% endtrans %}</h3>
             <textarea class="w-100 pa2 ngo-input js-only" id="charity-numbers" autocomplete="off"></textarea>
-            <textarea class="w-100 pa2 ngo-input js-hide" id="charity-numbers-parsed" name="charitynumbers" autocomplete="off"></textarea>
+            <textarea class="w-100 pa2 ngo-input js-hide" id="charity-numbers-parsed" name="charitynumbers"
+                autocomplete="off"></textarea>
             <div id="charity-number-output"></div>
-            <input type="submit" class="ph4 pv3 darken korolev f4 bg-light-green white bn mt3 br2 pointer" value="{{ _('Fetch data on these charities') }}" />
+            <input type="submit" class="ph4 pv3 darken korolev f4 bg-light-green white bn mt3 br2 pointer"
+                value="{{ _('Fetch data on these charities') }}" />
         </form>
         <div class="js-only">
             <p class="tc h1 bb b--light-silver mv4">
@@ -37,18 +40,19 @@
             <input class="w-100 pv2" type="file" id="file-upload" accept=".csv" autocomplete="off" />
             <select class="mv2 pa1 w-100 ngo-input" id="file-upload-columns" autocomplete="off"></select>
             <div id="file-upload-output"></div>
-            <input type="submit" class="ph4 pv3 darken korolev f4 bg-light-green white bn mt3 br2 pointer" form="upload-form" value="{{ _('Fetch data from CSV') }}" />
+            <input type="submit" class="ph4 pv3 darken korolev f4 bg-light-green white bn mt3 br2 pointer"
+                form="upload-form" value="{{ _('Fetch data from CSV') }}" />
         </div>
         <div class="mt5 bg-yellow pa3">
             <h4 class="korolev mv0">{% trans %}Data protection{% endtrans %}</h4>
             <p class="mv1">
                 {% trans %}Your data file won't leave your computer, although the charity numbers in your
-                file will be sent as web requests to this site and <a href="https://charitybase.uk/" class="external-link link blue" target="_blank">CharityBase</a>.
+                file will be sent as web requests to this site.
                 These web requests may be stored in logs on both servers.{% endtrans %}
             </p>
             <p class="mv1">
-                {% trans %}The results about the charities you have selected will be available to 
-                anyone with the link. If your list of charities is confidential then 
+                {% trans %}The results about the charities you have selected will be available to
+                anyone with the link. If your list of charities is confidential then
                 please think carefully before uploading.{% endtrans %}
             </p>
         </div>

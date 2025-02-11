@@ -7,18 +7,21 @@
     <div class="cf lh-copy">
         <div class="db fl w-30-l w-100 ma0 tr-l pr3 b">&nbsp;</div>
         <div class="db fl w-70-l w-100 ma0">
-            <h2 class="korolev ma0 mv2-l" id="">{% trans %}Explore UK charities working across the world{% endtrans %}</h2>
+            <h2 class="korolev ma0 mv2-l" id="">{% trans %}Explore UK charities working across the world{% endtrans %}
+            </h2>
 
             <h3 class="korolev ma0 mv2-l" id="purpose">{% trans %}What's the purpose of the site?{% endtrans %}</h3>
             <p>
-                {% trans %}This site is an offshoot of a research project which{% endtrans %} 
-                <a href="https://mappingdevelopmentngos.wordpress.com/reports/" class="link blue" target="_blank">{% trans %}explores the development NGO sector in the UK{% endtrans %}</a>.
+                {% trans %}This site is an offshoot of a research project which{% endtrans %}
+                <a href="https://mappingdevelopmentngos.wordpress.com/reports/" class="link blue"
+                    target="_blank">{% trans %}explores the development NGO sector in the UK{% endtrans %}</a>.
             </p>
             <p>
                 {% trans fileurl=url_for('static', filename='ngo_map_briefing.pdf') %}
                 During that project we (Nicola and Dan) learned how difficult it can be to access data from Charity
-                Commission records. We also 
-                <a href="{{ fileurl }}" class="link blue" target="_blank">learned how useful it can be to analyse these data</a>,
+                Commission records. We also
+                <a href="{{ fileurl }}" class="link blue" target="_blank">learned how useful it can be to analyse these
+                    data</a>,
                 and that they could
                 be a useful networking tool if they were more easily accessible. So we decided to build this site in
                 order to make these records, which are in the public domain already, more readily available.
@@ -26,56 +29,56 @@
             </p>
             <h3 class="korolev ma0 mv2-l" id="who">{% trans %}Who's behind the site?{% endtrans %}</h3>
             <p>
-                {% trans %}This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/" target="_blank" class="link blue">Sheffield Institute for International Development</a> 
+                {% trans %}This site is a collaboration between the <a href="http://siid.group.shef.ac.uk/"
+                    target="_blank" class="link blue">Sheffield Institute for International Development</a>
                 (University of Sheffield) and
-                the <a href="https://www.gdi.manchester.ac.uk/" target="_blank" class="link blue">Global Development Institute</a> (University of Manchester).
-                It was developed by <a href="https://dkane.net/" target="_blank" class="link blue">David Kane</a> and uses data from
-                <a href="https://charitybase.uk" target="_blank" class="link blue">CharityBase</a> developed by 
-                <a href="https://twitter.com/dan_kwiat" target="_blank" class="link blue">Dan Kwiatkowski</a>.{% endtrans %}
+                the <a href="https://www.gdi.manchester.ac.uk/" target="_blank" class="link blue">Global Development
+                    Institute</a> (University of Manchester).
+                It was developed by <a href="https://dkane.net/" target="_blank" class="link blue">David Kane</a> and
+                uses data from
+                <a href="https://findthatcharity.uk" target="_blank" class="link blue">Find that
+                    Charity</a>.{% endtrans %}
             </p>
             <ul class="list cf db pa0">
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
-                    <a href="https://www.research.manchester.ac.uk/portal/nicola.banks.html" target="_blank" class="link blue">
-                        <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/niki.png') }}" /><br>
+                    <a href="https://www.research.manchester.ac.uk/portal/nicola.banks.html" target="_blank"
+                        class="link blue">
+                        <img class="br3 h4 w4 dib bg-light-gray"
+                            src="{{ url_for('static', filename='images/staff/niki.png') }}" /><br>
                         <strong>Dr Nicola Banks</strong>
                     </a><br>
-                    {% trans %}Lecturer in Urban Development, <abbr title="Global Development Institute">GDI</abbr>{% endtrans %}
+                    {% trans %}Lecturer in Urban Development, <abbr
+                        title="Global Development Institute">GDI</abbr>{% endtrans %}
                 </li>
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
                     <a href="https://danbrockington.com/" target="_blank" class="link blue">
-                        <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/dan_b.png') }}" /><br>
+                        <img class="br3 h4 w4 dib bg-light-gray"
+                            src="{{ url_for('static', filename='images/staff/dan_b.png') }}" /><br>
                         <strong>Prof. Dan Brockington</strong>
                     </a><br>
-                    {% trans %}Director of <abbr title="Sheffield Institute for International Development">SIID</abbr>{% endtrans %}
+                    {% trans %}Director of <abbr
+                        title="Sheffield Institute for International Development">SIID</abbr>{% endtrans %}
                 </li>
                 <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
                     <a href="https://dkane.net/" target="_blank" class="link blue">
-                        <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/david.png') }}" /><br>
+                        <img class="br3 h4 w4 dib bg-light-gray"
+                            src="{{ url_for('static', filename='images/staff/david.png') }}" /><br>
                         <strong>David Kane</strong>
                     </a><br>
                     {% trans %}Freelance data scientist{% endtrans %}
-                </li>
-                <li class="fl dib ma0 pa0 w-100 w-50-m w-25-l">
-                    <a href="https://twitter.com/dan_kwiat" target="_blank" class="link blue">
-                        <img class="br3 h4 w4 dib bg-light-gray" src="{{ url_for('static', filename='images/staff/dan_k.png') }}" /><br>
-                        <strong>Dan Kwiatkowski</strong>
-                    </a><br>
-                    {% trans %}Creator of CharityBase{% endtrans %}
                 </li>
             </ul>
             <div class="mt2 w-100">
                 <ul class="list ma0 pa0 tc">
                     <li class="dib ma0 pa0 mt2 mt0-l v-top pr3-l">
                         <a class="mw3" href="https://siid.group.shef.ac.uk/">
-                            <img class="cf mw5"
-                                src="{{ url_for('static', filename='images/siid-logo.png') }}"
+                            <img class="cf mw5" src="{{ url_for('static', filename='images/siid-logo.png') }}"
                                 title="Sheffield Institute for International Development (SIID, University of Sheffield)" />
                         </a>
                     </li>
                     <li class="dib ma0 pa0 mt2 mt0-l v-top">
                         <a class="" href="https://www.gdi.manchester.ac.uk/">
-                            <img class="cf mw5"
-                                src="{{ url_for('static', filename='images/gdi_logo_hi.png') }}"
+                            <img class="cf mw5" src="{{ url_for('static', filename='images/gdi_logo_hi.png') }}"
                                 title="Global Development Institute (GDI, University of Manchester)" />
                         </a>
                     </li>
@@ -88,32 +91,31 @@
             </p>
             <h3 class="korolev ma0 mv2-l" id="funding">{% trans %}Who has funded this project?{% endtrans %}</h3>
             <p>
-                {% trans %}This site has been funded from 
-                <a href="https://www.ukri.org/research/global-challenges-research-fund/" class="link blue external-link" target="_blank">GCRF Global Impact Accelerator funds</a>
-                 awarded by 
-                <a href="https://www.ukri.org/" class="link blue external-link" target="_blank">UK Research and Innovation</a>
+                {% trans %}This site has been funded from
+                <a href="https://www.ukri.org/research/global-challenges-research-fund/" class="link blue external-link"
+                    target="_blank">GCRF Global Impact Accelerator funds</a>
+                awarded by
+                <a href="https://www.ukri.org/" class="link blue external-link" target="_blank">UK Research and
+                    Innovation</a>
                 to the Universities of Sheffield and Manchester.{% endtrans %}
             </p>
             <div class="mt2 w-100">
                 <ul class="list ma0 pa0 tc">
                     <li class="dib mv0 mr2-l mb2 mb0-l pa0 v-mid">
                         <a class="mw3" href="https://www.ukri.org/research/global-challenges-research-fund/">
-                            <img class="cf mw5 mr3"
-                                src="{{ url_for('static', filename='images/gcrf.png') }}"
+                            <img class="cf mw5 mr3" src="{{ url_for('static', filename='images/gcrf.png') }}"
                                 title="Global Challenges Research Fund" />
                         </a>
                     </li>
                     <li class="dib mv0 mr2-l mb2 mb0-l pa0 v-mid">
                         <a class="mw3" href="https://www.ukri.org/">
-                            <img class="cf mw6 mr3"
-                                src="{{ url_for('static', filename='images/ukri.png') }}"
+                            <img class="cf mw6 mr3" src="{{ url_for('static', filename='images/ukri.png') }}"
                                 title="UK Research and Innovation" />
                         </a>
                     </li>
                     <li class="dib ma0 pa0 mt2 mt0-l v-mid">
                         <span class="">
-                            <img class="cf mw6 mv3"
-                                src="{{ url_for('static', filename='images/uk_gov.png') }}"
+                            <img class="cf mw6 mv3" src="{{ url_for('static', filename='images/uk_gov.png') }}"
                                 title="Funded by UK Government" />
                         </span>
                     </li>
@@ -121,55 +123,64 @@
             </div>
             <h3 class="korolev ma0 mv2-l" id="data">{% trans %}Data sources{% endtrans %}</h3>
             <p>
-                {% trans %}Data on the site comes from the <a href="https://charitybase.uk/api-portal" target="_blank" class="link blue">CharityBase API</a>.
-                CharityBase uses data from the 
-                <a href="http://data.charitycommission.gov.uk/" target="_blank" class="link blue">Charity Commission for England and Wales</a> 
-                register of charities. Data is used under the 
-                <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank" class="link blue">Open Government Licence</a>{% endtrans %}
+                {% trans %}Data on the site comes from <a href="https://findthatcharity.uk/" target="_blank"
+                    class="link blue">Find that Charity</a>.
+                Find that Charity uses data from the
+                <a href="http://data.charitycommission.gov.uk/" target="_blank" class="link blue">Charity Commission for
+                    England and Wales</a>
+                register of charities. Data is used under the
+                <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank"
+                    class="link blue">Open Government Licence</a>{% endtrans %}
             </p>
             <ul>
                 <li>{% trans %}Contains OS data © Crown copyright and database right 2018.{% endtrans %}</li>
-                <li>{% trans %}Contains Royal Mail data © Royal Mail copyright and database right 2018.{% endtrans %}</li>
-                <li>{% trans %}Contains National Statistics data © Crown copyright and database right 2018.{% endtrans %}</li>
+                <li>{% trans %}Contains Royal Mail data © Royal Mail copyright and database right 2018.{% endtrans %}
+                </li>
+                <li>{% trans %}Contains National Statistics data © Crown copyright and database right
+                    2018.{% endtrans %}</li>
             </ul>
             <p>
-                {% trans %}NGO Explorer and CharityBase are not responsible for the content of the data on the register of charities.
-                If you have any questions or concerns about the charity data, you will need to 
+                {% trans %}NGO Explorer and Find that Charity are not responsible for the content of the data on the
+                register
+                of charities.
+                If you have any questions or concerns about the charity data, you will need to
                 contact the Charity Commission.{% endtrans %}
             </p>
             <h4 class="korolev ma0 mv2-l" id="iati">{% trans %}IATI{% endtrans %}</h4>
             <p>
-                {% trans %}The site also uses data from the <a href="" target="_blank" class="link blue">International Aid Transparency Initative</a>
-                (IATI). IATI data is published by a large number of aid funders throughout the world. The data used here is
+                {% trans %}The site also uses data from the <a href="" target="_blank" class="link blue">International
+                    Aid Transparency Initative</a>
+                (IATI). IATI data is published by a large number of aid funders throughout the world. The data used here
+                is
                 sourced from <a href="https://www.oipa.nl/home" target="_blank" class="link blue">OIPA</a>, a rich API
                 for IATI data.{% endtrans %}
             </p>
             <h4 class="korolev ma0 mv2-l" id="other-resources">{% trans %}Other resources{% endtrans %}</h4>
             <p>
-                {% trans %}Where available, the site signposts to other resources, such as national registers of organisations.
+                {% trans %}Where available, the site signposts to other resources, such as national registers of
+                organisations.
                 NGO Explorer is not responsible for the content of external sites.{% endtrans %}
             </p>
             <h3 class="korolev ma0 mv2-l" id="resources">{% trans %}Where else can I find data?{% endtrans %}</h3>
             <p>
                 {% trans %}This site is just one of a ecosystem of resources allowing exploration of the
-                UK charity sector. Other resources include:{% endtrans %} 
+                UK charity sector. Other resources include:{% endtrans %}
             </p>
             <ul>
                 <li>
-                    <a href="https://beta.charitycommission.gov.uk/" class="link blue" target="_blank">Charity Commission for England and Wales</a>
-                     - the official register of charities in England and Wales
+                    <a href="https://beta.charitycommission.gov.uk/" class="link blue" target="_blank">Charity
+                        Commission for England and Wales</a>
+                    - the official register of charities in England and Wales
                 </li>
                 <li>
-                    <a href="https://www.oscr.org.uk/about-charities/search-the-register/register-search/" class="link blue" target="_blank">Scottish Charity Regulator</a>
+                    <a href="https://www.oscr.org.uk/about-charities/search-the-register/register-search/"
+                        class="link blue" target="_blank">Scottish Charity Regulator</a>
                     - the official register of charities in Scotland
                 </li>
                 <li>
-                    <a href="https://www.charitycommissionni.org.uk/charity-search/" class="link blue" target="_blank">Charity Commission for Northern Ireland</a>
+                    <a href="https://www.charitycommissionni.org.uk/charity-search/" class="link blue"
+                        target="_blank">Charity Commission for Northern Ireland</a>
                     - the official register of charities in Northern Ireland
-                </li>
-                <li>
-                    <a href="https://charitybase.uk/" class="link blue" target="_blank">CharityBase UK</a>
-                    - a powerful database and API of charities that powers this site
                 </li>
                 <li>
                     <a href="https://findthatcharity.uk/" class="link blue" target="_blank">Find that Charity</a>
@@ -179,12 +190,14 @@
                     <a href="https://olib.uk/charity/html/" class="link blue" target="_blank">CharityData</a>
                 </li>
                 <li>
-                    <a href="https://www.charitychoice.co.uk/charities" class="link blue" target="_blank">Charity Choice</a>
+                    <a href="https://www.charitychoice.co.uk/charities" class="link blue" target="_blank">Charity
+                        Choice</a>
                 </li>
             </ul>
             <h3 class="korolev ma0 mv2-l" id="privacy">{% trans %}Your privacy and cookies{% endtrans %}</h3>
             <p>
-                {% trans upload_link=url_for('upload.data') %}If you use the <a href="{{ upload_link }}" class="link blue">data upload tool</a>,
+                {% trans upload_link=url_for('upload.data') %}If you use the <a href="{{ upload_link }}"
+                    class="link blue">data upload tool</a>,
                 any charity numbers included in the data will be
                 sent to the server in order to create a data dashboard.{% endtrans %}
             </p>
@@ -197,12 +210,13 @@
             </p>
             <p>
                 <a href="https://docs.simpleanalytics.com/what-we-collect" target="_blank">Go
-                to their documentation</a> to find out what Simple Analytics collects (and most
+                    to their documentation</a> to find out what Simple Analytics collects (and most
                 importantly what they don't).
             </p>
             <h3 class="korolev ma0 mv2-l" id="feedback">{% trans %}Tell us how you used the website{% endtrans %}</h3>
             <p>
-                {% trans %}We'd love to hear your feedback on the site. Email us at{% endtrans %} <a href="mailto:info@ngoexplorer.org" class="link blue">info@ngoexplorer.org</a>
+                {% trans %}We'd love to hear your feedback on the site. Email us at{% endtrans %} <a
+                    href="mailto:info@ngoexplorer.org" class="link blue">info@ngoexplorer.org</a>
             </p>
         </div>
     </div>

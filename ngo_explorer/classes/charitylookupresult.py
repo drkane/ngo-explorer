@@ -1,4 +1,6 @@
 import copy
+from dataclasses import InitVar, asdict, dataclass, fields
+from typing import Optional
 
 from flask_babel import _
 
@@ -9,18 +11,44 @@ from ngo_explorer.utils.filters import CLASSIFICATION
 from ngo_explorer.utils.utils import get_scaling_factor
 
 
-class CharityLookupResult(object):
-    def __init__(self, result):
-        result = result.get("data", {}).get("CHC", {}) or {}
-        result = result.get("getCharities", {}) or {}
-        self.aggregate = result.get("aggregate")
-        self.count = result.get("count")
-        self.list = (
-            [CharityLookupCharity(c) for c in result.get("list", [])]
-            if result.get("list")
-            else []
-        )
+@dataclass
+class ResultBucket:
+    key: str
+    count: int
+    name: Optional[str] = None
+    sum: Optional[int] = None
+    sumIncomeText: Optional[str] = None
 
+
+@dataclass
+class ResultAggregateFinances:
+    latestSpending: list[ResultBucket] = []
+
+
+@dataclass
+class ResultAggregateGeo:
+    region: list[ResultBucket] = []
+    country: list[ResultBucket] = []
+
+
+@dataclass
+class ResultAggregate:
+    finances: ResultAggregateFinances = ResultAggregateFinances()
+    causes: list[ResultBucket] = []
+    beneficiaries: list[ResultBucket] = []
+    operations: list[ResultBucket] = []
+    areas: list[ResultBucket] = []
+    geo: ResultAggregateGeo = ResultAggregateGeo()
+
+
+@dataclass
+class CharityLookupResult:
+    aggregate: Optional[ResultAggregate] = None
+    count: int = 0
+    list_: Optional[list[CharityLookupCharity]] = None
+    inflation: InitVar[Optional[dict[str, float]]] = None
+
+    def __post_init__(self, inflation: Optional[dict[str, float]] = None):
         self._parse_aggregates()
         self._parse_income_buckets()
 
@@ -28,39 +56,26 @@ class CharityLookupResult(object):
         if not self.aggregate:
             return
 
-        for k in self.aggregate.keys():
-            if "buckets" in self.aggregate[k]:
-                self.aggregate[k] = self.aggregate[k]["buckets"]
-            elif isinstance(self.aggregate[k], dict):
-                for j in self.aggregate[k].keys():
-                    if "buckets" in self.aggregate[k][j]:
-                        self.aggregate[k][j] = self.aggregate[k][j]["buckets"]
-
-        if self.aggregate.get("areas", {}):
+        if self.aggregate.areas:
             self.countries = [
-                {"count": i["count"], **get_country_by_id(i["key"]), "id": i["key"]}
-                for i in self.aggregate["areas"]
-                if get_country_by_id(i["key"])
+                {"count": i.count, **get_country_by_id(i.key), "id": i.key}
+                for i in self.aggregate.areas
+                if get_country_by_id(i.key)
             ]
         else:
             self.countries = []
 
-        if self.aggregate.get("finances", {}).get("latestSpending", {}):
+        if self.aggregate.finances.latestSpending:
             self.total_income = sum(
-                [
-                    f["sum"]
-                    for f in self.aggregate.get("finances", {}).get(
-                        "latestSpending", {}
-                    )
-                ]
+                [f["sum"] for f in self.aggregate.finances.latestSpending]
             )
             scale = get_scaling_factor(self.total_income)
             self.total_income_text = "£" + scale[2].format(self.total_income / scale[0])
             self.total_income_years = {}
-            if self.list:
-                for c in self.list:
-                    if c.finances and c.finances[0].get("financialYear", {}).get("end"):
-                        year = c.finances[0]["financialYear"]["end"].year
+            if self.list_:
+                for c in self.list_:
+                    if c.finances and c.finances[0].financialYear.end:
+                        year = c.finances[0].financialYear.end.year
                         if year not in self.total_income_years:
                             self.total_income_years[year] = 0
                         self.total_income_years[year] += 1
@@ -68,7 +83,7 @@ class CharityLookupResult(object):
     def _parse_income_buckets(self):
         if not self.aggregate:
             return
-        income_buckets = self.aggregate.get("finances", {}).get("latestSpending", {})
+        income_buckets = self.aggregate.finances.latestSpending
         if not income_buckets:
             return
 
@@ -97,26 +112,34 @@ class CharityLookupResult(object):
         # merge all the buckets into one
         new_buckets = {}
         for i in income_buckets:
-            id_ = new_bucket_labels.get(i["name"], i["key"])
+            id_ = new_bucket_labels.get(i.name or i.key, i.key)
             if id_ not in new_buckets:
-                new_buckets[id_] = copy.copy(i)
+                new_buckets[id_] = asdict(i)
                 new_buckets[id_]["name"] = id_
             else:
-                new_buckets[id_]["count"] += i["count"]
-                new_buckets[id_]["sum"] += i["sum"]
+                new_buckets[id_]["count"] += i.count
+                new_buckets[id_]["sum"] += i.sum
 
         # scale the money amounts and add a text representation
-        income_buckets = []
+        income_buckets: list[ResultBucket] = []
         for i in new_buckets.values():
             scale = get_scaling_factor(i["sum"])
             i["sumIncomeText"] = "£" + scale[2].format(i["sum"] / scale[0])
-            income_buckets.append(i)
+            income_buckets.append(
+                ResultBucket(
+                    key=i["key"],
+                    count=i["count"],
+                    name=i["name"],
+                    sum=i["sum"],
+                    sumIncomeText=i["sumIncomeText"],
+                )
+            )
 
-        self.aggregate["finances"]["latestSpending"] = income_buckets
+        self.aggregate.finances.latestSpending = income_buckets
 
     def get_charity(self):
-        if len(self.list):
-            return self.list[0]
+        if len(self.list_):
+            return self.list_[0]
 
     def set_charts(self, selected_countries=None):
         self.charts = self.get_charts(selected_countries)
@@ -126,8 +149,8 @@ class CharityLookupResult(object):
             return None
 
         for i in CLASSIFICATION.keys():
-            for x in self.aggregate[i]:
-                x["name"] = CLASSIFICATION.get(i, {}).get(x["key"], x["key"])
+            for x in getattr(self.aggregate, i):
+                x.name = CLASSIFICATION.get(i, {}).get(x["key"], x["key"])
 
         if selected_countries and len(selected_countries) == 1:
             selected_country = selected_countries[0]["id"]
@@ -139,10 +162,10 @@ class CharityLookupResult(object):
 
         return {
             "count": horizontal_bar(
-                self.aggregate["finances"]["latestSpending"], "count", colour=colours[0]
+                self.aggregate.finances.latestSpending, "count", colour=colours[0]
             ),
             "amount": horizontal_bar(
-                self.aggregate["finances"]["latestSpending"],
+                self.aggregate.finances.latestSpending,
                 "sum",
                 "sumIncomeText",
                 log_axis=True,
@@ -150,8 +173,10 @@ class CharityLookupResult(object):
             ),
             "countries": horizontal_bar(countries[0:12], "count", colour=colours[2]),
             **{
-                k: horizontal_bar(self.aggregate[k], "count", colour=colours[i])
+                k: horizontal_bar(
+                    getattr(self.aggregate, k), "count", colour=colours[i]
+                )
                 for i, k in enumerate(CLASSIFICATION.keys())
             },
-            "word_cloud": word_cloud(self.list),
+            "word_cloud": word_cloud(self.list_),
         }
