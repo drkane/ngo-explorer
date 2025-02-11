@@ -4,12 +4,10 @@
       "quantity": 4
     }
   },
-  "cron": {
-    "jobs": [
-      {
-        "command": "flask fetch-ftc",
-        "schedule": "5 4 * * 4"
-      }
-    ]
-  }
+  "cron": [
+    {
+      "command": "flask fetch-ftc",
+      "schedule": "5 4 * * 4"
+    }
+  ]
 }
