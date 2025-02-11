@@ -29,4 +29,5 @@ class ResultAggregate:
     beneficiaries: list[ResultBucket] = field(default_factory=list)
     operations: list[ResultBucket] = field(default_factory=list)
     areas: list[ResultBucket] = field(default_factory=list)
+    countries: list[ResultBucket] = field(default_factory=list)
     geo: ResultAggregateGeo = ResultAggregateGeo()

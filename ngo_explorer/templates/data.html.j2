@@ -11,7 +11,7 @@
 
 {% block content %}
 {% set active_page =  "dashboard" %}
-{% if area.type=="upload" %}
+{% if area.type_=="upload" %}
 {% include '_upload_data_header.html.j2' %}
 {% else %}
 {% include '_data_header.html.j2' %}
@@ -25,13 +25,13 @@
 
         <figure class="fl w-100 w-50-l pr3-l mh0 mt0 mb2">
             <div id="example-charities" class=" bg-light-gray pa4 br3">
-            {% include '_data_example_charities.html.j2' %}
+                {% include '_data_example_charities.html.j2' %}
             </div>
         </figure>
         <figure class="fl w-100 w-50-l pr3-l mh0 mt0 mb2">
             <figcaption class="f4 b mv1 lh-title">{% trans %}How NGOs describe themselves{% endtrans %}</figcaption>
             <div id="word-cloud">
-            {% include '_data_word_cloud.html.j2' %}
+                {% include '_data_word_cloud.html.j2' %}
             </div>
         </figure>
 
@@ -57,7 +57,7 @@
 <script>
     const api_url = '{{ api_url }}';
     {% if data.charts %}
-    const charts = {{ data.charts|to_plotlyjson }};
+    const charts = {{ data.charts| to_plotlyjson }};
     {% endif %}
 </script>
 {{ super() }}

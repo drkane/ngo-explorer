@@ -5,3 +5,4 @@ uploads/
 node_modules/
 env/
 !ngo_explorer/utils/queries/*.sql
+!ngo_explorer/tests/sample/*.sqlite

@@ -8,8 +8,8 @@ from sqlite_utils import Database
 from ngo_explorer.classes.charity import Charity
 from ngo_explorer.classes.countries import Country
 from ngo_explorer.classes.iati import OipaItem, OipaItemOrg
-from ngo_explorer.classes.result import (
-    Result,
+from ngo_explorer.classes.result import Result
+from ngo_explorer.classes.results import (
     ResultAggregate,
     ResultBucket,
 )

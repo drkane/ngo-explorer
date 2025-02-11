@@ -15,6 +15,7 @@ def client(tmpdir):
             "TESTING": True,
             "REQUEST_CACHE_BACKEND": "memory",
             "DATA_CONTAINER": tmpdir.mkdir("upload"),
+            "DB_LOCATION": os.path.join(thisdir, "sample", "charitydata.sqlite"),
         }
     )
     client = app.test_client()

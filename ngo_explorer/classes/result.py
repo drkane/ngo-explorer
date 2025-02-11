@@ -1,3 +1,4 @@
+import dataclasses
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -5,10 +6,7 @@ from flask_babel import _
 
 from ngo_explorer.classes.charity import Charity
 from ngo_explorer.classes.countries import Country
-from ngo_explorer.classes.results import (
-    ResultAggregate,
-    ResultBucket,
-)
+from ngo_explorer.classes.results import ResultAggregate
 from ngo_explorer.utils.charts import horizontal_bar
 from ngo_explorer.utils.countries import get_country_by_id
 from ngo_explorer.utils.filters import CLASSIFICATION
@@ -21,7 +19,7 @@ class Result:
     aggregate: Optional[ResultAggregate] = None
     count: int = 0
     list_: Optional[list[Charity]] = None
-    countries: list[ResultBucket] = field(default_factory=list)
+    countries: list[Country] = field(default_factory=list)
 
     def __post_init__(self):
         self._parse_aggregates()
@@ -36,14 +34,7 @@ class Result:
                 country = get_country_by_id(i.key)
                 if not country:
                     continue
-                self.countries.append(
-                    ResultBucket(
-                        key=i.key,
-                        count=i.count,
-                        name=country.name,
-                        sum=i.sum,
-                    )
-                )
+                self.countries.append(dataclasses.replace(country, count=i.count))
 
         if self.aggregate.finances.latestSpending:
             self.total_income = sum(
@@ -97,9 +88,11 @@ class Result:
 
         if selected_countries and len(selected_countries) == 1:
             selected_country = selected_countries[0]
-            countries = [c for c in self.countries if c.key != selected_country.id]
+            countries = [
+                c for c in self.aggregate.areas if c.key != selected_country.id
+            ]
         else:
-            countries = self.countries
+            countries = self.aggregate.areas
 
         colours = ["#237756", "#F9AF42", "#043942", "#0CA777"]
 

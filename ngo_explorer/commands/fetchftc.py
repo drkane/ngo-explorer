@@ -1,5 +1,6 @@
 import csv
 import os
+import random
 import tempfile
 from typing import Iterable
 
@@ -11,10 +12,17 @@ from psycopg.rows import dict_row
 from sqlite_utils import Database
 from tqdm import tqdm
 
+COUNTRIES_CSV = os.path.join(os.path.dirname(__file__), "../utils/countries.csv")
+CHARITY_SQL = os.path.join(
+    os.path.dirname(__file__), "../utils/queries/charity_list.sql"
+)
+INFLATION_URL = (
+    "https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23/data"
+)
+
 
 def fetch_inflation() -> dict[str, float]:
-    url = "https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23/data"
-    r = requests.get(url)
+    r = requests.get(INFLATION_URL)
     data = r.json()
     return {i["year"]: float(i["value"]) for i in data["years"]}
 
@@ -29,7 +37,7 @@ def insert_into_table(db: Database, table_name: str, data: Iterable, pk: str = "
     return table
 
 
-def fetch_ftc():
+def fetch_ftc(sample=None):
     with tempfile.TemporaryDirectory() as tmpdirname:
         new_filename = os.path.join(tmpdirname, "newdb.db")
         print(f"Creating new database at {new_filename}")
@@ -45,9 +53,7 @@ def fetch_ftc():
             pk="year",
         )
 
-        with open(
-            os.path.join(os.path.dirname(__file__), "../utils/countries.csv")
-        ) as csv_input:
+        with open(COUNTRIES_CSV) as csv_input:
             reader = csv.DictReader(csv_input)
             insert_into_table(
                 db,
@@ -61,18 +67,20 @@ def fetch_ftc():
             row_factory=dict_row,  # type: ignore
         ) as conn:
             with conn.cursor() as cur:
-                with open(
-                    os.path.join(
-                        os.path.dirname(__file__), "../utils/queries/charity_list.sql"
-                    )
-                ) as sql_query_file:
+                with open(CHARITY_SQL) as sql_query_file:
                     sql_query = sql_query_file.read()
                     cur.execute(sql_query)  # type: ignore
+
+                if sample:
+                    rows = list(tqdm(cur))
+                    result = random.sample(rows, sample)
+                else:
+                    result = tqdm(cur)
 
                 charity_table = insert_into_table(
                     db,
                     "charity",
-                    tqdm(cur),
+                    result,
                     pk="id",
                 )
                 charity_table.enable_fts(["id", "name", "activities"])

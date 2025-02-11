@@ -1,3 +1,4 @@
+import click
 from flask import Flask
 
 from ngo_explorer.commands.countries import update_countries
@@ -11,5 +12,6 @@ def add_custom_commands(app: Flask):
         update_countries()
 
     @app.cli.command("fetch-ftc")
-    def cli_fetch_ftc():
-        fetch_ftc()
+    @click.option("--sample", type=int, default=None)
+    def cli_fetch_ftc(sample=None):
+        fetch_ftc(sample)
