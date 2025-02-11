@@ -16,6 +16,7 @@ def client(tmpdir):
             "REQUEST_CACHE_BACKEND": "memory",
             "DATA_CONTAINER": tmpdir.mkdir("upload"),
             "DB_LOCATION": os.path.join(thisdir, "sample", "charitydata.sqlite"),
+            "DOWNLOAD_LIMIT": 5_000,
         }
     )
     client = app.test_client()
