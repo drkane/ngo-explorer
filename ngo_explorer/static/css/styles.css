@@ -42,18 +42,11 @@ body {
    height:100%;
    font-size: 18px;
 }
-/* .container {
-    min-height: 100%;
-    position: relative;
+.container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
-main {
-    padding-bottom: 196px;
-}
-footer {
-   position: absolute;
-   bottom: 0;
-   min-height: 180px;
-} */
 
 /* form inputs */
 .is-focused .choices__inner,

@@ -20,24 +20,24 @@
         </div>
     </div>
     <div class="" id="country-list">
-        {% for group, country_list, show_initial in countries %}
-        <div class="cf country-group lh-copy {% if show_initial %}db{% else %}dn{% endif %}"
-            data-initialclass="{% if show_initial %}db{% else %}dn{% endif %}">
+        {% for country_group in countries %}
+        <div class="cf country-group lh-copy {% if country_group.show_initial %}db{% else %}dn{% endif %}"
+            data-initialclass="{% if country_group.show_initial %}db{% else %}dn{% endif %}">
             <div class="db fl w-30-l w-100 mh0 mv2 tr-l pr3 b">
-                {% if group and group.lower() in config.PLOTLY_GEO_SCOPES %}
+                {% if country_group.title and country_group.title.lower() in config.PLOTLY_GEO_SCOPES %}
                 <div class="w-100 fr country-group-name">
-                    {{ group or "&nbsp;" }}
+                    {{ country_group.title or "&nbsp;" }}
                 </div>
                 <div class="w-50 fr dn db-l">
-                    {{ []|location_map(continents=[group.lower()], height=120, landcolor='#666', static=True) }}
+                    {{ []|location_map(continents=[country_group.title.lower()], height=120, landcolor='#666', static=True) }}
                 </div>
                 {% else %}
-                <div class="country-group-name">{{ group or "&nbsp;" }}</div>
+                <div class="country-group-name">{{ country_group.title or "&nbsp;" }}</div>
                 {% endif %}
             </div>
             <div class="db fl w-70-l w-100 mh0 mv2 country-group-list">
                 <ul class="list pa0 ma0">
-                    {% for c in country_list|sort(attribute="name") %}
+                    {% for c in country_group.values|sort(attribute="name") %}
                     <li class="dib mr2 pb0">
                         <a href="{{ c.id }}" class="link blue">{{ c.name|first_upper }}</a>
                     </li>

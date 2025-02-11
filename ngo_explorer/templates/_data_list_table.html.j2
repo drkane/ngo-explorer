@@ -10,7 +10,8 @@
             </a>
             {% endif %}
             <a class="link blue" href="{{ pages[active_page].url|update_url({"filter-skip": skip - 30}) }}">
-                <i class="material-icons md-18 v-mid">chevron_left</i><span class="v-mid">{% trans %}Previous{% endtrans %}</span>
+                <i class="material-icons md-18 v-mid">chevron_left</i><span
+                    class="v-mid">{% trans %}Previous{% endtrans %}</span>
             </a>
         </li>
         {% endif %}
@@ -28,7 +29,8 @@
         {% if skip + 30 < data.count %}
         <li class="dib">
             <a class="link blue" href="{{ pages[active_page].url|update_url({"filter-skip": skip + 30}) }}">
-                <span class="v-mid">{% trans %}Next{% endtrans %}</span><i class="material-icons md-18 v-mid">chevron_right</i>
+                <span class="v-mid">{% trans %}Next{% endtrans %}</span><i
+                    class="material-icons md-18 v-mid">chevron_right</i>
             </a>
             {% if skip + 60 < data.count %}
             <a class="link blue" href="{{ pages[active_page].url|update_url({"filter-skip": data.count - 30}) }}">
@@ -50,11 +52,12 @@
             <th class="pa2 v-top tr dn dtc-ns">{% trans %}<abbr title="Registration">Reg</abbr>. date{% endtrans %}</th>
             <th class="pa2 v-top tr dn dtc-ns">{% trans %}Latest income{% endtrans %}</th>
             <th class="pa2 v-top tl dn dtc-ns mw6">{% trans %}Activities{% endtrans %}</th>
-            <th class="pa2 v-top tl dn dtc-ns">{% trans %}Region{% endtrans %} <span class="normal gray underline" title="{{ _('based on registered office of UK charity') }}">?</span></th>
+            <th class="pa2 v-top tl dn dtc-ns">{% trans %}Region{% endtrans %} <span class="normal gray underline"
+                    title="{{ _('based on registered office of UK charity') }}">?</span></th>
         </tr>
     </thead>
     <tbody id="data-list">
-    {% for c in data.list %}
+        {% for c in data.list_ %}
         <tr class="db dt-row-ns bb b--light-gray bw1">
             <td class="pa2 v-top db dtc-ns mw5">
                 <a class="link blue" href="{{ url_for('data.charity', charityid=c.id) }}">
@@ -66,7 +69,7 @@
                 {{ "{:%d/%m/%Y}".format(c.registrationDate) }}
             </td>
             <td class="pa2 v-top tr db dtc-ns">
-            {% if c.finances and c.finances[0].income %}
+                {% if c.finances and c.finances[0].income %}
                 <p class="pa0 ma0 di db-ns">
                     <span class="di dn-ns">Latest income </span>
                     {{ "£{:,.0f}".format(c.finances[0].income) }}
@@ -74,7 +77,7 @@
                 {% if c.finances[0].financialYear %}
                 <p class="f7 gray mb0 mt2 di db-ns">[{{ "{:%b %Y}".format(c.finances[0].financialYear.end) }}]</p>
                 {% endif %}
-            {% endif %}
+                {% endif %}
             </td>
             <td class="pa2 v-top db dtc-ns mw6">
                 {{ c.activities|default("", true)|correct_titlecase }}
@@ -82,17 +85,18 @@
                 <p class="i f6 mv2">{% trans %}Makes grants{% endtrans %}</p>
                 {% endif %}
                 <p class="i f6 mv2">
-                {% trans %}Work in{% endtrans %} 
-                {% for a in c.countries %}
+                    {% trans %}Work in{% endtrans %}
+                    {% for a in c.countries %}
                     {%- if loop.last and not loop.first %} {% trans %}and{% endtrans %} {% endif %}
                     {%- if not loop.last and not loop.first -%}, {% endif %}
                     {{- a.name -}}
-                {% endfor %}
+                    {% endfor %}
                 <p>
             </td>
-            <td class="pa2 v-top db dtc-ns"><span class="di dn-ns">{% trans %}UK registered office{% endtrans %}: </span>{{ c.geo.region|default(c.geo.country|default("", true), true) }}</td>
+            <td class="pa2 v-top db dtc-ns"><span class="di dn-ns">{% trans %}UK registered office{% endtrans %}:
+                </span>{{ c.geo.region|default(c.geo.country|default("", true), true) }}</td>
         </tr>
-    {% endfor %}
+        {% endfor %}
     </tbody>
 </table>
 {{ pagination() }}

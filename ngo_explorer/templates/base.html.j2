@@ -1,62 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>{% block title %}NGO Explorer{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
-        <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}">
-        <link rel="mask-icon" href="{{ url_for('static', filename='favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
-        <meta name="apple-mobile-web-app-title" content="NGO Explorer">
-        <meta name="application-name" content="NGO Explorer">
-        <meta name="msapplication-TileColor" content="#ffc40d">
-        <meta name="msapplication-config" content="{{ url_for('static', filename='favicon/browserconfig.xml') }}">
-        <meta name="theme-color" content="#ffffff">
-        {% block styles %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/tachyons/tachyons.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/material-icons/material-icons.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-        {% endblock %}
-        {% block headscripts %}
-        <script src="{{ url_for('static', filename='vendor/plotly/plotly-latest.min.js') }}"></script>
-        {% endblock %}
-        {% block analytics %}
-        {% endblock %}
-        {% block social %}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:creator" content="@kanedr" />
-        <meta property="og:url" content="{{ request.url }}" />
-        <meta property="og:title" content="{{ self.title() }}" />
-        <meta property="og:image" content="{{ url_for('static', filename='images/icon.png', _external=True) }}" />
-        {% endblock social %}
-    </head>
-    <body class="source-sans tabular-nums dark-gray {% if 'debug' in request.values %}debug debug-grid{% endif %}">
-        <div class="container">
-            {# <div class="tc pa2 bg-light-yellow">
+
+<head>
+    <title>{% block title %}NGO Explorer{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}">
+    <meta name="apple-mobile-web-app-title" content="NGO Explorer">
+    <meta name="application-name" content="NGO Explorer">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-config" content="{{ url_for('static', filename='favicon/browserconfig.xml') }}">
+    <meta name="theme-color" content="#ffffff">
+    {% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/tachyons/tachyons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/material-icons/material-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% endblock %}
+    {% block headscripts %}
+    <script src="{{ url_for('static', filename='vendor/plotly/plotly-latest.min.js') }}"></script>
+    {% endblock %}
+    {% block analytics %}
+    {% endblock %}
+    {% block social %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@kanedr" />
+    <meta property="og:url" content="{{ request.url }}" />
+    <meta property="og:title" content="{{ self.title() }}" />
+    <meta property="og:image" content="{{ url_for('static', filename='images/icon.png', _external=True) }}" />
+    {% endblock social %}
+</head>
+
+<body class="source-sans tabular-nums dark-gray {% if 'debug' in request.values %}debug debug-grid{% endif %}">
+    <div class="container">
+        {# <div class="tc pa2 bg-light-yellow">
                 <i class="material-icons md-18">build</i> 
                 {% trans %}This site is currently in active development{% endtrans %}
                 <i class="material-icons md-18">build</i> 
             </div> #}
-            {% block header %}
-                {% include "_header.html.j2" %}
-            {% endblock %}
-            <main class="mw9 center ph3-ns ph2 pb3 cf">
-                <div class="page-content cf">
+        {% block header %}
+        {% include "_header.html.j2" %}
+        {% endblock %}
+        <main class="mw9 center ph3-ns ph2 pv3 cf">
+            <div class="page-content cf">
                 {% block content %}
                 {% endblock %}
-                </div>
-            </main>
-            {% block footer %}
-                {% include "_footer.html.j2" %}
-            {% endblock %}
-            {% block scripts %}
-            <script src="{{ url_for('static', filename='js/base.js') }}"></script>
-            {% endblock %}
-            <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-            <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
-        </div>
-    </body>
-</html> 
+            </div>
+        </main>
+        {% block footer %}
+        {% include "_footer.html.j2" %}
+        {% endblock %}
+        {% block scripts %}
+        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+        {% endblock %}
+        <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+        <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""
+                referrerpolicy="no-referrer-when-downgrade" /></noscript>
+    </div>
+</body>
+
+</html>

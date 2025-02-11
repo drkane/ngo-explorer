@@ -1,18 +1,18 @@
 import copy
+import json
 import math
-import re
 import uuid
-from collections import Counter
-from typing import Any
+from typing import Optional
 
 import plotly
 import plotly.graph_objs as go
 from flask import current_app, url_for
 from flask_babel import ngettext
 from plotly.subplots import make_subplots
-from requests.compat import json as _json
 
-from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
+from ngo_explorer.classes.charts import ChartData, ChartValue
+from ngo_explorer.classes.countries import Country
+from ngo_explorer.classes.results import ResultBucket
 
 LAYOUT = {
     "yaxis": {
@@ -52,10 +52,14 @@ H_LAYOUT = {
 
 
 def location_map(
-    countries, continents=None, height=200, landcolor="rgb(229, 229, 229)", static=False
+    countries: list[Country],
+    continents: list[str] = [],
+    height: int = 200,
+    landcolor: str = "rgb(229, 229, 229)",
+    static: bool = False,
 ):
     continents = (
-        continents if continents else list(set([c["continent"] for c in countries]))
+        continents if continents else list(set([c.continent for c in countries]))
     )
     scope = "world"
     if (
@@ -66,30 +70,35 @@ def location_map(
 
     filtered = False
     for c in countries:
-        if c.get("filtered"):
+        if c.filtered:
             filtered = True
             break
     if filtered:
-        countries = [c for c in countries if c.get("filtered")]
+        countries = [c for c in countries if c.filtered]
 
     return plotly.offline.plot(
         {
             "data": [
                 go.Scattergeo(
-                    lon=[c["longitude"] for c in countries],
-                    lat=[c["latitude"] for c in countries],
+                    lon=[c.longitude for c in countries],
+                    lat=[c.latitude for c in countries],
                     text=[
-                        "{} ({:,.0f} charit{})".format(
-                            c["name"],
-                            c.get("count", 0),
-                            "y" if c.get("count", 0) == 1 else "ies",
+                        "{} ({})".format(
+                            c.name,
+                            ngettext(
+                                "%(num)d charity",
+                                "%(num)d charities",
+                                num=c.count,
+                            ),
                         )
+                        if c.count
+                        else c.name
                         for c in countries
                     ],
                     hoverinfo="text",
                     marker=dict(
                         size=6,
-                        color=[c.get("count", 1) for c in countries],
+                        color=[c.count or 1 for c in countries],
                         colorscale=[[0, "#0ca777"], [1, "#237756"]],
                         autocolorscale=False,
                         symbol="circle",
@@ -98,17 +107,19 @@ def location_map(
                 ),
                 go.Choropleth(
                     locationmode="ISO-3",
-                    locations=[c["iso"] for c in countries],
-                    z=[c.get("count", 1) for c in countries],
+                    locations=[c.iso for c in countries],
+                    z=[c.count or 1 for c in countries],
                     text=[
                         "{} ({})".format(
-                            c["name"],
+                            c.name,
                             ngettext(
                                 "%(num)d charity",
                                 "%(num)d charities",
-                                num=c.get("count", 0),
+                                num=c.count,
                             ),
                         )
+                        if c.count
+                        else c.name
                         for c in countries
                     ],
                     colorscale=[[0, "#0ca777"], [1, "#237756"]],
@@ -151,7 +162,12 @@ def location_map(
 
 
 def horizontal_bar(
-    categories, value="count", text=None, log_axis=False, colour="#237756", **kwargs
+    categories: list[ResultBucket],
+    value: ChartValue = "count",
+    text: Optional[str] = None,
+    log_axis: bool = False,
+    colour: str = "#237756",
+    **kwargs,
 ):
     # categories = {
     #   "name": "category name"
@@ -167,21 +183,25 @@ def horizontal_bar(
     hb_plot = make_subplots(
         rows=len(categories),
         cols=1,
-        subplot_titles=[x["name"] for x in categories],
+        subplot_titles=[x.name for x in categories],
         shared_xaxes=True,
         print_grid=False,
         vertical_spacing=(0.45 / len(categories)),
         **kwargs,
     )
-    max_value = max([x[value] for x in categories])
+    max_value = max([getattr(x, value) for x in categories])
     for k, x in enumerate(categories):
+        value_ = getattr(x, value)
+        text_ = "{:,.0f}".format(value_)
+        if text:
+            text_ = getattr(x, text, text_)
         hb_plot.add_trace(
-            dict(
+            go.Bar(
                 type="bar",
                 orientation="h",
-                y=[x["name"]],
-                x=[x[value]],
-                text=[x.get(text, "{:,.0f}".format(x[value]))],
+                y=[x.name],
+                x=[value_],
+                text=[text_],
                 hoverinfo="text",
                 hoverlabel=dict(
                     bgcolor=colour,
@@ -190,9 +210,11 @@ def horizontal_bar(
                         color="#fff",
                     ),
                 ),
-                textposition="auto"
-                if not log_axis or not max_value or ((x[value] / max_value) > 0.05)
-                else "outside",
+                textposition=(
+                    "auto"
+                    if not log_axis or not max_value or ((value_ / max_value) > 0.05)
+                    else "outside"
+                ),
                 marker=dict(
                     color=colour,
                 ),
@@ -201,6 +223,7 @@ def horizontal_bar(
             1,
         )
 
+    assert isinstance(hb_plot.layout, go.Layout)
     hb_plot.layout.update(
         showlegend=False,
         **{
@@ -210,29 +233,31 @@ def horizontal_bar(
         },
     )
 
-    for x in hb_plot.layout["annotations"]:
-        x["x"] = 0
-        x["xanchor"] = "left"
-        x["align"] = "left"
-        x["font"] = dict(
+    assert isinstance(hb_plot.layout.annotations, tuple)
+    for annotation in hb_plot.layout.annotations:
+        assert isinstance(annotation, go.layout.Annotation)
+        annotation["x"] = 0
+        annotation["xanchor"] = "left"
+        annotation["align"] = "left"
+        annotation["font"] = dict(
             size=10,
         )
 
-    for x in hb_plot["layout"]:
+    for x in hb_plot.layout:
         if x.startswith("yaxis") or x.startswith("xaxis"):
-            hb_plot["layout"][x]["visible"] = False
+            hb_plot.layout[x]["visible"] = False
 
         if x.startswith("xaxis"):
             if log_axis:
-                hb_plot["layout"][x]["type"] = "log"
-                hb_plot["layout"][x]["range"] = [1, int(math.log10(max_value)) + 1]
+                hb_plot.layout[x]["type"] = "log"
+                hb_plot.layout[x]["range"] = [1, int(math.log10(max_value)) + 1]
             else:
-                hb_plot["layout"][x]["range"] = [0, max_value * 1.1]
+                hb_plot.layout[x]["range"] = [0, max_value * 1.1]
 
-    hb_plot["layout"]["margin"]["l"] = 0
+    hb_plot.layout["margin"]["l"] = 0
     height_calc = 55 * len(categories)
     height_calc = max([height_calc, 350])
-    hb_plot["layout"]["height"] = height_calc
+    hb_plot.layout["height"] = height_calc
 
     return dict(
         data=hb_plot.to_dict().get("data", []),
@@ -242,173 +267,17 @@ def horizontal_bar(
 
 
 def plotly_json(data):
-    return _json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+    return json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
 
 
-def word_cloud(charity_data: list[CharityLookupCharity]) -> dict[str, int]:
-    stop_words = [
-        # from https://gist.github.com/sebleier/554280
-        "i",
-        "me",
-        "my",
-        "myself",
-        "we",
-        "our",
-        "ours",
-        "ourselves",
-        "you",
-        "your",
-        "yours",
-        "yourself",
-        "yourselves",
-        "he",
-        "him",
-        "his",
-        "himself",
-        "she",
-        "her",
-        "hers",
-        "herself",
-        "it",
-        "its",
-        "itself",
-        "they",
-        "them",
-        "their",
-        "theirs",
-        "themselves",
-        "what",
-        "which",
-        "who",
-        "whom",
-        "this",
-        "that",
-        "these",
-        "those",
-        "am",
-        "is",
-        "are",
-        "was",
-        "were",
-        "be",
-        "been",
-        "being",
-        "have",
-        "has",
-        "had",
-        "having",
-        "do",
-        "does",
-        "did",
-        "doing",
-        "a",
-        "an",
-        "the",
-        "and",
-        "but",
-        "if",
-        "or",
-        "because",
-        "as",
-        "until",
-        "while",
-        "of",
-        "at",
-        "by",
-        "for",
-        "with",
-        "about",
-        "against",
-        "between",
-        "into",
-        "through",
-        "during",
-        "before",
-        "after",
-        "above",
-        "below",
-        "to",
-        "from",
-        "up",
-        "down",
-        "in",
-        "out",
-        "on",
-        "off",
-        "over",
-        "under",
-        "again",
-        "further",
-        "then",
-        "once",
-        "here",
-        "there",
-        "when",
-        "where",
-        "why",
-        "how",
-        "all",
-        "any",
-        "both",
-        "each",
-        "few",
-        "more",
-        "most",
-        "other",
-        "some",
-        "such",
-        "no",
-        "nor",
-        "not",
-        "only",
-        "own",
-        "same",
-        "so",
-        "than",
-        "too",
-        "very",
-        "s",
-        "t",
-        "can",
-        "will",
-        "just",
-        "don",
-        "should",
-        "now",
-        # others
-        "throughout",
-        "around",
-        "charity",
-        "charitable",
-    ]
-    alpha_regex = r"[^a-zA-Z]+"
-
-    words: Counter[str] = Counter()
-    for charity in charity_data:
-        if not charity.activities:
-            continue
-        activities = charity.activities.split()
-        for word in activities:
-            word = re.sub(alpha_regex, "", word.lower())
-            if word in stop_words or len(word) <= 3:
-                continue
-            words.update([word])
-
-    return dict(words.most_common(50))
-
-
-def line_chart(data: list[dict[str, Any]]):
-    chart_data = []
-    for d in data:
-        chart_data.append(go.Scatter(**d))
-
+def line_chart(data: list[go.Scatter]) -> ChartData:
     layout = copy.deepcopy(LAYOUT)
     layout["yaxis"]["rangemode"] = "tozero"
     # layout["yaxis"]["autorange"] = True
     layout["yaxis"]["visible"] = True
 
-    return dict(
-        data=chart_data,
+    return ChartData(
+        data=data,
         layout=layout,
         id=str(uuid.uuid4()).replace("-", "_"),
     )

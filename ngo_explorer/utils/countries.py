@@ -1,76 +1,19 @@
 import json
 import os
-from dataclasses import dataclass
 from typing import Optional
 
 from flask import url_for
 from flask_babel import _
 from slugify import slugify
 
-
-@dataclass
-class Country:
-    id: str  #  "D-1",
-    name: str  #  "Afghanistan",
-    continent: str  #  "Asia",
-    iso: str  #  "AFG",
-    iso2: str  #  "AF",
-    latitude: float  #  33.93911,
-    longitude: float  #  67.709953
-    ngoaidmap: Optional[str] = None  #  "gn_1149361",
-    dac_status: Optional[str] = None  #  "Least developed",
-    undp: Optional[str] = None  #  "South Asia",
-    filtered: Optional[bool] = None  #  False
-    count: Optional[int] = None
-
-
-@dataclass
-class CountryGroupValue:
-    id: str
-    name: str
-
-
-@dataclass
-class CountryGroup:
-    values: list[CountryGroupValue]
-    is_group: bool
-    title: Optional[str] = None
-
-
-@dataclass
-class CountryGroupItem:
-    name: str
-    countries: list[Country]
-
-
-@dataclass
-class CountryGroupItemUpload:
-    name: str
-    countries: list[Country] = []
-    type_: str = "upload"
-
-
-@dataclass
-class CountryGroupItemList:
-    names: list[str]
-    countries: list[Country]
-
-    @property
-    def name(self):
-        return ", ".join(self.names)
-
-
-@dataclass
-class Initiative:
-    homepage: str  #  "https://pfongue.org/",
-    title: str  #  _("Platform of European NGOs in Senegal"),
-    directlink: Optional[str] = None  #  "https://pfongue.org/-Cartographie-.html",
-    directlinktext: Optional[str] = None  #  _("Map of projects"),
-    source: Optional[str] = None  #  "Forus"
-    source_link: Optional[str] = (
-        None  #  "http://forus-international.org/en/about-us/who-we-are"
-    )
-
+from ngo_explorer.classes.countries import (
+    Country,
+    CountryGroup,
+    CountryGroupItem,
+    CountryGroupItemList,
+    CountryGroupValue,
+    Initiative,
+)
 
 with open(
     os.path.join(os.path.dirname(__file__), "countries.json"), encoding="utf8"
@@ -142,7 +85,7 @@ def get_country_groups() -> list[CountryGroup]:
                 )
             ],
             title=None,
-            is_group=True,
+            show_initial=True,
         ),
         CountryGroup(
             values=[
@@ -155,7 +98,7 @@ def get_country_groups() -> list[CountryGroup]:
                 for c in continents
             ],
             title=_("Continents"),
-            is_group=True,
+            show_initial=True,
         ),
         CountryGroup(
             values=(
@@ -179,7 +122,7 @@ def get_country_groups() -> list[CountryGroup]:
             title=_(
                 '<abbr title="United Nations Development Programme">UNDP</abbr> regions'
             ),
-            is_group=True,
+            show_initial=True,
         ),
         CountryGroup(
             values=[
@@ -199,7 +142,7 @@ def get_country_groups() -> list[CountryGroup]:
             title=_(
                 '<abbr title="OECD Development Assistance Committee">DAC</abbr> groups'
             ),
-            is_group=True,
+            show_initial=True,
         ),
     ] + [
         CountryGroup(
@@ -212,7 +155,7 @@ def get_country_groups() -> list[CountryGroup]:
                 if country.continent == con
             ],
             title=con,
-            is_group=False,
+            show_initial=False,
         )
         for con in sorted(continents)
     ]

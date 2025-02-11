@@ -9,7 +9,7 @@ from flask import Response
 from flask_babel import _
 from slugify import slugify
 
-from ngo_explorer.utils.countries import (
+from ngo_explorer.classes.countries import (
     CountryGroupItem,
     CountryGroupItemList,
     CountryGroupItemUpload,

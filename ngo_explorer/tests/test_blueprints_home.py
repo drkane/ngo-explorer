@@ -4,7 +4,7 @@ def test_index_page(client):
     assert b"Type to search" in rv.data
     assert b"Europe and Central Asia" in rv.data
     assert b"Upper middle income" in rv.data
-    assert b"Upload your data" in rv.data
+    assert b"upload your data" in rv.data
     assert b"Find that Charity" in rv.data
     assert b"GCRF Global Impact Accelerator" in rv.data
 

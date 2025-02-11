@@ -1,10 +1,10 @@
 {% import "_tabs.html.j2" as tabs %}
 <div class="page-header mb4 w-100 cf">
     <div class="flex flex-column items-center tc">
-        {{ area["countries"]|location_map() }}
+        {{ area.countries|location_map() }}
         <h2 class="korolev lh-title mb0 mt3">
-        {% trans count=data.count, ccount=data.count|_n, areaname=area.name %}
-        Found <span id="charity-count">{{ ccount }} UK NGO</span> working in {{ areaname }}</h2>
+            {% trans count=data.count, ccount=data.count|_n, areaname=area.name %}
+            Found <span id="charity-count">{{ ccount }} UK NGO</span> working in {{ areaname }}</h2>
         {% pluralize %}
         Found <span id="charity-count">{{ ccount }} UK NGOs</span> working in {{ areaname }}</h2>
         {% endtrans %}
@@ -14,24 +14,25 @@
         <p class="korolev f4 gray lh-copy mv0">{% trans %}OECD Development Assistance Committee group{% endtrans %}</p>
         {% endif %}
         <div>
-        <p class="lh-copy mv2 pa0 f6 gray mw6">
-            {% trans trimmed countries=filters.get("filter-max-countries", 50), areaname=area.name %}
-            Figures refer to charities registered with the Charity Commission for England and Wales,
-            based on areas of operation supplied to the Charity Commission by the charities themselves.
-            Charities that say they work in more than <span id="max-countries-header">{{ countries }}</span> countries are not included.
-            Total spending of these organisations includes work they carry out outside of {{ areaname }}.
-            {% endtrans %}
-        </p>
+            <p class="lh-copy mv2 pa0 f6 gray mw6">
+                {% trans trimmed countries=filters.get("filter-max-countries", 50), areaname=area.name %}
+                Figures refer to charities registered with the Charity Commission for England and Wales,
+                based on areas of operation supplied to the Charity Commission by the charities themselves.
+                Charities that say they work in more than <span id="max-countries-header">{{ countries }}</span>
+                countries are not included.
+                Total spending of these organisations includes work they carry out outside of {{ areaname }}.
+                {% endtrans %}
+            </p>
         </div>
         {% if area.countries|length > 1 %}
         <div class="lh-title mt1 f6 mw6 dn">
             <span>{% trans %}Includes:{% endtrans %}</span>
             <ul class="list pa0 ma0 di">
-            {% for c in area.countries %}
+                {% for c in area.countries %}
                 <li class="dib pr1">
-                    <a class="link blue" href="{{ url_for('data.country', countryid=c['iso']|slugify) }}">{{ c["name"] }}</a>
+                    <a class="link blue" href="{{ url_for('data.country', countryid=c.iso|slugify) }}">{{ c.name }}</a>
                 </li>
-            {% endfor %}
+                {% endfor %}
             </ul>
         </div>
         {% endif %}

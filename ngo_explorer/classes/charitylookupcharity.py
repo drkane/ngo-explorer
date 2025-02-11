@@ -3,12 +3,14 @@ from dataclasses import InitVar, dataclass, field
 from datetime import date, datetime
 from typing import Optional
 
-from dataclasses_json import dataclass_json
+import plotly.graph_objs as go
 from flask_babel import _
 
+from ngo_explorer.classes.charts import ChartData
+from ngo_explorer.classes.countries import Country
+from ngo_explorer.classes.iati import OipaItemOrg
 from ngo_explorer.utils.charts import line_chart
-from ngo_explorer.utils.countries import Country, get_country_by_id
-from ngo_explorer.utils.fetchdata import OipaItemOrg
+from ngo_explorer.utils.countries import get_country_by_id
 from ngo_explorer.utils.utils import nested_to_record
 
 
@@ -57,6 +59,10 @@ class CharityFinance:
     def from_db(cls, data: str):
         return cls(**json.loads(data))
 
+    def __post_init__(self):
+        if isinstance(self.financialYear, dict):
+            self.financialYear = CharityFinancialYear(**self.financialYear)
+
 
 @dataclass
 class CharityGeoCodes:
@@ -85,7 +91,9 @@ class CharityGeo:
     codes: Optional[CharityGeoCodes] = None
 
     @classmethod
-    def from_db(cls, data: str):
+    def from_db(cls, data: Optional[str] = None):
+        if not data:
+            return cls()
         data_dict = json.loads(data)
         if data_dict.get("codes"):
             data_dict["codes"] = CharityGeoCodes(**data_dict["codes"])
@@ -163,10 +171,14 @@ class CharityLookupCharity:
             if country_obj:
                 countries.append(country_obj)
 
+        all_names = []
+        if data.get("all_names"):
+            all_names = json.loads(data.get("all_names", "[]"))
+
         return cls(
             id=data.get("id"),
             name=data.get("name"),
-            names=[CharityName(**n) for n in json.loads(data.get("all_names", "[]"))],
+            names=[CharityName(**n) for n in all_names],
             activities=data.get("activities"),
             areas=[CharityItem(**a) for a in json.loads(data.get("areas", "[]"))],
             finances=[CharityFinance(**f) for f in json.loads(charity_finances)],
@@ -203,19 +215,19 @@ class CharityLookupCharity:
         self._parse_website()
         self._get_inflation(inflation)
 
-    def _get_inflation(self, inflation):
-        if self.current_year not in inflation.keys():
+    def _get_inflation(self, inflation: Optional[dict[str, float]] = None):
+        if inflation and self.current_year not in inflation.keys():
             self.current_year = str(max([int(i) for i in inflation.keys()]))
 
-        if self.finances:
+        if self.finances and inflation:
+            current_year_inflation = inflation.get(self.current_year)
             for f in self.finances:
                 if f.financialYear.end is None:
                     continue
                 year = f.financialYear.end.year
-                if inflation.get(str(year)):
-                    f.inflator = inflation.get(self.current_year) / inflation.get(
-                        str(year)
-                    )
+                year_inflation = inflation.get(str(year))
+                if year_inflation and current_year_inflation:
+                    f.inflator = current_year_inflation / year_inflation
                 else:
                     f.inflator = 1
 
@@ -295,9 +307,9 @@ class CharityLookupCharity:
                 ]
             )
 
-            chart = line_chart(
+            chart: ChartData = line_chart(
                 [
-                    dict(
+                    go.Scatter(
                         x=[f.financialYear.end for f in self.finances],
                         y=income_real,
                         name=_("Income (%(year)s prices)", year=str(self.current_year)),
@@ -308,7 +320,7 @@ class CharityLookupCharity:
                         ),
                         hoverinfo="x+y",
                     ),
-                    dict(
+                    go.Scatter(
                         x=[f.financialYear.end for f in self.finances],
                         y=spending_real,
                         name=_(
@@ -323,8 +335,8 @@ class CharityLookupCharity:
                     ),
                 ]
             )
-            chart["layout"].updatemenus = updatemenus
-            chart["layout"].legend = dict(
+            chart["layout"]["updatemenus"] = updatemenus
+            chart["layout"]["legend"] = dict(
                 # x=0.5,
                 # y=1,
                 orientation="h"

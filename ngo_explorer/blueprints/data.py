@@ -4,10 +4,12 @@ from flask import Blueprint, Response, jsonify, render_template, request, url_fo
 from flask_babel import _
 
 from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
-from ngo_explorer.utils.countries import (
+from ngo_explorer.classes.countries import (
     CountryGroupItem,
     CountryGroupItemList,
     CountryGroupItemUpload,
+)
+from ngo_explorer.utils.countries import (
     get_country_groups_lists,
     get_multiple_countries,
 )
@@ -202,7 +204,7 @@ def data_page(
                     [
                         bucket.count
                         for bucket in charity_data.aggregate.areas
-                        if bucket.key == country.id
+                        if bucket.key == country.iso2
                     ]
                 )
 

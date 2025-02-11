@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 from flask_babel import _
@@ -70,12 +70,12 @@ REGIONS = {
 @dataclass
 class Filters:
     search: Optional[str] = None
-    causes: list[str] = []
-    beneficiaries: list[str] = []
-    operations: list[str] = []
+    causes: list[str] = field(default_factory=list)
+    beneficiaries: list[str] = field(default_factory=list)
+    operations: list[str] = field(default_factory=list)
     max_income: Optional[int] = None
     min_income: Optional[int] = None
-    countries: list[str] = []
+    countries: list[str] = field(default_factory=list)
     regions: Optional[str] = None
     exclude_grantmakers: Optional[bool] = None
     exclude_religious: Optional[bool] = None

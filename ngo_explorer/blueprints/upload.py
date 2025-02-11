@@ -16,7 +16,7 @@ from flask import (
 from flask_babel import _
 
 from ngo_explorer.blueprints.data import data_page
-from ngo_explorer.utils.countries import CountryGroupItemUpload
+from ngo_explorer.classes.countries import CountryGroupItemUpload
 
 bp = Blueprint("upload", __name__, url_prefix="/upload")
 

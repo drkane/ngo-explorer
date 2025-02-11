@@ -11,7 +11,8 @@
         {% trans %}These NGOs work in {% endtrans %}
         {% endif %}
         <span class="f3 korolev big-numbers v-mid">{{ data.countries|length|_n }}</span>
-        {% trans count=data.countries|length %}country, including the UK{% pluralize %}countries, including the UK{% endtrans %}
+        {% trans count=data.countries|length %}country, including the UK{% pluralize %}countries, including the
+        UK{% endtrans %}
     </div>
     {% endif %}
     {% if data.total_income %}
@@ -24,29 +25,29 @@
         {% trans %}in the areas they work{% endtrans %}
         {% endif %}
     </div>
-        {% if all_charity_data.total_income %}
-        {% set proportion = (data.total_income / all_charity_data.total_income) %}
-        {% set precision = 1 if proportion < 0.0095 else 0 %}
-        <div class="f5 fl mr4 mb3">
-            {% trans %}This is equivalent to {% endtrans %}
-            <span class="f3 korolev big-numbers v-mid">
+    {% if all_charity_data.total_income %}
+    {% set proportion = (data.total_income / all_charity_data.total_income) %}
+    {% set precision = 1 if proportion < 0.0095 else 0 %}
+    <div class="f5 fl mr4 mb3">
+        {% trans %}This is equivalent to {% endtrans %}
+        <span class="f3 korolev big-numbers v-mid">
             {% if proportion < 0.001 %}
             &lt;0.1%
             {% else %}
             {{ "{:.{prec}%}".format(proportion, prec=precision) }}
             {% endif %}
-            </span>
-            {% trans %}of total UK charity spending of{% endtrans %}
-            <span class="f3 korolev big-numbers v-mid">£{{ all_charity_data.total_income|number_format }}</span>
-        </div>
-        {% endif %}
+        </span>
+        {% trans %}of total UK charity spending of{% endtrans %}
+        <span class="f3 korolev big-numbers v-mid">£{{ all_charity_data.total_income|number_format }}</span>
+    </div>
+    {% endif %}
     {% endif %}
 </div>
 {% if not area.type=="upload" %}
 <p class="pa0 ma0 f7 gray">
-    * {% trans areaname = area.name %}It is not possible to 
-        isolate spending only on {{ areaname }}, we can only report spending by  
-        organisations in all the countries they work in.{% endtrans %}
+    * {% trans areaname = area.name %}It is not possible to
+    isolate spending only on {{ areaname }}, we can only report spending by
+    organisations in all the countries they work in.{% endtrans %}
 </p>
 {% endif %}
 {% if data.total_income_years %}

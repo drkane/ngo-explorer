@@ -1,17 +1,20 @@
 import json
 import os
 from dataclasses import dataclass
-from typing import Literal, Optional, TypedDict
+from typing import Literal, Optional
 
 from flask import current_app
 from sqlite_utils import Database
 
-from ngo_explorer.classes import CharityLookupCharity, CharityLookupResult
+from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
 from ngo_explorer.classes.charitylookupresult import (
+    CharityLookupResult,
     ResultAggregate,
     ResultBucket,
 )
-from ngo_explorer.utils.countries import Country, get_country_by_id
+from ngo_explorer.classes.countries import Country
+from ngo_explorer.classes.iati import OipaItem, OipaItemOrg
+from ngo_explorer.utils.countries import get_country_by_id
 from ngo_explorer.utils.filters import CLASSIFICATION, Filters
 
 QueryType = Literal["charity_aggregation", "charity_download", "charity_list"]
@@ -60,7 +63,7 @@ AGGREGATE_SQL = {
                 ELSE NULL END AS name,
             count(*) AS count,
             sum(json_extract(finances, '$[0].spending')) AS sum
-        FROM charity c
+        FROM charity
         WHERE {where_str}
         GROUP BY 1, 2
         ORDER BY 1 ASC
@@ -166,8 +169,12 @@ def fetch_charity_details(
         where_args["max_countries"] = getattr(filters, "max_countries", 50)
 
     if ids:
-        where_conditions.append("id IN :ids")
-        where_args["ids"] = tuple(ids)
+        for i, id_ in enumerate(ids):
+            id_arg = f"id{i}"
+            or_conditions = []
+            or_conditions.append(f"[charity].[id] = :{id_arg}")
+            where_args[id_arg] = id_
+        where_conditions.append("(" + " OR ".join(or_conditions) + ")")
 
     if filters:
         if filters.search:
@@ -278,21 +285,10 @@ def fetch_charity_details(
         ):
             result.aggregate.geo.country.append(ResultBucket(**row))
 
+        result._parse_aggregates()
+        result._parse_income_buckets()
+
     return result
-
-
-class OipaItem(TypedDict):
-    ref: str
-    name: str
-    count: int
-
-
-@dataclass
-class OipaItemOrg:
-    ref: str
-    name: str
-    count: int
-    country: Optional[Country] = None
 
 
 with open(
