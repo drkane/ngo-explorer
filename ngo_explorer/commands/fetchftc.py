@@ -1,7 +1,6 @@
 import csv
 import os
 import random
-import tempfile
 from typing import Iterable
 
 import psycopg
@@ -38,74 +37,70 @@ def insert_into_table(db: Database, table_name: str, data: Iterable, pk: str = "
 
 
 def fetch_ftc(sample=None):
-    with tempfile.TemporaryDirectory() as tmpdirname:
-        new_filename = os.path.join(tmpdirname, "newdb.db")
-        print(f"Creating new database at {new_filename}")
-        db = Database(new_filename, recreate=True)
+    new_filename = os.path.join(current_app.config["DATA_CONTAINER"], "_temp_new_db.db")
+    print(f"Creating new database at {new_filename}")
+    db = Database(new_filename, recreate=True)
 
+    insert_into_table(
+        db,
+        "inflation",
+        [{"year": year, "value": value} for year, value in fetch_inflation().items()],
+        pk="year",
+    )
+
+    with open(COUNTRIES_CSV) as csv_input:
+        reader = csv.DictReader(csv_input)
         insert_into_table(
             db,
-            "inflation",
-            [
-                {"year": year, "value": value}
-                for year, value in fetch_inflation().items()
-            ],
-            pk="year",
+            "countries",
+            reader,
+            pk="id",
         )
 
-        with open(COUNTRIES_CSV) as csv_input:
-            reader = csv.DictReader(csv_input)
+    with psycopg.connect(
+        current_app.config["FTC_DB_URL"],
+        row_factory=dict_row,  # type: ignore
+    ) as conn:
+        with conn.cursor() as cur:
+            with open(CHARITY_SQL) as sql_query_file:
+                sql_query = sql_query_file.read()
+                cur.execute(sql_query)  # type: ignore
+
+            if sample:
+                rows = list(tqdm(cur))
+                result = random.sample(rows, sample)
+            else:
+                result = tqdm(cur)
+
+            charity_table = insert_into_table(
+                db,
+                "charity",
+                result,
+                pk="id",
+            )
+            charity_table.enable_fts(["id", "name", "activities"])
+
+            cur.execute("""
+            SELECT SUM(income) AS total_income,
+                COUNT(*) AS total_charities,
+                NOW() AS last_updated
+            FROM
+                charity_charity c
+            WHERE
+                c."source" = 'ccew'
+                AND c."active"
+            """)
             insert_into_table(
                 db,
-                "countries",
-                reader,
+                "stats",
+                tqdm(cur),
                 pk="id",
             )
 
-        with psycopg.connect(
-            current_app.config["FTC_DB_URL"],
-            row_factory=dict_row,  # type: ignore
-        ) as conn:
-            with conn.cursor() as cur:
-                with open(CHARITY_SQL) as sql_query_file:
-                    sql_query = sql_query_file.read()
-                    cur.execute(sql_query)  # type: ignore
+    # Close the current database
+    print("Closing current database")
+    db.close()
 
-                if sample:
-                    rows = list(tqdm(cur))
-                    result = random.sample(rows, sample)
-                else:
-                    result = tqdm(cur)
-
-                charity_table = insert_into_table(
-                    db,
-                    "charity",
-                    result,
-                    pk="id",
-                )
-                charity_table.enable_fts(["id", "name", "activities"])
-
-                cur.execute("""
-                SELECT SUM(income) AS total_income,
-                    COUNT(*) AS total_charities,
-                    NOW() AS last_updated
-                FROM
-                    charity_charity c
-                WHERE
-                    c."source" = 'ccew'
-                    AND c."active"
-                """)
-                insert_into_table(
-                    db,
-                    "stats",
-                    tqdm(cur),
-                    pk="id",
-                )
-
-        # Close the current database
-        print("Closing current database")
-        db.close()
-
-        # Move the new database to the correct location
-        print(f"Moving new database to {current_app.config['DB_LOCATION']}")
-        os.replace(new_filename, current_app.config["DB_LOCATION"])
+    # Move the new database to the correct location
+    print(f"Moving new database to {current_app.config['DB_LOCATION']}")
+    os.replace(new_filename, current_app.config["DB_LOCATION"])
