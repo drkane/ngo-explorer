@@ -11,11 +11,17 @@ from slugify import slugify
 
 from ngo_explorer.blueprints import add_blueprints
 from ngo_explorer.commands import add_custom_commands
+from ngo_explorer.db import close_connection
 from ngo_explorer.utils.charts import location_map, plotly_json
 from ngo_explorer.utils.countries import SIMILAR_INITIATIVE, get_country_groups
 from ngo_explorer.utils.download import DOWNLOAD_OPTIONS
 from ngo_explorer.utils.filters import CLASSIFICATION, REGIONS
-from ngo_explorer.utils.utils import correct_titlecase, scale_value, update_url_values
+from ngo_explorer.utils.utils import (
+    correct_titlecase,
+    scale_value,
+    to_titlecase,
+    update_url_values,
+)
 
 
 def create_app(test_config=None):
@@ -81,6 +87,10 @@ def create_app(test_config=None):
     add_template_filters(app)
     add_custom_commands(app)
 
+    @app.teardown_appcontext
+    def close_db_connection(e=None):
+        close_connection(e)
+
     return app
 
 
@@ -105,6 +115,10 @@ def add_template_filters(app: Flask):
     @app.template_filter("correct_titlecase")
     def template_correct_titlecase(s: str, **kwargs) -> str:
         return correct_titlecase(s, **kwargs)
+
+    @app.template_filter("to_titlecase")
+    def template_to_titlecase(s: str | None, sentence: bool = False) -> str | None:
+        return to_titlecase(s, sentence=sentence)
 
     @app.template_filter("number_format")
     def template_number_format(v: Union[int, float]):

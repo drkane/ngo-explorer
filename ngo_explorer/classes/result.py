@@ -1,9 +1,9 @@
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field
 from typing import Optional
 
 from flask_babel import _
 
-from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
+from ngo_explorer.classes.charity import Charity
 from ngo_explorer.classes.countries import Country
 from ngo_explorer.classes.results import (
     ResultAggregate,
@@ -17,10 +17,10 @@ from ngo_explorer.utils.word_cloud import word_cloud
 
 
 @dataclass
-class CharityLookupResult:
+class Result:
     aggregate: Optional[ResultAggregate] = None
     count: int = 0
-    list_: Optional[list[CharityLookupCharity]] = None
+    list_: Optional[list[Charity]] = None
     countries: list[ResultBucket] = field(default_factory=list)
 
     def __post_init__(self):
@@ -63,59 +63,22 @@ class CharityLookupResult:
     def _parse_income_buckets(self):
         if not self.aggregate:
             return
-        income_buckets = self.aggregate.finances.latestSpending
-        if not income_buckets:
+        if not self.aggregate.finances.latestSpending:
             return
 
         new_bucket_labels = {
-            "Min. £1": _("Under £10k"),
-            "Min. £3": _("Under £10k"),
-            "Min. £10": _("Under £10k"),
-            "Min. £32": _("Under £10k"),
-            "Min. £100": _("Under £10k"),
-            "Min. £316": _("Under £10k"),
-            "Min. £1000": _("Under £10k"),
-            "Min. £3162": _("Under £10k"),
-            "Min. £10000": _("£10k-£100k"),
-            "Min. £31623": _("£10k-£100k"),
-            "Min. £100000": _("£100k-£1m"),
-            "Min. £316228": _("£100k-£1m"),
-            "Min. £1000000": _("£1m-£10m"),
-            "Min. £3162278": _("£1m-£10m"),
-            "Min. £10000000": _("Over £10m"),
-            "Min. £31622777": _("Over £10m"),
-            "Min. £100000000": _("Over £10m"),
-            "Min. £316227766": _("Over £10m"),
-            "Min. £1000000000": _("Over £10m"),
+            "Under £10k": _("Under £10k"),
+            "£10k-£100k": _("£10k-£100k"),
+            "£100k-£1m": _("£100k-£1m"),
+            "£1m-£10m": _("£1m-£10m"),
+            "Over £10m": _("Over £10m"),
         }
 
-        # merge all the buckets into one
-        new_buckets = {}
-        for i in income_buckets:
-            id_ = new_bucket_labels.get(i.name or i.key, i.key)
-            if id_ not in new_buckets:
-                new_buckets[id_] = asdict(i)
-                new_buckets[id_]["name"] = id_
-            else:
-                new_buckets[id_]["count"] += i.count
-                new_buckets[id_]["sum"] += i.sum
-
-        # scale the money amounts and add a text representation
-        income_buckets: list[ResultBucket] = []
-        for i in new_buckets.values():
-            scale = get_scaling_factor(i["sum"])
-            i["sumIncomeText"] = "£" + scale[2].format(i["sum"] / scale[0])
-            income_buckets.append(
-                ResultBucket(
-                    key=i["key"],
-                    count=i["count"],
-                    name=i["name"],
-                    sum=i["sum"],
-                    sumIncomeText=i["sumIncomeText"],
-                )
-            )
-
-        self.aggregate.finances.latestSpending = income_buckets
+        for i in self.aggregate.finances.latestSpending:
+            if i.sum:
+                scale = get_scaling_factor(i.sum)
+                i.sumIncomeText = "£" + scale[2].format(i.sum / scale[0])
+            i.name = new_bucket_labels.get(i.name or i.key, i.name or i.key)
 
     def get_charity(self):
         if self.list_:

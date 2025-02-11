@@ -141,11 +141,11 @@ WITH classification AS (
         org_id AS charity_id,
         jsonb_agg(geo_iso) fILTER(
             WHERE
-                geo_iso <> 'GB'
+                geo_iso not in ('GB', 'GG', 'JE', 'IM')
         ) AS countries,
         count(*) fILTER(
             WHERE
-                geo_iso <> 'GB'
+                geo_iso not in ('GB', 'GG', 'JE', 'IM')
         ) AS countries_n
     FROM
         ftc_organisationlocation l

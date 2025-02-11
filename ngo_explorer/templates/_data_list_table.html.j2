@@ -61,7 +61,7 @@
         <tr class="db dt-row-ns bb b--light-gray bw1">
             <td class="pa2 v-top db dtc-ns mw5">
                 <a class="link blue" href="{{ url_for('data.charity', charityid=c.id) }}">
-                    <p class="pa0 ma0 b blue">{{ c.name|correct_titlecase }}</p>
+                    <p class="pa0 ma0 b blue">{{ c.name|to_titlecase }}</p>
                     <p class="f7 gray mb0 mt2">{% trans %}Charity number{% endtrans %} <strong>{{ c.id }}</strong></p>
                 </a>
             </td>
@@ -80,7 +80,7 @@
                 {% endif %}
             </td>
             <td class="pa2 v-top db dtc-ns mw6">
-                {{ c.activities|default("", true)|correct_titlecase }}
+                {{ c.activities|default("", true)|to_titlecase(sentence=true) }}
                 {% if '302' in c.operations %}
                 <p class="i f6 mv2">{% trans %}Makes grants{% endtrans %}</p>
                 {% endif %}

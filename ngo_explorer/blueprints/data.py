@@ -3,7 +3,7 @@ from typing import Optional
 from flask import Blueprint, Response, jsonify, render_template, request, url_for
 from flask_babel import _
 
-from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
+from ngo_explorer.classes.charity import Charity
 from ngo_explorer.classes.countries import (
     CountryGroupItem,
     CountryGroupItemList,
@@ -279,7 +279,7 @@ def charity(charityid: str) -> tuple[str, int] | str | Response:
         )
 
     char = charity_data.get_charity()
-    if not isinstance(char, CharityLookupCharity):
+    if not isinstance(char, Charity):
         return (
             render_template(
                 "404.html.j2",

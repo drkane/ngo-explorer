@@ -2,7 +2,7 @@ import re
 from collections import Counter
 from typing import Optional
 
-from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
+from ngo_explorer.classes.charity import Charity
 
 STOP_WORDS = [
     # from https://gist.github.com/sebleier/554280
@@ -142,7 +142,7 @@ STOP_WORDS = [
 
 
 def word_cloud(
-    charity_data: Optional[list["CharityLookupCharity"]] = None,
+    charity_data: Optional[list["Charity"]] = None,
 ) -> dict[str, int]:
     if not charity_data:
         return {}

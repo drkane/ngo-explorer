@@ -189,9 +189,17 @@ def horizontal_bar(
         vertical_spacing=(0.45 / len(categories)),
         **kwargs,
     )
-    max_value = max([getattr(x, value) for x in categories])
+    max_value = max(
+        [
+            getattr(x, value)
+            for x in categories
+            if isinstance(getattr(x, value), (int, float))
+        ]
+    )
     for k, x in enumerate(categories):
         value_ = getattr(x, value)
+        if value_ is None:
+            continue
         text_ = "{:,.0f}".format(value_)
         if text:
             text_ = getattr(x, text, text_)

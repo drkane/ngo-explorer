@@ -46,14 +46,14 @@ class CharityFinance:
     inflator: Optional[float] = None
 
     @property
-    def income_inflated(self):
-        if isinstance(self.income, float) and isinstance(self.inflator, float):
-            return self.income * self.inflator
+    def income_inflated(self) -> Optional[float]:
+        if isinstance(self.income, (int, float)) and isinstance(self.inflator, float):
+            return float(self.income) * self.inflator
 
     @property
-    def spending_inflated(self):
-        if isinstance(self.spending, float) and isinstance(self.inflator, float):
-            return self.spending * self.inflator
+    def spending_inflated(self) -> Optional[float]:
+        if isinstance(self.spending, (int, float)) and isinstance(self.inflator, float):
+            return float(self.spending) * self.inflator
 
     @classmethod
     def from_db(cls, data: str):
@@ -128,7 +128,7 @@ class CharityNumPeople:
 
 
 @dataclass
-class CharityLookupCharity:
+class Charity:
     id: Optional[str] = None
     name: Optional[str] = None
     names: Optional[list[CharityName]] = None
@@ -199,6 +199,7 @@ class CharityLookupCharity:
             governingDoc=data.get("governingDoc"),
             areaOfBenefit=data.get("areaOfBenefit"),
             countries=countries,
+            inflation=inflation,
         )
 
     def __post_init__(self, inflation: Optional[dict[str, float]] = None):

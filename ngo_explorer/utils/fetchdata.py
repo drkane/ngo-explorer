@@ -6,14 +6,15 @@ from typing import Literal, Optional
 from flask import current_app
 from sqlite_utils import Database
 
-from ngo_explorer.classes.charitylookupcharity import CharityLookupCharity
-from ngo_explorer.classes.charitylookupresult import (
-    CharityLookupResult,
+from ngo_explorer.classes.charity import Charity
+from ngo_explorer.classes.countries import Country
+from ngo_explorer.classes.iati import OipaItem, OipaItemOrg
+from ngo_explorer.classes.result import (
+    Result,
     ResultAggregate,
     ResultBucket,
 )
-from ngo_explorer.classes.countries import Country
-from ngo_explorer.classes.iati import OipaItem, OipaItemOrg
+from ngo_explorer.db import get_db
 from ngo_explorer.utils.countries import get_country_by_id
 from ngo_explorer.utils.filters import CLASSIFICATION, Filters
 
@@ -21,45 +22,17 @@ QueryType = Literal["charity_aggregation", "charity_download", "charity_list"]
 
 AGGREGATE_SQL = {
     "latestSpending": """
-        SELECT CASE WHEN json_extract(finances, '$[0].spending') >= 1000000000 THEN 9 
-            WHEN json_extract(finances, '$[0].spending') >= 316227766 THEN 8.5
-            WHEN json_extract(finances, '$[0].spending') >= 100000000 THEN 8
-            WHEN json_extract(finances, '$[0].spending') >= 31622777 THEN 7.5
-            WHEN json_extract(finances, '$[0].spending') >= 10000000 THEN 7
-            WHEN json_extract(finances, '$[0].spending') >= 3162278 THEN 6.5
-            WHEN json_extract(finances, '$[0].spending') >= 1000000 THEN 6
-            WHEN json_extract(finances, '$[0].spending') >= 316228 THEN 5.5
-            WHEN json_extract(finances, '$[0].spending') >= 100000 THEN 5
-            WHEN json_extract(finances, '$[0].spending') >= 31623 THEN 4.5
-            WHEN json_extract(finances, '$[0].spending') >= 10000 THEN 4
-            WHEN json_extract(finances, '$[0].spending') >= 3162 THEN 3.5
-            WHEN json_extract(finances, '$[0].spending') >= 1000 THEN 3
-            WHEN json_extract(finances, '$[0].spending') >= 316 THEN 2.5
-            WHEN json_extract(finances, '$[0].spending') >= 100 THEN 2
-            WHEN json_extract(finances, '$[0].spending') >= 32 THEN 1.5
-            WHEN json_extract(finances, '$[0].spending') >= 10 THEN 1
-            WHEN json_extract(finances, '$[0].spending') >= 3 THEN 0.5
-            WHEN json_extract(finances, '$[0].spending') >= 1 THEN 0
+        SELECT CASE WHEN json_extract(finances, '$[0].spending') >= 10000000 THEN 5
+            WHEN json_extract(finances, '$[0].spending') >= 1000000 THEN 4
+            WHEN json_extract(finances, '$[0].spending') >= 100000 THEN 3
+            WHEN json_extract(finances, '$[0].spending') >= 10000 THEN 2
+            WHEN json_extract(finances, '$[0].spending') >= 0 THEN 1
             ELSE NULL END AS key,
-            CASE WHEN json_extract(finances, '$[0].spending') >= 1000000000 THEN 'Min. £1000000000'
-                WHEN json_extract(finances, '$[0].spending') >= 316227766 THEN 'Min. £316227766'
-                WHEN json_extract(finances, '$[0].spending') >= 100000000 THEN 'Min. £100000000'
-                WHEN json_extract(finances, '$[0].spending') >= 31622777 THEN 'Min. £31622777'
-                WHEN json_extract(finances, '$[0].spending') >= 10000000 THEN 'Min. £10000000'
-                WHEN json_extract(finances, '$[0].spending') >= 3162278 THEN 'Min. £3162278'
-                WHEN json_extract(finances, '$[0].spending') >= 1000000 THEN 'Min. £1000000'
-                WHEN json_extract(finances, '$[0].spending') >= 316228 THEN 'Min. £316228'
-                WHEN json_extract(finances, '$[0].spending') >= 100000 THEN 'Min. £100000'
-                WHEN json_extract(finances, '$[0].spending') >= 31623 THEN 'Min. £31623'
-                WHEN json_extract(finances, '$[0].spending') >= 10000 THEN 'Min. £10000'
-                WHEN json_extract(finances, '$[0].spending') >= 3162 THEN 'Min. £3162'
-                WHEN json_extract(finances, '$[0].spending') >= 1000 THEN 'Min. £1000'
-                WHEN json_extract(finances, '$[0].spending') >= 316 THEN 'Min. £316'
-                WHEN json_extract(finances, '$[0].spending') >= 100 THEN 'Min. £100'
-                WHEN json_extract(finances, '$[0].spending') >= 32 THEN 'Min. £32'
-                WHEN json_extract(finances, '$[0].spending') >= 10 THEN 'Min. £10'
-                WHEN json_extract(finances, '$[0].spending') >= 3 THEN 'Min. £3'
-                WHEN json_extract(finances, '$[0].spending') >= 1 THEN 'Min. £1'
+            CASE WHEN json_extract(finances, '$[0].spending') >= 10000000 THEN 'Over £10m'
+            WHEN json_extract(finances, '$[0].spending') >= 1000000 THEN '£1m-£10m'
+            WHEN json_extract(finances, '$[0].spending') >= 100000 THEN '£100k-£1m'
+            WHEN json_extract(finances, '$[0].spending') >= 10000 THEN '£10k-£100k'
+            WHEN json_extract(finances, '$[0].spending') >= 0 THEN 'Under £10k'
                 ELSE NULL END AS name,
             count(*) AS count,
             sum(json_extract(finances, '$[0].spending')) AS sum
@@ -150,28 +123,30 @@ def fetch_charity_details(
     query_fields: Optional[dict] = None,
     all_finances: bool = False,
     sort: str = "default",
-) -> CharityLookupResult:
-    db: Database = Database(current_app.config["DB_LOCATION"])
+) -> Result:
+    db: Database = get_db()
     where_conditions: list[str] = ["1=1"]
     where_args = {}
 
     if countries:
+        or_conditions = []
         for i, country in enumerate(countries):
             country_arg = f"country{i}"
-            or_conditions = []
-            or_conditions.append(
-                f"EXISTS (SELECT 1 FROM json_each(countries) WHERE value = :{country_arg})"
-            )
+            or_conditions.append(f"value = :{country_arg}")
             where_args[country_arg] = country.iso2
-        where_conditions.append("(" + " OR ".join(or_conditions) + ")")
+        where_conditions.append(
+            "EXISTS (SELECT 1 FROM json_each(countries) WHERE "
+            + " OR ".join(or_conditions)
+            + ")"
+        )
 
         where_conditions.append("json_array_length(countries) <= :max_countries")
         where_args["max_countries"] = getattr(filters, "max_countries", 50)
 
     if ids:
+        or_conditions = []
         for i, id_ in enumerate(ids):
             id_arg = f"id{i}"
-            or_conditions = []
             or_conditions.append(f"[charity].[id] = :{id_arg}")
             where_args[id_arg] = id_
         where_conditions.append("(" + " OR ".join(or_conditions) + ")")
@@ -185,14 +160,18 @@ def fetch_charity_details(
 
         for c in CLASSIFICATION.keys():
             if getattr(filters, c, None):
+                or_conditions = []
                 for i, value in enumerate(getattr(filters, c, [])):
                     value_arg = f"{c}{i}"
-                    or_conditions = []
                     or_conditions.append(
-                        f"EXISTS (SELECT 1 FROM json_each({c}) WHERE value = :{value_arg})"
+                        f"json_extract(json_each.value, '$.id') = :{value_arg}"
                     )
-                    where_args[value_arg] = value
-                where_conditions.append("(" + " OR ".join(or_conditions) + ")")
+                    where_args[value_arg] = int(value)
+                where_conditions.append(
+                    f"EXISTS (SELECT 1 FROM json_each({c}) WHERE "
+                    + " OR ".join(or_conditions)
+                    + ")"
+                )
 
         if filters.max_income:
             where_conditions.append(
@@ -203,17 +182,19 @@ def fetch_charity_details(
             where_conditions.append(
                 "json_extract(finances, '$[0].income') >= :min_income"
             )
-            where_args["max_income"] = filters.min_income
+            where_args["min_income"] = filters.min_income
 
         if filters.countries:
+            or_conditions = []
             for i, country in enumerate(filters.countries):
                 country_arg = "country{}".format(i)
-                or_conditions = []
-                or_conditions.append(
-                    f"EXISTS (SELECT 1 FROM json_each(countries) WHERE value = :{country_arg})"
-                )
+                or_conditions.append(f"value = :{country_arg})")
                 where_args[country_arg] = country
-            where_conditions.append("(" + " OR ".join(or_conditions) + ")")
+            where_conditions.append(
+                "EXISTS (SELECT 1 FROM json_each(countries) WHERE "
+                + " OR ".join(or_conditions)
+                + ")"
+            )
 
         if filters.regions:
             if filters.regions.startswith("E"):
@@ -226,15 +207,15 @@ def fetch_charity_details(
 
         if filters.exclude_grantmakers:
             where_conditions.append(
-                "NOT EXISTS (SELECT 1 FROM json_each(operations) WHERE json_extract(value, '$.id') = :exclude_grantmakers)"
+                "NOT EXISTS (SELECT 1 FROM json_each(operations) WHERE json_extract(json_each.value, '$.id') = :exclude_grantmakers)"
             )
-            where_args["exclude_grantmakers"] = "302"
+            where_args["exclude_grantmakers"] = 302
 
         if filters.exclude_religious:
             where_conditions.append(
-                "NOT EXISTS (SELECT 1 FROM json_each(causes) WHERE json_extract(value, '$.id') = :exclude_religious)"
+                "NOT EXISTS (SELECT 1 FROM json_each(causes) WHERE json_extract(json_each.value, '$.id') = :exclude_religious)"
             )
-            where_args["exclude_religious"] = "108"
+            where_args["exclude_religious"] = 108
 
     where_str = " AND ".join(where_conditions)
     inflation: dict[str, float] = {
@@ -242,7 +223,7 @@ def fetch_charity_details(
     }
 
     charities = [
-        CharityLookupCharity.from_db(record, all_finances, inflation)
+        Charity.from_db(record, all_finances, inflation)
         for record in db["charity"].rows_where(
             where=where_str,
             where_args=where_args,
@@ -252,19 +233,23 @@ def fetch_charity_details(
         )
     ]
 
-    result = CharityLookupResult(
+    result = Result(
         count=db["charity"].count_where(where=where_str, where_args=where_args),
         list_=charities,
+        aggregate=None,
     )
 
     if query == "charity_aggregation":
         result.aggregate = ResultAggregate()
 
-        for row in db.query(
-            AGGREGATE_SQL["latestSpending"].format(where_str=where_str), where_args
-        ):
-            result.aggregate.finances.latestSpending.append(ResultBucket(**row))
+        result.aggregate.finances.latestSpending = [
+            ResultBucket(**row)
+            for row in db.query(
+                AGGREGATE_SQL["latestSpending"].format(where_str=where_str), where_args
+            )
+        ]
         for op_type in ["causes", "beneficiaries", "operations"]:
+            setattr(result.aggregate, op_type, [])
             for row in db.query(
                 AGGREGATE_SQL["causes"].format(where_str=where_str, op_type=op_type),
                 where_args,
@@ -272,18 +257,24 @@ def fetch_charity_details(
                 row["key"] = str(row["key"])
                 row["name"] = CLASSIFICATION[op_type][row["key"]]
                 getattr(result.aggregate, op_type, []).append(ResultBucket(**row))
-        for row in db.query(
-            AGGREGATE_SQL["countries"].format(where_str=where_str), where_args
-        ):
-            result.aggregate.areas.append(ResultBucket(**row))
-        for row in db.query(
-            AGGREGATE_SQL["region"].format(where_str=where_str), where_args
-        ):
-            result.aggregate.geo.region.append(ResultBucket(**row))
-        for row in db.query(
-            AGGREGATE_SQL["uk_country"].format(where_str=where_str), where_args
-        ):
-            result.aggregate.geo.country.append(ResultBucket(**row))
+        result.aggregate.areas = [
+            ResultBucket(**row)
+            for row in db.query(
+                AGGREGATE_SQL["countries"].format(where_str=where_str), where_args
+            )
+        ]
+        result.aggregate.geo.region = [
+            ResultBucket(**row)
+            for row in db.query(
+                AGGREGATE_SQL["region"].format(where_str=where_str), where_args
+            )
+        ]
+        result.aggregate.geo.country = [
+            ResultBucket(**row)
+            for row in db.query(
+                AGGREGATE_SQL["uk_country"].format(where_str=where_str), where_args
+            )
+        ]
 
         result._parse_aggregates()
         result._parse_income_buckets()

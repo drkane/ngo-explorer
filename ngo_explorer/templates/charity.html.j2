@@ -1,11 +1,11 @@
 {% extends "base.html.j2" %}
 
-{% block title %}{{ data.name|correct_titlecase }} | NGO Explorer{% endblock %}
+{% block title %}{{ data.name|to_titlecase }} | NGO Explorer{% endblock %}
 
 {% block content %}
 <div class="page-header mb4 w-100 cf">
     <div class="w-100 w-50-l fl">
-        <h2 class="korolev lh-title ma0">{{ data.name|correct_titlecase }}</h2>
+        <h2 class="korolev lh-title ma0">{{ data.name|to_titlecase }}</h2>
         <span class="f1 fl h1 gray mr1">&ldquo;</span>
         <p class="lh-copy mv2 pa0 f5 gray mw6">
             {{ data.activities }}
@@ -22,8 +22,8 @@
                 <strong>{% trans %}Find out more:{% endtrans %}</strong>
             </li>
             <li class="fl mr2">
-                <a href="https://findthatcharity.uk/charities/{{ data.id }}" target="_blank"
-                    class="link blue external-link">
+                <a href="https://findthatcharity.uk/https://findthatcharity.uk/orgid/GB-CHC-{{ data.id }}"
+                    target="_blank" class="link blue external-link">
                     Find that Charity
                 </a>
             </li>
@@ -82,10 +82,10 @@
     <h3 class="korolev lh-title ma0">{% trans %}Where this organisation works{% endtrans %}</h3>
     {% if data.countries|length > 0 %}
     {% if data.countries|length > 5 %}
-    <p>{{ data.name|correct_titlecase }} {% trans %}works in{% endtrans %} {{ data.countries|length|_n }}
+    <p>{{ data.name|to_titlecase }} {% trans %}works in{% endtrans %} {{ data.countries|length|_n }}
         {% trans %}countries{% endtrans %}</p>
     {% else %}
-    <p>{{ data.name|correct_titlecase }} {% trans %}works in{% endtrans %} {% for c in data.countries %}
+    <p>{{ data.name|to_titlecase }} {% trans %}works in{% endtrans %} {% for c in data.countries %}
         <a href="{{ url_for('data.country', countryid=c.iso) }}" class="link blue">
             {{ c.name }}</a>{% if loop.revindex0 == 1 %}
         {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.
@@ -94,10 +94,10 @@
     {% endif %}
     {% if data.areas %}
     {% if data.areas|length > 5 %}
-    <p>{% trans charname=data.name|correct_titlecase(first_upper=False), areas=data.areas|length|_n  %}In the UK,
+    <p>{% trans charname=data.name|to_titlecase, areas=data.areas|length|_n  %}In the UK,
         {{ charname }} works in {{ areas }} areas.</p>{% endtrans %}
     {% else %}
-    <p>{% trans %}In the UK,{% endtrans %} {{ data.name|correct_titlecase(first_upper=False) }} {% trans %}works
+    <p>{% trans %}In the UK,{% endtrans %} {{ data.name|to_titlecase }} {% trans %}works
         in{% endtrans %} {% for c in data.areas %}
         {{ c.name|replace("Throughout ", "") }}{% if loop.revindex0 == 1 %}
         {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.</p>
@@ -147,20 +147,18 @@
 {% if data.geo.latitude and data.geo.longitude %}
 <script src="{{ url_for('static', filename='vendor/leaflet/leaflet.js') }}"></script>
 <script type="text/javascript">
-    const stamen_attribution = {% trans %}'Map tiles <a href="http://stamen.com">Stamen Design</a> ' +
-        '[<a href="http://creativecommons.org/licenses/by/3.0" class="link blue">CC BY 3.0</a>] | ' +
-        'Data <a href="http://openstreetmap.org" class="link blue">OpenStreetMap</a> ' +
-        '[<a href="http://www.openstreetmap.org/copyright" class="link blue">ODbL</a>]'{% endtrans %};
-    var layer = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', { attribution: stamen_attribution });
+    const center = {{ [data.geo.latitude, data.geo.longitude]| tojson }};
+    const attribution = {% trans %}'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'{% endtrans %};
+    var layer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: attribution });
     var map = new L.Map("location-map", {
-        center: new L.LatLng({{ data.geo.latitude }}, {{ data.geo.longitude }}),
-    zoom: 6,
+        center: new L.LatLng(center[0], center[1]),
+        zoom: 6,
         scrollWheelZoom: false
-});
+    });
     map.addLayer(layer);
     map.on('focus', function () { map.scrollWheelZoom.enable(); });
     map.on('blur', function () { map.scrollWheelZoom.disable(); });
-    var marker = L.circleMarker([{{ data.geo.latitude }}, { { data.geo.longitude } }], { fill: false, weight: 10, color: '#237756' }).addTo(map);
+    var marker = L.circleMarker(center, { fill: false, weight: 10, color: '#237756' }).addTo(map);
 </script>
 {% endif %}
 {% endblock %}

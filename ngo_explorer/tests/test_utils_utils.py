@@ -12,7 +12,7 @@ from ngo_explorer.utils.utils import (
 
 def test_scaling_factor():
     with pytest.raises(TypeError):
-        assert get_scaling_factor("kljsdg")
+        get_scaling_factor("kljsdg")  # type: ignore
     assert get_scaling_factor(-200) == (1, "{:,.0f}", "{:,.0f}")
     assert get_scaling_factor(0) == (1, "{:,.0f}", "{:,.0f}")
     assert get_scaling_factor(1) == (1, "{:,.0f}", "{:,.0f}")
@@ -37,7 +37,7 @@ def test_scaling_factor():
 
 def test_scale_value():
     with pytest.raises(TypeError):
-        scale_value("kljsdg")
+        scale_value("kljsdg")  # type: ignore
     assert scale_value(-200) == "-200"
     assert scale_value(0) == "0"
     assert scale_value(1) == "1"
@@ -61,8 +61,9 @@ def test_scale_value():
 def test_update_url_values():
     test_url = "http://example.com/"
     with pytest.raises(TypeError):
-        update_url_values(test_url, None) == test_url
-        update_url_values(test_url, "hithere") == test_url
+        update_url_values(test_url, None) == test_url  # type: ignore
+    with pytest.raises(TypeError):
+        update_url_values(test_url, "hithere") == test_url  # type: ignore
     assert update_url_values(test_url, {}) == test_url
     assert update_url_values(test_url, {"test": "test"}) == test_url + "?test=test"
     assert (
@@ -113,7 +114,7 @@ def test_record_to_nested():
     assert len(result["combine"]["field2"]) == 0
 
     with pytest.raises(AttributeError):
-        record_to_nested([1234])
+        record_to_nested([1234])  # type: ignore
 
 
 def test_nested_to_record():
