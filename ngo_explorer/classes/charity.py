@@ -1,5 +1,5 @@
 import json
-from dataclasses import InitVar, dataclass, field
+from dataclasses import InitVar, asdict, dataclass, field
 from datetime import date, datetime
 from typing import Optional
 
@@ -351,34 +351,59 @@ class Charity:
         r = nested_to_record(self.as_dict())
         data = {}
         for k, v in r.items():
-            if k == "finances":
-                years_seen = []
+            if v and isinstance(v, list) and isinstance(v[0], (CharityRegistration)):
+                v = v[0]
+
+            if (
+                k == "finances"
+                and isinstance(v, list)
+                and isinstance(v[0], (CharityFinance))
+            ):
                 for f in v:
-                    year = f.financialYear.end.strftime("%Y")
-                    if year in years_seen:
-                        year = f.financialYear.end.strftime("%Y%m%d")
+                    year = f.financialYear.end.year
 
+                    income_val = None
+                    spending_val = None
                     if inflation_adjusted:
-                        if "income" in f:
-                            data[
-                                "income_{}_{}prices".format(year, self.current_year)
-                            ] = f.get("income_inflated")
-                        if "spending" in f:
-                            data[
-                                "spending_{}_{}prices".format(year, self.current_year)
-                            ] = f.get("spending_inflated")
+                        if f.income is not None:
+                            income_col = "income_{}_{}prices".format(
+                                year, self.current_year
+                            )
+                            income_val = f.income_inflated
+                        if f.spending is not None:
+                            spending_col = "spending_{}_{}prices".format(
+                                year, self.current_year
+                            )
+                            spending_val = f.spending_inflated
                     else:
-                        if "income" in f:
-                            data["income_{}".format(year)] = f["income"]
-                        if "spending" in f:
-                            data["spending_{}".format(year)] = f["spending"]
+                        if f.income is not None:
+                            income_col = "income_{}".format(year)
+                            income_val = f.income
+                        if f.spending is not None:
+                            spending_col = "spending_{}".format(year)
+                            spending_val = f.spending
 
-                    years_seen.append(year)
+                    if income_val:
+                        if income_col not in data:
+                            data[income_col] = 0
+                        data[income_col] += income_val
+                    if spending_val:
+                        if spending_col not in data:
+                            data[spending_col] = 0
+                        data[spending_col] += spending_val
 
             elif isinstance(v, list):
                 if v and isinstance(v[0], dict):
                     v = [i.get("name", list(i.values())[0]) for i in v]
+                elif v and isinstance(v[0], (CharityItem, Country)):
+                    v = [i.name for i in v]
                 data[k] = ";".join([str(item) for item in v])
+
+            elif isinstance(
+                v, (CharityContacts, CharityGeo, CharityRegistration, CharityNumPeople)
+            ):
+                for k2, v2 in nested_to_record(asdict(v), prefix=k).items():
+                    data[k2] = v2
 
             else:
                 data[k] = v

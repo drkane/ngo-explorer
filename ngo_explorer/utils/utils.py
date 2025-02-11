@@ -1,4 +1,3 @@
-import copy
 import re
 import urllib.parse
 from typing import Any, overload
@@ -104,26 +103,21 @@ def nested_to_record(
 
     new_ds = []
     for d in ds:
-        new_d = copy.deepcopy(d)
+        new_d = {}
         for k, v in d.items():
             # each key gets renamed with prefix
             if not isinstance(k, str):
                 k = str(k)
-            if level == 0:
-                newkey = k
-            else:
+            if prefix:
                 newkey = prefix + sep + k
+            else:
+                newkey = k
 
             # only dicts gets recurse-flattend
-            # only at level>1 do we rename the rest of the keys
-            if not isinstance(v, dict):
-                if level != 0:  # so we skip copying for top level, common case
-                    v = new_d.pop(k)
-                    new_d[newkey] = v
-                continue
-            else:
-                v = new_d.pop(k)
+            if isinstance(v, dict):
                 new_d.update(nested_to_record(v, newkey, sep, level + 1))
+            else:
+                new_d[newkey] = v
         new_ds.append(new_d)
 
     if singleton:

@@ -9,6 +9,7 @@ from flask import Flask, request
 from flask_babel import Babel
 from slugify import slugify
 
+from ngo_explorer import settings
 from ngo_explorer.blueprints import add_blueprints
 from ngo_explorer.commands import add_custom_commands
 from ngo_explorer.db import close_connection
@@ -28,28 +29,18 @@ def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY="dev",
-        PLOTLY_GEO_SCOPES=[
-            "europe",
-            "asia",
-            "africa",
-            "north america",
-            "south america",
-        ],
-        GA_TRACKING_ID=os.environ.get("GA_TRACKING_ID"),
-        FTC_DB_URL=os.environ.get("FTC_DB_URL"),
-        DB_LOCATION=os.environ.get("DB_LOCATION", "charitydata.sqlite"),
-        DATA_CONTAINER=os.environ.get(
-            "DATA_CONTAINER", os.path.join(os.getcwd(), "uploads")
-        ),
-        DOWNLOAD_LIMIT=int(os.environ.get("DOWNLOAD_LIMIT", 500)),
-        LANGUAGES=["en"],
-        BABEL_TRANSLATION_DIRECTORIES="../translations",
-        BABEL_DEFAULT_LOCALE="en",
-        REQUEST_CACHE_BACKEND="sqlite",
-    )
-    app.config["REQUEST_CACHE_LOCATION"] = os.path.join(
-        app.config["DATA_CONTAINER"], "demo_cache"
+        SECRET_KEY=settings.SECRET_KEY,
+        PLOTLY_GEO_SCOPES=settings.PLOTLY_GEO_SCOPES,
+        GA_TRACKING_ID=settings.GA_TRACKING_ID,
+        FTC_DB_URL=settings.FTC_DB_URL,
+        DATA_CONTAINER=settings.DATA_CONTAINER,
+        DB_LOCATION=settings.DB_LOCATION,
+        DOWNLOAD_LIMIT=settings.DOWNLOAD_LIMIT,
+        LANGUAGES=settings.LANGUAGES,
+        BABEL_TRANSLATION_DIRECTORIES=settings.BABEL_TRANSLATION_DIRECTORIES,
+        BABEL_DEFAULT_LOCALE=settings.BABEL_DEFAULT_LOCALE,
+        REQUEST_CACHE_BACKEND=settings.REQUEST_CACHE_BACKEND,
+        REQUEST_CACHE_LOCATION=settings.REQUEST_CACHE_LOCATION,
     )
 
     if test_config is None:

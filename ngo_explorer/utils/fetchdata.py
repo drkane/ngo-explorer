@@ -3,7 +3,6 @@ import os
 from dataclasses import dataclass
 from typing import Literal, Optional
 
-from flask import current_app
 from sqlite_utils import Database
 
 from ngo_explorer.classes.charity import Charity
@@ -104,7 +103,7 @@ class AllCharitiesResult:
 
 
 def fetch_all_charities() -> Optional[AllCharitiesResult]:
-    db: Database = Database(current_app.config["DB_LOCATION"])
+    db: Database = get_db()
     for row in db["stats"].rows:
         return AllCharitiesResult(
             total_income=row["total_income"],

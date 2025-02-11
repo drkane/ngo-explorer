@@ -1,7 +1,8 @@
 import csv
 import io
 import json
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass, is_dataclass
+from datetime import date, datetime
 from typing import Optional
 
 import xlsxwriter
@@ -40,7 +41,7 @@ DOWNLOAD_OPTIONS: dict[str, DownloadOptionGroup] = {
             DownloadOption(label=_("Charity name"), value="name", checked=True),
             DownloadOption(
                 label=_("Registration date"),
-                value="registrationDate",
+                value="registrations.registrationDate",
                 checked=True,
             ),
             DownloadOption(label=_("Governing document"), value="governingDoc"),
@@ -157,7 +158,6 @@ def parse_download_fields(original_fields: list[str]):
     # get income fields
     finances = None
     if "income.history" in original_fields or "spending.history" in original_fields:
-        finances_key = "finances(all:true)"
         finances = {"financialYear": {"end": {}}}
         if "income.history" in original_fields:
             finances["income"] = {}
@@ -169,7 +169,6 @@ def parse_download_fields(original_fields: list[str]):
         "income.latest.total" in original_fields
         or "income.latest.date" in original_fields
     ):
-        finances_key = "finances"
         finances = {}
         if "income.latest.total" in original_fields:
             finances["income"] = {}
@@ -178,7 +177,7 @@ def parse_download_fields(original_fields: list[str]):
         del fields["income"]
 
     if finances:
-        fields[finances_key] = finances
+        fields["finances"] = finances
 
     if "inflation_adjusted" in fields:
         del fields["inflation_adjusted"]
@@ -187,6 +186,10 @@ def parse_download_fields(original_fields: list[str]):
     if "countries" in fields or "areas" in fields:
         fields["areas"] = {"id": {}, "name": {}}
         del fields["countries"]
+
+    if "registrationDate" in fields:
+        fields["registrations"] = {"registrationDate": {}}
+        del fields["registrationDate"]
 
     # add proper formating for the classification fields
     for c in CLASSIFICATION.keys():
@@ -199,6 +202,15 @@ def parse_download_fields(original_fields: list[str]):
     fields["name"] = {}
 
     return fields
+
+
+class DataclassJSONEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if is_dataclass(obj):
+            return asdict(obj)  # type: ignore
+        if isinstance(obj, (date, datetime)):
+            return obj.isoformat()
+        return super().default(obj)
 
 
 def download_file(
@@ -226,6 +238,7 @@ def download_file(
         query_fields=parse_download_fields(fields),
         countries=fetch_countries,
         ids=fetch_ids,
+        all_finances=("income.history" in fields or "spending.history" in fields),
     )
     # check here if query has failed
 
@@ -241,31 +254,28 @@ def download_file(
     if charity_list:
         for r in charity_list:
             if filetype in ["xlsx", "csv"]:
-                result = r.as_flat_dict()
+                result = r.as_flat_dict(
+                    inflation_adjusted="inflation_adjusted" in fields
+                )
             else:
                 result = r.as_dict()
             results.append(result)
             fieldnames_.update(result.keys())
 
-    fieldnames = (
-        ["id", "name"]
-        + sorted(
-            [
-                v
-                for v in fieldnames_
-                if v not in ["id", "name"]
-                and not v.startswith("income_")
-                and not v.startswith("spending_")
-            ]
-        )
-        + sorted(
-            [
-                v
-                for v in fieldnames_
-                if v.startswith("income_") or v.startswith("spending_")
-            ]
-        )
+    fieldnames = ["id", "name"] + sorted(
+        [
+            v
+            for v in fieldnames_
+            if v not in ["id", "name"]
+            and not v.startswith("income_")
+            and not v.startswith("spending_")
+            and v in fields
+        ]
     )
+    if "income.history" in fields:
+        fieldnames += sorted([v for v in fieldnames_ if v.startswith("income_")])
+    if "spending.history" in fields:
+        fieldnames += sorted([v for v in fieldnames_ if v.startswith("spending_")])
 
     # check for fields that can end up in the output without being asked for
     for f in ["countries", "areas", "names"]:
@@ -274,7 +284,7 @@ def download_file(
 
     output = io.StringIO()
     if filetype == "json":
-        json.dump(results, output, indent=4)
+        json.dump(results, output, indent=4, cls=DataclassJSONEncoder)
         mimetype = "application/json"
         extension = "json"
 
