@@ -36,6 +36,11 @@
                 <p class="mt1">
                     {% trans %}Powered by{% endtrans %} <a class="link white b underline-hover"
                         href="https://findthatcharity.uk/" target="_blank">Find that Charity</a>
+                    {% if all_charity_data %}
+                    | Data last updated <time class="b" datetime="{{ all_charity_data.last_updated }}">
+                        {{ "{:%d %b %Y}".format(all_charity_data.last_updated) }}
+                    </time>
+                    {% endif %}
                 </p>
             </div>
         </div>

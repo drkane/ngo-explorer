@@ -172,7 +172,6 @@ def data_page(
             filetype=download_type.lower(),
         )
 
-    all_charity_data = fetch_all_charities()
     fetch_countries = None
     fetch_ids = None
     if area and area.countries:
@@ -219,7 +218,7 @@ def data_page(
                 "_data_example_charities.html.j2",
                 data=charity_data,
                 area=area,
-                all_charity_data=all_charity_data,
+                all_charity_data=fetch_all_charities(),
             ),
             "charity-count": "{:,.0f} UK NGO{}".format(
                 charity_data.count, "" if charity_data.count == 1 else "s"
@@ -254,7 +253,6 @@ def data_page(
         pages[page]["template"],
         area=area,
         data=charity_data,
-        all_charity_data=all_charity_data,
         iati_data=iati_data,
         filters=filters_raw,
         pages=pages,

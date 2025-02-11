@@ -1,6 +1,7 @@
 import json
 import os
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Literal, Optional
 
 from sqlite_utils import Database
@@ -99,7 +100,7 @@ SORT_OPTIONS = {
 class AllCharitiesResult:
     total_income: int
     total_charities: int
-    last_updated: str
+    last_updated: datetime
 
 
 def fetch_all_charities() -> Optional[AllCharitiesResult]:
@@ -108,7 +109,7 @@ def fetch_all_charities() -> Optional[AllCharitiesResult]:
         return AllCharitiesResult(
             total_income=row["total_income"],
             total_charities=row["total_charities"],
-            last_updated=row["last_updated"],
+            last_updated=datetime.fromisoformat(row["last_updated"]),
         )
 
 

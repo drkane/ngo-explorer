@@ -16,6 +16,7 @@ from ngo_explorer.db import close_connection
 from ngo_explorer.utils.charts import location_map, plotly_json
 from ngo_explorer.utils.countries import SIMILAR_INITIATIVE, get_country_groups
 from ngo_explorer.utils.download import DOWNLOAD_OPTIONS
+from ngo_explorer.utils.fetchdata import fetch_all_charities
 from ngo_explorer.utils.filters import CLASSIFICATION, REGIONS
 from ngo_explorer.utils.utils import (
     correct_titlecase,
@@ -141,4 +142,5 @@ def add_context_processors(app: Flask):
             similar_initiative=SIMILAR_INITIATIVE,
             countries=get_country_groups(),
             now=datetime.now(),
+            all_charity_data=fetch_all_charities(),
         )
