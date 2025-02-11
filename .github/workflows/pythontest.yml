@@ -9,8 +9,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Parse Python version
-        run: sed  s/python-// runtime.txt | head > .python-version
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
