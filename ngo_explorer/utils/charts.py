@@ -253,16 +253,16 @@ def horizontal_bar(
 
     for x in hb_plot.layout:
         if x.startswith("yaxis") or x.startswith("xaxis"):
-            hb_plot.layout[x]["visible"] = False
+            hb_plot.layout[x]["visible"] = False  # type: ignore
 
         if x.startswith("xaxis"):
             if log_axis:
-                hb_plot.layout[x]["type"] = "log"
-                hb_plot.layout[x]["range"] = [1, int(math.log10(max_value)) + 1]
+                hb_plot.layout[x]["type"] = "log"  # type: ignore
+                hb_plot.layout[x]["range"] = [1, int(math.log10(max_value)) + 1]  # type: ignore
             else:
-                hb_plot.layout[x]["range"] = [0, max_value * 1.1]
+                hb_plot.layout[x]["range"] = [0, max_value * 1.1]  # type: ignore
 
-    hb_plot.layout["margin"]["l"] = 0
+    hb_plot.layout["margin"]["l"] = 0  # type: ignore
     height_calc = 55 * len(categories)
     height_calc = max([height_calc, 350])
     hb_plot.layout["height"] = height_calc
