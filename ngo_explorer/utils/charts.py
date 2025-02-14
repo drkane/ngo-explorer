@@ -139,6 +139,8 @@ def location_map(
                     scope=scope,
                     showframe=False,
                     showland=True,
+                    showlakes=False,
+                    lakecolor="blue",
                     showcoastlines=False,
                     landcolor=landcolor,
                     showcountries=False,
