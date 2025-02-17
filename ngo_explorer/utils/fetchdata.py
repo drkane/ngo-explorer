@@ -187,8 +187,8 @@ def fetch_charity_details(
         if filters.countries:
             or_conditions = []
             for i, country in enumerate(filters.countries):
-                country_arg = "country{}".format(i)
-                or_conditions.append(f"value = :{country_arg})")
+                country_arg = "countryb{}".format(i)
+                or_conditions.append(f"value = :{country_arg}")
                 where_args[country_arg] = country
             where_conditions.append(
                 "EXISTS (SELECT 1 FROM json_each(countries) WHERE "

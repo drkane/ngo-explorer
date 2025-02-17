@@ -61,7 +61,7 @@
                 {% for group in area.countries|groupby('continent') %}
                 <optgroup label="{{ group.grouper }}">
                     {% for c in group.list %}
-                    <option value="{{ c['id'] }}"
+                    <option value="{{ c['iso2'] }}"
                         {% if c['iso2'] in filters.getlist('filter-countries') %}selected="selected" {% endif %}>
                         {{ c['name'] }}</option>
                     {% endfor %}
