@@ -209,7 +209,7 @@ SELECT
         c.phone,
         'postcode',
         c.postcode
-    ) AS contacts,
+    ) AS contact,
     jsonb_build_object(
         'trustees',
         c.trustees,

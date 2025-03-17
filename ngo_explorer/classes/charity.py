@@ -142,7 +142,7 @@ class Charity:
     geo: Optional[CharityGeo] = None
     registrations: Optional[list[CharityRegistration]] = None
     website: Optional[str] = None
-    contacts: Optional[CharityContacts] = None
+    contact: Optional[CharityContacts] = None
     numPeople: Optional[CharityNumPeople] = None
     governingDoc: Optional[str] = None
     areaOfBenefit: Optional[str] = None
@@ -194,7 +194,9 @@ class Charity:
                 for r in json.loads(data.get("registrations", "[]"))
             ],
             website=data.get("website"),
-            contacts=CharityContacts(**json.loads(data.get("contacts", "{}"))),
+            contact=CharityContacts(
+                **json.loads(data.get("contact", data.get("contacts", "{}")))
+            ),
             numPeople=CharityNumPeople(**json.loads(data.get("numPeople", "{}"))),
             governingDoc=data.get("governingDoc"),
             areaOfBenefit=data.get("areaOfBenefit"),
@@ -360,6 +362,8 @@ class Charity:
                 and isinstance(v[0], (CharityFinance))
             ):
                 for f in v:
+                    if not f.financialYear.end:
+                        continue
                     year = f.financialYear.end.year
 
                     income_val = None

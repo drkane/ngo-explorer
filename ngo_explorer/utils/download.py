@@ -262,6 +262,8 @@ def download_file(
             results.append(result)
             fieldnames_.update(result.keys())
 
+    print(fields)
+    print(fieldnames_)
     fieldnames = ["id", "name"] + sorted(
         [
             v
@@ -272,6 +274,7 @@ def download_file(
             and v in fields
         ]
     )
+    print(fieldnames)
     if "income.history" in fields:
         fieldnames += sorted([v for v in fieldnames_ if v.startswith("income_")])
     if "spending.history" in fields:
