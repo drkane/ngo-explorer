@@ -15,6 +15,7 @@ from ngo_explorer.classes.countries import (
     CountryGroupItemList,
     CountryGroupItemUpload,
 )
+from ngo_explorer.settings import DOWNLOAD_LIMIT
 from ngo_explorer.utils.fetchdata import fetch_charity_details
 from ngo_explorer.utils.filters import CLASSIFICATION, Filters
 from ngo_explorer.utils.utils import record_to_nested
@@ -219,7 +220,7 @@ def download_file(
     fields: list[str],
     ids: Optional[list[str]] = None,
     filetype: str = "csv",
-    max_results: int = 500,
+    max_results: int = DOWNLOAD_LIMIT,
 ):
     fetch_ids = None
     fetch_countries = None
@@ -262,8 +263,6 @@ def download_file(
             results.append(result)
             fieldnames_.update(result.keys())
 
-    print(fields)
-    print(fieldnames_)
     fieldnames = ["id", "name"] + sorted(
         [
             v
@@ -274,7 +273,6 @@ def download_file(
             and v in fields
         ]
     )
-    print(fieldnames)
     if "income.history" in fields:
         fieldnames += sorted([v for v in fieldnames_ if v.startswith("income_")])
     if "spending.history" in fields:
