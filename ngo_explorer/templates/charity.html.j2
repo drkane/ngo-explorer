@@ -82,10 +82,12 @@
     <h3 class="korolev lh-title ma0">{% trans %}Where this organisation works{% endtrans %}</h3>
     {% if data.countries|length > 0 %}
     {% if data.countries|length > 5 %}
-    <p>{{ data.name|to_titlecase }} {% trans %}works in{% endtrans %} {{ data.countries|length|_n }}
+    <p>{{ data.name|to_titlecase }} {% trans %}is a UK-registered charity that works in{% endtrans %}
+        {{ data.countries|length|_n }}
         {% trans %}countries{% endtrans %}</p>
     {% else %}
-    <p>{{ data.name|to_titlecase }} {% trans %}works in{% endtrans %} {% for c in data.countries %}
+    <p>{{ data.name|to_titlecase }} {% trans %}is a UK-registered charity that works in{% endtrans %}
+        {% for c in data.countries %}
         <a href="{{ url_for('data.country', countryid=c.iso) }}" class="link blue">
             {{ c.name }}</a>{% if loop.revindex0 == 1 %}
         {% trans %}and{% endtrans %}{% elif loop.revindex0 > 1 %},{% endif %}{% endfor %}.

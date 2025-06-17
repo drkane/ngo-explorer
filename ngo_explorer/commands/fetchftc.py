@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 COUNTRIES_CSV = os.path.join(os.path.dirname(__file__), "../utils/countries.csv")
 CHARITY_SQL = os.path.join(
-    os.path.dirname(__file__), "../utils/queries/charity_list.sql"
+    os.path.dirname(__file__), "../utils/queries/charity_list{}.sql"
 )
 INFLATION_URL = (
     "https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l522/mm23/data"
@@ -62,20 +62,73 @@ def fetch_ftc(sample=None):
         row_factory=dict_row,  # type: ignore
     ) as conn:
         with conn.cursor() as cur:
-            with open(CHARITY_SQL) as sql_query_file:
+            print("Fetching geolookups")
+            cur.execute(
+                """
+                SELECT "geoCode", "name"
+                FROM geo_geolookup
+                """
+            )
+            geolookups = {
+                row["geoCode"]: row["name"] for row in tqdm(cur, desc="Geolookups")
+            }
+
+            with open(CHARITY_SQL.format("")) as sql_query_file:
                 sql_query = sql_query_file.read()
+                print("Executing main SQL query")
                 cur.execute(sql_query)  # type: ignore
 
+            rows = list(tqdm(cur, desc="Fetching charities", unit=" charity"))
+            charity_ids = []
+            result = {}
             if sample:
-                rows = list(tqdm(cur))
-                result = random.sample(rows, sample)
+                for row in random.sample(rows, sample):
+                    charity_ids.append(f"GB-CHC-{row['id']}")
+                    result[row["id"]] = row
             else:
-                result = tqdm(cur)
+                for row in rows:
+                    charity_ids.append(f"GB-CHC-{row['id']}")
+                    result[row["id"]] = row
+
+            for sql_query_part, fields in [
+                ("_all_finances", ["all_finances"]),
+                ("_areas", ["areas"]),
+                ("_classification", ["operations", "causes", "beneficiaries"]),
+                ("_location", ["geo"]),
+            ]:
+                with open(CHARITY_SQL.format(sql_query_part)) as sql_query_file:
+                    sql_query = sql_query_file.read()
+                    print(f"Executing SQL query for {sql_query_part}")
+                    cur.execute(sql_query, params={"charity_ids": charity_ids})  # type: ignore
+                    for row in tqdm(
+                        cur, desc=f"Fetching {sql_query_part}", unit=" charity"
+                    ):
+                        id = row["charity_id"].removeprefix("GB-CHC-")
+                        if id in result:
+                            for field in fields:
+                                if field == "geo":
+                                    for areatype in [
+                                        "region",
+                                        "country",
+                                        "admin_county",
+                                        "admin_district",
+                                        "admin_ward",
+                                        "lsoa",
+                                        "msoa",
+                                        "parliamentary_constituency",
+                                    ]:
+                                        row[field][areatype] = geolookups.get(
+                                            row[field]
+                                            .get("codes", {})
+                                            .get(areatype, None),
+                                            None,
+                                        )
+                                result[id][field] = row[field]
 
             charity_table = insert_into_table(
                 db,
                 "charity",
-                result,
+                result.values(),
                 pk="id",
             )
             charity_table.enable_fts(["id", "name", "activities"])

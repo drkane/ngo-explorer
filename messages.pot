@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NGO Explorer VERSION\n"
 "Report-Msgid-Bugs-To: info@ngoexplorer.org\n"
-"POT-Creation-Date: 2025-02-10 16:46+0000\n"
+"POT-Creation-Date: 2025-06-17 17:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,99 +18,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: ngo_explorer/blueprints/data.py:33
+#: ngo_explorer/blueprints/data.py:52
 #, python-format
 msgid "%(regiontype)s \"%(regionid)s\" could not be found"
 msgstr ""
 
-#: ngo_explorer/blueprints/data.py:64
+#: ngo_explorer/blueprints/data.py:85
 #, python-format
 msgid "Country \"%(countryid)s\" could not be found"
 msgstr ""
 
-#: ngo_explorer/blueprints/data.py:93 ngo_explorer/blueprints/upload.py:61
+#: ngo_explorer/blueprints/data.py:120 ngo_explorer/blueprints/upload.py:64
 msgid "Dashboard"
 msgstr ""
 
-#: ngo_explorer/blueprints/data.py:101 ngo_explorer/blueprints/upload.py:65
+#: ngo_explorer/blueprints/data.py:128 ngo_explorer/blueprints/upload.py:68
 msgid "Show NGOs"
 msgstr ""
 
-#: ngo_explorer/blueprints/data.py:118 ngo_explorer/blueprints/upload.py:69
-#: ngo_explorer/templates/data-download.html.j2:19
+#: ngo_explorer/blueprints/data.py:145 ngo_explorer/blueprints/upload.py:72
+#: ngo_explorer/templates/data-download.html.j2:20
 msgid "Download"
 msgstr ""
 
-#: ngo_explorer/blueprints/data.py:246
+#: ngo_explorer/blueprints/data.py:273 ngo_explorer/blueprints/data.py:285
 #, python-format
 msgid "Charity \"%(charityid)s\" could not be found"
 msgstr ""
 
-#: ngo_explorer/blueprints/upload.py:91
+#: ngo_explorer/blueprints/upload.py:94
 #, python-format
 msgid "File \"%(fileid)s\" could not be found"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupcharity.py:151
-#: ngo_explorer/classes/charitylookupcharity.py:199
+#: ngo_explorer/classes/charity.py:271 ngo_explorer/classes/charity.py:318
 #, python-format
 msgid "Income (%(year)s prices)"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupcharity.py:155
-#: ngo_explorer/classes/charitylookupcharity.py:212
+#: ngo_explorer/classes/charity.py:275 ngo_explorer/classes/charity.py:330
 #, python-format
 msgid "Spending (%(year)s prices)"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupcharity.py:162
+#: ngo_explorer/classes/charity.py:282
 #, python-format
 msgid "%(year)s prices"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupcharity.py:171
+#: ngo_explorer/classes/charity.py:291
 msgid "Income (cash terms)"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupcharity.py:172
+#: ngo_explorer/classes/charity.py:292
 msgid "Spending (cash terms)"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupcharity.py:176
+#: ngo_explorer/classes/charity.py:296
 msgid "Cash terms"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupresult.py:76
-#: ngo_explorer/classes/charitylookupresult.py:77
-#: ngo_explorer/classes/charitylookupresult.py:78
-#: ngo_explorer/classes/charitylookupresult.py:79
-#: ngo_explorer/classes/charitylookupresult.py:80
-#: ngo_explorer/classes/charitylookupresult.py:81
-#: ngo_explorer/classes/charitylookupresult.py:82
-#: ngo_explorer/classes/charitylookupresult.py:83
+#: ngo_explorer/classes/result.py:61
 msgid "Under £10k"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupresult.py:84
-#: ngo_explorer/classes/charitylookupresult.py:85
+#: ngo_explorer/classes/result.py:62
 msgid "£10k-£100k"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupresult.py:86
-#: ngo_explorer/classes/charitylookupresult.py:87
+#: ngo_explorer/classes/result.py:63
 msgid "£100k-£1m"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupresult.py:88
-#: ngo_explorer/classes/charitylookupresult.py:89
+#: ngo_explorer/classes/result.py:64
 msgid "£1m-£10m"
 msgstr ""
 
-#: ngo_explorer/classes/charitylookupresult.py:90
-#: ngo_explorer/classes/charitylookupresult.py:91
-#: ngo_explorer/classes/charitylookupresult.py:92
-#: ngo_explorer/classes/charitylookupresult.py:93
-#: ngo_explorer/classes/charitylookupresult.py:94
+#: ngo_explorer/classes/result.py:65
 msgid "Over £10m"
 msgstr ""
 
@@ -135,40 +119,42 @@ msgstr ""
 
 #: ngo_explorer/templates/_data_example_charities.html.j2:14
 msgid "country, including the UK"
-msgid_plural "countries, including the UK"
+msgid_plural ""
+"countries, including the\n"
+"        UK"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:19
+#: ngo_explorer/templates/_data_example_charities.html.j2:20
 msgid "Altogether, these NGOs spend"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:22
+#: ngo_explorer/templates/_data_example_charities.html.j2:23
 msgid "in all these countries"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:24
+#: ngo_explorer/templates/_data_example_charities.html.j2:25
 msgid "in the areas they work"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:31
+#: ngo_explorer/templates/_data_example_charities.html.j2:32
 msgid "This is equivalent to "
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:39
+#: ngo_explorer/templates/_data_example_charities.html.j2:40
 msgid "of total UK charity spending of"
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:47
+#: ngo_explorer/templates/_data_example_charities.html.j2:48
 #, python-format
 msgid ""
-"It is not possible to \n"
-"        isolate spending only on %(areaname)s, we can only report "
-"spending by  \n"
-"        organisations in all the countries they work in."
+"It is not possible to\n"
+"    isolate spending only on %(areaname)s, we can only report spending by"
+"\n"
+"    organisations in all the countries they work in."
 msgstr ""
 
-#: ngo_explorer/templates/_data_example_charities.html.j2:54
+#: ngo_explorer/templates/_data_example_charities.html.j2:55
 #, python-format
 msgid ""
 "\n"
@@ -183,8 +169,8 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"        Found <span id=\"charity-count\">%(ccount)s UK NGO</span> working"
-" in %(areaname)s</h2>\n"
+"            Found <span id=\"charity-count\">%(ccount)s UK NGO</span> "
+"working in %(areaname)s</h2>\n"
 "        "
 msgid_plural ""
 "\n"
@@ -213,7 +199,7 @@ msgid ""
 "includes work they carry out outside of %(areaname)s."
 msgstr ""
 
-#: ngo_explorer/templates/_data_header.html.j2:28
+#: ngo_explorer/templates/_data_header.html.j2:29
 msgid "Includes:"
 msgstr ""
 
@@ -281,16 +267,16 @@ msgstr ""
 msgid "Find more data on IATI d-portal"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:13
+#: ngo_explorer/templates/_data_list_table.html.j2:14
 msgid "Previous"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:19
+#: ngo_explorer/templates/_data_list_table.html.j2:20
 #, python-format
 msgid "Showing all <strong>%(num)s</strong> NGOs"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:21
+#: ngo_explorer/templates/_data_list_table.html.j2:22
 #, python-format
 msgid ""
 "\n"
@@ -300,65 +286,65 @@ msgid ""
 "            "
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:31
+#: ngo_explorer/templates/_data_list_table.html.j2:32
 msgid "Next"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:49
+#: ngo_explorer/templates/_data_list_table.html.j2:51
 msgid "Charity"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:50
+#: ngo_explorer/templates/_data_list_table.html.j2:52
 msgid "<abbr title=\"Registration\">Reg</abbr>. date"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:51
+#: ngo_explorer/templates/_data_list_table.html.j2:53
 #: ngo_explorer/templates/_data_sidebar.html.j2:11
-#: ngo_explorer/utils/download.py:31
+#: ngo_explorer/utils/download.py:60
 msgid "Latest income"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:52
-#: ngo_explorer/utils/download.py:24
+#: ngo_explorer/templates/_data_list_table.html.j2:54
+#: ngo_explorer/utils/download.py:53
 msgid "Activities"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:53
-#: ngo_explorer/utils/download.py:89
+#: ngo_explorer/templates/_data_list_table.html.j2:55
+#: ngo_explorer/utils/download.py:122
 msgid "Region"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:53
+#: ngo_explorer/templates/_data_list_table.html.j2:56
 msgid "based on registered office of UK charity"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:62
-#: ngo_explorer/utils/download.py:17
+#: ngo_explorer/templates/_data_list_table.html.j2:65
+#: ngo_explorer/utils/download.py:41
 msgid "Charity number"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:82
+#: ngo_explorer/templates/_data_list_table.html.j2:85
 msgid "Makes grants"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:85
+#: ngo_explorer/templates/_data_list_table.html.j2:88
 msgid "Work in"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:87
+#: ngo_explorer/templates/_data_list_table.html.j2:90
 #: ngo_explorer/templates/_data_sidebar.html.j2:18
-#: ngo_explorer/templates/_footer.html.j2:56
-#: ngo_explorer/templates/charity.html.j2:91
-#: ngo_explorer/templates/charity.html.j2:103
+#: ngo_explorer/templates/_footer.html.j2:61
+#: ngo_explorer/templates/charity.html.j2:93
+#: ngo_explorer/templates/charity.html.j2:105
 msgid "and"
 msgstr ""
 
-#: ngo_explorer/templates/_data_list_table.html.j2:93
+#: ngo_explorer/templates/_data_list_table.html.j2:96
 msgid "UK registered office"
 msgstr ""
 
 #: ngo_explorer/templates/_data_other_resources.html.j2:5
-#: ngo_explorer/templates/about.html.j2:158
+#: ngo_explorer/templates/about.html.j2:162
 msgid "Other resources"
 msgstr ""
 
@@ -434,7 +420,7 @@ msgid "UK Region"
 msgstr ""
 
 #: ngo_explorer/templates/_data_selected_filters.html.j2:49
-#: ngo_explorer/utils/download.py:88
+#: ngo_explorer/utils/download.py:121
 msgid "Country"
 msgstr ""
 
@@ -530,7 +516,7 @@ msgid ""
 msgstr ""
 
 #: ngo_explorer/templates/_footer.html.j2:4
-#: ngo_explorer/templates/_footer.html.j2:63
+#: ngo_explorer/templates/_footer.html.j2:68
 msgid "Funded by"
 msgstr ""
 
@@ -548,27 +534,27 @@ msgstr ""
 msgid "Powered by"
 msgstr ""
 
-#: ngo_explorer/templates/_footer.html.j2:51
+#: ngo_explorer/templates/_footer.html.j2:56
 msgid "Part of"
 msgstr ""
 
-#: ngo_explorer/templates/_footer.html.j2:68
+#: ngo_explorer/templates/_footer.html.j2:73
 msgid "Built by"
 msgstr ""
 
-#: ngo_explorer/templates/_footer.html.j2:72
+#: ngo_explorer/templates/_footer.html.j2:77
 msgid "Design by"
 msgstr ""
 
-#: ngo_explorer/templates/_footer.html.j2:76
+#: ngo_explorer/templates/_footer.html.j2:81
 msgid "Data from"
 msgstr ""
 
-#: ngo_explorer/templates/_footer.html.j2:78
+#: ngo_explorer/templates/_footer.html.j2:83
 msgid "&"
 msgstr ""
 
-#: ngo_explorer/templates/_footer.html.j2:85
+#: ngo_explorer/templates/_footer.html.j2:90
 msgid "Code"
 msgstr ""
 
@@ -753,11 +739,17 @@ msgid ""
 "                contact the Charity Commission."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:149
+#: ngo_explorer/templates/about.html.j2:150
+msgid ""
+"From 2019 to 2024 data was supplied by CharityBase, operated by Dan\n"
+"                Kwiatkowski."
+msgstr ""
+
+#: ngo_explorer/templates/about.html.j2:153
 msgid "IATI"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:151
+#: ngo_explorer/templates/about.html.j2:155
 msgid ""
 "The site also uses data from the <a href=\"\" target=\"_blank\" "
 "class=\"link blue\">International\n"
@@ -770,7 +762,7 @@ msgid ""
 "                for IATI data."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:160
+#: ngo_explorer/templates/about.html.j2:164
 msgid ""
 "Where available, the site signposts to other resources, such as national "
 "registers of\n"
@@ -779,22 +771,22 @@ msgid ""
 "external sites."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:164
+#: ngo_explorer/templates/about.html.j2:168
 msgid "Where else can I find data?"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:166
+#: ngo_explorer/templates/about.html.j2:170
 msgid ""
 "This site is just one of a ecosystem of resources allowing exploration of"
 " the\n"
 "                UK charity sector. Other resources include:"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:197
+#: ngo_explorer/templates/about.html.j2:202
 msgid "Your privacy and cookies"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:199
+#: ngo_explorer/templates/about.html.j2:204
 #, python-format
 msgid ""
 "If you use the <a href=\"%(upload_link)s\"\n"
@@ -803,11 +795,11 @@ msgid ""
 "                sent to the server in order to create a data dashboard."
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:216
+#: ngo_explorer/templates/about.html.j2:221
 msgid "Tell us how you used the website"
 msgstr ""
 
-#: ngo_explorer/templates/about.html.j2:218
+#: ngo_explorer/templates/about.html.j2:223
 msgid "We'd love to hear your feedback on the site. Email us at"
 msgstr ""
 
@@ -844,40 +836,40 @@ msgid "Where this organisation works"
 msgstr ""
 
 #: ngo_explorer/templates/charity.html.j2:85
-#: ngo_explorer/templates/charity.html.j2:88
-msgid "works in"
+#: ngo_explorer/templates/charity.html.j2:89
+msgid "is a UK-registered charity that works in"
 msgstr ""
 
-#: ngo_explorer/templates/charity.html.j2:86
+#: ngo_explorer/templates/charity.html.j2:87
 msgid "countries"
 msgstr ""
 
-#: ngo_explorer/templates/charity.html.j2:97
+#: ngo_explorer/templates/charity.html.j2:99
 #, python-format
 msgid ""
 "In the UK,\n"
 "        %(charname)s works in %(areas)s areas.</p>"
 msgstr ""
 
-#: ngo_explorer/templates/charity.html.j2:100
+#: ngo_explorer/templates/charity.html.j2:102
 msgid "In the UK,"
 msgstr ""
 
-#: ngo_explorer/templates/charity.html.j2:100
+#: ngo_explorer/templates/charity.html.j2:102
 msgid ""
 "works\n"
 "        in"
 msgstr ""
 
-#: ngo_explorer/templates/charity.html.j2:106
+#: ngo_explorer/templates/charity.html.j2:108
 msgid "Registered office:"
 msgstr ""
 
-#: ngo_explorer/templates/charity.html.j2:115
+#: ngo_explorer/templates/charity.html.j2:117
 msgid "IATI activity data"
 msgstr ""
 
-#: ngo_explorer/templates/charity.html.j2:121
+#: ngo_explorer/templates/charity.html.j2:123
 msgid ""
 "activity recorded in\n"
 "                    IATI"
@@ -885,7 +877,7 @@ msgid_plural "activities recorded in IATI"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ngo_explorer/templates/charity.html.j2:127
+#: ngo_explorer/templates/charity.html.j2:129
 msgid ""
 "\n"
 "            <abbr title=\"International Aid Transparency "
@@ -902,45 +894,49 @@ msgid ""
 "            "
 msgstr ""
 
-#: ngo_explorer/templates/charity.html.j2:150
+#: ngo_explorer/templates/charity.html.j2:153
 msgid ""
-"'Map tiles <a href=\"http://stamen.com\">Stamen Design</a> ' +\n"
-"        '[<a href=\"http://creativecommons.org/licenses/by/3.0\" "
-"class=\"link blue\">CC BY 3.0</a>] | ' +\n"
-"        'Data <a href=\"http://openstreetmap.org\" class=\"link "
-"blue\">OpenStreetMap</a> ' +\n"
-"        '[<a href=\"http://www.openstreetmap.org/copyright\" class=\"link"
-" blue\">ODbL</a>]'"
-msgstr ""
-
-#: ngo_explorer/templates/data-download.html.j2:28
-msgid "Fields to include in download"
+"'&copy; <a "
+"href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> "
+"contributors'"
 msgstr ""
 
 #: ngo_explorer/templates/data-download.html.j2:29
-msgid "Charities will be included based on the criteria you have selected."
+msgid "Fields to include in download"
 msgstr ""
 
-#: ngo_explorer/templates/data-download.html.j2:31
-msgid "Select all fields"
+#: ngo_explorer/templates/data-download.html.j2:30
+msgid ""
+"Charities will be included based on the criteria you have\n"
+"            selected."
 msgstr ""
 
-#: ngo_explorer/templates/data-download.html.j2:32
-msgid "Clear all fields"
+#: ngo_explorer/templates/data-download.html.j2:33
+msgid ""
+"Select all\n"
+"                fields"
 msgstr ""
 
-#: ngo_explorer/templates/data-download.html.j2:34
+#: ngo_explorer/templates/data-download.html.j2:35
+msgid ""
+"Clear all\n"
+"                fields"
+msgstr ""
+
+#: ngo_explorer/templates/data-download.html.j2:38
 #, python-format
-msgid "Downloads are limited to %(limit)s records"
+msgid ""
+"Downloads are limited to %(limit)s\n"
+"            records"
 msgstr ""
 
-#: ngo_explorer/templates/data-download.html.j2:43
-#: ngo_explorer/templates/data-download.html.j2:60
+#: ngo_explorer/templates/data-download.html.j2:49
+#: ngo_explorer/templates/data-download.html.j2:69
 msgid "Select all"
 msgstr ""
 
-#: ngo_explorer/templates/data-download.html.j2:44
-#: ngo_explorer/templates/data-download.html.j2:61
+#: ngo_explorer/templates/data-download.html.j2:51
+#: ngo_explorer/templates/data-download.html.j2:71
 msgid "Clear"
 msgstr ""
 
@@ -1107,114 +1103,122 @@ msgid ""
 "                please think carefully before uploading."
 msgstr ""
 
-#: ngo_explorer/utils/charts.py:105
+#: ngo_explorer/utils/charts.py:89 ngo_explorer/utils/charts.py:116
 #, python-format
 msgid "%(num)d charity"
 msgid_plural "%(num)d charities"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ngo_explorer/utils/countries.py:28
+#: ngo_explorer/utils/countries.py:44
 msgid "all countries"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:39
+#: ngo_explorer/utils/countries.py:55
 msgid "all UNDP countries"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:40
+#: ngo_explorer/utils/countries.py:56
 msgid "all DAC countries"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:73
-msgid "<abbr title=\"United Nations Development Programme\">UNDP</abbr> regions"
+#: ngo_explorer/utils/countries.py:100
+msgid "Continents"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:77
+#: ngo_explorer/utils/countries.py:108
 msgid "all UNDP regions"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:93
-msgid "<abbr title=\"OECD Development Assistance Committee\">DAC</abbr> groups"
+#: ngo_explorer/utils/countries.py:123
+msgid "<abbr title=\"United Nations Development Programme\">UNDP</abbr> regions"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:97
+#: ngo_explorer/utils/countries.py:131
 msgid "all DAC groups"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:153
+#: ngo_explorer/utils/countries.py:143
+msgid "<abbr title=\"OECD Development Assistance Committee\">DAC</abbr> groups"
+msgstr ""
+
+#: ngo_explorer/utils/countries.py:189
 msgid "Platform of European NGOs in Senegal"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:155
+#: ngo_explorer/utils/countries.py:191
 msgid "Map of projects"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:169
+#: ngo_explorer/utils/countries.py:205
 msgid "Directory search"
 msgstr ""
 
-#: ngo_explorer/utils/countries.py:175
+#: ngo_explorer/utils/countries.py:211
 msgid "Members directory"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:18
+#: ngo_explorer/utils/download.py:42
 msgid "Charity name"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:19
+#: ngo_explorer/utils/download.py:44
+msgid "Registration date"
+msgstr ""
+
+#: ngo_explorer/utils/download.py:48
 msgid "Governing document"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:20
+#: ngo_explorer/utils/download.py:49
 msgid "Description of activities"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:21
+#: ngo_explorer/utils/download.py:50
 msgid "Charitable objects"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:22
+#: ngo_explorer/utils/download.py:51
 msgid "Causes served"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:23
+#: ngo_explorer/utils/download.py:52
 msgid "Beneficiaries"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:26
+#: ngo_explorer/utils/download.py:55
 msgid "Charity information"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:36
+#: ngo_explorer/utils/download.py:65
 msgid "Latest income date"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:40
+#: ngo_explorer/utils/download.py:70
 msgid "Income history"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:42
+#: ngo_explorer/utils/download.py:73
 msgid "Spending history"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:47
+#: ngo_explorer/utils/download.py:78
 msgid "Inflation adjust income/spending history"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:53
+#: ngo_explorer/utils/download.py:84
 msgid "Number of trustees"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:54
+#: ngo_explorer/utils/download.py:85
 msgid "Number of employees"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:55
+#: ngo_explorer/utils/download.py:87
 msgid "Number of volunteers"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:58
+#: ngo_explorer/utils/download.py:91
 msgid ""
 "Financial data can be adjusted to consistent prices using the\n"
 "        <a "
@@ -1224,265 +1228,265 @@ msgid ""
 "        measure published by the Office for National Statistics."
 msgstr ""
 
-#: ngo_explorer/utils/download.py:66
+#: ngo_explorer/utils/download.py:99
 msgid "Email"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:67
+#: ngo_explorer/utils/download.py:100
 msgid "Website"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:68
+#: ngo_explorer/utils/download.py:101
 msgid "Address"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:69
+#: ngo_explorer/utils/download.py:102
 msgid "Postcode"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:70
+#: ngo_explorer/utils/download.py:103
 msgid "Phone number"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:72
+#: ngo_explorer/utils/download.py:105
 msgid "Contact details"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:78
+#: ngo_explorer/utils/download.py:111
 msgid "Description of area of benefit"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:81
+#: ngo_explorer/utils/download.py:114
 msgid "Area of operation"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:83
+#: ngo_explorer/utils/download.py:116
 msgid "Countries where this charity operates"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:90
+#: ngo_explorer/utils/download.py:123
 msgid "County"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:91
+#: ngo_explorer/utils/download.py:125
 msgid "County [code]"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:92
+#: ngo_explorer/utils/download.py:127
 msgid "Local Authority"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:94
+#: ngo_explorer/utils/download.py:129
 msgid "Local Authority [code]"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:97
+#: ngo_explorer/utils/download.py:132
 msgid "Ward"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:98
+#: ngo_explorer/utils/download.py:133
 msgid "Ward [code]"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:101
+#: ngo_explorer/utils/download.py:136
 msgid "LSOA"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:102
+#: ngo_explorer/utils/download.py:137
 msgid "MSOA"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:104
+#: ngo_explorer/utils/download.py:139
 msgid "Parliamentary Constituency"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:108
+#: ngo_explorer/utils/download.py:143
 msgid "Parliamentary Constituency [code]"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:114
+#: ngo_explorer/utils/download.py:149
 msgid ""
 "The following fields are based on the postcode of the charities' UK "
 "registered office"
 msgstr ""
 
-#: ngo_explorer/utils/download.py:116
+#: ngo_explorer/utils/download.py:151
 msgid "Geography fields"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:5
+#: ngo_explorer/utils/filters.py:9
 msgid "General charitable purposes"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:6
+#: ngo_explorer/utils/filters.py:10
 msgid "Education and training"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:7
+#: ngo_explorer/utils/filters.py:11
 msgid "Health or saving of lives"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:8
+#: ngo_explorer/utils/filters.py:12
 msgid "Disability"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:9
+#: ngo_explorer/utils/filters.py:13
 msgid "Relief of poverty"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:10
+#: ngo_explorer/utils/filters.py:14
 msgid "Overseas aid/famine relief"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:11
+#: ngo_explorer/utils/filters.py:15
 msgid "Accommodation/housing"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:12
+#: ngo_explorer/utils/filters.py:16
 msgid "Religious activities"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:13
+#: ngo_explorer/utils/filters.py:17
 msgid "Arts/culture/heritage/science"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:14
+#: ngo_explorer/utils/filters.py:18
 msgid "Amateur sport"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:15
+#: ngo_explorer/utils/filters.py:19
 msgid "Animals"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:16
+#: ngo_explorer/utils/filters.py:20
 msgid "Environment/conservation/heritage"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:17
+#: ngo_explorer/utils/filters.py:21
 msgid "Economic and community development"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:18
+#: ngo_explorer/utils/filters.py:22
 msgid "Armed forces and emergency services"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:19
+#: ngo_explorer/utils/filters.py:23
 msgid "Human rights, equality and diversity"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:20
+#: ngo_explorer/utils/filters.py:24
 msgid "Recreation"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:21
+#: ngo_explorer/utils/filters.py:25
 msgid "Other charitable purposes"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:24
+#: ngo_explorer/utils/filters.py:28
 msgid "Children/young people"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:25
+#: ngo_explorer/utils/filters.py:29
 msgid "Elderly/old people"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:26
+#: ngo_explorer/utils/filters.py:30
 msgid "People with disabilities"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:27
+#: ngo_explorer/utils/filters.py:31
 msgid "People of a particular ethnic or racial origin"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:28
+#: ngo_explorer/utils/filters.py:32
 msgid "Other charities or voluntary bodies"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:29
+#: ngo_explorer/utils/filters.py:33
 msgid "Other defined groups"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:30
+#: ngo_explorer/utils/filters.py:34
 msgid "The general public/mankind"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:33
+#: ngo_explorer/utils/filters.py:37
 msgid "Makes grants to individuals"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:34
+#: ngo_explorer/utils/filters.py:38
 msgid "Makes grants to organisations"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:35
+#: ngo_explorer/utils/filters.py:39
 msgid "Provides other finance"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:36
+#: ngo_explorer/utils/filters.py:40
 msgid "Provides human resources"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:37
+#: ngo_explorer/utils/filters.py:41
 msgid "Provides buildings/facilities/open space"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:38
+#: ngo_explorer/utils/filters.py:42
 msgid "Provides services"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:39
+#: ngo_explorer/utils/filters.py:43
 msgid "Provides advocacy/advice/information"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:40
+#: ngo_explorer/utils/filters.py:44
 msgid "Sponsors or undertakes research"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:41
+#: ngo_explorer/utils/filters.py:45
 msgid "Acts as an umbrella or resource body"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:42
+#: ngo_explorer/utils/filters.py:46
 msgid "Other charitable activities"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:53
+#: ngo_explorer/utils/filters.py:57
 msgid "Wales"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:54
+#: ngo_explorer/utils/filters.py:58
 msgid "North East"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:55
+#: ngo_explorer/utils/filters.py:59
 msgid "North West"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:56
+#: ngo_explorer/utils/filters.py:60
 msgid "Yorkshire and The Humber"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:57
+#: ngo_explorer/utils/filters.py:61
 msgid "East Midlands"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:58
+#: ngo_explorer/utils/filters.py:62
 msgid "West Midlands"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:59
+#: ngo_explorer/utils/filters.py:63
 msgid "East of England"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:60
+#: ngo_explorer/utils/filters.py:64
 msgid "London"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:61
+#: ngo_explorer/utils/filters.py:65
 msgid "South East"
 msgstr ""
 
-#: ngo_explorer/utils/filters.py:62
+#: ngo_explorer/utils/filters.py:66
 msgid "South West"
 msgstr ""
 
