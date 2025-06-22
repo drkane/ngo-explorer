@@ -1,4 +1,5 @@
 import logging
+import sqlite3
 from datetime import datetime, timedelta
 
 from flask import current_app, g
@@ -14,9 +15,12 @@ def get_db() -> Database:
     db = getattr(g, "_database", None)
     last_updated = getattr(g, "_last_updated", now)
     if db is None or last_updated < (now - ONE_DAY_AGO):
-        db = g._database = Database(
-            current_app.config["DB_LOCATION"], tracer=logger.info
+        conn = sqlite3.connect(
+            current_app.config["DB_LOCATION"], isolation_level="IMMEDIATE"
         )
+        db = g._database = Database(conn, tracer=logger.info)
+        db.execute("PRAGMA journal_mode=WAL;")
+        db.execute("PRAGMA synchronous = NORMAL;")
         g._last_updated = now
     return db
 
