@@ -18,10 +18,14 @@ def clean_row(row):
 
 def update_countries():
     with open(
-        os.path.join(os.path.dirname(__file__), "../utils/countries.csv")
+        os.path.join(os.path.dirname(__file__), "../utils/countries.csv"),
+        "r",
+        encoding="utf-8",
     ) as csv_input:
         with open(
-            os.path.join(os.path.dirname(__file__), "../utils/countries.json"), "w"
+            os.path.join(os.path.dirname(__file__), "../utils/countries.json"),
+            "w",
+            encoding="utf-8",
         ) as output:
             reader = csv.DictReader(csv_input)
             json.dump({"countries": [clean_row(r) for r in reader]}, output, indent=4)

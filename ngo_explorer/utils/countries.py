@@ -16,12 +16,13 @@ from ngo_explorer.classes.countries import (
 )
 
 with open(
-    os.path.join(os.path.dirname(__file__), "countries.json"), encoding="utf8"
+    os.path.join(os.path.dirname(__file__), "countries.json"), encoding="utf-8"
 ) as a:
     countries_raw = sorted(json.load(a)["countries"], key=lambda k: k["name"])
     COUNTRIES: list[Country] = [
         Country(**c) for c in countries_raw if c["iso"] != "GBR"
     ]
+    print([c for c in COUNTRIES if c.iso2 == "TR"])
 
 
 def get_country_sets() -> tuple[set[str], set[str], set[str]]:
