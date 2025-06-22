@@ -175,6 +175,8 @@ class Charity:
         if data.get("all_names"):
             all_names = json.loads(data.get("all_names", "[]"))
 
+        beneficiaries = data.get("beneficiaries", "[]")
+
         return cls(
             id=data.get("id"),
             name=data.get("name"),
@@ -185,9 +187,9 @@ class Charity:
             orgIds=[o["id"] for o in json.loads(data.get("orgids", "[]"))],
             operations=[o["id"] for o in json.loads(data.get("operations", "[]"))],
             causes=[o["id"] for o in json.loads(data.get("causes", "[]"))],
-            beneficiaries=[
-                o["id"] for o in json.loads(data.get("beneficiaries", "[]"))
-            ],
+            beneficiaries=[o["id"] for o in json.loads(beneficiaries)]
+            if isinstance(beneficiaries, str)
+            else [],
             geo=CharityGeo.from_db(data.get("geo", "{}")),
             registrations=[
                 CharityRegistration(**r)
