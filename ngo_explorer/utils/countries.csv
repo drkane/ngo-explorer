@@ -2,15 +2,15 @@ id,name,iso,dac_status,undp,continent,iso2,ngoaidmap,latitude,longitude
 D-1,Afghanistan,AFG,Least developed,South Asia,Asia,AF,gn_1149361,33.93911,67.709953
 D-240,Akrotiri and Dhekelia,ALA,,,Europe,AX,,34.583333,32.983333
 D-2,Albania,ALB,Upper middle income,Europe and Central Asia,Europe,AL,gn_783754,41.153332,20.168331
-D-3,Algeria,DZA,Upper middle income,Arab States,Africa,DZ,gn_2589581,28.033886,1.659626
+D-3,Algeria,DZA,Lower middle income,Arab States,Africa,DZ,gn_2589581,28.033886,1.659626
 D-241,American Samoa,ASM,,,Oceania,AS,gn_5880801,-14.270972,-170.132217
 D-5,Andorra,AND,,,Europe,AD,gn_3041565,42.546245,1.601554
 D-6,Angola,AGO,Least developed,Sub-Saharan Africa,Africa,AO,gn_3351879,-11.202692,17.873887
 D-242,Anguilla,AIA,,,North America,AI,gn_3573511,18.220554,-63.068615
 D-236,Antarctica,ATA,,,Antarctica,AQ,gn_6697173,-75.250973,-0.071389
-D-9,Antigua and Barbuda,ATG,Upper middle income,Latin America and the Caribbean,North America,AG,gn_3576396,17.060816,-61.796428
+D-9,Antigua and Barbuda,ATG,,Latin America and the Caribbean,North America,AG,gn_3576396,17.060816,-61.796428
 D-10,Argentina,ARG,Upper middle income,Latin America and the Caribbean,South America,AR,gn_3865483,-38.416097,-63.616672
-D-11,Armenia,ARM,Lower middle income,Europe and Central Asia,Asia,AM,gn_174982,40.069099,45.038189
+D-11,Armenia,ARM,Upper middle income,Europe and Central Asia,Asia,AM,gn_174982,40.069099,45.038189
 D-243,Aruba,ABW,,,North America,AW,gn_3577279,12.52111,-69.968338
 D-13,Australia,AUS,,,Oceania,AU,gn_2077456,-25.274398,133.775136
 D-14,Austria,AUT,,,Europe,AT,gn_2782113,47.516231,14.550072
@@ -24,7 +24,7 @@ D-22,Belgium,BEL,,,Europe,BE,gn_2802361,50.503887,4.469936
 D-23,Belize,BLZ,Upper middle income,Latin America and the Caribbean,North America,BZ,gn_3582678,17.189877,-88.49765
 D-24,Benin,BEN,Least developed,Sub-Saharan Africa,Africa,BJ,gn_2395170,9.30769,2.315834
 D-244,Bermuda,BMU,,,North America,BM,gn_3573345,32.321384,-64.75737
-D-26,Bhutan,BTN,Least developed,South Asia,Asia,BT,gn_1252634,27.514162,90.433601
+D-26,Bhutan,BTN,Lower middle income,South Asia,Asia,BT,gn_1252634,27.514162,90.433601
 D-27,Bolivia,BOL,Lower middle income,Latin America and the Caribbean,South America,BO,gn_3923057,-16.290154,-63.588653
 D-28,Bosnia and Herzegovina,BIH,Upper middle income,Europe and Central Asia,Europe,BA,gn_3277605,43.915886,17.679076
 D-29,Botswana,BWA,Upper middle income,Sub-Saharan Africa,Africa,BW,gn_933860,-22.328474,24.684866
@@ -51,7 +51,7 @@ D-250,Cocos (Keeling) Islands,CCK,,,Asia,CC,gn_1547376,-12.164165,96.870956
 D-44,Colombia,COL,Upper middle income,Latin America and the Caribbean,South America,CO,gn_3686110,4.570868,-74.297333
 D-45,Comoros,COM,Least developed,Sub-Saharan Africa,Africa,KM,gn_921929,-11.875001,43.872219
 D-46,Congo,COG,Lower middle income,Sub-Saharan Africa,Africa,CG,gn_2260494,-0.228021,15.827659
-D-251,Cook Islands,COK,Upper middle income,,Oceania,CK,gn_1899402,-21.236736,-159.777671
+D-251,Cook Islands,COK,,,Oceania,CK,gn_1899402,-21.236736,-159.777671
 D-48,Costa Rica,CRI,Upper middle income,Latin America and the Caribbean,North America,CR,gn_3624060,9.748917,-83.753428
 D-49,Croatia,HRV,,,Europe,HR,gn_3202326,45.1,15.2
 D-50,Cuba,CUB,Upper middle income,Latin America and the Caribbean,North America,CU,gn_3562981,21.521757,-77.781167
@@ -65,7 +65,7 @@ D-56,Dominican Republic,DOM,Upper middle income,Latin America and the Caribbean,
 D-252,Easter  Island,CHL,,Latin America and the Caribbean,South America,CL,,-35.675147,-71.542969
 D-57,Ecuador,ECU,Upper middle income,Latin America and the Caribbean,South America,EC,gn_3658394,-1.831239,-78.183406
 D-58,Egypt,EGY,Lower middle income,Arab States,Africa,EG,gn_357994,26.820553,30.802498
-D-59,El Salvador,SLV,Lower middle income,Latin America and the Caribbean,North America,SV,gn_3585968,13.794185,-88.89653
+D-59,El Salvador,SLV,Upper middle income,Latin America and the Caribbean,North America,SV,gn_3585968,13.794185,-88.89653
 D-60,Equatorial Guinea,GNQ,Upper middle income,Sub-Saharan Africa,Africa,GQ,gn_2309096,1.650801,10.267895
 D-61,Eritrea,ERI,Least developed,Sub-Saharan Africa,Africa,ER,gn_338010,15.179384,39.782334
 D-62,Estonia,EST,,,Europe,EE,gn_453733,58.595272,25.013607
@@ -78,7 +78,7 @@ D-68,France,FRA,,,Europe,FR,gn_3017382,46.227638,2.213749
 D-255,French Guyana,GUF,,,South America,GF,,3.933889,-53.125782
 D-256,French Polynesia,PYF,,,Oceania,PF,,-17.679742,-149.406843
 D-71,Gabon,GAB,Upper middle income,Sub-Saharan Africa,Africa,GA,gn_2400553,-0.803689,11.609444
-D-74,Georgia,GEO,Lower middle income,Europe and Central Asia,Asia,GE,gn_614540,42.315407,43.356892
+D-74,Georgia,GEO,Upper middle income,Europe and Central Asia,Asia,GE,gn_614540,42.315407,43.356892
 D-75,Germany,DEU,,,Europe,DE,gn_2921044,51.165691,10.451526
 D-76,Ghana,GHA,Lower middle income,Sub-Saharan Africa,Africa,GH,gn_2300660,7.946527,-1.023194
 D-257,Gibraltar,GIB,,,Europe,GI,gn_2411586,36.137741,-5.345374
@@ -87,7 +87,7 @@ D-258,Greenland,GRL,,,North America,GL,gn_3425505,71.706936,-42.604303
 D-80,Grenada,GRD,Upper middle income,Latin America and the Caribbean,North America,GD,gn_3580239,12.262776,-61.604171
 D-259,Guadeloupe,GLP,,,North America,GP,,16.995971,-62.067641
 D-260,Guam,GUM,,,Oceania,GU,gn_4043988,13.444304,144.793731
-D-83,Guatemala,GTM,Lower middle income,Latin America and the Caribbean,North America,GT,gn_3595528,15.783471,-90.230759
+D-83,Guatemala,GTM,Upper middle income,Latin America and the Caribbean,North America,GT,gn_3595528,15.783471,-90.230759
 D-261,Guernsey,GGY,,,Europe,GG,gn_3042362,49.465691,-2.585278
 D-85,Guinea,GIN,Least developed,Sub-Saharan Africa,Africa,GN,gn_2420477,9.945587,-9.696645
 D-86,Guinea-Bissau,GNB,Least developed,Sub-Saharan Africa,Africa,GW,gn_2372248,11.803749,-15.180413
@@ -98,8 +98,8 @@ D-262,Hong Kong,HKG,,,Asia,HK,,22.396428,114.109497
 D-91,Hungary,HUN,,,Europe,HU,gn_719819,47.162494,19.503304
 D-92,Iceland,ISL,,,Europe,IS,gn_2629691,64.963051,-19.020835
 D-93,India,IND,Lower middle income,South Asia,Asia,IN,gn_1269750,20.593684,78.96288
-D-94,Indonesia,IDN,Lower middle income,East Asia and the Pacific,Asia,ID,gn_1643084,-0.789275,113.921327
-D-95,Iran,IRN,Upper middle income,South Asia,Asia,IR,gn_130758,32.427908,53.688046
+D-94,Indonesia,IDN,Upper middle income,East Asia and the Pacific,Asia,ID,gn_1643084,-0.789275,113.921327
+D-95,Iran,IRN,Lower middle income,South Asia,Asia,IR,gn_130758,32.427908,53.688046
 D-96,Iraq,IRQ,Upper middle income,Arab States,Asia,IQ,gn_99237,33.223191,43.679291
 D-168,Ireland,IRL,,,Europe,IE,cust_880146,53.41291,-8.24389
 D-263,Isle of Man,IMN,,,Europe,IM,gn_3042225,54.236107,-4.548056
@@ -115,12 +115,12 @@ D-266,Juan Fernandez Islands,CHL,,Latin America and the Caribbean,South America,
 D-104,Kazakhstan,KAZ,Upper middle income,Europe and Central Asia,Asia,KZ,gn_1522867,48.019573,66.923684
 D-105,Kenya,KEN,Lower middle income,Sub-Saharan Africa,Africa,KE,osm_880011,-0.023559,37.906193
 D-106,Kiribati,KIR,Least developed,East Asia and the Pacific,Oceania,KI,gn_4030945,-3.370417,-168.734039
-D-239,Kosovo,UNK,Lower middle income,,Europe,XK,gn_831053,42.602636,20.902977
+D-239,Kosovo,UNK,Upper middle income,,Europe,XK,gn_831053,42.602636,20.902977
 D-107,Kuwait,KWT,,Arab States,Asia,KW,gn_285570,29.31166,47.481766
 D-108,Kyrgyzstan,KGZ,Lower middle income,Europe and Central Asia,Asia,KG,gn_1527747,41.20438,74.766098
 D-109,Laos,LAO,Least developed,East Asia and the Pacific,Asia,LA,gn_1655842,19.85627,102.495496
 D-110,Latvia,LVA,,,Europe,LV,gn_458258,56.879635,24.603189
-D-111,Lebanon,LBN,Upper middle income,Arab States,Asia,LB,gn_272103,33.854721,35.862285
+D-111,Lebanon,LBN,Lower middle income,Arab States,Asia,LB,gn_272103,33.854721,35.862285
 D-112,Lesotho,LSO,Least developed,Sub-Saharan Africa,Africa,LS,gn_932692,-29.609988,28.233608
 D-113,Liberia,LBR,Least developed,Sub-Saharan Africa,Africa,LR,gn_2275384,6.428055,-9.429499
 D-114,Libya,LBY,Upper middle income,Arab States,Africa,LY,gn_2215636,26.3351,17.228331
@@ -142,7 +142,7 @@ D-130,Mauritius,MUS,Upper middle income,Sub-Saharan Africa,Africa,MU,gn_934292,-
 D-269,Mayotte,MYT,,,Africa,YT,,-12.8275,45.166244
 D-132,Mexico,MEX,Upper middle income,Latin America and the Caribbean,North America,MX,gn_3996063,23.634501,-102.552784
 D-133,Micronesia,FSM,Lower middle income,East Asia and the Pacific,Oceania,FM,gn_2081918,7.425554,150.550812
-D-134,Moldova,MDA,Lower middle income,Europe and Central Asia,Europe,MD,gn_617790,47.411631,28.369885
+D-134,Moldova,MDA,Upper middle income,Europe and Central Asia,Europe,MD,gn_617790,47.411631,28.369885
 D-135,Monaco,MCO,,,Europe,MC,gn_2993457,43.750298,7.412841
 D-136,Mongolia,MNG,Lower middle income,East Asia and the Pacific,Asia,MN,gn_2029969,46.862496,103.846656
 D-233,Montenegro,MNE,Upper middle income,Europe and Central Asia,Europe,ME,gn_3194884,42.708678,19.37439
@@ -165,7 +165,7 @@ D-152,North Korea,PRK,Other low income,East Asia and the Pacific,Asia,KP,gn_1873
 D-235,Northern Ireland,GBR,,,Europe,GB,gn_2635167,55.378051,-3.435973
 D-275,Northern Mariana Island,MNP,,,Oceania,MP,gn_4041468,17.33083,145.38469
 D-154,Norway,NOR,,,Europe,NO,gn_3144096,60.472024,8.468946
-D-238,Occupied Palestinian Territories,PSE,Lower middle income,Arab States,Asia,PS,gn_6254930,31.952162,35.233154
+D-238,Occupied Palestinian Territories,PSE,Upper middle income,Arab States,Asia,PS,gn_6254930,31.952162,35.233154
 D-155,Oman,OMN,,Arab States,Asia,OM,gn_286963,21.512583,55.923255
 D-156,Pakistan,PAK,Lower middle income,South Asia,Asia,PK,gn_1168579,30.375321,69.345116
 D-157,Palau,PLW,Upper middle income,East Asia and the Pacific,Oceania,PW,gn_1559582,7.51498,134.58252
@@ -185,7 +185,7 @@ D-170,Romania,ROU,,,Europe,RO,gn_798549,45.943161,24.96676
 D-279,Ross Dependency,ATA,,,Antarctica,AQ,,-75.250973,-0.071389
 D-171,Russia,RUS,,,Europe,RU,gn_2017370,61.52401,105.318756
 D-172,Rwanda,RWA,Least developed,Sub-Saharan Africa,Africa,RW,gn_49518,-1.940278,29.873888
-D-177,Samoa,WSM,Upper middle income,East Asia and the Pacific,Oceania,WS,gn_4034894,-13.759029,-172.104629
+D-177,Samoa,WSM,Lower middle income,East Asia and the Pacific,Oceania,WS,gn_4034894,-13.759029,-172.104629
 D-178,San Marino,SMR,,,Europe,SM,gn_3168068,43.94236,12.457777
 D-179,Sao Tome and Principe,STP,Least developed,Sub-Saharan Africa,Africa,ST,gn_2410758,0.18636,6.613081
 D-180,Saudi Arabia,SAU,,Arab States,Asia,SA,gn_102358,23.885942,45.079162
@@ -217,7 +217,7 @@ D-285,Svalbard,SJM,,,Europe,SJ,cust_880142,77.553604,23.670272
 D-195,Eswatini,SWZ,Lower middle income,Sub-Saharan Africa,Africa,SZ,gn_934841,-26.522503,31.465866
 D-196,Sweden,SWE,,,Europe,SE,gn_2661886,60.128161,18.643501
 D-197,Switzerland,CHE,,,Europe,CH,gn_2658434,46.818188,8.227512
-D-198,Syria,SYR,Lower middle income,Arab States,Asia,SY,gn_163843,34.802075,38.996815
+D-198,Syria,SYR,Other low income,Arab States,Asia,SY,gn_163843,34.802075,38.996815
 D-286,Taiwan,TWN,,,Asia,TW,gn_1668284,23.69781,120.960515
 D-200,Tajikistan,TJK,Lower middle income,Europe and Central Asia,Asia,TJ,gn_1220409,38.861034,71.276093
 D-201,Tanzania,TZA,Least developed,Sub-Saharan Africa,Africa,TZ,gn_149590,-6.369028,34.888822
@@ -229,7 +229,7 @@ D-287,Tokelau,TKL,Lower middle income,,Oceania,TK,gn_4031074,-8.967363,-171.8558
 D-205,Tonga,TON,Upper middle income,East Asia and the Pacific,Oceania,TO,gn_4032283,-21.178986,-175.198242
 D-206,Trinidad and Tobago,TTO,,Latin America and the Caribbean,North America,TT,gn_3573591,10.691803,-61.222503
 D-207,Tunisia,TUN,Lower middle income,Arab States,Africa,TN,gn_2464461,33.886917,9.537499
-D-208,Turkey,TUR,Upper middle income,Europe and Central Asia,Asia,TR,gn_298795,38.963745,35.243322
+D-208,Türkiye,TUR,Upper middle income,Europe and Central Asia,Asia,TR,gn_298795,38.963745,35.243322
 D-209,Turkmenistan,TKM,Upper middle income,Europe and Central Asia,Asia,TM,gn_1218197,38.969719,59.556278
 D-288,Turks and Caicos Islands,TCA,,,North America,TC,gn_3576916,21.694025,-71.797928
 D-211,Tuvalu,TUV,Least developed,East Asia and the Pacific,Oceania,TV,gn_2110297,-7.109535,177.64933
@@ -240,10 +240,12 @@ D-214,United Arab Emirates,ARE,,Arab States,Asia,AE,gn_290557,23.424076,53.84781
 D-216,United States,USA,,,North America,US,gn_6252001,37.09024,-95.712891
 D-217,Uruguay,URY,,Latin America and the Caribbean,South America,UY,gn_3439705,-32.522779,-55.765835
 D-218,Uzbekistan,UZB,Lower middle income,Europe and Central Asia,Asia,UZ,gn_1512440,41.377491,64.585262
-D-219,Vanuatu,VUT,Least developed,East Asia and the Pacific,Oceania,VU,gn_2134431,-15.376706,166.959158
+D-900,Vatican City,VAT,,,Europe,VA,gn_3175395,41.903333,12.453333
+D-219,Vanuatu,VUT,Lower middle income,East Asia and the Pacific,Oceania,VU,gn_2134431,-15.376706,166.959158
 D-221,Venezuela,VEN,Upper middle income,Latin America and the Caribbean,South America,VE,gn_3625428,6.42375,-66.58973
 D-222,Vietnam,VNM,Lower middle income,East Asia and the Pacific,Asia,VN,gn_1562822,14.058324,108.277199
 D-290,Wallis and Futuna,WLF,Upper middle income,,Oceania,WF,,-13.768752,-177.156097
+D-901,Western Sahara,ESH,Lower middle income,Arab States,Africa,EH,,25,-13
 D-224,Yemen,YEM,Least developed,Arab States,Asia,YE,gn_69543,15.552727,48.516388
 D-227,Zambia,ZMB,Least developed,Sub-Saharan Africa,Africa,ZM,gn_895949,-13.133897,27.849332
-D-228,Zimbabwe,ZWE,Other low income,Sub-Saharan Africa,Africa,ZW,gn_878675,-19.015438,29.154857
+D-228,Zimbabwe,ZWE,Lower middle income,Sub-Saharan Africa,Africa,ZW,gn_878675,-19.015438,29.154857

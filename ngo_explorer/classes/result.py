@@ -1,6 +1,7 @@
 import dataclasses
 from dataclasses import dataclass, field
 from typing import Optional
+from warnings import warn
 
 from flask_babel import _
 
@@ -93,6 +94,13 @@ class Result:
             ]
         else:
             countries = self.aggregate.areas
+
+        for country in countries:
+            country_record = get_country_by_id(country.key)
+            if not country_record:
+                warn(f"Country with ID {country.key} not found.")
+                continue
+            country.name = country_record.name if country.key else ""
 
         colours = ["#237756", "#F9AF42", "#043942", "#0CA777"]
 

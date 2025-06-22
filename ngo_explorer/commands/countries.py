@@ -8,7 +8,11 @@ def clean_row(row):
         if row[f] == "":
             row[f] = None
         if f in ["latitude", "longitude"]:
-            row[f] = float(row[f])
+            try:
+                row[f] = float(row[f])
+            except (ValueError, TypeError):
+                print(f"Invalid value for {f}: {row}")
+                continue
     return row
 
 

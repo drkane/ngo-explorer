@@ -22,8 +22,8 @@
                 <strong>{% trans %}Find out more:{% endtrans %}</strong>
             </li>
             <li class="fl mr2">
-                <a href="https://findthatcharity.uk/https://findthatcharity.uk/orgid/GB-CHC-{{ data.id }}"
-                    target="_blank" class="link blue external-link">
+                <a href="https://findthatcharity.uk/orgid/GB-CHC-{{ data.id }}" target="_blank"
+                    class="link blue external-link">
                     Find that Charity
                 </a>
             </li>
@@ -85,8 +85,6 @@
         {% if data.countries|length > 5 %}
         {{ data.name|to_titlecase }}
         {% trans %}is a UK-registered charity with area of operation in{% endtrans %}
-        {{ data.countries|length|_n }}
-        {% trans %}countries{% endtrans %}
         {{ data.countries|length|_n }}
         {% trans %}countries{% endtrans %}
         {% else %}
