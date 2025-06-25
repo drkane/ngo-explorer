@@ -22,7 +22,6 @@ with open(
     COUNTRIES: list[Country] = [
         Country(**c) for c in countries_raw if c["iso"] != "GBR"
     ]
-    print([c for c in COUNTRIES if c.iso2 == "TR"])
 
 
 def get_country_sets() -> tuple[set[str], set[str], set[str]]:
