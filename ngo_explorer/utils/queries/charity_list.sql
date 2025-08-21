@@ -79,13 +79,13 @@ SELECT
     c.web AS website,
     jsonb_build_object(
         'email',
-        c.email,
+        null,
         'address',
-        c.address,
+        null,
         'phone',
-        c.phone,
+        null,
         'postcode',
-        c.postcode
+        null
     ) AS contact,
     jsonb_build_object(
         'trustees',

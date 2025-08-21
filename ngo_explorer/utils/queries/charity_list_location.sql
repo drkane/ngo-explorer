@@ -2,9 +2,9 @@ SELECT
     org_id AS charity_id,
     jsonb_build_object(
         'latitude',
-        l.geo_lat,
+        NULL,
         'longitude',
-        l.geo_long,
+        NULL,
         'region',
         NULL,
         'country',
@@ -32,13 +32,13 @@ SELECT
             'admin_district',
             l.geo_laua,
             'admin_ward',
-            l.geo_ward,
+            NULL,
             'parliamentary_constituency',
             l.geo_pcon,
             'lsoa',
-            l.geo_lsoa21,
+            NULL,
             'msoa',
-            l.geo_msoa21
+            NULL
         )
     ) AS geo
 FROM

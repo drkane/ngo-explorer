@@ -361,6 +361,7 @@ class Charity:
             if (
                 k == "finances"
                 and isinstance(v, list)
+                and len(v) > 0
                 and isinstance(v[0], (CharityFinance))
             ):
                 for f in v:
