@@ -37,9 +37,7 @@ dokku config:set --no-restart ngo-explorer DOKKU_LETSENCRYPT_EMAIL=your@email.tl
 dokku letsencrypt ngo-explorer
 
 # setup volume storage
-mkdir -p /var/lib/dokku/data/storage/ngo-explorer
-chown -R dokku:dokku /var/lib/dokku/data/storage/ngo-explorer
-chown -R 32767:32767 /var/lib/dokku/data/storage/ngo-explorer
+dokku storage:ensure-directory ngo-explorer
 dokku storage:mount ngo-explorer /var/lib/dokku/data/storage/ngo-explorer:/app/storage
 dokku config:set --no-restart ngo-explorer DATA_CONTAINER=/app/storage
 ```
