@@ -24,10 +24,10 @@ class ResultAggregateGeo:
 
 @dataclass
 class ResultAggregate:
-    finances: ResultAggregateFinances = ResultAggregateFinances()
+    finances: ResultAggregateFinances = field(default_factory=ResultAggregateFinances)
     causes: list[ResultBucket] = field(default_factory=list)
     beneficiaries: list[ResultBucket] = field(default_factory=list)
     operations: list[ResultBucket] = field(default_factory=list)
     areas: list[ResultBucket] = field(default_factory=list)
     countries: list[ResultBucket] = field(default_factory=list)
-    geo: ResultAggregateGeo = ResultAggregateGeo()
+    geo: ResultAggregateGeo = field(default_factory=ResultAggregateGeo)
