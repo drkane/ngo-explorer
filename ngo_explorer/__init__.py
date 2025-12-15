@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Optional, Union
 
 import requests_cache
+import sentry_sdk
 from babel.numbers import format_decimal
 from flask import Flask, request
 from flask_babel import Babel
@@ -42,6 +43,7 @@ def create_app(test_config=None):
         BABEL_DEFAULT_LOCALE=settings.BABEL_DEFAULT_LOCALE,
         REQUEST_CACHE_BACKEND=settings.REQUEST_CACHE_BACKEND,
         REQUEST_CACHE_LOCATION=settings.REQUEST_CACHE_LOCATION,
+        SENTRY_DSN=settings.SENTRY_DSN,
     )
 
     if test_config is None:
@@ -67,6 +69,16 @@ def create_app(test_config=None):
         allowable_methods=("GET", "POST"),
         include_get_headers=True,
     )
+
+    if app.config["SENTRY_DSN"]:
+        sentry_sdk.init(
+            dsn=app.config["SENTRY_DSN"],
+            send_default_pii=True,
+            traces_sample_rate=0.1,
+            profile_session_sample_rate=0.1,
+            profile_lifecycle="trace",
+            enable_logs=True,
+        )
 
     # ensure the instance folder exists
     try:

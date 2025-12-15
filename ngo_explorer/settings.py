@@ -24,3 +24,4 @@ BABEL_TRANSLATION_DIRECTORIES = "../translations"
 BABEL_DEFAULT_LOCALE = "en"
 REQUEST_CACHE_BACKEND = "sqlite"
 REQUEST_CACHE_LOCATION = os.path.join(DATA_CONTAINER, "demo_cache")
+SENTRY_DSN = os.environ.get("SENTRY_DSN")

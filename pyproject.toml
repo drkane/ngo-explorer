@@ -23,4 +23,5 @@ dependencies = [
     "sqlite_utils",
     "tqdm",
     "titlecase",
+    "sentry-sdk[flask]>=2.47.0",
 ]
