@@ -1,0 +1,18 @@
+[tasks]
+serve = "flask run --port 8003"
+build = "npm run build"
+test = ['python -m pytest .']
+lint = ["ruff check .", "ruff format . --check"]
+fmt = ["ruff format .", "ruff check . --fix"]
+pip = ["uv sync"]
+
+[tasks.full_test]
+depends = ["collectstatic", "test", "lint"]
+
+[tasks.deploy]
+depends = ["test", "lint"]
+run = "git push dokku main"
+raw = true
+
+[env]
+_.python.venv = { path = ".venv" }
